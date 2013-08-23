@@ -1,0 +1,10 @@
+Installation:
+
+    git clone git://github.com/waveFrontSet/dotfiles.git
+
+Create symlinks (working on a bootstrap script at the moment)
+
+Let vundle do the magic for you:
+    
+    git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+    vim -c BundleInstall

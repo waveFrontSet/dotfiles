@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo '[install]' >> ~/.pydistutils.cfg
+echo 'prefix=' >> ~/.pydistutils.cfg
+pip install --user git+git://github.com/Lokaltog/powerline
+rm ~/.pydistutils.cfg

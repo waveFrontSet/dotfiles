@@ -1,0 +1,10 @@
+set from=paul.bubenzer@gmail.com
+set hostname="gmail.com"
+set folder="imaps://imap.gmail.com"
+set postponed="=Drafts"
+set spoolfile="imaps://imap.gmail.com/INBOX"
+set smtp_url="smtp://paul.bubenzer@smtp.gmail.com:587/"
+set imap_user="paul.bubenzer@gmail.com"
+set realname='Paul Bubenzer'
+set smtp_pass = `security find-internet-password -g -a paul.bubenzer@gmail.com -s imap.gmail.com 2>&1 | ack password | sed 's/password: "\(.*\)"/\1/'`
+set imap_pass = `security find-internet-password -g -a paul.bubenzer@gmail.com -s imap.gmail.com 2>&1 | ack password | sed 's/password: "\(.*\)"/\1/'`

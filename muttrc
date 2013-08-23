@@ -1,0 +1,23 @@
+#Set account info
+folder-hook 'gmail.com' 'source ~/.mutt/account.gmail'
+folder-hook 'hhu.de' 'source ~/.mutt/account.hhu'
+source ~/.mutt/account.gmail
+
+#Macros
+macro index <f2> '<change-folder>imaps://imap.gmail.com<enter>'
+macro index <f3> '<change-folder>imaps://mail.hhu.de<enter>'
+
+#Mailbox behaviour
+set mail_check=15                  #check for new mail
+set timeout=30
+set include=yes                    #quote when replying
+set header_cache="~/.mutt_header_cache"
+
+#Compose/reply/etc...
+set editor=vim
+
+#Source colorscheme
+source ~/.mutt/mutt-colors-solarized-light-16.muttrc
+
+#Link macro
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links in urlview'
