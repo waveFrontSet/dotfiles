@@ -115,19 +115,9 @@ set pastetoggle=<F2>
 nnoremap ; :
 vnoremap ; :
 nnoremap ;; ;
-nmap <silent> <leader>/ ;nohlsearch<CR>
-map Q gq
+nnoremap <silent> <leader>/ ;nohlsearch<CR>
+noremap Q gq
 set viewoptions-=options
-" augroup vimrc
-    " autocmd BufWritePost *
-    " \   if expand('%') != '' && &buftype !~ 'nofile'
-    " \|      mkview
-    " \|  endif
-    " autocmd BufRead *
-    " \   if expand('%') != '' && &buftype !~ 'nofile'
-    " \|      silent loadview
-    " \|  endif
-" augroup END
 " Plugin Shortcuts and Configuration {{{1
 " neocomplete {{{2
 let g:acp_enableAtStartup = 0
