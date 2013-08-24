@@ -64,7 +64,7 @@ install_dotfiles () {
   do
     dest="$HOME/.`basename \"${source%.*}\"`"
 
-    if [ -f $dest ] || [ -d $dest ]
+    if [ -f $dest ] || [ -d $dest ] || [ -h $dest ]
     then
 
       overwrite=false
@@ -131,7 +131,7 @@ install_configfiles () {
     dest_base=`basename $source`
     dest="$HOME/.config/${dest_base#*.}/$dest_base"
 
-    if [ -f $dest ] || [ -d $dest ]
+    if [ -f $dest ] || [ -d $dest ] || [ -h $dest ]
     then
 
       overwrite=false
