@@ -185,7 +185,7 @@ nmap <silent> <Leader>tf :FufFile<CR>
 nmap <silent> <Leader>td :FufDir<CR>
 nmap <silent> <Leader>tl :FufLine<CR>
 "" Latex-suite {{{2
-imap <C-space> <Plug>IMAP_JumpForward
+imap <C-@> <Plug>IMAP_JumpForward
 "" vim-airline {{{2
 let g:airline_powerline_fonts = 1
 "" vim-bufferline {{{2
