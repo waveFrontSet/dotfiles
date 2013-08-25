@@ -31,27 +31,27 @@ brew install php55
 #brew install homebrew/dupes/screen
 
 # Install other useful binaries
+# brew install exiv2
+# brew install imagemagick
+# brew install node
+# brew install rename
+# brew install rhino
+# brew install tree
+# brew install webkit2png
+# brew install zopfli
 brew install ack
 brew install djvu2pdf
-# brew install exiv2
 brew install git
-# brew install imagemagick
 brew install lynx
 brew install mutt
-# brew install node
 brew install pigz
 brew install python3
 brew install reattach-to-user-namespace
-# brew install rename
-# brew install rhino
 brew install the_silver_searcher
 brew install tmux
 brew install transmission
-# brew install tree
 brew install vimpager
 brew install vimpc
-# brew install webkit2png
-# brew install zopfli
 
 brew tap homebrew/versions
 brew install lua52
@@ -64,23 +64,27 @@ function installcask() {
     brew cask install "${@}" 2> /dev/null
 }
 
+# installcask google-chrome-canary
+# installcask imagealpha
+# installcask imageoptim
+# installcask miro-video-converter
+# installcask sublime-text
+# installcask tor-browser
+# installcask transmission
+# installcask virtualbox
 installcask alfred
 installcask calibre
 installcask dropbox
 installcask google-chrome
-# installcask google-chrome-canary
-# installcask imagealpha
-# installcask imageoptim
 installcask iterm2
 installcask macvim
-# installcask miro-video-converter
-# installcask sublime-text
+installcask skim
 installcask the-unarchiver
-# installcask tor-browser
-# installcask transmission
 installcask ukelele
-# installcask virtualbox
 installcask vlc
+
+# Allow alfred to find cask apps
+brew cask alfred link
 
 # Remove outdated versions from the cellar
 brew cleanup
