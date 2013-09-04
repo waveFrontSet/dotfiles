@@ -7,32 +7,31 @@ set rtp+=~/.vim/bundle/vundle/
 let g:vundle_default_git_proto = 'git'
 call vundle#rc()
 " Bundles {{{1
-Bundle 'gmarik/vundle'
-Bundle 'L9'
+Bundle 'ack.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'bling/vim-bufferline'
+Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'FuzzyFinder'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-commentary'
+Bundle 'gmarik/vundle'
+Bundle 'honza/vim-snippets'
 Bundle 'jcf/vim-latex'
+Bundle 'kana/vim-fakeclip'
+Bundle 'klen/python-mode'
+Bundle 'L9'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'michaeljsmith/vim-indent-object'
+Bundle 'rking/ag.vim'
+Bundle 'scrooloose/syntastic'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/neosnippet.vim'
 Bundle 'Shougo/unite.vim'
-Bundle 'honza/vim-snippets'
-" Bundle 'bling/vim-airline'
-Bundle 'bling/vim-bufferline'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'ack.vim'
-Bundle 'TaskList.vim'
 Bundle 'sjl/gundo.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'rking/ag.vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'klen/python-mode'
-Bundle 'kana/vim-fakeclip'
+Bundle 'TaskList.vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 " General configuration {{{1
 filetype plugin indent on
 set shell=/bin/bash
@@ -59,6 +58,7 @@ set smarttab
 set shiftround
 set textwidth=80
 set hidden
+let g:netrw_liststyle=3
 filetype plugin on
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
@@ -178,8 +178,8 @@ if has('conceal')
   set conceallevel=2
 endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"" NerdTree {{{2
-nmap <silent> <Leader>nt :NERDTreeToggle<CR>
+"" netrw {{{2
+nmap <silent> <Leader>nt :e .<CR>
 "" FuzzyFinder {{{2
 nmap <silent> <Leader>tf :FufFile<CR>
 nmap <silent> <Leader>td :FufDir<CR>
