@@ -230,7 +230,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " wish to set 'wildignore' to completely ignore files, and 'wildmenu' to enable
 " enhanced tab completion. These can be done in the user vimrc file.
 set suffixes+=.info,.aux,.log,.dvi,.bbl,.out,.o,.lo
-set wildignore=*.info,*.aux,*.log,*.dvi,*.bbl,*.out,*.o,*.lo,*.blg,*.pdf,*.pdfsync,*.bcf,*.gz
+set wildignore=*.info,*.aux,*.log,*.dvi,*.bbl,*.out,*.o,*.lo,*.blg,*.pdf,*.pdfsync,*.bcf,*.gz,*.fdb_latexmk,*.fls
 
 " When displaying line numbers, don't use an annoyingly wide number column. This
 " doesn't enable line numbers -- :set number will do that. The value given is a
