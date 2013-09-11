@@ -1,9 +1,6 @@
-set from=paul.bubenzer@hhu.de
-set hostname="hhu.de"
-set folder="imaps://mail.hhu.de"
-set postponed="=Drafts"
-set spoolfile="imaps://mail.hhu.de/INBOX"
-set smtp_url="smtp://pabub100@mail.hhu.de"
-set imap_user="pabub100"
-set imap_pass = `security find-internet-password -g -a pabub100 -s mail.hhu.de 2>&1 | ack password | sed 's/password: "\(.*\)"/\1/'`
-set smtp_pass = `security find-internet-password -g -a pabub100 -s mail.hhu.de 2>&1 | ack password | sed 's/password: "\(.*\)"/\1/'`
+set from      = "paul.bubenzer@hhu.de"
+set sendmail  = "/usr/local/bin/msmtp -a HHU"
+set mbox      = "+HHU/archive"
+set postponed = "+HHU/Drafts"
+
+color status green default

@@ -1,6 +1,6 @@
 [general]
 ui = ttyui
-accounts = Gmail
+accounts = Gmail, HHU
 pythonfile = ~/.mutt/offlineimap.py
 fsync = False
 
@@ -34,4 +34,21 @@ folderfilter = lambda folder: folder not in ['[Google Mail]/Papierkorb',
                                              '[Google Mail]/Wichtig',
                                              '[Google Mail]/Spam',
                                              ]
+sslcacertfile = ~/.mutt_certificates
+
+[Account HHU]
+localrepository = HHU-Local
+remoterepository = HHU-Remote
+
+[Repository HHU-Local]
+type = Maildir
+localfolders = ~/.mail/HHU
+
+[Repository HHU-Remote]
+maxconnections = 1
+type = IMAP
+remoteuser = pabub100
+remotehost = mail.rz.uni-duesseldorf.de
+remotepasseval = get_keychain_pass(account="pabub100", server="mail.rz.uni-duesseldorf.de")
+realdelete = no
 sslcacertfile = ~/.mutt_certificates

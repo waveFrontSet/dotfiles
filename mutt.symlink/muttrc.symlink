@@ -30,6 +30,7 @@ set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)
 # Account Settings -----------------------------------
 # Default inbox.
 set spoolfile = "+Gmail/INBOX"
+source ~/.mutt/account.gmail
 
 # Alternate email addresses.
 alternates paul.bubenzer@hhu.de
@@ -39,10 +40,9 @@ mailboxes +Gmail/INBOX \
           +Gmail/archive \
           +Gmail/sent \
           +Gmail/drafts \
-
-# Other special folders.
-set mbox      = "+Gmail/archive"
-set postponed = "+Gmail/drafts"
+          +HHU/INBOX \
+          +HHU/Sent\ Messages \
+          +HHU/Drafts
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
@@ -115,10 +115,8 @@ set reverse_name                     # reply as whomever it was to
 set include                          # include message in replies
 set forward_quote                    # include message in forwards
 
-#Compose/reply/etc...
-set editor=vim
-set from = "paul.bubenzer@gmail.com"
-set sendmail = "/usr/local/bin/msmtp -a Gmail"
+# Compose options
+set editor        = vim
 set sendmail_wait = 0
 unset record
 
@@ -132,3 +130,6 @@ source ~/.mutt/mutt-colors-solarized-light-16.muttrc
 
 #Link macro
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links in urlview'
+
+folder-hook Gmail/* source ~/.mutt/account.gmail
+folder-hook HHU/* source ~/.mutt/account.hhu
