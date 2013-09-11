@@ -1,0 +1,21 @@
+account Gmail
+host smtp.gmail.com
+port 587
+protocol smtp
+auth on
+from paul.bubenzer@gmail.com
+user paul.bubenzer@gmail.com
+tls on
+tls_trust_file ~/.mutt_certificates
+
+account HHU
+host mail.rz.uni-duesseldorf.de
+port 587
+protocol smtp
+auth on
+from paul.bubenzer@hhu.de
+user pabub100
+tls on
+tls_trust_file ~/.mutt_certificates
+
+account default : Gmail
