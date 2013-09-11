@@ -23,4 +23,4 @@ windows:
         - vim
         - #empty, will just run plain bash
   - music: vimpc
-  - mail: offlineimap -q; mutt
+  - mail: offlineimap -u quiet; mutt
