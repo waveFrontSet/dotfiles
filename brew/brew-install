@@ -43,7 +43,9 @@ brew install ack
 brew install djvu2pdf
 brew install git
 brew install lynx
+brew install msmtp
 brew install mutt
+brew install offline-imap
 brew install pigz
 brew install python3
 brew install reattach-to-user-namespace
