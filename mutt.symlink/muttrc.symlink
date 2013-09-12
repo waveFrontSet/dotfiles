@@ -79,9 +79,13 @@ macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 # Sidebar Navigation ---------------------------------
-bind index,pager <down>   sidebar-next
-bind index,pager <up>     sidebar-prev
-bind index,pager <right>  sidebar-open
+bind index,pager J sidebar-next
+bind index,pager K sidebar-prev
+bind index,pager S sidebar-open
+
+# Index Navigation -----------------------------------
+bind index <Up>   previous-entry
+bind index <Down> next-entry
 
 # Pager View Options ---------------------------------
 set pager_index_lines = 10 # number of index lines to show
