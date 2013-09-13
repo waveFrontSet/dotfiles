@@ -7,8 +7,6 @@ set rtp+=~/.vim/bundle/vundle/
 let g:vundle_default_git_proto = 'git'
 call vundle#rc()
 " Bundles {{{1
-Bundle 'FuzzyFinder'
-Bundle 'L9'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/neosnippet.vim'
@@ -47,6 +45,8 @@ set number
 set clipboard=unnamed
 set showmatch
 set incsearch
+set hlsearch
+syntax on
 set showcmd
 set wildmenu
 set viminfo='20,\"500   " Keep a .viminfo file.
@@ -75,6 +75,8 @@ augroup colorschemeConceal
 augroup END
 " General shortcuts {{{1
 let mapleader=","
+" easier escaping insert mode
+inoremap jk <ESC>
 nnoremap <leader>ev :e $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 nnoremap <silent> <leader>pp :!python3 %<cr>
@@ -115,7 +117,7 @@ set pastetoggle=<F2>
 nnoremap ; :
 vnoremap ; :
 nnoremap ;; ;
-nnoremap <silent> <leader>/ ;nohlsearch<CR>
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 noremap Q gq
 set viewoptions-=options
 " Plugin Shortcuts and Configuration {{{1
@@ -154,7 +156,7 @@ let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplete#manual_completion_start_length = 2
-"" neosnippet {{{2
+" neosnippet {{{2
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -178,43 +180,38 @@ if has('conceal')
   set conceallevel=2
 endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-"" netrw {{{2
-nmap <silent> <Leader>nt :e .<CR>
-"" FuzzyFinder {{{2
-nmap <silent> <Leader>tf :FufFile<CR>
-nmap <silent> <Leader>td :FufDir<CR>
-nmap <silent> <Leader>tl :FufLine<CR>
-"" Latex-suite {{{2
+" netrw {{{2
+nnoremap <silent> <Leader>nt :e .<CR>
+" Latex-suite {{{2
 imap <C-@> <Plug>IMAP_JumpForward
-"" vim-airline {{{2
-let g:airline_powerline_fonts = 1
-"" vim-bufferline {{{2
-let g:bufferline_echo = 0
-" autocmd VimEnter *
-"     \ let &statusline='%{bufferline#refresh_status()}'
-"     \ .bufferline#get_status_string()
-let g:bufferline_rotate = 1
-" }}}
+" let g:Tex_TreatMacViewerAsUNIX='1'
+" let g:Tex_ViewRuleComplete_pdf='/usr/bin/open -a Skim $*.pdf'
+let g:Tex_ViewRule_pdf='Skim'
+let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 --interaction=nonstopmode $*'
 " synastic {{{2
 let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'active_filetypes': ['php', 'python'],
                             \ 'passive_filetypes': ['tex'] }
 " }}}
-" " powerline {{{2
+" powerline {{{2
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 set noshowmode
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
+" if ! has('gui_running')
+"   set ttimeoutlen=10
+"   augroup FastEscape
+"     autocmd!
+"     au InsertEnter * set timeoutlen=0
+"     au InsertLeave * set timeoutlen=1000
+"   augroup END
+" endif
 " }}}
-" " Python-mode {{{2
+" Unite {{{2
+nnoremap <leader>tf :Unite file<CR>
+nnoremap <leader>tb :Unite buffer<CR>
+" }}}
+" Python-mode {{{2
 let g:pymode_rope = 1
 let g:pymode_doc = 1
 let g:pymode_doc_key = 'K'
@@ -223,8 +220,7 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " }}}
-" " ropevim {{{2
-" }}}}}}
+" }}}
 " Tab ignore and number column width {{{
 " When doing tab completion, give the following files lower priority. You may
 " wish to set 'wildignore' to completely ignore files, and 'wildmenu' to enable
@@ -237,60 +233,6 @@ set wildignore=*.info,*.aux,*.log,*.dvi,*.bbl,*.out,*.o,*.lo,*.blg,*.pdf,*.pdfsy
 " minimum width to use for the number column, not a fixed size.
 if v:version >= 700
   set numberwidth=3
-endif
-" }}}
-" {{{ Modeline settings
-" We don't allow modelines by default. See bug #14088 and bug #73715.
-" If you're not concerned about these, you can enable them on a per-user
-" basis by adding "set modeline" to your ~/.vimrc file.
-set modeline
-" }}}
-" {{{ Locale settings
-" Try to come up with some nice sane GUI fonts. Also try to set a sensible
-" value for fileencodings based upon locale. These can all be overridden in
-" the user vimrc file.
-if v:lang =~? "^ko"
-  set fileencodings=euc-kr
-  set guifontset=-*-*-medium-r-normal--16-*-*-*-*-*-*-*
-elseif v:lang =~? "^ja_JP"
-  set fileencodings=euc-jp
-  set guifontset=-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*
-elseif v:lang =~? "^zh_TW"
-  set fileencodings=big5
-  set guifontset=-sony-fixed-medium-r-normal--16-150-75-75-c-80-iso8859-1,-taipei-fixed-medium-r-normal--16-150-75-75-c-160-big5-0
-elseif v:lang =~? "^zh_CN"
-  set fileencodings=gb2312
-  set guifontset=*-r-*
-endif
-" If we have a BOM, always honour that rather than trying to guess.
-if &fileencodings !~? "ucs-bom"
-  set fileencodings^=ucs-bom
-endif
-" let g:Tex_TreatMacViewerAsUNIX='1'
-" let g:Tex_ViewRuleComplete_pdf='/usr/bin/open -a Skim $*.pdf'
-let g:Tex_ViewRule_pdf='Skim'
-let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 --interaction=nonstopmode $*'
-
-" Always check for UTF-8 when trying to determine encodings.
-if &fileencodings !~? "utf-8"
-  " If we have to add this, the default encoding is not Unicode.
-  " We use this fact later to revert to the default encoding in plaintext/empty
-  " files.
-  let g:added_fenc_utf8 = 1
-  set fileencodings+=utf-8
-endif
-
-" Make sure we have a sane fallback for encoding detection
-if &fileencodings !~? "default"
-  set fileencodings+=default
-endif
-" }}}
-" {{{ Syntax highlighting settings
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
 endif
 " }}}
 " {{{ Terminal fixes
@@ -306,33 +248,6 @@ if &term ==? "gnome" && has("eval")
   " include raw escapes in the file.
   exec "set <C-Left>=\eO5D"
   exec "set <C-Right>=\eO5C"
-endif
-" }}}
-" {{{ Filetype plugin settings
-" Enable plugin-provided filetype settings, but only if the ftplugin
-" directory exists (which it won't on livecds, for example).
-if isdirectory(expand("$VIMRUNTIME/ftplugin"))
-  filetype plugin on
-
-  " Uncomment the next line (or copy to your ~/.vimrc) for plugin-provided
-  " indent settings. Some people don't like these, so we won't turn them on by
-  " default.
-  filetype indent on
-endif
-" }}}
-" {{{ Fix &shell, see bug #101665.
-if "" == &shell
-  if executable("/bin/bash")
-    set shell=/bin/bash
-  elseif executable("/bin/sh")
-    set shell=/bin/sh
-  endif
-endif
-"}}}
-" {{{ Our default /bin/sh is bash, not ksh, so syntax highlighting for .sh
-" files should default to bash. See :help sh-syntax and bug #101819.
-if has("eval")
-  let is_bash=1
 endif
 " }}}
 " {{{ Autocommands
@@ -382,9 +297,4 @@ augroup gentoo
 augroup END
 
 endif " has("autocmd")
-" }}}
-" {{{ vimrc.local
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 " }}}
