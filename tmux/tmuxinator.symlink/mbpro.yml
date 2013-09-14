@@ -7,7 +7,7 @@ root: ~/
 # socket_name: foo
 
 # Runs before everything. Use it to start daemons etc.
-pre: mpd
+# pre: mpd
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
@@ -22,5 +22,4 @@ windows:
       panes:
         - vim
         - #empty, will just run plain bash
-  - music: vimpc
   - mail: mutt
