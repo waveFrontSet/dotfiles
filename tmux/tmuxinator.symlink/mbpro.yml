@@ -1,6 +1,6 @@
 # ~/.tmuxinator/std.yml
 
-name: std
+name: mbpro
 root: ~/
 
 # Optional tmux socket
