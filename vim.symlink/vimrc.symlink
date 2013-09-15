@@ -8,16 +8,15 @@ let g:vundle_default_git_proto = 'git'
 call vundle#rc()
 " Bundles {{{1
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/neosnippet.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'SirVer/ultisnips'
 Bundle 'TaskList.vim'
 Bundle 'ack.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'christoomey/vim-tmux-navigator'
 Bundle 'gmarik/vundle'
 Bundle 'godlygeek/tabular'
-Bundle 'honza/vim-snippets'
+" Bundle 'honza/vim-snippets'
 Bundle 'jcf/vim-latex'
 Bundle 'kana/vim-fakeclip'
 Bundle 'klen/python-mode'
@@ -121,65 +120,6 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 noremap Q gq
 set viewoptions-=options
 " Plugin Shortcuts and Configuration {{{1
-" neocomplete {{{2
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smartcase = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-g> neocomplete#complete_common_string()
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#manual_completion_start_length = 2
-" neosnippet {{{2
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : neocomplete#start_manual_complete()
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2
-endif
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " netrw {{{2
 nnoremap <silent> <Leader>nt :e .<CR>
 " Latex-suite {{{2
@@ -208,8 +148,14 @@ set noshowmode
 " endif
 " }}}
 " Unite {{{2
-nnoremap <leader>tf :Unite file<CR>
-nnoremap <leader>tb :Unite buffer<CR>
+nnoremap <leader>ur :<C-u>UniteWithCurrentDir -start-insert file_rec<CR>
+nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
+nnoremap <leader>ub :<C-u>Unite buffer<CR>
+" }}}
+" UltiSnips {{{2
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 " Python-mode {{{2
 let g:pymode_rope = 1
