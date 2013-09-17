@@ -66,6 +66,7 @@ augroup texAngleConceal
   au BufNewFile,BufRead *.tex syn match texMathSymbol '\\langle\>' contained conceal cchar=⟨
   au BufNewFile,BufRead *.tex syn match texMathSymbol '\\rangle\>' contained conceal cchar=⟩
 augroup END
+set conceallevel=2
 set background=light
 colo solarized
 augroup colorschemeConceal
@@ -76,7 +77,7 @@ augroup END
 let mapleader=","
 " easier escaping insert mode
 inoremap jk <ESC>
-nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 nnoremap <silent> <leader>pp :!python3 %<cr>
 nnoremap <silent> <leader>p2 :!python %<cr>
@@ -121,7 +122,7 @@ noremap Q gq
 set viewoptions-=options
 " Plugin Shortcuts and Configuration {{{1
 " netrw {{{2
-nnoremap <silent> <Leader>nt :e .<CR>
+nnoremap <silent> <Leader>nt :Explore<CR>
 " Latex-suite {{{2
 imap <C-@> <Plug>IMAP_JumpForward
 " let g:Tex_TreatMacViewerAsUNIX='1'
