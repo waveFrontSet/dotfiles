@@ -2,6 +2,7 @@
 set folder           = ~/.mail               # mailbox location
 set header_cache     = ~/.mutt_header_cache
 set message_cachedir = ~/.mutt_message_cache
+set mailcap_path     = ~/.mutt/mailcap
 
 # Basic Options --------------------------------------
 set wait_key = no        # shut up, mutt
