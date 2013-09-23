@@ -58,6 +58,7 @@ set textwidth=80
 set hidden
 let g:netrw_liststyle=3
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
 augroup texAngleConceal
@@ -123,7 +124,6 @@ set viewoptions-=options
 " netrw {{{2
 nnoremap <silent> <Leader>nt :Explore<CR>
 " Latex-suite {{{2
-imap <C-@> <Plug>IMAP_JumpForward
 " let g:Tex_TreatMacViewerAsUNIX='1'
 " let g:Tex_ViewRuleComplete_pdf='/usr/bin/open -a Skim $*.pdf'
 let g:Tex_ViewRule_pdf='Skim'
@@ -159,6 +159,26 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 " Python-mode {{{2
 let g:pymode_rope = 1
+" Map keys for autocompletion
+let g:pymode_rope_autocomplete_map = '<C-Space>'
+" Auto create and open ropeproject
+let g:pymode_rope_auto_project = 1
+" Enable autoimport
+let g:pymode_rope_enable_autoimport = 1
+" Auto generate global cache
+let g:pymode_rope_autoimport_generate = 1
+let g:pymode_rope_autoimport_underlineds = 0
+let g:pymode_rope_codeassist_maxfixes = 10
+let g:pymode_rope_sorted_completions = 1
+let g:pymode_rope_extended_complete = 1
+let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
+let g:pymode_rope_confirm_saving = 1
+let g:pymode_rope_global_prefix = "<C-x>p"
+let g:pymode_rope_local_prefix = "<C-c>r"
+let g:pymode_rope_vim_completion = 1
+let g:pymode_rope_guess_project = 1
+let g:pymode_rope_goto_def_newwin = ""
+let g:pymode_rope_always_show_complete_menu = 0
 let g:pymode_doc = 1
 let g:pymode_doc_key = 'K'
 let g:pymode_syntax = 1
