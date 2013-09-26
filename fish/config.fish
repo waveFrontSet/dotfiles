@@ -15,36 +15,27 @@ function fish_prompt
     echo -n (prompt_pwd)
     echo -n '$ '
 end
+
 function ej
     sudo diskutil eject $argv
 end
-function gitpush
-    cd ~/.vim
-    git commit -a -m $argv
-    git push
-    cd -
-end
-function gitpull
-    cd ~/.vim
-    git pull
-    cd -
-end
-function diagtomeasure -d "Given the diagonal in inch and a ratio, this computes
-the measurements of a rectangle."
-    python3 Dropbox/Python/diag_to_measurements.py $argv
-end
+
 function sk
     open -a Skim $argv
 end
+
 function v
     vim $argv
 end
+
 function gv
     mvim $argv
 end
+
 function fi
     open -a Finder .
 end
+
 set -x EDITOR vim
 set -x PAGER vimpager 
 set -x MOBDOC ~/Library/Mobile\ Documents/com~apple~Preview/Documents
