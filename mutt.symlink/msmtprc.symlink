@@ -16,4 +16,13 @@ auth plain
 from paul.bubenzer@hhu.de
 user pabub100
 
+account WWU
+host secmail.uni-muenster.de
+port 587
+auth on
+from paul.bubenzer@uni-muenster.de
+user p_bube02
+tls on
+tls_trust_file ~/.mutt_certificates
+
 account default : Gmail
