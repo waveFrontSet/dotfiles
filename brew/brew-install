@@ -15,31 +15,15 @@ brew install bash
 # Install wget with IRI support
 brew install wget --enable-iri
 
-# Install RingoJS and Narwhal
-# Note that the order in which these are installed is important; see http://git.io/brew-narwhal-ringo.
-# brew install ringojs
-# brew install narwhal
-
 # Install more recent versions of some OS X tools
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 brew tap josegonzalez/homebrew-php
 brew install php55
 
-# These two formulae didn’t work well last time I tried them:
-#brew install homebrew/dupes/vim
-#brew install homebrew/dupes/screen
-
 # Install other useful binaries
-# brew install exiv2
-# brew install imagemagick
-# brew install node
-# brew install rename
-# brew install rhino
-# brew install tree
-# brew install webkit2png
-# brew install zopfli
 brew install ack
+brew install contacts
 brew install djvu2pdf
 brew install git
 brew install lynx
@@ -65,17 +49,8 @@ function installcask() {
     brew cask install "${@}" 2> /dev/null
 }
 
-# installcask google-chrome-canary
-# installcask imagealpha
-# installcask imageoptim
-# installcask miro-video-converter
-# installcask sublime-text
-# installcask tor-browser
-# installcask transmission
-# installcask virtualbox
 installcask alfred
 installcask calibre
-installcask dropbox
 installcask google-chrome
 installcask iterm2
 installcask macvim
