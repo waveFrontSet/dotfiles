@@ -37,6 +37,9 @@ brew install the_silver_searcher
 brew install tmux
 brew install transmission
 brew install vimpager
+brew install zsh
+brew install zsh-completions
+brew install zsh-syntax-highlighting
 
 brew tap homebrew/versions
 brew install lua52
