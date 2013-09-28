@@ -29,6 +29,7 @@ brew install git
 brew install lynx
 brew install msmtp
 brew install mutt --with-sidebar-patch
+brew install mysql
 brew install offline-imap
 brew install pigz
 brew install python3
@@ -57,6 +58,7 @@ installcask calibre
 installcask google-chrome
 installcask iterm2
 installcask macvim
+installcask sequel-pro
 installcask skim
 installcask the-unarchiver
 installcask ukelele
