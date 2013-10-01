@@ -147,3 +147,4 @@ macro index \cx '<enter-command>source ~/.mutt/account.WWU<enter>' 'Send mails w
 
 folder-hook Gmail/* source ~/.mutt/account.gmail
 folder-hook HHU/* source ~/.mutt/account.hhu
+set record = "+Gmail/sent"
