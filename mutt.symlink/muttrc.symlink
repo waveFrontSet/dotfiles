@@ -44,7 +44,6 @@ alternates paul.bubenzer@hhu.de
 
 # Mailboxes to show in the sidebar.
 mailboxes +Gmail/INBOX \
-          +Gmail/archive \
           +Gmail/sent \
           +Gmail/drafts \
           +HHU/INBOX \
