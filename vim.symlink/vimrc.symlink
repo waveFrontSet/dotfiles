@@ -11,6 +11,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Shougo/unite.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'TaskList.vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'ack.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'christoomey/vim-tmux-navigator'
@@ -156,6 +157,10 @@ nnoremap <leader>ub :<C-u>Unite buffer<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
+" YouCompleteMe {{{2
+let g:ycm_key_list_select_completion = ['<C-n>']
+let g:ycm_key_list_previous_completion = ['<C-p>']
 " }}}
 " Python-mode {{{2
 let g:pymode_rope = 1
