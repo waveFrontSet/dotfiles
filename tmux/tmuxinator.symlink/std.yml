@@ -16,7 +16,11 @@ pre: mpd
 # tmux_options: -f ~/.tmux.mac.conf
 
 windows:
-  - shell: # empty
+  - shell:
+      layout: main-horizontal
+      panes:
+        - # empty
+        - top -o cpu
   - editor:
       layout: main-horizontal
       panes:

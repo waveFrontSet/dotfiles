@@ -162,6 +162,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
 " }}}
+" solarized {{{2
+call togglebg#map("<F11>")
 " Python-mode {{{2
 let g:pymode_rope = 1
 " Map keys for autocompletion
