@@ -20,7 +20,7 @@ windows:
   - editor:
       layout: main-horizontal
       panes:
-        - vim ~/Google\ Drive/may.tex
-        - cd Google\ Drive/; latexmk -pdf -pdflatex='lualatex -synctex=1 --interaction=nonstopmode' -pvc may.tex
+        - vim ~/thesis/thesis_notes.tex ~/thesis/thesis_diary.markdown ~/thesis/thesis.tex
+        - cd ~/thesis; latexmk -pdf -pdflatex='lualatex -synctex=1 --interaction=nonstopmode' -pvc thesis_notes.tex
   - music: vimpc
   - mail: mutt
