@@ -57,6 +57,7 @@ installcask alfred
 installcask calibre
 installcask google-chrome
 installcask iterm2
+installcask keyremap4macbook
 installcask macvim
 installcask sequel-pro
 installcask skim
