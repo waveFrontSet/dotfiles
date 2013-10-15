@@ -112,6 +112,8 @@ nnoremap <leader>lb :!biber --output_safechars %:r<CR>
 nnoremap <leader>lg :!makeglossaries %:r<CR>
 " Easy folding toggle with Space
 nnoremap <Space> za
+" Quickly set filetype to htmldjango so that snippets and syntax hl is available
+nnoremap <leader>dj :set filetype=htmldjango<CR>
 set pastetoggle=<F2>
 nnoremap ; :
 vnoremap ; :
@@ -147,7 +149,7 @@ if ! has('gui_running')
 endif
 " }}}
 " Unite {{{2
-nnoremap <leader>ur :<C-u>UniteWithCurrentDir -start-insert file_rec<CR>
+nnoremap <leader>ur :<C-u>Unite -start-insert file_rec<CR>
 nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
 nnoremap <leader>ub :<C-u>Unite buffer<CR>
 " }}}
