@@ -40,15 +40,13 @@ set spoolfile = "+Gmail/INBOX"
 source ~/.mutt/account.gmail
 
 # Alternate email addresses.
-alternates paul.bubenzer@hhu.de
+alternates paul.bubenzer@hhu.de, paul.bubenzer@wwu.de
 
 # Mailboxes to show in the sidebar.
 mailboxes +Gmail/INBOX \
           +Gmail/sent \
           +Gmail/drafts \
-          +HHU/INBOX \
-          +HHU/Sent\ Messages \
-          +HHU/Drafts
+          +Gmail/Uni
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
@@ -143,7 +141,9 @@ macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links in urlview'
 
 # WWU sendmail macro
 macro index \cx '<enter-command>source ~/.mutt/account.WWU<enter>' 'Send mails with WWU account'
+# HHU sendmail macro
+macro index \ca '<enter-command>source ~/.mutt/account.HHU<enter>' 'Send mails with HHU account'
 
 folder-hook Gmail/* source ~/.mutt/account.gmail
-folder-hook HHU/* source ~/.mutt/account.hhu
+folder-hook Gmail/Uni source ~/.mutt/account.WWU
 set record = "+Gmail/sent"
