@@ -58,7 +58,6 @@ set shiftround
 set textwidth=80
 set hidden
 let g:netrw_liststyle=3
-filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor='latex'
