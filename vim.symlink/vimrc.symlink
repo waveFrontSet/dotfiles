@@ -79,8 +79,8 @@ nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 nnoremap <silent> <leader>pp :!python3 %<cr>
 nnoremap <silent> <leader>p2 :!python %<cr>
-" swap arguments separated by commas in function calls
-nnoremap <silent> <leader>sw "qdt,dweP"qpb
+" swap arguments separated by commas in function calls (bla, blubb)
+nnoremap <silent> <leader>sw yiwWviwp#viwp
 " quickly switch between alternate buffers
 nnoremap <leader>; :e #<cr>
 " refactor a numberless environment to one with a label
