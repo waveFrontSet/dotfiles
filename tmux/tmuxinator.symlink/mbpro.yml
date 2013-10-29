@@ -20,6 +20,6 @@ windows:
   - editor:
       layout: main-horizontal
       panes:
-        - vim
-        - #empty, will just run plain bash
+        - vim ~/thesis/thesis_notes.tex ~/thesis/thesis_diary.markdown ~/thesis/thesis.tex
+        - cd ~/thesis; latexmk -pdf -pvc -silent -pdflatex='lualatex -synctex=1 --interaction=nonstopmode' thesis_notes.tex
   - mail: mutt
