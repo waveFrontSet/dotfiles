@@ -20,6 +20,6 @@ windows:
   - editor:
       layout: main-horizontal
       panes:
-        - vim ~/thesis/thesis_notes.tex ~/thesis/thesis_diary.markdown ~/thesis/thesis.tex ~/thesis/thesis_literature.bib
+        - cd ~/thesis; vim thesis_notes.tex thesis_diary.markdown thesis.tex thesis_literature.bib
         - cd ~/thesis; latexmk -pdf -pvc -silent -pdflatex='lualatex -synctex=1 --interaction=nonstopmode' thesis_notes.tex
   - mail: mutt
