@@ -20,8 +20,8 @@ sudo defaults write
 /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName
 -string "no-mans-land"
 
-# Set standby delay to 24 hours (default is 1 hour)
-sudo pmset -a standbydelay 86400
+# Set standby delay to 1/2 hours (default is 1 hour)
+sudo pmset -a standbydelay 1800
 
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
