@@ -20,7 +20,7 @@ windows:
       layout: main-horizontal
       panes:
         - # empty
-        - top -o cpu
+        - htop
   - editor:
       layout: main-horizontal
       panes:
