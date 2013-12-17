@@ -44,9 +44,9 @@ alternates paul.bubenzer@hhu.de, paul.bubenzer@wwu.de
 
 # Mailboxes to show in the sidebar.
 mailboxes +Gmail/INBOX \
+          +Gmail/Uni \
           +Gmail/sent \
-          +Gmail/drafts \
-          +Gmail/Uni
+          +Gmail/drafts
 
 # Index View Options ---------------------------------
 set date_format = "%m/%d"
