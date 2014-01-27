@@ -1,5 +1,5 @@
 set from      = "paul.bubenzer@uni-muenster.de"
-set sendmail  = "/usr/local/bin/msmtp -a WWU"
+set sendmail  = "msmtp -a WWU"
 set mbox      = "+Gmail/archive"
 set postponed = "+Gmail/drafts"
 

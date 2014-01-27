@@ -139,11 +139,11 @@ source ~/.mutt/mutt-colors-solarized-light-16.muttrc
 #Link macro
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links in urlview'
 
-# WWU sendmail macro
-macro index \cx '<enter-command>source ~/.mutt/account.WWU<enter>' 'Send mails with WWU account'
-# HHU sendmail macro
-macro index \ca '<enter-command>source ~/.mutt/account.HHU<enter>' 'Send mails with HHU account'
+# wwu sendmail macro
+macro index \cx '<enter-command>source ~/.mutt/account.wwu<enter>' 'Send mails with wwu account'
+# hhu sendmail macro
+macro index \ca '<enter-command>source ~/.mutt/account.hhu<enter>' 'Send mails with hhu account'
 
 folder-hook Gmail/* source ~/.mutt/account.gmail
-folder-hook Gmail/Uni source ~/.mutt/account.WWU
+folder-hook Gmail/Uni source ~/.mutt/account.wwu
 set record = "+Gmail/sent"
