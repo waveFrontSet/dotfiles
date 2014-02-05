@@ -3,35 +3,37 @@ scriptencoding utf-8
 set nocompatible        " Use Vim defaults (much better!)
 " Bundle configuration {{{1
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-let g:vundle_default_git_proto = 'git'
-call vundle#rc()
+if has('vim_starting')
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles {{{1
-Bundle 'ack.vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'gmarik/vundle'
-Bundle 'godlygeek/tabular'
-Bundle 'jcf/vim-latex'
-Bundle 'kana/vim-fakeclip'
-Bundle 'klen/python-mode'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'Shougo/unite.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'sjl/gundo.vim'
-Bundle 'taku-o/vim-editexisting-ext'
-Bundle 'TaskList.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'waveFrontSet/vim-colors-solarized'
+NeoBundle 'ack.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'jcf/vim-latex'
+NeoBundle 'kana/vim-fakeclip'
+NeoBundle 'klen/python-mode'
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'michaeljsmith/vim-indent-object'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'taku-o/vim-editexisting-ext'
+NeoBundle 'TaskList.vim'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'waveFrontSet/vim-colors-solarized'
 " General configuration {{{1
 filetype plugin indent on
+NeoBundleCheck
 set shell=/bin/bash
 set laststatus=2
 set encoding=utf-8
