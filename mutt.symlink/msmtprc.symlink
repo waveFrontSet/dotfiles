@@ -23,6 +23,6 @@ auth on
 from paul.bubenzer@uni-muenster.de
 user p_bube02
 tls on
-tls_trust_file ~/.mutt_certificates
+tls_trust_file ~/.mutt_certificates_wwu
 
 account default : Gmail
