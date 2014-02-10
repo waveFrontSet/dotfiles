@@ -195,6 +195,12 @@ let g:pymode_syntax_all = 1
 let g:pymode_syntax_indent_errors = g:pymode_syntax_all
 let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " }}}
+" Fugitive {{{2
+nnoremap UU :if &diff<bar>diffupdate<bar>else<bar>diffthis<bar>endif<cr>
+nnoremap Ud :if &diff<bar>diffupdate<bar>else<bar>Gdiff<bar>endif<cr>
+nnoremap Us :Gstatus<cr>
+nnoremap Ul :Glog<cr>
+" }}}
 " }}}
 " Tab ignore and number column width {{{
 " When doing tab completion, give the following files lower priority. You may
