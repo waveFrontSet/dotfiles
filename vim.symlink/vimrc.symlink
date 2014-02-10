@@ -76,6 +76,9 @@ augroup colorschemeConceal
   autocmd!
   au Colorscheme * hi! link Conceal Normal
 augroup END
+let g:html_indent_inctags="head,html,body,p,head,table,tbody,div,script"
+let g:html_indent_script1="inc"
+let g:html_indent_style1="inc"
 " General shortcuts {{{1
 let mapleader=","
 nnoremap <leader>ev :sp $MYVIMRC<cr>
