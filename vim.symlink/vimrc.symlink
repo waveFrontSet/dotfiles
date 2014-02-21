@@ -47,7 +47,6 @@ set number
 set clipboard=unnamed
 set showmatch
 set incsearch
-set hlsearch
 syntax on
 set showcmd
 set wildmenu
@@ -125,6 +124,12 @@ vnoremap ; :
 nnoremap ;; ;
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 noremap Q gq
+" allows incsearch highlighting for range commands
+cnoremap $t <CR>:t''<CR>
+cnoremap $T <CR>:T''<CR>
+cnoremap $m <CR>:m''<CR>
+cnoremap $M <CR>:M''<CR>
+cnoremap $d <CR>:d<CR>``
 set viewoptions-=options
 " Plugin Shortcuts and Configuration {{{1
 " netrw {{{2
