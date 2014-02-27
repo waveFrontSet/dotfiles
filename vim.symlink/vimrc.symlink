@@ -208,6 +208,7 @@ nnoremap UU :if &diff<bar>diffupdate<bar>else<bar>diffthis<bar>endif<cr>
 nnoremap Ud :if &diff<bar>diffupdate<bar>else<bar>Gdiff<bar>endif<cr>
 nnoremap Us :Gstatus<cr>
 nnoremap Ul :Glog<cr>
+nnoremap Up :!git p
 " }}}
 " }}}
 " Tab ignore and number column width {{{
