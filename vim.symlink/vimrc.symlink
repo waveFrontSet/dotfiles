@@ -130,7 +130,6 @@ set pastetoggle=<F2>
 nnoremap ; :
 vnoremap ; :
 nnoremap ;; ;
-nnoremap <silent> <leader>/ :nohlsearch<CR>
 noremap Q gq
 " allows incsearch highlighting for range commands
 cnoremap $t <CR>:t''<CR>
@@ -167,9 +166,30 @@ if ! has('gui_running')
 endif
 " }}}
 " Unite {{{2
-nnoremap <leader>ur :<C-u>Unite -start-insert file_rec<CR>
+nnoremap <leader>ur :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
 nnoremap <leader>ub :<C-u>Unite buffer<CR>
+nnoremap <leader>/  :<C-u>Unite grep:.<CR>
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " Use pt in unite grep source.
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack in unite grep source.
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts =
+  \ '--no-heading --no-color -a -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 " }}}
 " UltiSnips {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
