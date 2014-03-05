@@ -18,3 +18,9 @@ def get_keychain_pass(account=None, server=None):
                if l.startswith('password: ')][0]
 
     return re.match(r'password: "(.*)"', outtext).group(1)
+
+def get_keychain_pass_linux(account):
+    params = { 'account': account }
+    command = "gpg -d ~/%(account)s.gpg" % params
+    output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+    return output.splitlines()[2]
