@@ -30,6 +30,7 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -51,6 +52,19 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'yasnippet)
 (require 'yasnippet)
 (yas-global-mode t)
+
+;; Adding markdown support
+(require-package 'markdown-mode)
+(require-package 'markdown-mode+)
+(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; Adding git support via magit
+(require-package 'magit)
+;;; If nothing is staged and 'c c' is invoked, everything will be commited.
+(setq magit-commit-all-when-nothing-staged t)
 
 ;; Activate evil-mode + convenient subpackages
 (require-package 'evil)
@@ -76,6 +90,11 @@ re-downloaded in order to locate PACKAGE."
 ;; Evil keybindings
 ;;; Use SPC to execute commands via smex
 (define-key evil-normal-state-map (kbd "SPC") 'smex)
+;;; Fold-simulation
+(define-key evil-normal-state-map (kbd "zM") 'hide-body)
+(define-key evil-normal-state-map (kbd "zm") 'hide-subtree)
+(define-key evil-normal-state-map (kbd "zR") 'show-all)
+(define-key evil-normal-state-map (kbd "zr") 'show-subtree)
 
 ;; LaTeX stuff
 ;;; Conceal the ugly commands
@@ -92,3 +111,5 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'auctex-latexmk)
 (require 'auctex-latexmk)
 (auctex-latexmk-setup)
+(require-package 'latex-preview-pane)
+(latex-preview-pane-enable)
