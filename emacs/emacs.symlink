@@ -95,6 +95,8 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "zm") 'hide-subtree)
 (define-key evil-normal-state-map (kbd "zR") 'show-all)
 (define-key evil-normal-state-map (kbd "zr") 'show-subtree)
+;;; Use Us to get the magit-status window
+(define-key evil-normal-state-map (kbd "Us") 'magit-status)
 
 ;; LaTeX stuff
 ;;; Conceal the ugly commands
