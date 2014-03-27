@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: defkevil
+# key: defkevil
+# --
+(define-key evil-normal-state-map (kbd "$1") '$2)$0
