@@ -22,6 +22,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Show line numbers
 (global-linum-mode t)
 
+;; Wrap text after 79 chars
+(setq fill-column 79)
+
 ;; Color-theme
 (require-package 'color-theme-solarized)
 (load-theme 'solarized-light t)
