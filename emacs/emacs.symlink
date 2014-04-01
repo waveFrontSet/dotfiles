@@ -33,7 +33,7 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(exec-path (quote ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin")))
+ '(exec-path (quote ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin" )))
  '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t))
 (custom-set-faces
@@ -69,6 +69,9 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'magit)
 ;;; If nothing is staged and 'c c' is invoked, everything will be commited.
 (setq magit-commit-all-when-nothing-staged t)
+
+;; Adding on-the-fly syntax checking via flycheck
+(require-package 'flycheck)
 
 ;; Activate evil-mode + convenient subpackages
 (require-package 'evil)
@@ -157,3 +160,4 @@ re-downloaded in order to locate PACKAGE."
            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
            ("\\paragraph{%s}" . "\\paragraph*{%s}")
            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+(setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
