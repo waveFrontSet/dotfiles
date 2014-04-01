@@ -33,6 +33,7 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(exec-path (quote ("/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin")))
  '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t))
 (custom-set-faces
@@ -118,3 +119,41 @@ re-downloaded in order to locate PACKAGE."
 (auctex-latexmk-setup)
 (require-package 'latex-preview-pane)
 (latex-preview-pane-enable)
+
+;; Enable cdlatex in org-mode
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+;; change mode-line color by evil state
+(lexical-let ((default-color (cons (face-background 'mode-line)
+				   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook
+	    (lambda ()
+	      (let ((color (cond ((minibufferp) default-color)
+				 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+				 ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+				 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+				 (t default-color))))
+		(set-face-background 'mode-line (car color))
+		(set-face-foreground 'mode-line (cdr color))))))
+(require 'org-latex)
+
+(add-to-list 'org-export-latex-classes
+             '("mytemplate"
+"\\documentclass[intlimits,english,a4paper]{amsbook}
+
+\\usepackage[loadthm]{myStyle}
+\\usepackage{mathtools}
+
+% Literaturverzeichnis-Pakete
+\\usepackage{csquotes}
+\\usepackage[babel=other,backend=biber,natbib=true,firstinits=true]{biblatex}
+
+               [NO-DEFAULT-PACKAGES]
+               [NO-PACKAGES]
+               [EXTRA]"
+	    ("\\chapter{%s}" . "\\chapter*{%s}")
+               ("\\section{%s}" . "\\section*{%s}")
+           ("\\subsection{%s}" . "\\subsection*{%s}")
+           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+           ("\\paragraph{%s}" . "\\paragraph*{%s}")
+           ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
