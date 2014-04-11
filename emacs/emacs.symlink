@@ -145,7 +145,8 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'org-latex-packages-alist '("" "mathtools" t))
 (add-to-list 'org-latex-packages-alist '("loadthm, article" "myStyle" t))
 
-(add-to-list 'org-export-latex-classes
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
              '("mytemplate"
 "\\documentclass[intlimits,english,a4paper]{amsbook}
 
@@ -155,8 +156,8 @@ re-downloaded in order to locate PACKAGE."
 % Literaturverzeichnis-Pakete
 \\usepackage{csquotes}
 \\usepackage[babel=other,backend=biber,natbib=true,firstinits=true]{biblatex}
-\addbibresource{thesis_literature.bib}
-\bibliography{thesis_literature}
+\\addbibresource{thesis_literature.bib}
+\\bibliography{thesis_literature}
 
 % Pagestyling
 \pagestyle{headings}
