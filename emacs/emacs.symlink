@@ -79,6 +79,7 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'evil-leader)
 (require-package 'evil-tabs)
 (require-package 'evil-visualstar)
+(require-package 'surround)
 
 (setq evil-search-module 'evil-search
       evil-want-C-u-scroll t
@@ -91,6 +92,9 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'evil-visualstar)
 
+(require 'surround)
+(global-surround-mode 1)
+
 ;; Evil customizations
 (setq sentence-end-double-space nil)
 
@@ -102,6 +106,8 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "zm") 'hide-subtree)
 (define-key evil-normal-state-map (kbd "zR") 'show-all)
 (define-key evil-normal-state-map (kbd "zr") 'show-subtree)
+(define-key evil-normal-state-map (kbd "zj") 'outline-next-visible-heading)
+(define-key evil-normal-state-map (kbd "zk") 'outline-previous-visible-heading)
 ;;; Use Us to get the magit-status window
 (define-key evil-normal-state-map (kbd "Us") 'magit-status)
 
@@ -129,6 +135,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable code syntax highlighting in org-mode
 (setq org-src-fontify-natively t)
 
+;; Enable reftex in org-mode
+(add-hook 'org-mode-hook 'reftex-mode)
+
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
 				   (face-foreground 'mode-line))))
@@ -148,7 +157,10 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'org-latex-packages-alist '("" "mathtools" t))
 (add-to-list 'org-latex-packages-alist '("loadthm, article" "myStyle" t))
 
-(add-to-list 'org-export-latex-classes
+(setq org-src-fontify-natively t)
+
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
              '("mytemplate"
 "\\documentclass[intlimits,english,a4paper]{amsbook}
 
