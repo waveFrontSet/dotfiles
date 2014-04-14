@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: diary
+# key: diary
+# --
+#### `(format-time-string "%d.%m.%Y")` ####
+$0
