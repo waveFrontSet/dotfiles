@@ -1,6 +1,0 @@
-set from      = "paul.bubenzer@uni-muenster.de"
-set sendmail  = "msmtp -a WWU"
-set mbox      = "+Gmail/archive"
-set postponed = "+Gmail/drafts"
-
-color status red default

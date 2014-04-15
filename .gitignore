@@ -5,6 +5,9 @@
 # *.[oa]
 *~
 *.pyc
+vim/.vim/bundle
+mutt/.mutt/.ropeproject
+vim/.vim/.netrwhist
 vim.symlink/bundle/
 mutt.symlink/.ropeproject/
 vim.symlink/.netrwhist
