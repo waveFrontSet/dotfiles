@@ -25,6 +25,10 @@
 [user]
 	name = waveFrontSet
 	email = paul.bubenzer@gmail.com
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
 [core]
 	excludesfile = /Users/paul/.gitignore_global
 [diff]
