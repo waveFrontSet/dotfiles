@@ -1,0 +1,6 @@
+set from      = "paul.bubenzer@gmail.com"
+set sendmail  = "msmtp -a Gmail"
+set mbox      = "+Gmail/archive"
+set postponed = "+Gmail/drafts"
+
+color status cyan default

@@ -1,0 +1,37 @@
+[general]
+ui = ttyui
+accounts = Gmail
+pythonfile = ~/.mutt/offlineimap.py
+fsync = False
+
+[Account Gmail]
+localrepository = Gmail-Local
+remoterepository = Gmail-Remote
+
+[Repository Gmail-Local]
+type = Maildir
+localfolders = ~/.mail/Gmail
+nametrans = lambda folder: {'drafts':  '[Google Mail]/Entwürfe',
+                            'sent':    '[Google Mail]/Gesendet',
+                            'flagged': '[Google Mail]/Markiert',
+                            'Trash':   '[Google Mail]/Papierkorb',
+                            'archive': '[Google Mail]/Alle Nachrichten',
+                            }.get(folder, folder)
+
+[Repository Gmail-Remote]
+maxconnections = 3
+type = Gmail
+remoteuser = paul.bubenzer@gmail.com
+remotepasseval = get_keychain_pass(account="paul.bubenzer@gmail.com", server="imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Google Mail]/Entwürfe':    'drafts',
+                            '[Google Mail]/Gesendet': 'sent',
+                            '[Google Mail]/Markiert':   'flagged',
+                            '[Google Mail]/Papierkorb':     'Trash',
+                            '[Google Mail]/Alle Nachrichten':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Google Mail]/Papierkorb',
+                                             '[Google Mail]/Wichtig',
+                                             '[Google Mail]/Spam',
+                                             ]
+sslcacertfile = ~/.mutt_certificates

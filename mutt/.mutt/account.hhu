@@ -1,0 +1,6 @@
+set from      = "paul.bubenzer@hhu.de"
+set sendmail  = "msmtp -a HHU"
+set mbox      = "+Gmail/archive"
+set postponed = "+Gmail/drafts"
+
+color status green default
