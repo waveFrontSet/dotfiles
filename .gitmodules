@@ -1,3 +1,3 @@
-[submodule "zsh/zprezto.symlink"]
-	path = zsh/zprezto.symlink
-	url = https://github.com/waveFrontSet/prezto.git
+[submodule "zsh/.zprezto"]
+	path = zsh/.zprezto
+	url = https://github.com/waveFrontSet/prezto
