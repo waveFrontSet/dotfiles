@@ -2,9 +2,11 @@ Installation:
 
     git clone git://github.com/waveFrontSet/dotfiles.git
 
-Create symlinks
-
+Symlink everything using the bootstrap script
     ./bootstrap
+OR use stow to pick which config files you need, for example
+    stow vim zsh
+only creates symlink for the config files of vim and zsh.
 
 Let NeoBundle install vim plugins
     
