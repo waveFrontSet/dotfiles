@@ -41,7 +41,7 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
 
 ;; Fuzzy search buffer and file names
 (require-package 'projectile)
@@ -132,6 +132,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
+;; Enable code syntax highlighting in org-mode
+(setq org-src-fontify-natively t)
+
 ;; Enable reftex in org-mode
 (add-hook 'org-mode-hook 'reftex-mode)
 
@@ -171,7 +174,7 @@ re-downloaded in order to locate PACKAGE."
 \\bibliography{thesis_literature}
 
 % Pagestyling
-\pagestyle{headings}
+\\pagestyle{headings}
 
                [NO-DEFAULT-PACKAGES]
                [NO-PACKAGES]
@@ -182,4 +185,5 @@ re-downloaded in order to locate PACKAGE."
            ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
            ("\\paragraph{%s}" . "\\paragraph*{%s}")
            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
 (setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
