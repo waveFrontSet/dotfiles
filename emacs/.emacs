@@ -132,6 +132,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
+;; Enable autofill in org-mode
+(add-hook 'org-mode-hook 'turn-on-autofill)
+
 ;; Enable code syntax highlighting in org-mode
 (setq org-src-fontify-natively t)
 
