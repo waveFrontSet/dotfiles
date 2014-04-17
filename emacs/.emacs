@@ -135,16 +135,21 @@ re-downloaded in order to locate PACKAGE."
 (latex-preview-pane-enable)
 
 ;; Enable cdlatex in org-mode
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+(add-hook 'org-mode-hook 'org-cdlatex-mode)
 
-;; Enable autofill in org-mode
-(add-hook 'org-mode-hook 'turn-on-autofill)
+;; Enable autofill in all text-modes
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook
+  '(lambda() (set-fill-column 80)))
+
+;; Enable reftex in org-mode
+(add-hook 'org-mode-hook 'reftex-mode)
 
 ;; Enable code syntax highlighting in org-mode
 (setq org-src-fontify-natively t)
 
-;; Enable reftex in org-mode
-(add-hook 'org-mode-hook 'reftex-mode)
+;; Tell reftex the path to my default bib file
+(setq reftex-default-bibliography '("~/thesis/thesis_literature.bib"))
 
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
