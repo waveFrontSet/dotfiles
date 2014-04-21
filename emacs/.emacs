@@ -145,6 +145,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable reftex in org-mode
 (add-hook 'org-mode-hook 'reftex-mode)
 
+;; Export from latex to pdf via latexmk in org-mode
+(setq org-latex-to-pdf-process (list "latexmk %f"))
+
 ;; Enable code syntax highlighting in org-mode
 (setq org-src-fontify-natively t)
 
@@ -170,7 +173,10 @@ re-downloaded in order to locate PACKAGE."
 (add-to-list 'org-latex-packages-alist '("" "mathtools" t))
 (add-to-list 'org-latex-packages-alist '("loadthm, article" "myStyle" t))
 
+(require 'ob-latex)
+(setq org-confirm-babel-evaluate nil)
 (setq org-src-fontify-natively t)
+(setq org-src-preserve-indentation t)
 
 (require 'ox-latex)
 (add-to-list 'org-latex-classes
