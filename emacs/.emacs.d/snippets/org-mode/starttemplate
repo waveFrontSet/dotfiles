@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: starttemplate
+# key: start
+# --
+#+TITLE: $1
+#+AUTHOR: Paul Bubenzer
+#+EMAIL: paul.bubenzer@uni-muenster.de
+#+LaTeX_CLASS: ${2:mytemplate}
+#+LaTeX_HEADER: % Insert your macros here
+#+OPTIONS: :exports results :results code
+$0
