@@ -1,0 +1,7 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: beginenv
+# key: be
+# --
+#+BEGIN_${1:EQUATION*}
+$0
+#+END_$1
