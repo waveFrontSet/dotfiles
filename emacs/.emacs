@@ -110,6 +110,7 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "zk") 'outline-previous-visible-heading)
 ;;; Use Us to get the magit-status window
 (define-key evil-normal-state-map (kbd "Us") 'magit-status)
+(define-key evil-normal-state-map (kbd "Ud") 'magit-diff-unstaged)
 ;;; vim-unimpaired emulation
 (define-key evil-normal-state-map (kbd "]a") 'next-buffer)
 (define-key evil-normal-state-map (kbd "[a") 'previous-buffer)
