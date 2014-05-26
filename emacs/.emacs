@@ -73,6 +73,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Adding on-the-fly syntax checking via flycheck
 (require-package 'flycheck)
 
+;; Adding pass support
+(require-package 'password-store)
+
 ;; Activate evil-mode + convenient subpackages
 (require-package 'evil)
 (require-package 'evil-indent-textobject)
