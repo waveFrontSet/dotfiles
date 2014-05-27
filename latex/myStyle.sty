@@ -1,0 +1,272 @@
+\ProvidesPackage{myStyle}[2014/05/27 Stildatei für meine Standardpakete]
+\def\mylanguage{english}
+\def\mycounter{chapter}
+\DeclareOption{ngerman}{\def\mylanguage{german}
+\PassOptionsToPackage{ngerman}{babel}}
+\DeclareOption{english}{\def\mylanguage{english}
+\PassOptionsToPackage{english}{babel}}
+\DeclareOption{loadthm}{\def\myloadthm{yes}}
+\DeclareOption{loadebook}{\def\myloadebook{yes}
+\PassOptionsToClass{7pt}{scrreprt}\PassOptionsToClass{7pt}{scrartcl}}
+\DeclareOption{article}{\def\mycounter{section}}
+\ProcessOptions\relax
+\RequirePackage{ifthen}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,enumerate,tikz,tikz-cd}
+\usepackage{newpxtext}
+\usepackage[euler-digits,euler-hat-accent]{eulervm}
+\RequirePackage{fix-cm}
+\DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
+\DeclareFontShape{U}{rsfs}{m}{n}{%
+   <-6> rsfs5
+   <6-8> rsfs7
+   <8-> rsfs10
+}{}
+%\usepackage{microtype}
+\usepackage{xargs}[2008/03/08]
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=magenta]{hyperref}
+\usepackage[nameinlink]{cleveref}
+\ifthenelse{\isundefined{\myloadebook}}{}{
+    \pagestyle{empty}
+    \usepackage[papersize={90mm,120mm},margin=2mm]{geometry}
+    \sloppy
+    \usepackage[all=normal,floats,leading,paragraphs,charwidths,tracking,wordspacing]{savetrees}
+}
+\ifthenelse{\isundefined{\myloadthm}}{}{
+    \theoremstyle{plain}
+    \newtheorem{thm}{Theorem}[\mycounter]
+    \newtheorem{prop}[thm]{Proposition}
+    \newtheorem{lem}[thm]{Lemma}
+    \theoremstyle{definition}
+    \newtheorem{defn}[thm]{Definition}
+    \ifthenelse{\equal{\mylanguage}{german}}{
+        \theoremstyle{plain}
+        \newtheorem{cor}[thm]{Korollar}
+        \theoremstyle{remark}
+        \newtheorem{example}[thm]{Beispiel}
+        \newtheorem{rem}[thm]{Bemerkung}
+    }{
+        \theoremstyle{plain}
+        \newtheorem{cor}[thm]{Corollary}
+        \theoremstyle{remark}
+        \newtheorem{example}[thm]{Example}
+        \newtheorem{rem}[thm]{Remark}
+    }
+}
+\crefformat{equation}{\textup{#2(#1)#3}}
+\crefmultiformat{equation}{\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}{,
+\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}
+
+\DeclareMathOperator*{\disbigcup}{\bigsqcup}
+\DeclareMathOperator*{\discup}{\sqcup}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\End}{End} % großgeschrieben, da \end von LaTeX belegt ist
+\DeclareMathOperator{\ann}{Ann}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\bd}{bd}                
+\DeclareMathOperator{\bso}{Bs}
+\DeclareMathOperator{\can}{can}
+\DeclareMathOperator{\card}{Card}
+\DeclareMathOperator{\chara}{char}
+\DeclareMathOperator{\ch}{Ch}                
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coh}{Coh}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\colim}{colim}          
+\DeclareMathOperator{\cone}{cone}            
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\divAbb}{div}
+\DeclareMathOperator{\divi}{Div}
+\DeclareMathOperator{\dvol}{dvol}
+\DeclareMathOperator{\eig}{Eig}
+\DeclareMathOperator{\ext}{Ext}
+\DeclareMathOperator{\fract}{Frac}
+\DeclareMathOperator{\gal}{Gal}
+\DeclareMathOperator{\gl}{GL}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\hilb}{Hilb}
+\DeclareMathOperator{\homom}{Hom}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\kgv}{kgV}
+\DeclareMathOperator{\lgt}{lg}
+\DeclareMathOperator{\mat}{Mat}
+\DeclareMathOperator{\mor}{Mor}
+\DeclareMathOperator{\ndg}{\ns_{\mathrm{dg}}}
+\DeclareMathOperator{\nil}{Nil}
+\DeclareMathOperator{\numpol}{NumPol}
+\DeclareMathOperator{\obj}{obj}              
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\pgl}{PGL}
+\DeclareMathOperator{\pic}{Pic}
+\DeclareMathOperator{\projmod}{ProjMod}
+\DeclareMathOperator{\proj}{Proj}
+\DeclareMathOperator{\pr}{pr}
+\DeclareMathOperator{\qcoh}{QCoh}
+\DeclareMathOperator{\rad}{Rad}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\st}{St}                
+\DeclareMathOperator{\supp}{Supp}
+\DeclareMathOperator{\sw}{Sw}                
+\DeclareMathOperator{\sym}{Sym}
+\DeclareMathOperator{\topd}{top}
+\DeclareMathOperator{\tor}{Tor}
+\DeclareMathOperator{\tr}{Tr}
+
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\herm}{\mathrm{herm}}
+\newcommand{\red}{\mathrm{red}}
+
+% Symbol ins Zentrum eines Diagrams schieben                     
+\tikzset{commutative diagrams/.cd,                               
+mysymbol/.style={start anchor=center,end anchor=center,draw=none}
+}                                                                
+\newcommand\MySymb[2]{%                                          
+  \arrow[mysymbol]{#1}[description]{#2}}                         
+
+% Some important categorical symbols
+\providecommand{\weakeq}{\xrightarrow{\sim}}                            
+\providecommand{\tdiff}{\top}                                           
+\providecommand{\bdiff}{\bot}                                           
+\def\topbotatom#1{\hbox{\hbox to 0pt{$#1\bdiff$\hss}$#1\tdiff$}}        
+\providecommand*{\tbdiff}{\mathrel{\mathchoice{\topbotatom\displaystyle}
+                                    {\topbotatom\textstyle}             
+                                    {\topbotatom\scriptstyle}           
+                                    {\topbotatom\scriptscriptstyle}}}   
+
+% Mathematische Buchstaben-/Tafelschriftmakros
+\newcommand{\field}[1]{\mathbf{#1}}
+\newcommand{\A}{\field{A}}
+\newcommand{\B}{\field{B}}
+\newcommand{\C}{\field{C}}
+\newcommand{\F}{\field{F}}
+\newcommand{\N}{\field{N}}
+\newcommand{\PP}{\field{P}}
+\newcommand{\Q}{\field{Q}}
+\newcommand{\R}{\field{R}}
+\newcommand{\Z}{\field{Z}}
+% Makros für Kategorienzeichen und Garben
+\newcommand{\sheaf}[1]{\mathcal{#1}}
+\newcommand{\as}{\sheaf{A}}
+\newcommand{\bs}{\sheaf{B}}
+\newcommand{\cs}{\sheaf{C}}
+\newcommand{\ds}{\sheaf{D}}
+\newcommand{\es}{\sheaf{E}}
+\newcommand{\fs}{\sheaf{F}}
+\newcommand{\gs}{\sheaf{G}}
+\newcommand{\hs}{\sheaf{H}}
+\newcommand{\is}{\sheaf{I}}
+\newcommand{\js}{\sheaf{J}}
+\newcommand{\ks}{\sheaf{K}}
+\newcommand{\ls}{\sheaf{L}}
+\newcommand{\ms}{\sheaf{M}}
+\newcommand{\ns}{\sheaf{N}}
+\newcommand{\os}{\sheaf{O}}
+\newcommand{\ps}{\sheaf{P}}
+\newcommand{\qs}{\sheaf{Q}}
+\newcommand{\rs}{\sheaf{R}}
+\newcommand{\sss}{\sheaf{S}} % Since \ss seems to be already taken.
+\newcommand{\ts}{\sheaf{T}}
+\newcommand{\us}{\sheaf{U}}
+\newcommand{\vs}{\sheaf{V}}
+\newcommand{\ws}{\sheaf{W}}
+\newcommand{\xs}{\sheaf{X}}
+\newcommand{\ys}{\sheaf{Y}}
+\newcommand{\zs}{\sheaf{Z}}
+% Makros für Frakturschrift (z.B. für Ideale)
+\newcommand{\lie}[1]{\mathfrak{#1}}
+\newcommand{\idA}{\lie{A}}
+\newcommand{\ida}{\lie{a}}
+\newcommand{\idB}{\lie{B}}
+\newcommand{\idb}{\lie{b}}
+\newcommand{\idC}{\lie{C}}
+\newcommand{\idc}{\lie{c}}
+\newcommand{\idD}{\lie{D}}
+\newcommand{\idd}{\lie{d}}
+\newcommand{\idE}{\lie{E}}
+\newcommand{\ide}{\lie{e}}
+\newcommand{\idF}{\lie{F}}
+\newcommand{\idf}{\lie{f}}
+\newcommand{\idG}{\lie{G}}
+\newcommand{\idg}{\lie{g}}
+\newcommand{\idH}{\lie{H}}
+\newcommand{\idh}{\lie{h}}
+\newcommand{\idI}{\lie{I}}
+\newcommand{\idi}{\lie{i}}
+\newcommand{\idJ}{\lie{J}}
+\newcommand{\idj}{\lie{j}}
+\newcommand{\idK}{\lie{K}}
+\newcommand{\idk}{\lie{k}}
+\newcommand{\idL}{\lie{L}}
+\newcommand{\idl}{\lie{l}}
+\newcommand{\idM}{\lie{M}}
+\newcommand{\idm}{\lie{m}}
+\newcommand{\idN}{\lie{N}}
+\newcommand{\idn}{\lie{n}}
+\newcommand{\idO}{\lie{O}}
+\newcommand{\ido}{\lie{o}}
+\newcommand{\idP}{\lie{P}}
+\newcommand{\idp}{\lie{p}}
+\newcommand{\idQ}{\lie{Q}}
+\newcommand{\idq}{\lie{q}}
+\newcommand{\idR}{\lie{R}}
+\newcommand{\idr}{\lie{r}}
+\newcommand{\idS}{\lie{S}}
+\newcommand{\ids}{\lie{s}}
+\newcommand{\idT}{\lie{T}}
+\newcommand{\idt}{\lie{t}}
+\newcommand{\idU}{\lie{U}}
+\newcommand{\idu}{\lie{u}}
+\newcommand{\idV}{\lie{V}}
+\newcommand{\idv}{\lie{v}}
+\newcommand{\idW}{\lie{W}}
+\newcommand{\idw}{\lie{w}}
+\newcommand{\idX}{\lie{X}}
+\newcommand{\idx}{\lie{x}}
+\newcommand{\idY}{\lie{Y}}
+\newcommand{\idy}{\lie{y}}
+\newcommand{\idZ}{\lie{Z}}
+\newcommand{\idz}{\lie{z}}
+% Makros für spezielle Kategorien
+\newcommandx{\kat}[3][1,3]{\ensuremath{(#1\textup{#2}#3)}}
+\newcommand{\abX}[1][X]{\kat{Ab/}[#1]}
+\newcommand{\abgrp}{\kat{AbGrp}}
+\newcommand{\cat}{\kat{Cat}}    
+\newcommand{\cov}[1][B]{\kat{Cov/}[#1]}
+\newcommand{\etalk}[1][k]{\kat{Etal/}[#1]}
+\newcommand{\fincov}[1][B]{\kat{FinCov/}[#1]}
+\newcommand{\finsets}{\kat{FinSet}}
+\newcommand{\gfinsets}[1][G]{\kat[#1]{-FinSets}}
+\newcommand{\gradSmod}[1][S]{\kat[\textup{grad }#1]{-Mod}}
+\newcommand{\grp}{\kat{Grp}}    
+\newcommand{\gsets}[1][G]{\kat[#1]{-Sets}}
+\newcommand{\hotop}{\kat{HoTop}}
+\newcommand{\kvec}[1][k]{\kat[#1]{-Vec}}
+\newcommand{\loc}{\kat{Loc}}
+\newcommand{\ralg}[1][R]{\kat[#1]{-Alg}}
+\newcommand{\ring}{\kat{Ring}}
+\newcommand{\rmod}[1][R]{\kat[#1]{-Mod}}
+\newcommand{\rng}{\kat{Rng}}    
+\newcommand{\schR}[1][R]{\kat{Sch/}[#1]}
+\newcommand{\sch}{\kat{Sch}}
+\newcommand{\sets}{\kat{Set}}
+\newcommand{\topoB}[1][B]{\kat{Top/}[#1]}
+\newcommand{\topo}{\kat{Top}}
+\newcommandx{\oppo}[1]{\ensuremath{#1^\mathrm{op}}}
+
+\newcommand{\mids}{\;\middle\vert\;}
+\newcommand{\intd}{\mathrm{d}}
+\newcommand{\intds}{\,\intd}
+\newcommand{\rest}[2]{\left.#1\right\vert_{#2}}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+
+% Differentialoperatoren
+\newcommand{\diff}[2][]{\frac{d#1}{d#2}}
+\newcommand{\diffat}[3][]{\rest{\diff[#1]{#2}}{#2 = #3}}
+\newcommand{\pardiff}[2][]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pardiffat}[3][]{\rest{\pardiff[#1]{#2}}{#3}}
+\newcommand{\dol}{\partial}
+\newcommand{\dolq}{\bar{\dol}}
