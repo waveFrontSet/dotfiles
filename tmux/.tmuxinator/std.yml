@@ -21,10 +21,5 @@ windows:
       panes:
         - # empty
         - htop
-  - editor:
-      layout: main-horizontal
-      panes:
-        - cd ~/thesis; vim thesis_notes.tex thesis_diary.markdown thesis.tex thesis_literature.bib
-        - cd ~/thesis; latexmk -pdf -pvc -silent -pdflatex='lualatex -synctex=1 --interaction=nonstopmode' thesis_notes.tex
   - music: vimpc
   - mail: mutt
