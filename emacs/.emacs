@@ -40,12 +40,11 @@ re-downloaded in order to locate PACKAGE."
  '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t))
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
+(if (eq system-type 'darwin)
+(custom-set-faces
  '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 180 :width normal)))))
-
+)
 ;; Fuzzy search buffer and file names
 (require-package 'projectile)
 (projectile-global-mode)
@@ -145,6 +144,7 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
 ;; Enable TeX-fold-mode in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+(add-hook 'TeX-fold-mode-hook 'TeX-fold-buffer)
 
 
 ;; Enable cdlatex in org-mode
