@@ -19,6 +19,9 @@ re-downloaded in order to locate PACKAGE."
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+;; Add manually installed packages to load-path
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+
 ;; Show line numbers
 (global-linum-mode t)
 
@@ -41,7 +44,7 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
+ '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 180 :width normal)))))
 
 ;; Fuzzy search buffer and file names
 (require-package 'projectile)
@@ -121,9 +124,6 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "[b") 'previous-buffer)
 
 ;; LaTeX stuff
-;;; Conceal the ugly commands
-(require-package 'latex-pretty-symbols)
-(require 'latex-pretty-symbols)
 
 ;;; AucTex
 (require-package 'auctex)
@@ -137,6 +137,15 @@ re-downloaded in order to locate PACKAGE."
 (auctex-latexmk-setup)
 (require-package 'latex-preview-pane)
 (latex-preview-pane-enable)
+
+;; Enable cdlatex in LaTeX-mode
+(load "cdlatex")
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+;; Enable reftex in LaTeX-mode
+(add-hook 'LaTeX-mode-hook 'reftex-mode)
+;; Enable TeX-fold-mode in LaTeX-mode
+(add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
+
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
