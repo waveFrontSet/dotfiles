@@ -121,6 +121,24 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "[a") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "]b") 'next-buffer)
 (define-key evil-normal-state-map (kbd "[b") 'previous-buffer)
+;;; Testing
+(defun add-parantheses (&optional size)
+  (interactive)
+  (if (eq size nil)
+      (setq left-par "\\left" right-par "\\right")
+      (setq left-par (concat "\\" size "l") right-par (concat "\\" size "r"))
+  )
+  (evil-jump-item)
+  (insert right-par)
+  (evil-jump-item)
+  (insert left-par)
+)
+(defun add-big-parantheses ()
+  (interactive)
+  (add-parantheses "big")
+)
+(evil-leader/set-key "a" 'add-parantheses)
+(evil-leader/set-key "b" 'add-big-parantheses)
 
 ;; LaTeX stuff
 
@@ -136,7 +154,11 @@ re-downloaded in order to locate PACKAGE."
 (auctex-latexmk-setup)
 (require-package 'latex-preview-pane)
 (latex-preview-pane-enable)
-
+(setq TeX-command-default "latexmk")
+;; Assign newline-and-indent to Enter
+(defun return-indent-in-latex ()
+  (local-set-key (kbd "C-m") 'newline-and-indent)
+)
 ;; Enable cdlatex in LaTeX-mode
 (load "cdlatex")
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
@@ -145,7 +167,14 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable TeX-fold-mode in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
 (add-hook 'TeX-fold-mode-hook 'TeX-fold-buffer)
+;; Fix Enter-behaviour in LaTeX-mode with Evil
+(add-hook 'LaTeX-mode-hook 'return-indent-in-latex)
 
+;; Enable flyspell
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "english")
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
