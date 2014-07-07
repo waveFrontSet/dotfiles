@@ -44,6 +44,7 @@ re-downloaded in order to locate PACKAGE."
 (if (eq system-type 'darwin)
 (custom-set-faces
  '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 180 :width normal)))))
+(setq LaTeX-enable-toolbar nil)
 )
 ;; Fuzzy search buffer and file names
 (require-package 'projectile)
