@@ -6,7 +6,7 @@ Symlink everything using the bootstrap script
     ./bootstrap
 OR use stow to pick which config files you need, for example
     stow vim zsh
-only creates symlink for the config files of vim and zsh.
+only creates symlinks for the config files of vim and zsh.
 
 Let NeoBundle install vim plugins
     
