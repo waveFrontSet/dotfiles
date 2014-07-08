@@ -59,6 +59,8 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'popup)
 (require-package 'auto-complete)
 (require-package 'auto-complete-auctex)
+;(require 'auto-complete-auctex)
+(ac-config-default)
 
 ;; Snippets
 (require-package 'yasnippet)
@@ -180,7 +182,7 @@ re-downloaded in order to locate PACKAGE."
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "english")
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
