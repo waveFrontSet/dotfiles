@@ -55,6 +55,11 @@ re-downloaded in order to locate PACKAGE."
 (require 'smex)
 (smex-initialize)
 
+;; auto-complete
+(require-package 'popup)
+(require-package 'auto-complete)
+(require-package 'auto-complete-auctex)
+
 ;; Snippets
 (require-package 'yasnippet)
 (require 'yasnippet)
