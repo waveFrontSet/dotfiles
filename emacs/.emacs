@@ -178,6 +178,10 @@ re-downloaded in order to locate PACKAGE."
 ;; Fix Enter-behaviour in LaTeX-mode with Evil
 (add-hook 'LaTeX-mode-hook 'return-indent-in-latex)
 
+;; Enable bibretrieve to quickly retrieve biblatex entries.
+(require-package 'bibretrieve)
+(setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
+
 ;; Enable flyspell
 (setq ispell-program-name "aspell")
 (setq ispell-dictionary "english")
