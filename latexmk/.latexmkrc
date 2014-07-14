@@ -6,5 +6,11 @@ $postscript_mode = $dvi_mode = 0;
 # Using pvc.
 $preview_continuous_mode = 1;
 
-# TODO: How can I select a viewer based on my OS?
-$pdf_previewer = "start okular %O %S"
+# Selects pdf_previewer based on the OS: open for OS X, okular for everything
+# else (Linux on my university computer, that is).
+use English qw' -no_match_vars ';
+if ($OSNAME == "darwin") {
+    $pdf_previewer = "open %O %S";
+} else {
+    $pdf_previewer = "start okular %O %S";
+}
