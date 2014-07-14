@@ -7,16 +7,17 @@
 \usepackage[utf8]{inputenc}
 \KOMAoptions{fromphone=false,fromurl=false,fromlogo=false,fromemail=true}
 \setkomavar{fromname}{${1:Paul Bubenzer}}
-\setkomavar{fromaddress}{${2:Street} \\${3:City}}
-\setkomavar{frommail}{${4:Mail}}
+\setkomavar{fromaddress}{${2:Street} \\\\${3:City}}
+\setkomavar{fromemail}{${4:Mail}}
 \setkomavar{subject}{${5:Betreff}}
 \setkomavar{signature}{${6:Paul Bubenzer}}
 
 \begin{document}
-\begin{letter}{${7:Name} \\ ${8:Adresse}}
+\begin{letter}{${7:Name} \\\\ ${8:Adresse}}
 \opening{Sehr geehrte${9: Damen und Herren},}
 
 $0
 
 \closing{Mit freundlichen Gr"u"sen}
+\end{letter}
 \end{document}
