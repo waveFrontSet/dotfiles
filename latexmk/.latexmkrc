@@ -9,7 +9,7 @@ $preview_continuous_mode = 1;
 # Selects pdf_previewer based on the OS: open for OS X, okular for everything
 # else (Linux on my university computer, that is).
 use English qw' -no_match_vars ';
-if ($OSNAME == "darwin") {
+if ($OSNAME eq "darwin") {
     $pdf_previewer = "open %O %S";
 } else {
     $pdf_previewer = "start okular %O %S";
