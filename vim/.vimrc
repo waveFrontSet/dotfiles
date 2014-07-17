@@ -87,7 +87,6 @@ let g:html_indent_inctags="head,html,body,p,head,table,tbody,div,script"
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"
 " General shortcuts {{{1
-let mapleader=","
 nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
 nnoremap <silent> <leader>pp :!python3 %<cr>
@@ -127,9 +126,6 @@ nnoremap <Space> za
 " Quickly set filetype to htmldjango so that snippets and syntax hl is available
 nnoremap <leader>dj :set filetype=htmldjango<CR>
 set pastetoggle=<F2>
-nnoremap ; :
-vnoremap ; :
-nnoremap ;; ;
 noremap Q gq
 " allows incsearch highlighting for range commands
 cnoremap $t <CR>:t''<CR>
