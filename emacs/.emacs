@@ -145,8 +145,14 @@ re-downloaded in order to locate PACKAGE."
   (interactive)
   (add-parantheses "big")
 )
+(defun open-emacs ()
+  (interactive)
+  (find-file "~/.emacs")
+)
 (evil-leader/set-key "a" 'add-parantheses)
 (evil-leader/set-key "b" 'add-big-parantheses)
+(evil-leader/set-key "e" 'open-emacs)
+(evil-leader/set-key "f" 'projectile-find-file)
 
 ;; LaTeX stuff
 
