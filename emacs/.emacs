@@ -181,8 +181,9 @@ re-downloaded in order to locate PACKAGE."
 ;; Enable TeX-fold-mode in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
 (add-hook 'TeX-fold-mode-hook 'TeX-fold-buffer)
-;; Fix Enter-behaviour in LaTeX-mode with Evil
+;; Fix Enter-behaviour in LaTeX-mode and org-mode with Evil
 (add-hook 'LaTeX-mode-hook 'return-indent-in-latex)
+(add-hook 'org-mode-hook 'return-indent-in-latex)
 
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
 (require-package 'bibretrieve)
