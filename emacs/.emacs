@@ -153,6 +153,7 @@ re-downloaded in order to locate PACKAGE."
 )
 (evil-leader/set-key "a" 'add-parantheses)
 (evil-leader/set-key "b" 'add-big-parantheses)
+(evil-leader/set-key "ce" 'LaTeX-environment)
 (evil-leader/set-key "e" 'open-emacs)
 (evil-leader/set-key "f" 'projectile-find-file)
 
