@@ -129,6 +129,8 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "[a") 'previous-buffer)
 (define-key evil-normal-state-map (kbd "]b") 'next-buffer)
 (define-key evil-normal-state-map (kbd "[b") 'previous-buffer)
+;;; Use Q instead of gq
+(define-key evil-normal-state-map (kbd "Q") 'evil-fill-and-move)
 ;;; Testing
 (defun add-parantheses (&optional size)
   (interactive)
