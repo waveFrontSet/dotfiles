@@ -270,3 +270,23 @@ re-downloaded in order to locate PACKAGE."
            ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
+
+;; Virtualenvwrapper settings
+(require-package 'virtualenvwrapper)
+(require 'virtualenvwrapper)
+(venv-initialize-interactive-shells)
+(setq venv-location "~/myhp/")
+
+;; Django stuff
+(require-package 'django-mode)
+(require 'django-html-mode)
+(require 'django-mode)
+(yas/load-directory "~/.emacs.d/elpa/django-snippets-20131229.811/snippets")
+(add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
+
+;; Python Jedi autocomplete setup
+(require-package 'jedi)
+(require 'jedi)
+(add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'django-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
