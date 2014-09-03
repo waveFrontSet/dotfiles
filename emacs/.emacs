@@ -36,14 +36,24 @@ re-downloaded in order to locate PACKAGE."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin" )))
+ '(LaTeX-command "latexmk")
+ '(TeX-PDF-mode t)
+ ;;'(TeX-source-correlate-mode t)
+ '(TeX-source-correlate-start-server t)
+ '(TeX-view-program-list (quote (("okular" "okular -unique %o#src:%n%b"))))
+ '(TeX-view-program-selection (quote ((output-pdf "Okular") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
+ '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
  '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t))
 (custom-set-faces
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
 (if (eq system-type 'darwin)
 (custom-set-faces
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 180 :width normal)))))
+ '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
 (setq LaTeX-enable-toolbar nil)
 )
 ;; Fuzzy search buffer and file names
@@ -281,7 +291,7 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'django-mode)
 (require 'django-html-mode)
 (require 'django-mode)
-(yas/load-directory "~/.emacs.d/elpa/django-snippets-20131229.811/snippets")
+;; (yas/load-directory "~/.emacs.d/elpa/django-snippets-20131229.811/snippets")
 (add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
 
 ;; Python Jedi autocomplete setup
