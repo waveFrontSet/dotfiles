@@ -300,3 +300,7 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'django-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+
+;; Smart-parens mode for automatically pairing parentheses
+(require-package 'smartparens)
+(add-hook 'LaTeX-mode-hook 'smartparens-mode)
