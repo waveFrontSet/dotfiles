@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: label 
+# key: lab
+# --
+\label{${1:label$(unless yas/modified-p (reftex-label nil nil))}}$0
