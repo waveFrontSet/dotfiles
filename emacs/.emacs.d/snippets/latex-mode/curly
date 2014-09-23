@@ -1,0 +1,5 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: Curly Brackets
+# key: }}
+# --
+\\{ $0 \\}
