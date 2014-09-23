@@ -38,13 +38,14 @@ re-downloaded in order to locate PACKAGE."
  ;; If there is more than one, they won't work right.
  '(LaTeX-command "latexmk")
  '(TeX-PDF-mode t)
- ;;'(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("okular" "okular -unique %o#src:%n%b"))))
  '(TeX-view-program-selection (quote ((output-pdf "Okular") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
+ '(cdlatex-paired-parens "$[{(")
  '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
  '(pdf-latex-command "lualatex")
- '(solarized-broken-srgb t))
+ '(solarized-broken-srgb t)
+ '(sp-base-key-bindings nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -169,6 +170,9 @@ re-downloaded in order to locate PACKAGE."
 
 ;; LaTeX stuff
 
+;; Smart-parens mode for automatically pairing parentheses
+;; (require-package 'smartparens)
+;; (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 ;;; AucTex
 (require-package 'auctex)
 (require 'tex-site)
@@ -301,6 +305,33 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'django-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
-;; Smart-parens mode for automatically pairing parentheses
-(require-package 'smartparens)
-(add-hook 'LaTeX-mode-hook 'smartparens-mode)
+(desktop-save-mode 1)
+;; Save session including tabs
+;; http://stackoverflow.com/questions/22445670/save-and-restore-elscreen-tabs-and-split-frames
+(defun session-save ()
+  "Store the elscreen tab configuration."
+  (interactive)
+  (if (desktop-save emacs-configuration-directory)
+      (with-temp-file elscreen-tab-configuration-store-filename
+	(insert (prin1-to-string (elscreen-get-screen-to-name-alist))))))
+
+;; Load session including tabs
+(defun session-load ()
+  "Restore the elscreen tab configuration."
+  (interactive)
+  (if (desktop-read)
+      (let ((screens (reverse
+		      (read
+		       (with-temp-buffer
+			 (insert-file-contents elscreen-tab-configuration-store-filename)
+			 (buffer-string))))))
+	(while screens
+	  (setq screen (car (car screens)))
+	  (setq buffers (split-string (cdr (car screens)) ":"))
+	  (if (eq screen 0)
+	      (switch-to-buffer (car buffers))
+	    (elscreen-find-and-goto-by-buffer (car buffers) t t))
+	  (while (cdr buffers)
+	    (switch-to-buffer-other-window (car (cdr buffers)))
+	    (setq buffers (cdr buffers)))
+	  (setq screens (cdr screens))))))
