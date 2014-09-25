@@ -22,5 +22,6 @@ def get_keychain_pass(account=None, server=None):
 def get_keychain_pass_linux(account):
     params = { 'account': account }
     command = "gpg -d ~/%(account)s.gpg" % params
-    output = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
+    output = subprocess.check_output(command, shell=True)
+    print output
     return output.splitlines()[2]
