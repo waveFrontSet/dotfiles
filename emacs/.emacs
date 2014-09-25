@@ -45,7 +45,6 @@ re-downloaded in order to locate PACKAGE."
  '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
  '(pdf-latex-command "lualatex")
  '(solarized-broken-srgb t)
- '(sp-base-key-bindings nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
