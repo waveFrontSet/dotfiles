@@ -334,3 +334,6 @@ re-downloaded in order to locate PACKAGE."
 	    (switch-to-buffer-other-window (car (cdr buffers)))
 	    (setq buffers (cdr buffers)))
 	  (setq screens (cdr screens))))))
+
+;; clipboard
+(setq x-select-enable-clipboard t)
