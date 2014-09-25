@@ -44,7 +44,7 @@ re-downloaded in order to locate PACKAGE."
  '(cdlatex-paired-parens "$[{(")
  '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
  '(pdf-latex-command "lualatex")
- '(solarized-broken-srgb t)
+ '(solarized-broken-srgb t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -229,20 +229,15 @@ re-downloaded in order to locate PACKAGE."
 (setq org-src-fontify-natively t)
 
 ;; Tell reftex the path to my default bib file
-(setq reftex-default-bibliography '("~/thesis/thesis_literature.bib"))
+(setq reftex-default-bibliography '("~/latex-docs/thesis/thesis_literature.bib"))
 
-;; change mode-line color by evil state
-(lexical-let ((default-color (cons (face-background 'mode-line)
-				   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook
-	    (lambda ()
-	      (let ((color (cond ((minibufferp) default-color)
-				 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-				 ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
-				 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
-				 (t default-color))))
-		(set-face-background 'mode-line (car color))
-		(set-face-foreground 'mode-line (cdr color))))))
+;; Powerline integration
+(require-package 'powerline)
+(require-package 'powerline-evil)
+(require 'powerline)
+(powerline-evil-vim-color-theme)
+(display-time-mode t)
+
 ;; org-mode LaTeX export / preview
 (require 'org-latex)
 (setq org-latex-create-formula-image-program 'imagemagick)
