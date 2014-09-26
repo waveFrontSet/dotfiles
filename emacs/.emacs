@@ -29,7 +29,8 @@ re-downloaded in order to locate PACKAGE."
 (setq fill-column 79)
 
 ;; Color-theme
-(require-package 'color-theme-solarized)
+(require-package 'solarized-theme)
+(setq solarized-high-contrast-mode-line t)
 (load-theme 'solarized-light t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -44,7 +45,7 @@ re-downloaded in order to locate PACKAGE."
  '(cdlatex-paired-parens "$[{(")
  '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
  '(pdf-latex-command "lualatex")
- '(solarized-broken-srgb t))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -235,8 +236,9 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'powerline)
 (require-package 'powerline-evil)
 (require 'powerline)
-(powerline-evil-vim-color-theme)
+(powerline-evil-center-color-theme)
 (display-time-mode t)
+(setq powerline-evil-tag-style 'verbose)
 
 ;; org-mode LaTeX export / preview
 (require 'org-latex)
