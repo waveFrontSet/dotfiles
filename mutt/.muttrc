@@ -40,7 +40,7 @@ set spoolfile = "+Gmail/INBOX"
 source ~/.mutt/account.gmail
 
 # Alternate email addresses.
-alternates paul.bubenzer@hhu.de, paul.bubenzer@wwu.de
+alternates paul.bubenzer@hhu.de, p.bubenzer@wwu.de
 
 # Mailboxes to show in the sidebar.
 mailboxes +Gmail/INBOX \
