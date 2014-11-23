@@ -195,9 +195,6 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 ;; Enable reftex in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
-;; Enable TeX-fold-mode in LaTeX-mode
-(add-hook 'LaTeX-mode-hook 'TeX-fold-mode)
-(add-hook 'TeX-fold-mode-hook 'TeX-fold-buffer)
 ;; Fix Enter-behaviour in LaTeX-mode and org-mode with Evil
 (add-hook 'LaTeX-mode-hook 'return-indent-in-latex)
 (add-hook 'org-mode-hook 'return-indent-in-latex)
@@ -239,13 +236,6 @@ re-downloaded in order to locate PACKAGE."
 (powerline-evil-center-color-theme)
 (display-time-mode t)
 (setq powerline-evil-tag-style 'verbose)
-
-;; org-mode LaTeX export / preview
-(require 'org-latex)
-(setq org-latex-create-formula-image-program 'imagemagick)
-
-(add-to-list 'org-latex-packages-alist '("" "mathtools" t))
-(add-to-list 'org-latex-packages-alist '("loadthm, article" "myStyle" t))
 
 (require 'ob-latex)
 (setq org-confirm-babel-evaluate nil)
