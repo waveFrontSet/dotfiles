@@ -41,11 +41,20 @@ re-downloaded in order to locate PACKAGE."
  '(TeX-PDF-mode t)
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("okular" "okular -unique %o#src:%n%b"))))
- '(TeX-view-program-selection (quote ((output-pdf "Okular") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
+ '(TeX-view-program-selection
+   (quote
+    ((output-pdf "Okular")
+     ((output-dvi style-pstricks)
+      "dvips and gv")
+     (output-dvi "xdvi")
+     (output-pdf "Evince")
+     (output-html "xdg-open"))))
  '(cdlatex-paired-parens "$[{(")
- '(exec-path (quote ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
- '(pdf-latex-command "lualatex")
- )
+ '(exec-path
+   (quote
+    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
+ '(org-agenda-files (quote ("~/test.org")))
+ '(pdf-latex-command "lualatex"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -211,6 +220,18 @@ re-downloaded in order to locate PACKAGE."
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
+
+;; org-mode shortcuts
+(evil-leader/set-key "oa" 'org-agenda)
+(evil-leader/set-key "ol" 'org-store-link)
+(evil-leader/set-key "oc" 'org-capture)
+(evil-leader/set-key "ob" 'org-iswitchb)
+(evil-leader/set-key "os" 'org-schedule)
+
+(setq org-log-done 'time)
+
+(setq org-agenda-files (list "~/org/work.org"
+			     "~/org/home.org"))
 
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
