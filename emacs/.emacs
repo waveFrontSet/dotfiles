@@ -112,7 +112,7 @@ re-downloaded in order to locate PACKAGE."
 (require-package 'evil-leader)
 (require-package 'evil-tabs)
 (require-package 'evil-visualstar)
-(require-package 'surround)
+(require-package 'evil-surround)
 
 (setq evil-search-module 'evil-search
       evil-want-C-u-scroll t
@@ -125,8 +125,8 @@ re-downloaded in order to locate PACKAGE."
 
 (require 'evil-visualstar)
 
-(require 'surround)
-(global-surround-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
 ;; Evil customizations
 (setq sentence-end-double-space nil)
