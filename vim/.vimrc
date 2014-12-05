@@ -6,7 +6,7 @@ filetype off
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles {{{1
 NeoBundle 'Shougo/unite.vim'
@@ -39,6 +39,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'vim-scripts/UltiSnips'
 NeoBundle 'waveFrontSet/vim-colors-solarized'
+call neobundle#end()
 " General configuration {{{1
 filetype plugin indent on
 NeoBundleCheck
