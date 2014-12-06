@@ -12,3 +12,8 @@ vim/.vim/.netrwhist
 vim.symlink/bundle/
 mutt.symlink/.ropeproject/
 vim.symlink/.netrwhist
+emacs/.emacs.d/.emacs.desktop
+emacs/.emacs.d/ac-comphist.dat
+emacs/.emacs.d/elpa/
+emacs/.emacs.d/projectile-bookmarks.eld
+emacs/.emacs.d/smex-items
