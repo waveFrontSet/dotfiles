@@ -223,10 +223,12 @@ re-downloaded in order to locate PACKAGE."
 
 ;; org-mode shortcuts
 (evil-leader/set-key "oa" 'org-agenda)
-(evil-leader/set-key "ol" 'org-store-link)
-(evil-leader/set-key "oc" 'org-capture)
 (evil-leader/set-key "ob" 'org-iswitchb)
+(evil-leader/set-key "oc" 'org-capture)
+(evil-leader/set-key "ol" 'org-store-link)
+(evil-leader/set-key "oo" 'org-open-at-point)
 (evil-leader/set-key "os" 'org-schedule)
+(evil-leader/set-key "ot" 'org-todo)
 
 (setq org-log-done 'time)
 
