@@ -151,7 +151,7 @@ re-downloaded in order to locate PACKAGE."
 (define-key evil-normal-state-map (kbd "[b") 'previous-buffer)
 ;;; Use Q instead of gq
 (define-key evil-normal-state-map (kbd "Q") 'evil-fill-and-move)
-;;; Testing
+;;; Function for the parantheses macro
 (defun add-parantheses (&optional size)
   (interactive)
   (if (eq size nil)
@@ -163,20 +163,58 @@ re-downloaded in order to locate PACKAGE."
   (evil-jump-item)
   (insert left-par)
 )
-(defun add-big-parantheses ()
-  (interactive)
-  (add-parantheses "big")
-)
-(defun open-emacs ()
-  (interactive)
-  (find-file "~/.emacs")
-)
-(evil-leader/set-key "a" 'add-parantheses)
-(evil-leader/set-key "b" 'add-big-parantheses)
-(evil-leader/set-key "ce" 'LaTeX-environment)
-(evil-leader/set-key "e" 'open-emacs)
-(evil-leader/set-key "f" 'projectile-find-file)
 
+;;; Evil-leader bindings
+(evil-leader/set-key
+  "a" 'add-parantheses
+  "b" (lambda() (interactive) (add-parantheses "big"))
+  "ce" 'LaTeX-environment
+  "e" (lambda() (interactive) (find-file "~/.emacs"))
+  "f" 'projectile-find-file
+  "h" 'dired-jump
+  "\\" 'pp-eval-last-sexp
+  "," 'ibuffer
+)
+
+;; iBuffer bindings
+(eval-after-load 'ibuffer
+  '(progn
+     (evil-set-initial-state 'ibuffer-mode 'normal)
+     (evil-define-key 'normal ibuffer-mode-map
+       (kbd "j") 'evil-next-line
+       (kbd "k") 'evil-previous-line
+       (kbd "J") 'ibuffer-jump-to-buffer
+       (kbd "l") 'ibuffer-visit-buffer
+       (kbd "v") 'ibuffer-toggle-marks
+       )
+     )
+  )
+
+;; Dired bindings
+(require 'dired-x)
+(defun my-dired-up-directory ()
+  "Take dired up one directory, but behave like dired-find-alternate-file"
+  (interactive)
+  (let ((old (current-buffer)))
+    (dired-up-directory)
+    (kill-buffer old)
+    ))
+
+(progn
+  (evil-set-initial-state 'dired-mode 'normal)
+  (evil-define-key 'normal dired-mode-map
+    "h" 'my-dired-up-directory
+    "l" 'dired-find-alternate-file
+    "o" 'dired-sort-toggle-or-edit
+    "v" 'dired-toggle-marks
+    "m" 'dired-mark
+    "u" 'dired-unmark
+    "U" 'dired-unmark-all-marks
+    "c" 'dired-create-directory
+    "n" 'evil-search-next
+    "N" 'evil-search-previous
+    "q" 'kill-this-buffer)
+  )
 ;; LaTeX stuff
 
 ;; Smart-parens mode for automatically pairing parentheses
@@ -347,3 +385,4 @@ re-downloaded in order to locate PACKAGE."
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
+(put 'dired-find-alternate-file 'disabled nil)
