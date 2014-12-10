@@ -172,6 +172,7 @@ re-downloaded in order to locate PACKAGE."
   "e" (lambda() (interactive) (find-file "~/.emacs"))
   "f" 'projectile-find-file
   "h" 'dired-jump
+  "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file' -1))
   "\\" 'pp-eval-last-sexp
   "," 'ibuffer
 )
