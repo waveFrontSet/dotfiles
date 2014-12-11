@@ -134,7 +134,7 @@ bind editor <Tab> complete-query
 bind editor ^T    complete
 
 #Source colorscheme
-source ~/.mutt/mutt-colors-solarized-light-16.muttrc
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
 
 #Link macro
 macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links in urlview'
