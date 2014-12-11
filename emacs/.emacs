@@ -31,7 +31,7 @@ re-downloaded in order to locate PACKAGE."
 ;; Color-theme
 (require-package 'solarized-theme)
 (setq solarized-high-contrast-mode-line t)
-(load-theme 'solarized-light t)
+(load-theme 'solarized-dark t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
