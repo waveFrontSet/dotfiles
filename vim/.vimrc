@@ -78,7 +78,7 @@ augroup texAngleConceal
   au BufNewFile,BufRead *.tex syn match texMathSymbol '\\rangle\>' contained conceal cchar=⟩
 augroup END
 set conceallevel=2
-set background=light
+set background=dark
 colo solarized
 augroup colorschemeConceal
   autocmd!
