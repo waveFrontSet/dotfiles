@@ -23,11 +23,12 @@
 
 ;; Set the color-theme to solarized-dark
 (use-package solarized-theme
+  :pre-load
+  (setq solarized-high-contrast-mode-line t)
+  :defer t
   :ensure solarized-theme
   :init
   (load-theme 'solarized-dark t)
-  :config
-  (setq solarized-high-contrast-mode-line t)
   )
 
 (custom-set-variables
@@ -116,6 +117,10 @@
 
 ;; Activate evil-mode + convenient subpackages
 (use-package evil-leader
+  :pre-load
+  (setq evil-search-module 'evil-search
+	evil-want-C-u-scroll t
+	evil-want-C-w-in-emacs-state t)
   :ensure evil-leader
   :commands (evil-leader-mode)
   :demand evil-leader
@@ -143,9 +148,7 @@
       )
     )
   )
-(setq evil-search-module 'evil-search
-      evil-want-C-u-scroll t
-      evil-want-C-w-in-emacs-state t)
+
 (use-package evil
   :ensure evil
   :demand evil
