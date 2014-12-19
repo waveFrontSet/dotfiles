@@ -223,6 +223,7 @@
 
 ;; Dired bindings
 (require 'dired-x)
+(put 'dired-find-alternate-file 'disabled nil)
 (defun my-dired-up-directory ()
   "Take dired up one directory, but behave like dired-find-alternate-file"
   (interactive)
@@ -256,22 +257,26 @@
 ;;; AucTex
 (use-package tex
   :ensure auctex
+  :config
+  (progn
+    (setq TeX-command-default "latexmk")
+    (use-package auctex-latexmk
+      :ensure auctex-latexmk
+      :init
+      (auctex-latexmk-setup)
+      )
+    (use-package latex-preview-pane
+      :ensure latex-preview-pane
+      :init
+      (latex-preview-pane-enable)
+      )
+    )
   )
-(require 'tex-site)
-(getenv "PATH")
-(setenv "PATH"
-        (concat "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
-                (getenv "PATH")))
-(use-package auctex-latexmk
-  :ensure auctex-latexmk
-  )
-(require 'auctex-latexmk)
-(auctex-latexmk-setup)
-(use-package latex-preview-pane
-  :ensure latex-preview-pane
-  )
-(latex-preview-pane-enable)
-(setq TeX-command-default "latexmk")
+;; (require 'tex-site)
+;; (getenv "PATH")
+;; (setenv "PATH"
+        ;; (concat "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
+                ;; (getenv "PATH")))
 ;; Assign newline-and-indent to Enter
 (defun return-indent-in-latex ()
   (local-set-key (kbd "C-m") 'newline-and-indent)
@@ -288,22 +293,27 @@
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
 (use-package bibretrieve
   :ensure bibretrieve
+  :config
+  (setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
   )
-(setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
 
 ;; Enable flyspell
-(setq ispell-program-name "aspell")
-(setq ispell-dictionary "english")
+(use-package flycheck
+  :ensure flycheck
+  :config
+  (progn
+    (setq ispell-program-name "aspell")
+    (setq ispell-dictionary "english")
+    )
+  )
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-					;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
 
-;; org-mode shortcuts
-
+;; org-mode config
 (setq org-log-done 'time)
-
 (setq org-agenda-files (list "~/org/work.org"
 			     "~/org/home.org"))
 
@@ -326,15 +336,18 @@
 
 ;; Powerline integration
 (use-package powerline
+  :demand t
   :ensure powerline
+  :config
+  (progn
+    (powerline-evil-center-color-theme)
+    (display-time-mode t)
+    (setq powerline-evil-tag-style 'verbose)
+    )
   )
 (use-package powerline-evil
   :ensure powerline-evil
   )
-(require 'powerline)
-(powerline-evil-center-color-theme)
-(display-time-mode t)
-(setq powerline-evil-tag-style 'verbose)
 
 (require 'ob-latex)
 (setq org-confirm-babel-evaluate nil)
@@ -429,4 +442,3 @@
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
-(put 'dired-find-alternate-file 'disabled nil)
