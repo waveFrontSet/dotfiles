@@ -98,13 +98,6 @@
     )
   )
 
-;; Adding git support via magit
-(use-package magit
-  :ensure magit
-  :config
-  (setq magit-commit-all-when-nothing-staged t)
-  )
-
 ;; Adding on-the-fly syntax checking via flycheck
 (use-package flycheck
   :ensure flycheck
@@ -205,6 +198,28 @@
   (insert right-par)
   (evil-jump-item)
   (insert left-par)
+  )
+
+;; Adding git support via magit
+(use-package magit
+  :ensure magit
+  :config
+  (setq magit-commit-all-when-nothing-staged t)
+  (progn
+    (evil-set-initial-state 'magit-mode 'normal)
+    (evil-set-initial-state 'magit-status-mode 'normal)
+    (evil-set-initial-state 'magit-diff-mode 'normal)
+    (evil-set-initial-state 'magit-log-mode 'normal)
+    (evil-define-key 'normal magit-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section)
+    (evil-define-key 'normal magit-log-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section)
+    (evil-define-key 'normal magit-diff-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section)
+    )
   )
 
 ;; iBuffer bindings
