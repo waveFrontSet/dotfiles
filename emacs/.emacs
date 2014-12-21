@@ -202,7 +202,16 @@
     (evil-set-initial-state 'magit-log-mode 'normal)
     (evil-define-key 'normal magit-mode-map
         "j" 'magit-goto-next-section
-        "k" 'magit-goto-previous-section)
+        "k" 'magit-goto-previous-section
+        "c" 'magit-key-mode-popup-committing
+        "p" 'magit-key-mode-popup-pushing
+        "f" 'magit-key-mode-popup-fetching
+        "s" 'magit-stage-item
+        "S" 'magit-stage-all
+	"u" 'magit-unstage-item
+	"U" 'magit-unstage-all
+	"q" 'magit-mode-quit-window
+	)
     (evil-define-key 'normal magit-log-mode-map
         "j" 'magit-goto-next-section
         "k" 'magit-goto-previous-section)
