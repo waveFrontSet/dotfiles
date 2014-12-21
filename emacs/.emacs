@@ -31,21 +31,10 @@
   (load-theme 'solarized-dark t)
   )
 
-(custom-set-variables
- '(cdlatex-paired-parens "$[{(")
- '(exec-path
-   (quote
-    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+;; Setting font face and font size according to OS.
 (if (eq system-type 'darwin)
-    (custom-set-faces
-     '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
-  (setq LaTeX-enable-toolbar nil)
+    (set-default-font "PragmataPro for Powerline 14")
+  (set-default-font "PragmataPro for Powerline 12")
   )
 
 ;; Fuzzy search buffer and file names
@@ -287,17 +276,16 @@
       )
     )
   )
-;; (require 'tex-site)
-;; (getenv "PATH")
-;; (setenv "PATH"
-        ;; (concat "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
-                ;; (getenv "PATH")))
-;; Assign newline-and-indent to Enter
+
 (defun return-indent-in-latex ()
   (local-set-key (kbd "C-m") 'newline-and-indent)
   )
 ;; Enable cdlatex in LaTeX-mode
-(load "cdlatex")
+(use-package cdlatex
+  :ensure cdlatex
+  :config
+  (setq cdlatex-paired-parens "$[{(")
+  )
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 ;; Enable reftex in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
@@ -401,10 +389,11 @@
 ;; Virtualenvwrapper settings
 (use-package virtualenvwrapper
   :ensure virtualenvwrapper
+  :init
+  (venv-initialize-interactive-shells)
+  :config
+  (setq venv-location "~/myhp/")
   )
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells)
-(setq venv-location "~/myhp/")
 
 ;; Django stuff
 (use-package django-mode
