@@ -122,6 +122,7 @@
       "oa" 'org-agenda
       "ob" 'org-iswitchb
       "oc" 'org-capture
+      "oj" (lambda() (interactive) (org-capture nil "j"))
       "ol" 'org-store-link
       "oo" 'org-open-at-point
       "os" 'org-schedule
@@ -319,7 +320,11 @@
 (setq org-log-done 'time)
 (setq org-agenda-files (list "~/org/work.org"
 			     "~/org/home.org"))
-
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
+	 "* TODO %?")
+	("j" "Journal" entry (file "~/latex-docs/thesis/thesis_diary.org")
+	 "* %<%d.%m.%Y> \n %?")))
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook
