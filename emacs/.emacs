@@ -51,6 +51,7 @@
      mu4e-refile-folder "/Gmail/archive"
      mu4e-get-mail-command "offlineimap"
      mu4e-update-interval 300
+     )
     )
   )
 
