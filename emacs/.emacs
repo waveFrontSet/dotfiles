@@ -37,6 +37,26 @@
   (set-default-font "PragmataPro for Powerline 12")
   )
 
+;; Adding mu4e mail support
+(add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
+(use-package mu4e
+  :config
+  (progn
+    (setq
+     mu4e-mu-binary "/usr/local/bin/mu"
+     mu4e-maildir "~/.mail"
+     mu4e-sent-folder "/Gmail/sent"
+     mu4e-drafts-folder "/Gmail/Drafts"
+     mu4e-trash-folder "/Gmail/Junk"
+     mu4e-refile-folder "/Gmail/archive"
+     mu4e-get-mail-command "offlineimap"
+     mu4e-update-interval 300
+    )
+  )
+
+;; No long answering anymore
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Fuzzy search buffer and file names
 (use-package projectile
   :ensure projectile
