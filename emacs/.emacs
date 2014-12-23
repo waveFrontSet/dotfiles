@@ -1,26 +1,19 @@
-;; from purcell/emacs.d
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (if (package-installed-p package min-version)
-      t
-    (if (or (assoc package package-archive-contents) no-refresh)
-        (package-install package)
-      (progn
-        (package-refresh-contents)
-        (require-package package min-version t)))))
-
-;; Enable package manager and add MELPA repository.
+;; Enable package manager
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
+(setq package-enable-at-startup nil)
 
-;; Add manually installed packages to load-path
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+;; Add custom lisp code to path and add melpa and org package dirs
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("org" . "http://orgmode.org/elpa/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")))
+
+;; Install and activate use-package
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
 ;; Show line numbers
 (global-linum-mode t)
@@ -28,108 +21,168 @@ re-downloaded in order to locate PACKAGE."
 ;; Wrap text after 79 chars
 (setq fill-column 79)
 
-;; Color-theme
-(require-package 'solarized-theme)
-(setq solarized-high-contrast-mode-line t)
-(load-theme 'solarized-dark t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(LaTeX-command "latexmk")
- '(TeX-PDF-mode t)
- '(TeX-source-correlate-start-server t)
- '(TeX-view-program-list (quote (("okular" "okular -unique %o#src:%n%b"))))
- '(TeX-view-program-selection
-   (quote
-    ((output-pdf "Okular")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Evince")
-     (output-html "xdg-open"))))
- '(cdlatex-paired-parens "$[{(")
- '(exec-path
-   (quote
-    ("/usr/local/bin" "/usr/bin" "/bin" "/usr/sbin" "/sbin" "/usr/local/Cellar/emacs/24.3/libexec/emacs/24.3/x86_64-apple-darwin13.1.0" "/usr/local/Cellar/ghostscript/9.10/bin" "/usr/local/texlive/2013/bin/x86_64-darwin")))
- '(org-agenda-files (quote ("~/test.org")))
- '(pdf-latex-command "lualatex"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+;; Set the color-theme to solarized-dark
+(use-package solarized-theme
+  :pre-load
+  (setq solarized-high-contrast-mode-line t)
+  :defer t
+  :ensure solarized-theme
+  :init
+  (load-theme 'solarized-dark t)
+  )
+
+;; Setting font face and font size according to OS.
 (if (eq system-type 'darwin)
-(custom-set-faces
- '(default ((t (:family "PragmataPro for Powerline" :foundry "unknown" :slant normal :weight normal :height 140 :width normal)))))
-(setq LaTeX-enable-toolbar nil)
-)
+    (set-default-font "PragmataPro for Powerline 14")
+  (set-default-font "PragmataPro for Powerline 12")
+  )
+
+;; Adding mu4e mail support
+(add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
+(use-package mu4e
+  :config
+  (progn
+    (setq
+     mu4e-mu-binary "/usr/local/bin/mu"
+     mu4e-maildir "~/.mail"
+     mu4e-sent-folder "/Gmail/sent"
+     mu4e-drafts-folder "/Gmail/drafts"
+     mu4e-trash-folder "/Gmail/Trash"
+     mu4e-refile-folder "/Gmail/archive"
+     mu4e-get-mail-command "offlineimap"
+     mu4e-update-interval 300
+     mu4e-user-mail-address-list '("p.bubenzer@wwu.de" "paul.bubenzer@gmail.com")
+     mu4e-sent-messages-behavior 'delete
+     user-mail-address "paul.bubenzer@gmail.com"
+     user-full-name "Paul Bubenzer"
+     message-kill-buffer-on-exit t
+     message-send-mail-function 'message-send-mail-with-sendmail
+     sendmail-program "/usr/local/bin/msmtp")
+    )
+  )
+
+;; No long answering anymore
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; Fuzzy search buffer and file names
-(require-package 'projectile)
-(projectile-global-mode)
+(use-package projectile
+  :ensure projectile
+  :init
+  (projectile-global-mode)
+  )
 
 ;; Fuzzy search command names
-(require-package 'smex)
-(require 'smex)
-(smex-initialize)
+(use-package smex
+  :commands (smex)
+  :ensure smex
+  :init
+  (smex-initialize)
+  )
 
 ;; auto-complete
-(require-package 'popup)
-(require-package 'auto-complete)
-(require-package 'auto-complete-auctex)
-;(require 'auto-complete-auctex)
-(ac-config-default)
+(use-package popup
+  :ensure popup
+  )
+(use-package auto-complete
+  :ensure auto-complete
+  :init
+  (ac-config-default)
+  )
+;; (use-package auto-complete-auctex
+  ;; :ensure auto-complete-auctex
+  ;; )
 
 ;; Snippets
-(require-package 'yasnippet)
-(require 'yasnippet)
-(yas-global-mode t)
+(use-package yasnippet
+  :ensure yasnippet
+  :init
+  (yas-global-mode t)
+  )
 
 ;; Adding markdown support
-(require-package 'markdown-mode)
-(require-package 'markdown-mode+)
-(autoload 'markdown-mode "markdown-mode" "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-;; Adding git support via magit
-(require-package 'magit)
-;;; If nothing is staged and 'c c' is invoked, everything will be commited.
-(setq magit-commit-all-when-nothing-staged t)
+(use-package markdown-mode
+  :ensure markdown-mode
+  :init
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+    )
+  :config
+  (use-package markdown-mode+
+    :ensure markdown-mode+
+    )
+  )
 
 ;; Adding on-the-fly syntax checking via flycheck
-(require-package 'flycheck)
+(use-package flycheck
+  :ensure flycheck
+  )
 
 ;; Adding pass support
-(require-package 'password-store)
+(use-package password-store
+  :ensure password-store
+  )
 
 ;; Activate evil-mode + convenient subpackages
-(require-package 'evil)
-(require-package 'evil-indent-textobject)
-(require-package 'evil-leader)
-(require-package 'evil-tabs)
-(require-package 'evil-visualstar)
-(require-package 'evil-surround)
+(use-package evil-leader
+  :pre-load
+  (setq evil-search-module 'evil-search
+	evil-want-C-u-scroll t
+	evil-want-C-w-in-emacs-state t)
+  :ensure evil-leader
+  :commands (evil-leader-mode)
+  :demand evil-leader
+  :init
+  (global-evil-leader-mode)
+  :config
+  (progn
+    (evil-leader/set-key
+      "," 'ibuffer
+      "\\" 'pp-eval-last-sexp
+      "a" 'add-parantheses
+      "b" (lambda() (interactive) (add-parantheses "big"))
+      "ce" 'LaTeX-environment
+      "e" (lambda() (interactive) (find-file "~/.emacs"))
+      "f" 'projectile-find-file
+      "h" 'dired-jump
+      "oa" 'org-agenda
+      "ob" 'org-iswitchb
+      "oc" 'org-capture
+      "oj" (lambda() (interactive) (org-capture nil "j"))
+      "ol" 'org-store-link
+      "oo" 'org-open-at-point
+      "os" 'org-schedule
+      "ot" 'org-todo
+      "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file' -1))
+      )
+    )
+  )
 
-(setq evil-search-module 'evil-search
-      evil-want-C-u-scroll t
-      evil-want-C-w-in-emacs-state t)
-
-(require 'evil-leader)
-(global-evil-leader-mode)
-(require 'evil)
-(evil-mode t)
-
-(require 'evil-visualstar)
-
-(require 'evil-surround)
-(global-evil-surround-mode 1)
-
-;; Evil customizations
-(setq sentence-end-double-space nil)
+(use-package evil
+  :ensure evil
+  :demand evil
+  :init
+  (evil-mode t)
+  :config
+  (progn
+    (use-package evil-indent-textobject
+      :ensure evil-indent-textobject
+      )
+    (use-package evil-tabs
+      :ensure evil-tabs
+      )
+    (use-package evil-visualstar
+      :ensure evil-visualstar
+      )
+    (use-package evil-surround
+      :ensure evil-surround
+      :init
+      (global-evil-surround-mode 1)
+      )
+    (setq sentence-end-double-space nil)
+    )
+  )
 
 ;; Evil keybindings
 ;;; Use SPC to execute commands via smex
@@ -156,26 +209,44 @@ re-downloaded in order to locate PACKAGE."
   (interactive)
   (if (eq size nil)
       (setq left-par "\\left" right-par "\\right")
-      (setq left-par (concat "\\" size "l") right-par (concat "\\" size "r"))
-  )
+    (setq left-par (concat "\\" size "l") right-par (concat "\\" size "r"))
+    )
   (evil-jump-item)
   (insert right-par)
   (evil-jump-item)
   (insert left-par)
-)
+  )
 
-;;; Evil-leader bindings
-(evil-leader/set-key
-  "a" 'add-parantheses
-  "b" (lambda() (interactive) (add-parantheses "big"))
-  "ce" 'LaTeX-environment
-  "e" (lambda() (interactive) (find-file "~/.emacs"))
-  "f" 'projectile-find-file
-  "h" 'dired-jump
-  "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file' -1))
-  "\\" 'pp-eval-last-sexp
-  "," 'ibuffer
-)
+;; Adding git support via magit
+(use-package magit
+  :ensure magit
+  :config
+  (setq magit-commit-all-when-nothing-staged t)
+  (progn
+    (evil-set-initial-state 'magit-mode 'normal)
+    (evil-set-initial-state 'magit-status-mode 'normal)
+    (evil-set-initial-state 'magit-diff-mode 'normal)
+    (evil-set-initial-state 'magit-log-mode 'normal)
+    (evil-define-key 'normal magit-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section
+        "c" 'magit-key-mode-popup-committing
+        "p" 'magit-key-mode-popup-pushing
+        "f" 'magit-key-mode-popup-fetching
+        "s" 'magit-stage-item
+        "S" 'magit-stage-all
+	"u" 'magit-unstage-item
+	"U" 'magit-unstage-all
+	"q" 'magit-mode-quit-window
+	)
+    (evil-define-key 'normal magit-log-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section)
+    (evil-define-key 'normal magit-diff-mode-map
+        "j" 'magit-goto-next-section
+        "k" 'magit-goto-previous-section)
+    )
+  )
 
 ;; iBuffer bindings
 (eval-after-load 'ibuffer
@@ -193,6 +264,7 @@ re-downloaded in order to locate PACKAGE."
 
 ;; Dired bindings
 (require 'dired-x)
+(put 'dired-find-alternate-file 'disabled nil)
 (defun my-dired-up-directory ()
   "Take dired up one directory, but behave like dired-find-alternate-file"
   (interactive)
@@ -219,27 +291,38 @@ re-downloaded in order to locate PACKAGE."
 ;; LaTeX stuff
 
 ;; Smart-parens mode for automatically pairing parentheses
-;; (require-package 'smartparens)
+;; (use-package smartparens
+;;:ensure smartparens
+;;)
 ;; (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 ;;; AucTex
-(require-package 'auctex)
-(require 'tex-site)
-(getenv "PATH")
-(setenv "PATH"
-        (concat "/usr/local/texlive/2013/bin/x86_64-darwin" ":"
-                (getenv "PATH")))
-(require-package 'auctex-latexmk)
-(require 'auctex-latexmk)
-(auctex-latexmk-setup)
-(require-package 'latex-preview-pane)
-(latex-preview-pane-enable)
-(setq TeX-command-default "latexmk")
-;; Assign newline-and-indent to Enter
+(use-package tex
+  :ensure auctex
+  :config
+  (progn
+    (setq TeX-command-default "latexmk")
+    (use-package auctex-latexmk
+      :ensure auctex-latexmk
+      :init
+      (auctex-latexmk-setup)
+      )
+    (use-package latex-preview-pane
+      :ensure latex-preview-pane
+      :init
+      (latex-preview-pane-enable)
+      )
+    )
+  )
+
 (defun return-indent-in-latex ()
   (local-set-key (kbd "C-m") 'newline-and-indent)
-)
+  )
 ;; Enable cdlatex in LaTeX-mode
-(load "cdlatex")
+(use-package cdlatex
+  :ensure cdlatex
+  :config
+  (setq cdlatex-paired-parens "$[{(")
+  )
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 ;; Enable reftex in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
@@ -248,36 +331,40 @@ re-downloaded in order to locate PACKAGE."
 (add-hook 'org-mode-hook 'return-indent-in-latex)
 
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
-(require-package 'bibretrieve)
-(setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
+(use-package bibretrieve
+  :ensure bibretrieve
+  :config
+  (setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
+  )
 
 ;; Enable flyspell
-(setq ispell-program-name "aspell")
-(setq ispell-dictionary "english")
+(use-package flycheck
+  :ensure flycheck
+  :config
+  (progn
+    (setq ispell-program-name "aspell")
+    (setq ispell-dictionary "english")
+    )
+  )
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
 
-;; org-mode shortcuts
-(evil-leader/set-key "oa" 'org-agenda)
-(evil-leader/set-key "ob" 'org-iswitchb)
-(evil-leader/set-key "oc" 'org-capture)
-(evil-leader/set-key "ol" 'org-store-link)
-(evil-leader/set-key "oo" 'org-open-at-point)
-(evil-leader/set-key "os" 'org-schedule)
-(evil-leader/set-key "ot" 'org-todo)
-
+;; org-mode config
 (setq org-log-done 'time)
-
 (setq org-agenda-files (list "~/org/work.org"
 			     "~/org/home.org"))
-
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
+	 "* TODO %?")
+	("j" "Journal" entry (file "~/latex-docs/thesis/thesis_diary.org")
+	 "* %<%d.%m.%Y> \n %?")))
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook
-  '(lambda() (set-fill-column 80)))
+	  '(lambda() (set-fill-column 80)))
 
 ;; Enable reftex in org-mode
 (add-hook 'org-mode-hook 'reftex-mode)
@@ -292,12 +379,19 @@ re-downloaded in order to locate PACKAGE."
 (setq reftex-default-bibliography '("~/latex-docs/thesis/thesis_literature.bib"))
 
 ;; Powerline integration
-(require-package 'powerline)
-(require-package 'powerline-evil)
-(require 'powerline)
-(powerline-evil-center-color-theme)
-(display-time-mode t)
-(setq powerline-evil-tag-style 'verbose)
+(use-package powerline
+  :demand t
+  :ensure powerline
+  :config
+  (progn
+    (powerline-evil-center-color-theme)
+    (display-time-mode t)
+    (setq powerline-evil-tag-style 'verbose)
+    )
+  )
+(use-package powerline-evil
+  :ensure powerline-evil
+  )
 
 (require 'ob-latex)
 (setq org-confirm-babel-evaluate nil)
@@ -307,7 +401,7 @@ re-downloaded in order to locate PACKAGE."
 (require 'ox-latex)
 (add-to-list 'org-latex-classes
              '("mytemplate"
-"\\documentclass[intlimits,english,a4paper]{amsbook}
+	       "\\documentclass[intlimits,english,a4paper]{amsbook}
 
 \\usepackage[loadthm]{myStyle}
 \\usepackage{mathtools}
@@ -324,30 +418,37 @@ re-downloaded in order to locate PACKAGE."
                [NO-DEFAULT-PACKAGES]
                [NO-PACKAGES]
                [EXTRA]"
-	    ("\\chapter{%s}" . "\\chapter*{%s}")
+	       ("\\chapter{%s}" . "\\chapter*{%s}")
                ("\\section{%s}" . "\\section*{%s}")
-           ("\\subsection{%s}" . "\\subsection*{%s}")
-           ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-           ("\\paragraph{%s}" . "\\paragraph*{%s}")
-           ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 (setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
 
 ;; Virtualenvwrapper settings
-(require-package 'virtualenvwrapper)
-(require 'virtualenvwrapper)
-(venv-initialize-interactive-shells)
-(setq venv-location "~/myhp/")
+(use-package virtualenvwrapper
+  :ensure virtualenvwrapper
+  :init
+  (venv-initialize-interactive-shells)
+  :config
+  (setq venv-location "~/myhp/")
+  )
 
 ;; Django stuff
-(require-package 'django-mode)
+(use-package django-mode
+  :ensure django-mode
+  )
 (require 'django-html-mode)
 (require 'django-mode)
 ;; (yas/load-directory "~/.emacs.d/elpa/django-snippets-20131229.811/snippets")
 (add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
 
 ;; Python Jedi autocomplete setup
-(require-package 'jedi)
+(use-package jedi
+  :ensure jedi
+  )
 (require 'jedi)
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'django-mode-hook 'jedi:setup)
@@ -386,4 +487,3 @@ re-downloaded in order to locate PACKAGE."
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
-(put 'dired-find-alternate-file 'disabled nil)
