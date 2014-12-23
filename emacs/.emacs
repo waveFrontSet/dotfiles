@@ -46,12 +46,18 @@
      mu4e-mu-binary "/usr/local/bin/mu"
      mu4e-maildir "~/.mail"
      mu4e-sent-folder "/Gmail/sent"
-     mu4e-drafts-folder "/Gmail/Drafts"
-     mu4e-trash-folder "/Gmail/Junk"
+     mu4e-drafts-folder "/Gmail/drafts"
+     mu4e-trash-folder "/Gmail/Trash"
      mu4e-refile-folder "/Gmail/archive"
      mu4e-get-mail-command "offlineimap"
      mu4e-update-interval 300
-     )
+     mu4e-user-mail-address-list '("p.bubenzer@wwu.de" "paul.bubenzer@gmail.com")
+     mu4e-sent-messages-behavior 'delete
+     user-mail-address "paul.bubenzer@gmail.com"
+     user-full-name "Paul Bubenzer"
+     message-kill-buffer-on-exit t
+     message-send-mail-function 'message-send-mail-with-sendmail
+     sendmail-program "/usr/local/bin/msmtp")
     )
   )
 
