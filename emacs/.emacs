@@ -220,7 +220,7 @@
 (use-package org
   :config
   (evil-define-key 'normal org-agenda-mode-map
-    "s" '(lambda() (interactive) (org-save-all-org-buffers) (async-shell-command "git commit -am 'Bla'"))
+    "s" '(lambda() (interactive) (org-save-all-org-buffers) (start-process "git" nil "git" "commit" "-am" "'bla'"))
     )
   )
 
