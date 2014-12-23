@@ -217,6 +217,13 @@
   (insert left-par)
   )
 
+(use-package org
+  :config
+  (evil-define-key 'normal org-agenda-mode-map
+    "s" '(lambda() (interactive) (org-save-all-org-buffers) (async-shell-command "git commit -am 'Bla'"))
+    )
+  )
+
 ;; Adding git support via magit
 (use-package magit
   :ensure magit
