@@ -217,10 +217,28 @@
   (insert left-par)
   )
 
+(defun paul/org-save-all-org-buffers ()
+  "Save all current org-buffers, switch into the org-directory (hard-coded at the moment) and make a git comment with the current date and time as the commit msg."
+  (interactive)
+  (org-save-all-org-buffers)
+  (cd "~/org/")
+  (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M")) 
+  )
+
 (use-package org
   :config
+  (evil-set-initial-state 'org-agenda-mode 'normal)
   (evil-define-key 'normal org-agenda-mode-map
-    "s" '(lambda() (interactive) (org-save-all-org-buffers) (start-process "git" "*Messages*" "git" "commit" "-am" "'bla'"))
+    (kbd "C-m") 'org-agenda-switch-to
+    "i" 'org-agenda-clock-in
+    "j" 'org-agenda-next-item
+    "k" 'org-agenda-previous-item
+    "l" 'org-agenda-log-mode
+    "o" 'org-agenda-clock-out
+    "q" 'org-agenda-Quit
+    "r" 'org-agenda-redo
+    "s" 'paul/org-save-all-org-buffers
+    "t" 'org-agenda-todo
     )
   )
 
@@ -366,7 +384,7 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
 	 "* TODO %?")
-	("j" "Journal" entry (file "~/latex-docs/thesis/thesis_diary.org")
+	("j" "Journal" entry (file "~/org/thesis_diary.org")
 	 "* %<%d.%m.%Y> \n %?")))
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
