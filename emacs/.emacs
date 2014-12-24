@@ -227,6 +227,10 @@
 
 (use-package org
   :config
+  (setq
+   org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
+   org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
+   )
   (evil-set-initial-state 'org-agenda-mode 'normal)
   (evil-define-key 'normal org-agenda-mode-map
     (kbd "C-m") 'org-agenda-switch-to
