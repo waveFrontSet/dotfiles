@@ -227,22 +227,33 @@
 
 (use-package org
   :config
-  (setq
-   org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
-   org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
-   )
-  (evil-set-initial-state 'org-agenda-mode 'normal)
-  (evil-define-key 'normal org-agenda-mode-map
-    (kbd "C-m") 'org-agenda-switch-to
-    "i" 'org-agenda-clock-in
-    "j" 'org-agenda-next-item
-    "k" 'org-agenda-previous-item
-    "l" 'org-agenda-log-mode
-    "o" 'org-agenda-clock-out
-    "q" 'org-agenda-Quit
-    "r" 'org-agenda-redo
-    "s" 'paul/org-save-all-org-buffers
-    "t" 'org-agenda-todo
+  (progn
+    (setq
+     org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
+     org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
+     org-log-done 'time
+     org-agenda-files (list "~/org/work.org" "~/org/home.org")
+     org-capture-templates
+     '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
+	"* TODO %?")
+       ("j" "Journal" entry (file "~/org/thesis_diary.org")
+	"* %<%d.%m.%Y> \n %?"))
+     org-latex-to-pdf-process (list "latexmk %f")
+     org-src-fontify-natively t
+     )
+    (evil-set-initial-state 'org-agenda-mode 'normal)
+    (evil-define-key 'normal org-agenda-mode-map
+      (kbd "C-m") 'org-agenda-switch-to
+      "i" 'org-agenda-clock-in
+      "j" 'org-agenda-next-item
+      "k" 'org-agenda-previous-item
+      "l" 'org-agenda-log-mode
+      "o" 'org-agenda-clock-out
+      "q" 'org-agenda-Quit
+      "r" 'org-agenda-redo
+      "s" 'paul/org-save-all-org-buffers
+      "t" 'org-agenda-todo
+      )
     )
   )
 
@@ -250,8 +261,8 @@
 (use-package magit
   :ensure magit
   :config
-  (setq magit-commit-all-when-nothing-staged t)
   (progn
+    (setq magit-commit-all-when-nothing-staged t)
     (evil-set-initial-state 'magit-mode 'normal)
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
@@ -381,15 +392,6 @@
 ;; Enable cdlatex in org-mode
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
 
-;; org-mode config
-(setq org-log-done 'time)
-(setq org-agenda-files (list "~/org/work.org"
-			     "~/org/home.org"))
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
-	 "* TODO %?")
-	("j" "Journal" entry (file "~/org/thesis_diary.org")
-	 "* %<%d.%m.%Y> \n %?")))
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook
@@ -398,11 +400,6 @@
 ;; Enable reftex in org-mode
 (add-hook 'org-mode-hook 'reftex-mode)
 
-;; Export from latex to pdf via latexmk in org-mode
-(setq org-latex-to-pdf-process (list "latexmk %f"))
-
-;; Enable code syntax highlighting in org-mode
-(setq org-src-fontify-natively t)
 
 ;; Tell reftex the path to my default bib file
 (setq reftex-default-bibliography '("~/latex-docs/thesis/thesis_literature.bib"))
@@ -424,7 +421,6 @@
 
 (require 'ob-latex)
 (setq org-confirm-babel-evaluate nil)
-(setq org-src-fontify-natively t)
 (setq org-src-preserve-indentation t)
 
 (require 'ox-latex)
