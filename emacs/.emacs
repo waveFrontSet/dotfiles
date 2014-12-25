@@ -61,6 +61,23 @@
                ((string-match "p_bube02@uni-muenster.de" from) "WWU")
                ((string-match "p_bube02@wwu.de" from) "WWU"))))
           (setq message-sendmail-extra-arguments (list '"-a" account))))))
+
+(defun paul/set-from-address ()
+  "Set the From address based on the To address of the original."
+  (let ((msg mu4e-compose-parent-message)) ;; msg is shorter...
+    (if msg
+	(setq user-mail-address
+	      (cond
+	       ((mu4e-message-contact-field-matches msg :to "@wwu")
+		"p.bubenzer@wwu.de")
+	       ((mu4e-message-contact-field-matches msg :to "@uni-muenster")
+		"p.bubenzer@uni-muenster.de")
+	       ((mu4e-message-contact-field-matches msg :to "@gmail")
+		"paul.bubenzer@gmail.com")
+	       ((mu4e-message-contact-field-matches msg :to "@googlemail")
+		"paul.bubenzer@googlemail.com")
+	       (t "paul.bubenzer@gmail.com"))))))
+
 ;; Adding mu4e mail support
 (add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
 (use-package mu4e
@@ -85,6 +102,7 @@
      sendmail-program "/usr/local/bin/msmtp"
      )
     (add-hook 'message-send-mail-hook 'paul/choose-msmtp-account)
+    (add-hook 'mu4e-compose-pre-hook 'paul/set-from-address)
     )
   )
 
