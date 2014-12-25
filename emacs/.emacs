@@ -37,6 +37,30 @@
   (set-default-font "PragmataPro for Powerline 12")
   )
 
+;; Borrowed from http://ionrock.org/emacs-email-and-mu.html
+;; Choose account label to feed msmtp -a option based on From header
+;; in Message buffer; This function must be added to
+;; message-send-mail-hook for on-the-fly change of From address before
+;; sending message since message-send-mail-hook is processed right
+;; before sending message.
+(defun paul/choose-msmtp-account ()
+  (if (message-mail-p)
+      (save-excursion
+        (let*
+            ((from (save-restriction
+                     (message-narrow-to-headers)
+                     (message-fetch-field "from")))
+             (account
+              (cond
+               ((string-match "paul.bubenzer@gmail.com" from) "Gmail")
+               ((string-match "paul.bubenzer@googlemail.com" from) "Gmail")
+               ((string-match "p.bubenzer@uni-muenster.de" from) "WWU")
+               ((string-match "p.bubenzer@wwu.de" from) "WWU")
+               ((string-match "paul.bubenzer@uni-muenster.de" from) "WWU")
+               ((string-match "paul.bubenzer@wwu.de" from) "WWU")
+               ((string-match "p_bube02@uni-muenster.de" from) "WWU")
+               ((string-match "p_bube02@wwu.de" from) "WWU"))))
+          (setq message-sendmail-extra-arguments (list '"-a" account))))))
 ;; Adding mu4e mail support
 (add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
 (use-package mu4e
@@ -52,12 +76,15 @@
      mu4e-get-mail-command "offlineimap"
      mu4e-update-interval 300
      mu4e-user-mail-address-list '("p.bubenzer@wwu.de" "paul.bubenzer@gmail.com")
-     mu4e-sent-messages-behavior 'delete
-     user-mail-address "paul.bubenzer@gmail.com"
+     mu4e-sent-messages-behavior 'sent
+     user-mail-address "p.bubenzer@wwu.de"
      user-full-name "Paul Bubenzer"
      message-kill-buffer-on-exit t
      message-send-mail-function 'message-send-mail-with-sendmail
-     sendmail-program "/usr/local/bin/msmtp")
+     message-sendmail-envelope-from 'header
+     sendmail-program "/usr/local/bin/msmtp"
+     )
+    (add-hook 'message-send-mail-hook 'paul/choose-msmtp-account)
     )
   )
 
