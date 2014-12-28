@@ -432,9 +432,13 @@
 (use-package flycheck
   :commands (flycheck-mode)
   :ensure flycheck
+  )
+
+(use-package flyspell
+  :commands (flyspell-mode flyspell-buffer)
   :config
   (progn
-    (setq ispell-program-name "aspell")
+    (setq ispell-program-name "/usr/local/bin/aspell")
     (setq ispell-dictionary "english")
     )
   )
