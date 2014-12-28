@@ -1,3 +1,19 @@
+;; Initializing path vars to the local bin directory, to the mu4e source files and to my org-agenda dir.
+(defvar paul/path-localbin)
+(defvar paul/path-mu4esource)
+(defvar paul/path-org-agenda-files "~/org/")
+
+(if (eq system-type 'darwin)
+    (setq
+     paul/path-localbin "/usr/local/bin/"
+     paul/path-mu4esource "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e"
+     )
+  (setq
+   paul/path-localbin "~/.local/bin/"
+   paul/path-mu4esource ""
+   )
+  )
+
 ;; Enable package manager
 (require 'package)
 (package-initialize)
@@ -79,13 +95,13 @@
 	       (t "paul.bubenzer@gmail.com"))))))
 
 ;; Adding mu4e mail support
-(add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
+(add-to-list 'load-path paul/path-mu4esource)
 (use-package mu4e
   :commands mu4e
   :config
   (progn
     (setq
-     mu4e-mu-binary "/usr/local/bin/mu"
+     mu4e-mu-binary (concat paul/path-localbin "mu")
      mu4e-maildir "~/.mail"
      mu4e-sent-folder "/Gmail/sent"
      mu4e-drafts-folder "/Gmail/drafts"
@@ -100,7 +116,7 @@
      message-kill-buffer-on-exit t
      message-send-mail-function 'message-send-mail-with-sendmail
      message-sendmail-envelope-from 'header
-     sendmail-program "/usr/local/bin/msmtp"
+     sendmail-program (concat paul/path-localbin "msmtp")
      )
     (add-hook 'message-send-mail-hook 'paul/choose-msmtp-account)
     (add-hook 'mu4e-compose-pre-hook 'paul/set-from-address)
@@ -377,7 +393,7 @@
   "Save all current org-buffers, switch into the org-directory (hard-coded at the moment) and make a git commit with the current date and time as the commit msg."
   (interactive)
   (org-save-all-org-buffers)
-  (cd "~/org/")
+  (cd paul/path-org-agenda-files)
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M")) 
   )
 
@@ -388,11 +404,11 @@
      org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
      org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
      org-log-done 'time
-     org-agenda-files (list "~/org/work.org" "~/org/home.org")
+     org-agenda-files (list (concat paul/path-org-agenda-files "work.org") (concat paul/path-org-agenda-files "home.org"))
      org-capture-templates
-     '(("t" "Todo" entry (file+headline "~/org/work.org" "Inbox")
+     '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
 	"* TODO %?")
-       ("j" "Journal" entry (file "~/org/thesis_diary.org")
+       ("j" "Journal" entry (file (concat paul/path-org-agenda-files "thesis_diary.org"))
 	"* %<%d.%m.%Y> \n %?"))
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
@@ -554,7 +570,7 @@
   :commands (flyspell-mode flyspell-buffer)
   :config
   (progn
-    (setq ispell-program-name "/usr/local/bin/aspell")
+    (setq ispell-program-name (concat paul/path-localbin "aspell"))
     (setq ispell-dictionary "english")
     )
   )
