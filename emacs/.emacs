@@ -191,6 +191,7 @@
       "e" (lambda() (interactive) (find-file "~/.emacs"))
       "f" 'projectile-find-file
       "h" 'dired-jump
+      "m" 'mu4e
       "oa" 'org-agenda
       "ob" 'org-iswitchb
       "oc" 'org-capture
@@ -199,7 +200,7 @@
       "oo" 'org-open-at-point
       "os" 'org-schedule
       "ot" 'org-todo
-      "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file' -1))
+      "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
       )
     )
   )
@@ -240,8 +241,6 @@
 (define-key evil-normal-state-map (kbd "zj") 'outline-next-visible-heading)
 (define-key evil-normal-state-map (kbd "zk") 'outline-previous-visible-heading)
 ;;; Use Us to get the magit-status window
-(define-key evil-normal-state-map (kbd "Us") 'magit-status)
-(define-key evil-normal-state-map (kbd "Ud") 'magit-diff-unstaged)
 ;;; vim-unimpaired emulation
 (define-key evil-normal-state-map (kbd "]a") 'next-buffer)
 (define-key evil-normal-state-map (kbd "[a") 'previous-buffer)
@@ -312,6 +311,8 @@
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
+    (define-key evil-normal-state-map (kbd "Us") 'magit-status)
+    (define-key evil-normal-state-map (kbd "Ud") 'magit-diff-unstaged)
     (evil-define-key 'normal magit-mode-map
         "j" 'magit-goto-next-section
         "k" 'magit-goto-previous-section
@@ -347,9 +348,7 @@
      )
   )
 
-;; Dired bindings
-(require 'dired-x)
-(put 'dired-find-alternate-file 'disabled nil)
+;; Dired-x bindings and config
 (defun my-dired-up-directory ()
   "Take dired up one directory, but behave like dired-find-alternate-file"
   (interactive)
@@ -358,21 +357,27 @@
     (kill-buffer old)
     ))
 
-(progn
-  (evil-set-initial-state 'dired-mode 'normal)
-  (evil-define-key 'normal dired-mode-map
-    "h" 'my-dired-up-directory
-    "l" 'dired-find-alternate-file
-    "o" 'dired-sort-toggle-or-edit
-    "v" 'dired-toggle-marks
-    "m" 'dired-mark
-    "u" 'dired-unmark
-    "U" 'dired-unmark-all-marks
-    "c" 'dired-create-directory
-    "n" 'evil-search-next
-    "N" 'evil-search-previous
-    "q" 'kill-this-buffer)
+(use-package dired-x
+  :commands (dired-jump)
+  :config
+  (progn
+    (put 'dired-find-alternate-file 'disabled nil)
+    (evil-set-initial-state 'dired-mode 'normal)
+    (evil-define-key 'normal dired-mode-map
+      "h" 'my-dired-up-directory
+      "l" 'dired-find-alternate-file
+      "o" 'dired-sort-toggle-or-edit
+      "v" 'dired-toggle-marks
+      "m" 'dired-mark
+      "u" 'dired-unmark
+      "U" 'dired-unmark-all-marks
+      "c" 'dired-create-directory
+      "n" 'evil-search-next
+      "N" 'evil-search-previous
+      "q" 'kill-this-buffer)
+    )
   )
+
 ;; LaTeX stuff
 
 ;; Smart-parens mode for automatically pairing parentheses
@@ -417,6 +422,7 @@
 
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
 (use-package bibretrieve
+  :commands (bibretrieve)
   :ensure bibretrieve
   :config
   (setq bibretrieve-backends '(("msn" . 10) ("arxiv" . 5) ("zbm" . 5)))
@@ -424,6 +430,7 @@
 
 ;; Enable flyspell
 (use-package flycheck
+  :commands (flycheck-mode)
   :ensure flycheck
   :config
   (progn
@@ -431,6 +438,7 @@
     (setq ispell-dictionary "english")
     )
   )
+
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 ;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
@@ -464,36 +472,42 @@
   :ensure powerline-evil
   )
 
-(require 'ob-latex)
 (setq org-confirm-babel-evaluate nil)
 (setq org-src-preserve-indentation t)
 
-(require 'ox-latex)
-(add-to-list 'org-latex-classes
-             '("mytemplate"
-	       "\\documentclass[intlimits,english,a4paper]{amsbook}
+      
+(use-package ox-latex
+  :config
+  (progn
+    (setq org-latex-packages-alist
+	  '(
+	    ("article,loadthm" "myStyle" nil)
+	    ("" "mathtools" nil)
+	    ("" "csquotes" nil)
+	    ("autolang=other,natbib=true,firstinits=true" "biblatex" nil)
+	    )
+	  )
+    (add-to-list 'org-latex-classes
+		 '("mytemplate"
+		   "\\documentclass[intlimits,english,a4paper]{scrartcl}
 
-\\usepackage[loadthm]{myStyle}
-\\usepackage{mathtools}
-
-% Literaturverzeichnis-Pakete
-\\usepackage{csquotes}
-\\usepackage[babel=other,backend=biber,natbib=true,firstinits=true]{biblatex}
-\\addbibresource{thesis_literature.bib}
-\\bibliography{thesis_literature}
+[PACKAGES]
+\\addbibresource{~/latex-docs/thesis/thesis_literature.bib}
 
 % Pagestyling
 \\pagestyle{headings}
 
-               [NO-DEFAULT-PACKAGES]
-               [NO-PACKAGES]
-               [EXTRA]"
-	       ("\\chapter{%s}" . "\\chapter*{%s}")
+[NO-DEFAULT-PACKAGES]
+[EXTRA]"
                ("\\section{%s}" . "\\section*{%s}")
 	       ("\\subsection{%s}" . "\\subsection*{%s}")
 	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
-	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+)
+    )
+)
+
 
 (setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
 
