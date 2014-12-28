@@ -303,6 +303,7 @@
 
 ;; Adding git support via magit
 (use-package magit
+  :commands (magit-status magit-diff-unstaged)
   :ensure magit
   :config
   (progn
