@@ -109,6 +109,7 @@
      mu4e-refile-folder "/Gmail/archive"
      mu4e-get-mail-command "offlineimap"
      mu4e-update-interval 300
+     mu4e-headers-results-limit 100
      mu4e-user-mail-address-list '("p.bubenzer@wwu.de" "paul.bubenzer@gmail.com")
      mu4e-sent-messages-behavior 'sent
      user-mail-address "p.bubenzer@wwu.de"
