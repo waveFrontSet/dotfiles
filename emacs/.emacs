@@ -81,6 +81,7 @@
 ;; Adding mu4e mail support
 (add-to-list 'load-path "/usr/local/Cellar/mu/0.9.10/share/emacs/site-lisp/mu4e")
 (use-package mu4e
+  :commands mu4e
   :config
   (progn
     (setq
@@ -103,6 +104,116 @@
      )
     (add-hook 'message-send-mail-hook 'paul/choose-msmtp-account)
     (add-hook 'mu4e-compose-pre-hook 'paul/set-from-address)
+    (add-to-list 'mu4e-bookmarks '("maildir:/Gmail/Uni" "University Inbox" ?a))
+    (add-to-list 'mu4e-bookmarks '("maildir:/Gmail/INBOX" "Regular Gmail-Inbox" ?b))
+    (evil-set-initial-state 'mu4e-headers-mode 'normal)
+    (evil-set-initial-state 'mu4e-view-mode 'normal)
+    (evil-define-key 'normal 'mu4e-headers-mode-map
+      "k" 'mu4e-headers-prev
+      "j" 'mu4e-headers-next
+      "y" 'mu4e~headers-jump-to-maildir
+      "w" 'mu4e-select-other-view
+      "o" 'mu4e-update-mail-and-index
+      "/" 'mu4e-headers-search
+      "?" 'mu4e-headers-search-edit
+      "l" 'mu4e-headers-search-narrow
+      (kbd "<")  'mu4e-headers-query-prev
+      (kbd ">") 'mu4e-headers-query-next
+      "b" 'mu4e-headers-search-bookmark
+      "B" 'mu4e-headers-search-bookmark-edit
+      "O" 'mu4e-headers-change-sorting
+      "P" 'mu4e-headers-toggle-threading
+      "Q" 'mu4e-headers-toggle-full-search
+      "W" 'mu4e-headers-toggle-include-related
+      "V" 'mu4e-headers-toggle-skip-duplicates
+      "q" 'mu4e~headers-quit-buffer
+      "%" 'mu4e-headers-mark-pattern
+      "t" 'mu4e-headers-mark-subthread
+      "T" 'mu4e-headers-mark-thread
+      (kbd "<backspace>")  'mu4e-headers-mark-for-trash
+      (kbd "d")            'mu4e-headers-mark-for-trash
+      (kbd "<delete>")     'mu4e-headers-mark-for-delete
+      (kbd "<deletechar>") 'mu4e-headers-mark-for-delete
+      (kbd "D")            'mu4e-headers-mark-for-delete
+      (kbd "m")            'mu4e-headers-mark-for-move
+      (kbd "r")            'mu4e-headers-mark-for-refile
+      (kbd "!")            'mu4e-headers-mark-for-read
+      (kbd "u")            'mu4e-headers-mark-for-unmark
+      (kbd "+")            'mu4e-headers-mark-for-flag
+      (kbd "-")            'mu4e-headers-mark-for-unflag
+      (kbd "=")            'mu4e-headers-mark-for-untrash
+      (kbd "&")            'mu4e-headers-mark-custom
+      (kbd "*")              'mu4e-headers-mark-for-something
+      (kbd "#")   'mu4e-mark-resolve-deferred-marks
+      "U" 'mu4e-mark-unmark-all
+      "x" 'mu4e-mark-execute-all
+      "a" 'mu4e-headers-action
+      "R" 'mu4e-compose-reply
+      "F" 'mu4e-compose-forward
+      "C" 'mu4e-compose-new
+      "E" 'mu4e-compose-edit
+      (kbd "RET") 'mu4e-headers-view-message
+      [mouse-2]   'mu4e-headers-view-message
+      "$" 'mu4e-show-log
+      "H" 'mu4e-display-manual
+      )
+    (evil-define-key 'normal 'mu4e-view-mode-map
+      "k" 'mu4e-view-headers-prev
+      "j" 'mu4e-view-headers-next
+      "y" 'mu4e~headers-jump-to-maildir
+      "w" 'mu4e-select-other-view
+      "o" 'mu4e-update-mail-and-index
+      "/" 'mu4e-headers-search
+      "?" 'mu4e-view-search-edit
+      "l" 'mu4e-view-search-narrow
+      (kbd "<")  'mu4e-headers-query-prev
+      (kbd ">") 'mu4e-headers-query-next
+      "q" 'mu4e~view-quit-buffer
+      "v" 'mu4e-view-open-attachment
+      "b" 'mu4e-headers-search-bookmark
+      "B" 'mu4e-headers-search-bookmark-edit
+      "%" 'mu4e-view-mark-pattern
+      "t" 'mu4e-view-mark-subthread
+      "T" 'mu4e-view-mark-thread
+      (kbd "C-b") 'mu4e-view-go-to-url
+      "F" 'mu4e-compose-forward
+      "R" 'mu4e-compose-reply
+      "C" 'mu4e-compose-new
+      "E" 'mu4e-compose-edit
+      "." 'mu4e-view-raw-message
+      "|" 'mu4e-view-pipe
+      "a" 'mu4e-view-action
+      "O" 'mu4e-headers-change-sorting
+      "P" 'mu4e-headers-toggle-threading
+      "Q" 'mu4e-headers-toggle-full-search
+      "W" 'mu4e-headers-toggle-include-related
+      (kbd "SPC") 'mu4e-view-scroll-up-or-next
+      (kbd "<backspace>") 'mu4e-scroll-down
+      "e" 'mu4e-view-save-attachment
+      "A" 'mu4e-view-attachment-action
+      "d" 'mu4e-view-mark-for-trash
+      (kbd "<delete>") 'mu4e-view-mark-for-delete
+      (kbd "<deletechar>") 'mu4e-mark-for-delete
+      (kbd "D") 'mu4e-view-mark-for-delete
+      (kbd "m") 'mu4e-view-mark-for-move
+      (kbd "r") 'mu4e-view-mark-for-refile
+      (kbd "&") 'mu4e-view-mark-custom
+      (kbd "+") 'mu4e-view-mark-for-flag
+      (kbd "-") 'mu4e-view-mark-for-unflag
+      (kbd "=") 'mu4e-view-mark-for-untrash
+      (kbd "*")             'mu4e-view-mark-for-something
+      (kbd "<kp-multiply>") 'mu4e-view-mark-for-something
+      (kbd "<insert>")     'mu4e-view-mark-for-something
+      (kbd "<insertchar>") 'mu4e-view-mark-for-something
+      (kbd "#") 'mu4e-mark-resolve-deferred-marks
+      "h" 'mu4e-view-toggle-hide-cited
+      (kbd "M-q") 'mu4e-view-fill-long-lines
+      "u" 'mu4e-view-unmark
+      "U" 'mu4e-view-unmark-all
+      "x" 'mu4e-view-marked-execute
+      "$" 'mu4e-show-log
+      "H" 'mu4e-display-manual
+      )
     )
   )
 
@@ -305,6 +416,11 @@
 (use-package magit
   :commands (magit-status magit-diff-unstaged)
   :ensure magit
+  :init
+  (progn
+    (define-key evil-normal-state-map (kbd "Us") 'magit-status)
+    (define-key evil-normal-state-map (kbd "Ud") 'magit-diff-unstaged)
+    )
   :config
   (progn
     (setq magit-commit-all-when-nothing-staged t)
@@ -312,8 +428,6 @@
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
-    (define-key evil-normal-state-map (kbd "Us") 'magit-status)
-    (define-key evil-normal-state-map (kbd "Ud") 'magit-diff-unstaged)
     (evil-define-key 'normal magit-mode-map
         "j" 'magit-goto-next-section
         "k" 'magit-goto-previous-section
