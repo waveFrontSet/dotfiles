@@ -299,9 +299,10 @@
       "a" 'add-parantheses
       "b" (lambda() (interactive) (add-parantheses "big"))
       "ce" 'LaTeX-environment
+      "d" 'dired-jump
       "e" (lambda() (interactive) (find-file "~/.emacs"))
       "f" 'projectile-find-file
-      "h" 'dired-jump
+      "h" 'help-for-help
       "m" 'mu4e
       "oa" 'org-agenda
       "ob" 'org-iswitchb
