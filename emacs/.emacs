@@ -295,7 +295,15 @@
 ;; Adding pass support
 (use-package password-store
   :ensure password-store
+  :init
+  (setq password-store-executable (concat paul/path-localbin "pass"))
   )
+
+;; This is needed for password-store and sets up gpg-agent environment vars
+(use-package keychain-environment
+  :ensure keychain-environment
+  :init
+  (keychain-refresh-environment))
 
 ;; Activate evil-mode + convenient subpackages
 (use-package evil-leader
@@ -329,6 +337,7 @@
       "oo" 'org-open-at-point
       "os" 'org-schedule
       "ot" 'org-todo
+      "pc" 'password-store-copy
       "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
       )
     )
