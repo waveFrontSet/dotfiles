@@ -14,6 +14,9 @@
    )
   )
 
+;; Add the local bin directory to the exec path so that emacs find all needed binaries.
+(add-to-list 'exec-path paul/path-localbin)
+
 ;; Enable package manager
 (require 'package)
 (package-initialize)
