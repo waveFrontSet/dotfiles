@@ -410,9 +410,20 @@
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M")) 
   )
 
+(defun paul/find-table-location ()
+  "Find the right table location using the current year and month."
+  (let ((year (string-to-number (format-time-string "%Y")))
+	(month (string-to-number (format-time-string "%m"))))
+    (org-datetree-find-month-create year month)
+    )
+  )
+
 (use-package org
   :config
   (progn
+    (use-package org-datetree
+      :commands (org-datetree-find-month-create)
+      )
     (setq
      org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
      org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
@@ -422,7 +433,10 @@
      '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
 	"* TODO %?")
        ("j" "Journal" entry (file (concat paul/path-org-agenda-files "thesis_diary.org"))
-	"* %<%d.%m.%Y> \n %?"))
+	"* %<%d.%m.%Y> \n %?")
+       ("m" "Money entry" table-line (file+function (concat paul/path-org-agenda-files "money.org") paul/find-table-location)
+	"| | %? | |" :table-line-pos "III-1")
+       )
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
      )
