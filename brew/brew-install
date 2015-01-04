@@ -18,26 +18,42 @@ brew install wget --enable-iri
 # Install more recent versions of some OS X tools
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
-brew tap josegonzalez/homebrew-php
-brew install php55
 
 # Install other useful binaries
 brew install ack
+brew install aspell
 brew install contacts
 brew install djvu2pdf
+brew install emacs
 brew install git
+brew install gnupg
+brew install gnupg2
+brew install gnutls
+brew install html2text
+brew install icu4c
+brew install keychain
+brew install libidn
 brew install lynx
 brew install msmtp
+brew install mu
 brew install mutt --with-sidebar-patch
 brew install mysql
 brew install offline-imap
+brew install pass
 brew install pigz
+brew install pinentry-mac
+brew install psutils
 brew install python3
 brew install reattach-to-user-namespace
+brew install stow
 brew install the_silver_searcher
 brew install tmux
 brew install transmission
+brew install unixodbc
+brew install urlview
+brew install vim
 brew install vimpager
+brew install zlib
 brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
