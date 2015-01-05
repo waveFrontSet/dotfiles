@@ -35,7 +35,7 @@ brew install keychain
 brew install libidn
 brew install lynx
 brew install msmtp
-brew install mu
+brew install mu --with-emacs
 brew install mutt --with-sidebar-patch
 brew install mysql
 brew install offline-imap
