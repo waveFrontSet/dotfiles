@@ -432,8 +432,8 @@
      org-capture-templates
      '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
 	"* TODO %?")
-       ("j" "Journal" entry (file (concat paul/path-org-agenda-files "thesis_diary.org"))
-	"* %<%d.%m.%Y> \n %?")
+       ("j" "Journal" plain (file+datetree (concat paul/path-org-agenda-files "thesis_diary.org"))
+	)
        ("m" "Money entry" table-line (file+function (concat paul/path-org-agenda-files "money.org") paul/find-table-location)
 	"| | %? | |" :table-line-pos "III-1")
        )
