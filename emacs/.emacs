@@ -10,7 +10,7 @@
      )
   (setq
    paul/path-localbin "~/.local/bin/"
-   paul/path-mu4esource ""
+   paul/path-mu4esource "~/.local/share/emacs/site-lisp/mu4e"
    )
   )
 
@@ -436,6 +436,7 @@
 	)
        ("m" "Money entry" table-line (file+function (concat paul/path-org-agenda-files "money.org") paul/find-table-location)
 	"| | %? | |" :table-line-pos "III-1")
+       ("n" "General note" entry (file+datetree (concat paul/path-org-agenda-files "notes.org")))
        )
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
