@@ -115,6 +115,7 @@
      mu4e-headers-results-limit 100
      mu4e-user-mail-address-list '("p.bubenzer@wwu.de" "paul.bubenzer@gmail.com")
      mu4e-sent-messages-behavior 'sent
+     mu4e-compose-signature-auto-include nil
      user-mail-address "p.bubenzer@wwu.de"
      user-full-name "Paul Bubenzer"
      message-kill-buffer-on-exit t
