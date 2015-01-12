@@ -480,6 +480,7 @@
         "c" 'magit-key-mode-popup-committing
         "p" 'magit-key-mode-popup-pushing
         "f" 'magit-key-mode-popup-fetching
+        "F" 'magit-key-mode-popup-pulling
         "s" 'magit-stage-item
         "S" 'magit-stage-all
 	"u" 'magit-unstage-item
