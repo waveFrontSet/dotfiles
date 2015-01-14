@@ -404,7 +404,7 @@
   )
 
 (defun paul/org-save-all-org-buffers ()
-  "Save all current org-buffers, switch into the org-directory (hard-coded at the moment) and make a git commit with the current date and time as the commit msg."
+  "Save all current org-buffers, switch into the org-directory and make a git commit with the current date and time as the commit msg."
   (interactive)
   (org-save-all-org-buffers)
   (cd paul/path-org-agenda-files)
@@ -416,7 +416,6 @@
   (interactive)
   (cd paul/path-org-agenda-files)
   (password-store-copy "rep/bit")
-  (cd paul/path-org-agenda-files)
   (magit-push)
   )
 
