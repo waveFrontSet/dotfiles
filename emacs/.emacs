@@ -442,7 +442,7 @@
      '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
 	"* TODO %?")
        ("j" "Journal" plain (file+datetree (concat paul/path-org-agenda-files "thesis_diary.org"))
-	)
+	"%?" :unnarrowed t)
        ("m" "Money entry" table-line (file+function (concat paul/path-org-agenda-files "money.org") paul/find-table-location)
 	"| | %? | |" :table-line-pos "III-1")
        ("n" "General note" entry (file+datetree (concat paul/path-org-agenda-files "notes.org")))
