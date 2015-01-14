@@ -437,7 +437,7 @@
      org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
      org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
      org-log-done 'time
-     org-agenda-files (list (concat paul/path-org-agenda-files "work.org") (concat paul/path-org-agenda-files "home.org"))
+     org-agenda-files (list (concat paul/path-org-agenda-files "work.org") (concat paul/path-org-agenda-files "home.org") (concat paul/path-org-agenda-files "thesis_diary.org") (concat paul/path-org-agenda-files "notes.org"))
      org-capture-templates
      '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
 	"* TODO %?")
@@ -449,7 +449,9 @@
        )
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
+     org-refile-targets '((org-agenda-files :maxlevel . 2))
      )
+    (org-agenda-to-appt)
     (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "C-m") 'org-agenda-switch-to
