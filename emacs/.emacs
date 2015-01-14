@@ -411,6 +411,15 @@
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M")) 
   )
 
+(defun paul/org-push ()
+  "Retrieves the password for rep/bit using password-store and runs magit-push."
+  (interactive)
+  (cd paul/path-org-agenda-files)
+  (password-store-copy "rep/bit")
+  (cd paul/path-org-agenda-files)
+  (magit-push)
+  )
+
 (defun paul/find-table-location ()
   "Find the right table location using the current year and month."
   (let ((year (string-to-number (format-time-string "%Y")))
@@ -450,6 +459,7 @@
       "k" 'org-agenda-previous-item
       "l" 'org-agenda-log-mode
       "o" 'org-agenda-clock-out
+      "p" 'paul/org-push
       "q" 'org-agenda-Quit
       "r" 'org-agenda-redo
       "s" 'paul/org-save-all-org-buffers
