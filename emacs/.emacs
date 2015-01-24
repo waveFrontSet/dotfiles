@@ -248,12 +248,17 @@
   (projectile-global-mode)
   )
 
-;; Fuzzy search command names
-(use-package smex
-  :commands (smex)
-  :ensure smex
+;; Helm
+(use-package helm
+  :ensure helm
   :init
-  (smex-initialize)
+  (require 'helm-config)
+  :config
+  (progn
+    (define-key evil-normal-state-map (kbd "SPC") 'helm-M-x)
+    (define-key evil-visual-state-map (kbd "SPC") 'helm-M-x)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    )
   )
 
 ;; auto-complete
@@ -374,7 +379,6 @@
 
 ;; Evil keybindings
 ;;; Use SPC to execute commands via smex
-(define-key evil-normal-state-map (kbd "SPC") 'smex)
 ;;; Fold-simulation
 (define-key evil-normal-state-map (kbd "zM") 'hide-body)
 (define-key evil-normal-state-map (kbd "zm") 'hide-subtree)
