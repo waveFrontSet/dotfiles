@@ -248,19 +248,6 @@
   (projectile-global-mode)
   )
 
-;; Helm
-(use-package helm
-  :ensure helm
-  :init
-  (require 'helm-config)
-  :config
-  (progn
-    (define-key evil-normal-state-map (kbd "SPC") 'helm-M-x)
-    (define-key evil-visual-state-map (kbd "SPC") 'helm-M-x)
-    (global-set-key (kbd "M-x") 'helm-M-x)
-    )
-  )
-
 ;; auto-complete
 (use-package popup
   :ensure popup
@@ -330,24 +317,11 @@
     (evil-leader/set-key
       "," 'ibuffer
       "\\" 'pp-eval-last-sexp
-      "a" 'add-parantheses
-      "b" (lambda() (interactive) (add-parantheses "big"))
-      "ce" 'LaTeX-environment
       "d" 'dired-jump
       "e" (lambda() (interactive) (find-file "~/.emacs"))
-      "f" 'projectile-find-file
       "h" 'help-for-help
       "m" 'mu4e
-      "oa" 'org-agenda
-      "ob" 'org-iswitchb
-      "oc" 'org-capture
-      "oj" (lambda() (interactive) (org-capture nil "j"))
-      "ol" 'org-store-link
-      "oo" 'org-open-at-point
-      "os" 'org-schedule
-      "ot" 'org-todo
       "pc" 'password-store-copy
-      "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
       )
     )
   )
@@ -377,8 +351,52 @@
     )
   )
 
+;; Helm
+(use-package helm
+  :ensure helm
+  :init
+  (require 'helm-config)
+  :config
+  (progn
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-z")  'helm-select-action)
+    (define-key evil-normal-state-map (kbd "SPC") 'helm-M-x)
+    (define-key evil-visual-state-map (kbd "SPC") 'helm-M-x)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (evil-leader/set-key
+      "SPC f" 'helm-find-files
+      "SPC b" 'helm-buffers-list
+      "SPC m" 'helm-imenu
+      )
+    (setq
+     helm-buffers-fuzzy-matching t
+     )
+    (helm-mode 1)
+    (use-package helm-projectile
+      :ensure helm-projectile
+      :commands (helm-projectile)
+      :config
+      (progn
+	(evil-leader/set-key
+	  "f" 'helm-projectile
+	  )
+	)
+      )
+    (use-package helm-projectile-all
+      :ensure helm-projectile-all
+      :commands (helm-projectile-all)
+      :config
+      (progn
+	(evil-leader/set-key
+	  "SPC a" 'helm-projectile-all
+	  )
+	)
+      )
+    )
+  )
+
 ;; Evil keybindings
-;;; Use SPC to execute commands via smex
 ;;; Fold-simulation
 (define-key evil-normal-state-map (kbd "zM") 'hide-body)
 (define-key evil-normal-state-map (kbd "zm") 'hide-subtree)
@@ -469,6 +487,18 @@
       "r" 'org-agenda-redo
       "s" 'paul/org-save-all-org-buffers
       "t" 'org-agenda-todo
+      )
+    (evil-leader/set-key
+      "oa" 'org-agenda
+      "ob" 'org-iswitchb
+      "oc" 'org-capture
+      "oj" (lambda() (interactive) (org-capture nil "j"))
+      "ol" 'org-store-link
+      "oo" 'org-open-at-point
+      )
+    (evil-leader/set-key-for-mode 'org-mode
+      "os" 'org-schedule
+      "ot" 'org-todo
       )
     )
   )
@@ -567,6 +597,12 @@
   :ensure auctex
   :config
   (progn
+    (evil-leader/set-key-for-mode 'latex-mode
+      "a" 'add-parantheses
+      "b" (lambda() (interactive) (add-parantheses "big"))
+      "ce" 'LaTeX-environment
+      "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
+      )
     (setq TeX-command-default "latexmk")
     (use-package auctex-latexmk
       :ensure auctex-latexmk
