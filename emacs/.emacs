@@ -527,7 +527,7 @@
         "j" 'magit-goto-next-section
         "k" 'magit-goto-previous-section
         "c" 'magit-key-mode-popup-committing
-        "p" 'magit-key-mode-popup-pushing
+        "P" 'magit-key-mode-popup-pushing
         "f" 'magit-key-mode-popup-fetching
         "F" 'magit-key-mode-popup-pulling
         "s" 'magit-stage-item
