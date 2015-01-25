@@ -40,6 +40,9 @@
 ;; Wrap text after 79 chars
 (setq fill-column 79)
 
+;; Always indent using RET
+(define-key global-map (kbd "C-m") 'newline-and-indent)
+
 ;; Set the color-theme to solarized-dark
 (use-package solarized-theme
   :pre-load
@@ -604,6 +607,7 @@
       "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
       )
     (setq TeX-command-default "latexmk")
+    (setq TeX-newline-function 'reindent-then-newline-and-indent)
     (use-package auctex-latexmk
       :ensure auctex-latexmk
       :init
@@ -617,9 +621,6 @@
     )
   )
 
-(defun return-indent-in-latex ()
-  (local-set-key (kbd "C-m") 'newline-and-indent)
-  )
 ;; Enable cdlatex in LaTeX-mode
 (use-package cdlatex
   :ensure cdlatex
@@ -629,9 +630,6 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 ;; Enable reftex in LaTeX-mode
 (add-hook 'LaTeX-mode-hook 'reftex-mode)
-;; Fix Enter-behaviour in LaTeX-mode and org-mode with Evil
-(add-hook 'LaTeX-mode-hook 'return-indent-in-latex)
-(add-hook 'org-mode-hook 'return-indent-in-latex)
 
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
 (use-package bibretrieve
