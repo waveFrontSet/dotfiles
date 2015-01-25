@@ -40,7 +40,7 @@
 ;; Wrap text after 79 chars
 (setq fill-column 79)
 
-;; Always indent using RET
+;; Always try to indent using RET
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 
 ;; Set the color-theme to solarized-dark
@@ -500,6 +500,7 @@
       "oo" 'org-open-at-point
       )
     (evil-leader/set-key-for-mode 'org-mode
+      "od" 'org-deadline
       "os" 'org-schedule
       "ot" 'org-todo
       )
