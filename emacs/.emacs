@@ -475,6 +475,8 @@
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
      org-refile-targets '((org-agenda-files :maxlevel . 2))
+     org-confirm-babel-evaluate nil
+     org-src-preserve-indentation t
      )
     (org-agenda-to-appt)
     (evil-set-initial-state 'org-agenda-mode 'normal)
@@ -504,6 +506,10 @@
       "os" 'org-schedule
       "ot" 'org-todo
       )
+    ;; Enable cdlatex in org-mode
+    (add-hook 'org-mode-hook 'org-cdlatex-mode)
+    ;; Enable reftex in org-mode
+    (add-hook 'org-mode-hook 'reftex-mode)
     )
   )
 
@@ -524,24 +530,24 @@
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
     (evil-define-key 'normal magit-mode-map
-        "j" 'magit-goto-next-section
-        "k" 'magit-goto-previous-section
-        "c" 'magit-key-mode-popup-committing
-        "P" 'magit-key-mode-popup-pushing
-        "f" 'magit-key-mode-popup-fetching
-        "F" 'magit-key-mode-popup-pulling
-        "s" 'magit-stage-item
-        "S" 'magit-stage-all
-	"u" 'magit-unstage-item
-	"U" 'magit-unstage-all
-	"q" 'magit-mode-quit-window
-	)
+      "j" 'magit-goto-next-section
+      "k" 'magit-goto-previous-section
+      "c" 'magit-key-mode-popup-committing
+      "P" 'magit-key-mode-popup-pushing
+      "f" 'magit-key-mode-popup-fetching
+      "F" 'magit-key-mode-popup-pulling
+      "s" 'magit-stage-item
+      "S" 'magit-stage-all
+      "u" 'magit-unstage-item
+      "U" 'magit-unstage-all
+      "q" 'magit-mode-quit-window
+      )
     (evil-define-key 'normal magit-log-mode-map
-        "j" 'magit-goto-next-section
-        "k" 'magit-goto-previous-section)
+      "j" 'magit-goto-next-section
+      "k" 'magit-goto-previous-section)
     (evil-define-key 'normal magit-diff-mode-map
-        "j" 'magit-goto-next-section
-        "k" 'magit-goto-previous-section)
+      "j" 'magit-goto-next-section
+      "k" 'magit-goto-previous-section)
     )
   )
 
@@ -590,7 +596,12 @@
   )
 
 ;; LaTeX stuff
-
+;;; cdlatex for easier adding paranthesis and $.
+(use-package cdlatex
+  :ensure cdlatex
+  :config
+  (setq cdlatex-paired-parens "$[{(")
+  )
 ;; Smart-parens mode for automatically pairing parentheses
 ;; (use-package smartparens
 ;;:ensure smartparens
@@ -619,18 +630,14 @@
       :init
       (latex-preview-pane-enable)
       )
+    ;; Enable cdlatex in LaTeX-mode
+    (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+    ;; Enable reftex in LaTeX-mode
+    (add-hook 'LaTeX-mode-hook 'reftex-mode)
+    ;; Enable flyspell
+    (add-hook 'LaTeX-mode-hook 'flyspell-mode)
     )
   )
-
-;; Enable cdlatex in LaTeX-mode
-(use-package cdlatex
-  :ensure cdlatex
-  :config
-  (setq cdlatex-paired-parens "$[{(")
-  )
-(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-;; Enable reftex in LaTeX-mode
-(add-hook 'LaTeX-mode-hook 'reftex-mode)
 
 ;; Enable bibretrieve to quickly retrieve biblatex entries.
 (use-package bibretrieve
@@ -655,20 +662,11 @@
     )
   )
 
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-;(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
-
-;; Enable cdlatex in org-mode
-(add-hook 'org-mode-hook 'org-cdlatex-mode)
 
 ;; Enable autofill in all text-modes
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook
 	  '(lambda() (set-fill-column 80)))
-
-;; Enable reftex in org-mode
-(add-hook 'org-mode-hook 'reftex-mode)
-
 
 ;; Tell reftex the path to my default bib file
 (setq reftex-default-bibliography '("~/latex-docs/thesis/thesis_literature.bib"))
@@ -688,10 +686,6 @@
   :ensure powerline-evil
   )
 
-(setq org-confirm-babel-evaluate nil)
-(setq org-src-preserve-indentation t)
-
-      
 (use-package ox-latex
   :config
   (progn
