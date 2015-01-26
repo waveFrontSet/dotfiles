@@ -407,7 +407,6 @@
 (define-key evil-normal-state-map (kbd "zr") 'show-subtree)
 (define-key evil-normal-state-map (kbd "zj") 'outline-next-visible-heading)
 (define-key evil-normal-state-map (kbd "zk") 'outline-previous-visible-heading)
-;;; Use Us to get the magit-status window
 ;;; vim-unimpaired emulation
 (define-key evil-normal-state-map (kbd "]a") 'next-buffer)
 (define-key evil-normal-state-map (kbd "[a") 'previous-buffer)
