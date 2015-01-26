@@ -379,22 +379,12 @@
     (use-package helm-projectile
       :ensure helm-projectile
       :commands (helm-projectile)
-      :config
-      (progn
-	(evil-leader/set-key
-	  "f" 'helm-projectile
-	  )
-	)
+      :init (evil-leader/set-key "f" 'helm-projectile)
       )
     (use-package helm-projectile-all
       :ensure helm-projectile-all
       :commands (helm-projectile-all)
-      :config
-      (progn
-	(evil-leader/set-key
-	  "SPC a" 'helm-projectile-all
-	  )
-	)
+      :init (evil-leader/set-key "SPC a" 'helm-projectile-all)
       )
     )
   )
