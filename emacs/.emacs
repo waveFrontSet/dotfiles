@@ -646,8 +646,11 @@
   :commands (flyspell-mode flyspell-buffer)
   :config
   (progn
-    (setq ispell-program-name (concat paul/path-localbin "aspell"))
-    (setq ispell-dictionary "english")
+    (setq
+     ispell-program-name (concat paul/path-localbin "aspell")
+     ispell-dictionary "english"
+     )
+    (define-key evil-normal-state-map (kbd "]s") 'flyspell-goto-next-error)
     )
   )
 
