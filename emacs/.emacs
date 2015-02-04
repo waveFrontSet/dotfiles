@@ -182,61 +182,22 @@
       "H" 'mu4e-display-manual
       )
     (evil-define-key 'normal 'mu4e-view-mode-map
-      "k" 'mu4e-view-headers-prev
-      "j" 'mu4e-view-headers-next
-      "y" 'mu4e~headers-jump-to-maildir
-      "w" 'mu4e-select-other-view
-      "o" 'mu4e-update-mail-and-index
-      "/" 'mu4e-headers-search
-      "?" 'mu4e-view-search-edit
-      "l" 'mu4e-view-search-narrow
-      (kbd "<")  'mu4e-headers-query-prev
-      (kbd ">") 'mu4e-headers-query-next
       "q" 'mu4e~view-quit-buffer
       "v" 'mu4e-view-open-attachment
-      "b" 'mu4e-headers-search-bookmark
-      "B" 'mu4e-headers-search-bookmark-edit
-      "%" 'mu4e-view-mark-pattern
-      "t" 'mu4e-view-mark-subthread
-      "T" 'mu4e-view-mark-thread
       (kbd "C-b") 'mu4e-view-go-to-url
       "F" 'mu4e-compose-forward
       "R" 'mu4e-compose-reply
       "C" 'mu4e-compose-new
       "E" 'mu4e-compose-edit
       "." 'mu4e-view-raw-message
-      "|" 'mu4e-view-pipe
-      "a" 'mu4e-view-action
-      "O" 'mu4e-headers-change-sorting
-      "P" 'mu4e-headers-toggle-threading
-      "Q" 'mu4e-headers-toggle-full-search
-      "W" 'mu4e-headers-toggle-include-related
       (kbd "SPC") 'mu4e-view-scroll-up-or-next
       (kbd "<backspace>") 'mu4e-scroll-down
       "e" 'mu4e-view-save-attachment
       "A" 'mu4e-view-attachment-action
-      "d" 'mu4e-view-mark-for-trash
-      (kbd "<delete>") 'mu4e-view-mark-for-delete
-      (kbd "<deletechar>") 'mu4e-mark-for-delete
-      (kbd "D") 'mu4e-view-mark-for-delete
-      (kbd "m") 'mu4e-view-mark-for-move
-      (kbd "r") 'mu4e-view-mark-for-refile
-      (kbd "&") 'mu4e-view-mark-custom
-      (kbd "+") 'mu4e-view-mark-for-flag
-      (kbd "-") 'mu4e-view-mark-for-unflag
-      (kbd "=") 'mu4e-view-mark-for-untrash
-      (kbd "*")             'mu4e-view-mark-for-something
-      (kbd "<kp-multiply>") 'mu4e-view-mark-for-something
-      (kbd "<insert>")     'mu4e-view-mark-for-something
-      (kbd "<insertchar>") 'mu4e-view-mark-for-something
-      (kbd "#") 'mu4e-mark-resolve-deferred-marks
-      "h" 'mu4e-view-toggle-hide-cited
-      (kbd "M-q") 'mu4e-view-fill-long-lines
-      "u" 'mu4e-view-unmark
-      "U" 'mu4e-view-unmark-all
-      "x" 'mu4e-view-marked-execute
-      "$" 'mu4e-show-log
       "H" 'mu4e-display-manual
+      "w" 'mu4e-select-other-view
+      "K" 'mu4e-view-headers-prev
+      "J" 'mu4e-view-headers-next
       )
     )
   )
