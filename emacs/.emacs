@@ -14,7 +14,7 @@
    )
   )
 
-;; Add the local bin directory to the exec path so that emacs find all needed binaries.
+;; Add the local bin directory to the exec path so that emacs finds all needed binaries.
 (add-to-list 'exec-path paul/path-localbin)
 
 ;; Enable package manager
@@ -409,8 +409,8 @@
       :commands (org-datetree-find-month-create)
       )
     (setq
-     org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d)"))
-     org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)))
+     org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d!)" "CANCELED(c@)"))
+     org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)) ("CANCELED" . (:foreground "red" :weight bold)))
      org-log-done 'time
      org-agenda-files (list (concat paul/path-org-agenda-files "work.org") (concat paul/path-org-agenda-files "home.org") (concat paul/path-org-agenda-files "thesis_diary.org") (concat paul/path-org-agenda-files "notes.org"))
      org-capture-templates
@@ -429,6 +429,8 @@
      org-src-preserve-indentation t
      )
     (org-agenda-to-appt)
+    (add-to-list 'org-modules 'org-habit)
+    (require 'org-habit)
     (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "C-m") 'org-agenda-switch-to
