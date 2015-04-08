@@ -36,6 +36,9 @@
 
 ;; Show line numbers
 (global-linum-mode t)
+(use-package linum-relative
+  :ensure linum-relative
+  )
 
 ;; Wrap text after 79 chars
 (setq fill-column 79)
