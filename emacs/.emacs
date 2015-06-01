@@ -573,8 +573,11 @@
       "ce" 'LaTeX-environment
       "x" (lambda() (interactive) (TeX-command "LatexMk" 'TeX-master-file -1))
       )
-    (setq TeX-command-default "latexmk")
-    (setq TeX-newline-function 'reindent-then-newline-and-indent)
+    (setq
+     TeX-command-default "latexmk"
+     TeX-newline-function 'reindent-then-newline-and-indent
+     )
+    (setq-default TeX-master nil)
     (use-package auctex-latexmk
       :ensure auctex-latexmk
       :init
