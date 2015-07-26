@@ -48,11 +48,10 @@
 
 ;; Set the color-theme to solarized-dark
 (use-package solarized-theme
-  :pre-load
-  (setq solarized-high-contrast-mode-line t)
   :defer t
   :ensure solarized-theme
   :init
+  (setq solarized-high-contrast-mode-line t)
   (load-theme 'solarized-dark t)
   )
 
@@ -270,14 +269,13 @@
 
 ;; Activate evil-mode + convenient subpackages
 (use-package evil-leader
-  :pre-load
-  (setq evil-search-module 'evil-search
-	evil-want-C-u-scroll t
-	evil-want-C-w-in-emacs-state t)
   :ensure evil-leader
   :commands (evil-leader-mode)
   :demand evil-leader
   :init
+  (setq evil-search-module 'evil-search
+	evil-want-C-u-scroll t
+	evil-want-C-w-in-emacs-state t)
   (global-evil-leader-mode)
   :config
   (progn
@@ -567,6 +565,8 @@
   :ensure auctex
   :config
   (progn
+    (setq TeX-view-program-list
+	  '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))   
     (evil-leader/set-key-for-mode 'latex-mode
       "a" 'add-parantheses
       "b" (lambda() (interactive) (add-parantheses "big"))
