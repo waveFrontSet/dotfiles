@@ -14,7 +14,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amsthm,amsfonts,amssymb,enumerate,tikz,tikz-cd}
 \usepackage{babel}
-\usepackage{pxfonts}
+\usepackage{newpxtext}
 \usepackage[euler-digits,euler-hat-accent]{eulervm}
 \RequirePackage{fix-cm}
 \DeclareFontFamily{U}{rsfs}{\skewchar\font127 }
@@ -231,7 +231,7 @@ mysymbol/.style={start anchor=center,end anchor=center,draw=none}
 \newcommand{\idZ}{\lie{Z}}
 \newcommand{\idz}{\lie{z}}
 % Makros für spezielle Kategorien
-\newcommandx{\kat}[3][1,3]{\ensuremath{#1\mathsf{#2}#3}}
+\newcommandx{\kat}[3][1,3]{\ensuremath{(#1\textup{#2}#3)}}
 \newcommand{\abX}[1][X]{\kat{Ab/}[#1]}
 \newcommand{\abgrp}{\kat{AbGrp}}
 \newcommand{\cat}{\kat{Cat}}    
@@ -240,7 +240,7 @@ mysymbol/.style={start anchor=center,end anchor=center,draw=none}
 \newcommand{\fincov}[1][B]{\kat{FinCov/}[#1]}
 \newcommand{\finsets}{\kat{FinSet}}
 \newcommand{\gfinsets}[1][G]{\kat[#1]{-FinSets}}
-\newcommand{\gradSmod}[1][S]{\kat[\mathsf{grad }#1]{-Mod}}
+\newcommand{\gradSmod}[1][S]{\kat[\textup{grad }#1]{-Mod}}
 \newcommand{\grp}{\kat{Grp}}    
 \newcommand{\gsets}[1][G]{\kat[#1]{-Sets}}
 \newcommand{\hotop}{\kat{HoTop}}
