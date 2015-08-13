@@ -388,11 +388,11 @@
   )
 
 (defun paul/org-push ()
-  "Retrieves the password for rep/bit using password-store and runs magit-push."
+  "Retrieves the password for rep/bit using password-store and runs git-push."
   (interactive)
   (cd paul/path-org-agenda-files)
   (password-store-copy "rep/bit")
-  (magit-push)
+  (start-process "git-push" nil "git" "push")
   )
 
 (defun paul/find-table-location ()
