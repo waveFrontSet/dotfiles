@@ -483,24 +483,29 @@
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
     (evil-define-key 'normal magit-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section
-      "c" 'magit-key-mode-popup-committing
-      "P" 'magit-key-mode-popup-pushing
-      "f" 'magit-key-mode-popup-fetching
-      "F" 'magit-key-mode-popup-pulling
-      "s" 'magit-stage-item
-      "S" 'magit-stage-all
-      "u" 'magit-unstage-item
-      "U" 'magit-unstage-all
-      "q" 'magit-mode-quit-window
+      "j" 'magit-section-forward
+      "k" 'magit-section-backward
+      "K" 'magit-section-backward
+      "c" 'magit-commit-popup
+      "d" 'magit-ediff-popup
+      "P" 'magit-push-popup
+      "f" 'magit-fetch-popup
+      "F" 'magit-pull-popup
+      "m" 'magit-merge-popup
+      "s" 'magit-stage-file
+      "S" 'magit-stage-modified
+      "u" 'magit-unstage-file
+      "U" 'magit-reset-index
+      "q" 'magit-mode-bury-buffer
       )
     (evil-define-key 'normal magit-log-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section)
+      "j" 'magit-section-forward
+      "k" 'magit-section-backward
+      )
     (evil-define-key 'normal magit-diff-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section)
+      "j" 'magit-section-forward
+      "k" 'magit-section-backward
+      )
     )
   )
 
