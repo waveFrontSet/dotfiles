@@ -425,6 +425,7 @@
        )
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
+     org-highlight-latex-and-related '(latex script entities)
      org-refile-targets '((org-agenda-files :maxlevel . 2))
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
@@ -456,8 +457,10 @@
       )
     (evil-leader/set-key-for-mode 'org-mode
       "od" 'org-deadline
+      "oi" 'org-clock-in
       "os" 'org-schedule
       "ot" 'org-todo
+      "ou" 'org-clock-out
       )
     ;; Enable cdlatex in org-mode
     (add-hook 'org-mode-hook 'org-cdlatex-mode)
