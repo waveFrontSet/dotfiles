@@ -684,6 +684,24 @@
 	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
 	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
 )
+ (add-to-list 'org-latex-classes
+		 '("mytemplateger"
+		   "\\documentclass[intlimits,ngerman,a4paper]{scrartcl}
+
+[PACKAGES]
+\\addbibresource{~/latex-docs/thesis/thesis_literature.bib}
+
+% Pagestyling
+\\pagestyle{headings}
+
+[NO-DEFAULT-PACKAGES]
+[EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+)
     )
 )
 
