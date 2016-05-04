@@ -409,6 +409,13 @@
     (use-package org-datetree
       :commands (org-datetree-find-month-create)
       )
+    (use-package org-bullets
+      :ensure org-bullets
+      :config
+      (progn
+	(add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+	)
+      )
     (setq
      org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d!)" "CANCELED(c@)"))
      org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)) ("CANCELED" . (:foreground "red" :weight bold)))
