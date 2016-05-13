@@ -207,13 +207,6 @@
 ;; No long answering anymore
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Fuzzy search buffer and file names
-(use-package projectile
-  :ensure projectile
-  :init
-  (projectile-global-mode)
-  )
-
 ;; auto-complete
 (use-package popup
   :ensure popup
@@ -338,16 +331,6 @@
      helm-buffers-fuzzy-matching t
      )
     (helm-mode 1)
-    (use-package helm-projectile
-      :ensure helm-projectile
-      :commands (helm-projectile)
-      :init (evil-leader/set-key "f" 'helm-projectile)
-      )
-    (use-package helm-projectile-all
-      :ensure helm-projectile-all
-      :commands (helm-projectile-all)
-      :init (evil-leader/set-key "SPC a" 'helm-projectile-all)
-      )
     )
   )
 
@@ -436,6 +419,14 @@
      org-refile-targets '((org-agenda-files :maxlevel . 2))
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
+     )
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (emacs-lisp . t)
+       (sh . t)
+       (python . t)
+       )
      )
     (org-agenda-to-appt)
     (add-to-list 'org-modules 'org-habit)
