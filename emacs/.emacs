@@ -479,6 +479,7 @@
   :config
   (progn
     (setq magit-commit-all-when-nothing-staged t)
+    (setq magit-push-always-verify nil)
     (evil-set-initial-state 'magit-mode 'normal)
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
