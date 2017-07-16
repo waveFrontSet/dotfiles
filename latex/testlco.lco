@@ -1,0 +1,44 @@
+\ProvidesFile{testlco.lco}[2010/07/08 letter class option]
+\RequirePackage{ngerman}                % Deutsche Sprache
+\RequirePackage{fix-cm}
+\RequirePackage[T1]{fontenc}            % Ligaturschriften
+\RequirePackage[utf8]{inputenc}      % Eingabezeichensatz
+\RequirePackage{graphicx}               % Grafikpaket
+\RequirePackage{hyperref}
+\hypersetup{pdfpagemode=None}
+\KOMAoptions{
+        paper=a4,
+        pagenumber=botcenter,
+        fromalign=right,
+        fromrule=afteraddress,
+        fromphone,
+%       fromfax,
+        fromlogo,
+%	fromurl,
+	fromemail,
+        backaddress,
+        foldmarks,
+%        headsepline,footsepline,
+        enlargefirstpage
+}
+\setkomavar{fromname}{Paul Bubenzer}
+\setkomavar{fromaddress}{Kirchweg 38\\47533~Kleve}
+\setkomavar{fromphone}{0176\,2969\,4612}
+\setkomavar{fromfax}{+49\,(0)\,555\,12345}
+\setkomavar{fromemail}{paul.bubenzer@gmail.com}
+\setkomavar*{emailseparator}{mailto}
+\setkomavar{emailseparator}{:}
+\setkomavar{fromurl}{\url{//www.schlosser.info}}
+\setkomavar*{urlseparator}{}
+\setkomavar{urlseparator}{}
+\setkomavar{frombank}{Eine Bank\\BLZ~123\,45\,678\\Kto~123456789}
+\setkomavar{place}{Kleve}
+\setkomavar{fromlogo}{\parbox[b]{8cm}{\usekomafont{fromaddress}%
+        {\mbox{\LARGE \bfseries Paul Bubenzer}}
+        \smallskip}
+}
+\setkomafont{backaddress}{\sffamily}
+\setkomafont{fromaddress}{\sffamily}
+\addtokomafont{fromname}{\scriptsize}
+\addtokomafont{fromaddress}{\scriptsize}
+\pagestyle{headings}

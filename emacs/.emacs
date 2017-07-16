@@ -207,13 +207,6 @@
 ;; No long answering anymore
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; Fuzzy search buffer and file names
-(use-package projectile
-  :ensure projectile
-  :init
-  (projectile-global-mode)
-  )
-
 ;; auto-complete
 (use-package popup
   :ensure popup
@@ -378,11 +371,11 @@
   )
 
 (defun paul/org-push ()
-  "Retrieves the password for rep/bit using password-store and runs magit-push."
+  "Retrieves the password for rep/bit using password-store and runs git-push."
   (interactive)
   (cd paul/path-org-agenda-files)
   (password-store-copy "rep/bit")
-  (magit-push)
+  (start-process "git-push" nil "git" "push")
   )
 
 (defun paul/find-table-location ()
@@ -398,6 +391,13 @@
   (progn
     (use-package org-datetree
       :commands (org-datetree-find-month-create)
+      )
+    (use-package org-bullets
+      :ensure org-bullets
+      :config
+      (progn
+	(add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
+	)
       )
     (setq
      org-todo-keywords '((sequence "TODO(t)" "APPT(a)" "|" "DONE(d!)" "CANCELED(c@)"))
@@ -419,6 +419,14 @@
      org-refile-targets '((org-agenda-files :maxlevel . 2))
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
+     )
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (emacs-lisp . t)
+       (sh . t)
+       (python . t)
+       )
      )
     (org-agenda-to-appt)
     (add-to-list 'org-modules 'org-habit)
@@ -469,6 +477,7 @@
   :config
   (progn
     (setq magit-commit-all-when-nothing-staged t)
+    (setq magit-push-always-verify nil)
     (evil-set-initial-state 'magit-mode 'normal)
     (evil-set-initial-state 'magit-status-mode 'normal)
     (evil-set-initial-state 'magit-diff-mode 'normal)
@@ -631,6 +640,24 @@
     (add-to-list 'org-latex-classes
 		 '("mytemplate"
 		   "\\documentclass[intlimits,english,a4paper]{scrartcl}
+
+[PACKAGES]
+\\addbibresource{~/latex-docs/thesis/thesis_literature.bib}
+
+% Pagestyling
+\\pagestyle{headings}
+
+[NO-DEFAULT-PACKAGES]
+[EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+	       ("\\subsection{%s}" . "\\subsection*{%s}")
+	       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+	       ("\\paragraph{%s}" . "\\paragraph*{%s}")
+	       ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+)
+ (add-to-list 'org-latex-classes
+		 '("mytemplateger"
+		   "\\documentclass[intlimits,ngerman,a4paper]{scrartcl}
 
 [PACKAGES]
 \\addbibresource{~/latex-docs/thesis/thesis_literature.bib}
