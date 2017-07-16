@@ -474,10 +474,10 @@
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
     (evil-define-key 'normal magit-mode-map
-      "c" 'magit-key-mode-popup-committing
-      "P" 'magit-key-mode-popup-pushing
-      "f" 'magit-key-mode-popup-fetching
-      "F" 'magit-key-mode-popup-pulling
+      "c" 'magit-commit
+      "P" 'magit-push
+      "f" 'magit-fetch
+      "F" 'magit-pull
       "s" 'magit-stage-item
       "S" 'magit-stage-modified
       "u" 'magit-unstage-item
