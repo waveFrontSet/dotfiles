@@ -37,6 +37,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'vorax.vim'
 NeoBundle 'vim-scripts/UltiSnips'
 NeoBundle 'waveFrontSet/vim-colors-solarized'
 call neobundle#end()

@@ -40,10 +40,7 @@ brew install libidn
 brew install lynx
 brew install msmtp
 brew install mu --with-emacs
-brew install mutt --with-sidebar-patch
 brew install mysql
-brew install offline-imap
-brew install pass
 brew install pigz
 brew install pinentry-mac
 brew install psutils
@@ -52,7 +49,6 @@ brew install reattach-to-user-namespace
 brew install stow
 brew install the_silver_searcher
 brew install tmux
-brew install transmission
 brew install unixodbc
 brew install urlview
 brew install vim
@@ -61,32 +57,6 @@ brew install zlib
 brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
-
-brew tap homebrew/versions
-brew install lua52
-
-# Install native apps
-brew tap phinze/homebrew-cask
-brew install brew-cask
-
-function installcask() {
-    brew cask install "${@}" 2> /dev/null
-}
-
-installcask alfred
-installcask calibre
-installcask google-chrome
-installcask iterm2
-installcask keyremap4macbook
-installcask macvim
-installcask sequel-pro
-installcask skim
-installcask the-unarchiver
-installcask ukelele
-installcask vlc
-
-# Allow alfred to find cask apps
-brew cask alfred link
 
 # Remove outdated versions from the cellar
 brew cleanup

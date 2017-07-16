@@ -57,8 +57,8 @@
 
 ;; Setting font face and font size according to OS.
 (if (eq system-type 'darwin)
-    (set-default-font "PragmataPro for Powerline 14")
-  (set-default-font "PragmataPro for Powerline 12")
+    (set-default-font "Fira Mono for Powerline 14")
+  (set-default-font "Fira Mono for Powerline 12")
   )
 
 ;; Borrowed from http://ionrock.org/emacs-email-and-mu.html
@@ -338,16 +338,6 @@
      helm-buffers-fuzzy-matching t
      )
     (helm-mode 1)
-    (use-package helm-projectile
-      :ensure helm-projectile
-      :commands (helm-projectile)
-      :init (evil-leader/set-key "f" 'helm-projectile)
-      )
-    (use-package helm-projectile-all
-      :ensure helm-projectile-all
-      :commands (helm-projectile-all)
-      :init (evil-leader/set-key "SPC a" 'helm-projectile-all)
-      )
     )
   )
 
@@ -462,8 +452,6 @@
       "ot" 'org-todo
       "ou" 'org-clock-out
       )
-    ;; Enable cdlatex in org-mode
-    (add-hook 'org-mode-hook 'org-cdlatex-mode)
     ;; Enable reftex in org-mode
     (add-hook 'org-mode-hook 'reftex-mode)
     )
@@ -486,24 +474,16 @@
     (evil-set-initial-state 'magit-diff-mode 'normal)
     (evil-set-initial-state 'magit-log-mode 'normal)
     (evil-define-key 'normal magit-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section
       "c" 'magit-key-mode-popup-committing
       "P" 'magit-key-mode-popup-pushing
       "f" 'magit-key-mode-popup-fetching
       "F" 'magit-key-mode-popup-pulling
       "s" 'magit-stage-item
-      "S" 'magit-stage-all
+      "S" 'magit-stage-modified
       "u" 'magit-unstage-item
       "U" 'magit-unstage-all
-      "q" 'magit-mode-quit-window
+      "q" 'magit-mode-bury-buffer
       )
-    (evil-define-key 'normal magit-log-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section)
-    (evil-define-key 'normal magit-diff-mode-map
-      "j" 'magit-goto-next-section
-      "k" 'magit-goto-previous-section)
     )
   )
 
@@ -552,17 +532,6 @@
   )
 
 ;; LaTeX stuff
-;;; cdlatex for easier adding paranthesis and $.
-(use-package cdlatex
-  :ensure cdlatex
-  :config
-  (setq cdlatex-paired-parens "$[{(")
-  )
-;; Smart-parens mode for automatically pairing parentheses
-;; (use-package smartparens
-;;:ensure smartparens
-;;)
-;; (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 ;;; AucTex
 (use-package tex
   :ensure auctex
@@ -591,8 +560,6 @@
       :init
       (latex-preview-pane-enable)
       )
-    ;; Enable cdlatex in LaTeX-mode
-    (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
     ;; Enable reftex in LaTeX-mode
     (add-hook 'LaTeX-mode-hook 'reftex-mode)
     ;; Enable flyspell
@@ -745,3 +712,17 @@
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (jedi django-mode virtualenvwrapper powerline-evil powerline bibretrieve latex-preview-pane auctex-latexmk auctex yasnippet use-package solarized-theme password-store markdown-mode+ magit linum-relative keychain-environment helm-projectile flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject cdlatex auto-complete))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
