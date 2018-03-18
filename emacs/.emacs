@@ -541,6 +541,21 @@
     )
   )
 
+;; NeoTree for a permanent folder view on the side
+(use-package neotree
+  :config
+  (progn
+    (evil-set-initial-state 'neotree-mode 'normal)
+    (evil-define-key 'normal neotree-mode-map
+      "h" 'neotree-quick-look
+      "l" 'neotree-quick-look
+      "RET" 'neotree-enter
+      "q" 'neotree-toggle)
+    (evil-leader/set-key
+      "SPC n" 'neotree-toggle)
+    )
+  )
+
 ;; LaTeX stuff
 ;;; AucTex
 (use-package tex
@@ -740,3 +755,11 @@
 
 ;; clipboard
 (setq x-select-enable-clipboard t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
