@@ -543,6 +543,7 @@
 
 ;; NeoTree for a permanent folder view on the side
 (use-package neotree
+  :ensure neotree
   :config
   (progn
     (evil-set-initial-state 'neotree-mode 'normal)
