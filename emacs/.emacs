@@ -435,6 +435,7 @@
     (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "C-m") 'org-agenda-switch-to
+      "g" 'org-agenda-clock-goto
       "i" 'org-agenda-clock-in
       "j" 'org-agenda-next-item
       "k" 'org-agenda-previous-item
@@ -450,7 +451,8 @@
       "oa" 'org-agenda
       "ob" 'org-iswitchb
       "oc" 'org-capture
-      "oj" (lambda() (interactive) (org-capture nil "j"))
+      "og" 'org-clock-goto
+      "oj" 'org-clock-jump-to-current-clock
       "ol" 'org-store-link
       "oo" 'org-open-at-point
       )
@@ -549,7 +551,7 @@
     (evil-define-key 'normal neotree-mode-map
       "h" 'neotree-quick-look
       "l" 'neotree-quick-look
-      "RET" 'neotree-enter
+      (kbd "C-m") 'neotree-enter
       "q" 'neotree-toggle)
     (evil-leader/set-key
       "SPC n" 'neotree-toggle)
