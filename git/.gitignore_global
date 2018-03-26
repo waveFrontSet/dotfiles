@@ -4,6 +4,9 @@
 .LSOverride
 Icon
 
+# Temp-Files for emacs
+*#
+*~
 
 # Thumbnails
 ._*
