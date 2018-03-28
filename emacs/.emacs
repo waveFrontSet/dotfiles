@@ -467,6 +467,7 @@
       "ob" 'org-iswitchb
       "oc" 'org-capture
       "og" 'org-clock-goto
+      "oh" 'org-clock-in-last
       "oj" 'org-clock-jump-to-current-clock
       "ol" 'org-store-link
       "oo" 'org-open-at-point
@@ -480,6 +481,7 @@
       )
     ;; Enable reftex in org-mode
     (add-hook 'org-mode-hook 'reftex-mode)
+    (add-hook 'org-agenda-mode 'org-agenda-clockreport-mode)
     )
   )
 
