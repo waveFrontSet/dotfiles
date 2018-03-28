@@ -434,6 +434,7 @@
      org-refile-targets '((org-agenda-files :maxlevel . 2))
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
+     org-agenda-span 'day
      )
     (org-babel-do-load-languages
      'org-babel-load-languages
