@@ -435,8 +435,12 @@
      org-src-preserve-indentation t
      org-agenda-span 'day
      org-agenda-custom-commands '(
-				  ("w" "Work agenda" tags-todo "@work")
-				  ("u" "Userstorys" tags-todo "@work:userstory")
+				  ("w" "Work agenda" tags-todo "@work"
+				   ((org-agenda-sorting-strategy '(todo-state-up)))
+				   )
+				  ("u" "Userstorys" tags-todo "@work:userstory"
+				   ((org-agenda-sorting-strategy '(todo-state-up)))
+				   )
 				  )
      )
     (org-babel-do-load-languages
