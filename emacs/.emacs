@@ -374,7 +374,6 @@
   "Retrieves the password for rep/bit using password-store and runs git-push."
   (interactive)
   (cd paul/path-org-agenda-files)
-  (password-store-copy "rep/bit")
   (start-process "git-push" nil "git" "push")
   )
 
@@ -418,9 +417,9 @@
 	"* TODO %?")
        ("a" "Appointment" entry (file+headline (concat paul/path-org-agenda-files "work.org") "General Meetings")
 	"* APPT %?")
-       ("p" "Phonecall" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
+       ("p" "Phonecall" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Short distractions")
 	"* TELE Telefonanruf von %?" :clock-in t :clock-resume t)
-       ("g" "Gespräch" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
+       ("g" "Gespräch" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Short distractions")
 	"* GESP Gespräch mit %?" :clock-in t :clock-resume t)
        ("u" "Userstory" entry (file+headline (concat paul/path-org-agenda-files "userstorys.org") "Development")
 	"* INPROGRESS %?")
@@ -435,6 +434,10 @@
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
      org-agenda-span 'day
+     org-agenda-custom-commands '(
+				  ("w" "Work agenda" tags-todo "@work")
+				  ("u" "Userstorys" tags-todo "@work:userstory")
+				  )
      )
     (org-babel-do-load-languages
      'org-babel-load-languages
