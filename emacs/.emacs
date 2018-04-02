@@ -207,7 +207,7 @@
 ;; No long answering anymore
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; auto-complete
+;; auto-complete + requirement popup
 (use-package popup
   :ensure popup
   )
@@ -216,9 +216,6 @@
   :init
   (ac-config-default)
   )
-;; (use-package auto-complete-auctex
-  ;; :ensure auto-complete-auctex
-  ;; )
 
 ;; Snippets
 (use-package yasnippet
@@ -442,6 +439,8 @@
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
 				  )
+     appt-message-warning-time 5
+     appt-display-interval 5
      )
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -486,6 +485,7 @@
       "os" 'org-schedule
       "ot" 'org-todo
       "ou" 'org-clock-out
+      "o/" 'org-sparse-tree
       )
     ;; Enable reftex in org-mode
     (add-hook 'org-mode-hook 'reftex-mode)

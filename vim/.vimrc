@@ -20,6 +20,8 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'TaskList.vim'
 NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'ack.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'godlygeek/tabular'
@@ -149,20 +151,6 @@ let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'active_filetypes': ['php', 'python'],
                             \ 'passive_filetypes': ['tex'] }
 " }}}
-" powerline {{{2
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-set noshowmode
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
-" }}}
 " Unite {{{2
 nnoremap <leader>ur :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
@@ -197,6 +185,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " YouCompleteMe {{{2
 let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_key_list_previous_completion = ['<C-p>']
+" }}}
+" airline {{{2
+let g:airline_theme='powerlineish'
 " }}}
 " solarized {{{2
 call togglebg#map("<F11>")
