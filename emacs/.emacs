@@ -439,8 +439,13 @@
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
 				  )
+     org-agenda-clockreport-parameter-plist '(
+					      :maxlevel 2 :block today :scope agenda :formula "$5=$3+$4;t::$6=round(4*$5)/4;%.2f"
+							:fileskip0 t :stepskip0 t
+							)
      appt-message-warning-time 5
      appt-display-interval 5
+     org-clock-persist 'history
      )
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -452,6 +457,7 @@
        )
      )
     (org-agenda-to-appt)
+    (org-clock-persistence-insinuate)
     (add-to-list 'org-modules 'org-habit)
     (require 'org-habit)
     (evil-set-initial-state 'org-agenda-mode 'normal)
