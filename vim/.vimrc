@@ -146,7 +146,7 @@ nnoremap <silent> <Leader>nt :Explore<CR>
 " let g:Tex_ViewRuleComplete_pdf='/usr/bin/open -a Skim $*.pdf'
 let g:Tex_ViewRule_pdf='Skim'
 let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 --interaction=nonstopmode $*'
-" synastic {{{2
+" syntastic {{{2
 let g:syntastic_mode_map = { 'mode': 'active',
                             \ 'active_filetypes': ['php', 'python'],
                             \ 'passive_filetypes': ['tex'] }
@@ -188,6 +188,15 @@ let g:ycm_key_list_previous_completion = ['<C-p>']
 " }}}
 " airline {{{2
 let g:airline_theme='powerlineish'
+set noshowmode
+if ! has('gui_running')
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
+endif
 " }}}
 " solarized {{{2
 call togglebg#map("<F11>")
