@@ -431,6 +431,8 @@
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
      org-agenda-span 'day
+     org-agenda-start-with-log-mode t
+     org-agenda-start-with-clockreport-mode t
      org-agenda-custom-commands '(
 				  ("w" "Work agenda" tags-todo "@work"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
@@ -445,7 +447,18 @@
 							)
      appt-message-warning-time 5
      appt-display-interval 5
-     org-clock-persist 'history
+     org-clock-persist t
+     org-clock-history-length 23
+     org-clock-in-resume t
+     org-drawers (quote ("PROPERTIES" "LOGBOOK"))
+     org-log-into-drawer t
+     org-clock-into-drawer t
+     org-clock-out-remove-zero-time-clocks t
+     org-clock-out-when-done t
+     org-clock-persist-query-resume nil
+     org-clock-report-include-clocking-task t
+     org-clock-auto-clock-resolution (quote when-no-clock-is-running)
+     org-clock-mode-line-total 'today
      )
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -463,24 +476,39 @@
     (evil-set-initial-state 'org-agenda-mode 'normal)
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "C-m") 'org-agenda-switch-to
+      "." 'org-agenda-goto-today
+      "b" 'org-agenda-earlier
+      "d" 'org-agenda-day-view
+      "E" 'org-agenda-entry-text-mode
+      "f" 'org-agenda-later
       "g" 'org-agenda-clock-goto
       "i" 'org-agenda-clock-in
       "j" 'org-agenda-next-item
       "k" 'org-agenda-previous-item
       "l" 'org-agenda-log-mode
+      "m" 'org-agenda-month-view
       "o" 'org-agenda-clock-out
       "p" 'paul/org-push
       "q" 'org-agenda-Quit
       "r" 'org-agenda-redo
+      "R" 'org-agenda-clockreport-mode
       "s" 'paul/org-save-all-org-buffers
       "t" 'org-agenda-todo
+      "w" 'org-agenda-week-view
+      "X" 'org-agenda-clock-cancel
+      "<" 'org-agenda-filter-by-category
+      "=" 'org-agenda-filter-by-regexp
+      ">" 'org-agenda-filter-by-tag
+      "|" 'org-agenda-filter-remove-all
+      "?" 'org-agenda-show-the-flagging-note
+      "A" 'org-agenda-append-agenda
       )
     (evil-leader/set-key
       "oa" 'org-agenda
       "ob" 'org-iswitchb
       "oc" 'org-capture
       "og" 'org-clock-goto
-      "oh" 'org-clock-in-last
+      "oh" (lambda() (interactive) (org-clock-in '(4)))
       "oj" 'org-clock-jump-to-current-clock
       "ol" 'org-store-link
       "oo" 'org-open-at-point
@@ -495,7 +523,6 @@
       )
     ;; Enable reftex in org-mode
     (add-hook 'org-mode-hook 'reftex-mode)
-    (add-hook 'org-agenda-mode 'org-agenda-clockreport-mode)
     )
   )
 
