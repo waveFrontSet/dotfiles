@@ -433,6 +433,7 @@
      org-agenda-span 'day
      org-agenda-start-with-log-mode t
      org-agenda-start-with-clockreport-mode t
+     org-agenda-repeating-timestamp-show-all nil
      org-agenda-custom-commands '(
 				  ("w" "Work agenda" tags-todo "@work"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
@@ -616,6 +617,16 @@
       "SPC n" 'neotree-toggle)
     )
   )
+
+(use-package web-mode
+  :ensure web-mode
+  :config
+  (progn
+    (setq web-mode-markup-indent-offset 2)
+    (setq web-mode-code-indent-offset 2)
+    (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  )
+)
 
 ;; LaTeX stuff
 ;;; AucTex
@@ -823,4 +834,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+    (web-mode poly-erb htmlize neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
