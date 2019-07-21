@@ -346,6 +346,8 @@
 (define-key evil-normal-state-map (kbd "[b") 'previous-buffer)
 ;;; Use Q instead of gq
 (define-key evil-normal-state-map (kbd "Q") 'evil-fill-and-move)
+;;; Shortcut for muting search highlighting
+(define-key evil-normal-state-map (kbd "C-l") 'evil-ex-nohighlight)
 ;;; Function for the parantheses macro
 (defun add-parantheses (&optional size)
   (interactive)
