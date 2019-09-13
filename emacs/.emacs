@@ -24,8 +24,8 @@
 
 ;; Add custom lisp code to path and add melpa and org package dirs
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
-(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
-                         ("org" . "http://orgmode.org/elpa/")
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+;                         ("org" . "https://orgmode.org/elpa/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; Install and activate use-package
@@ -437,16 +437,16 @@
      org-agenda-start-with-clockreport-mode t
      org-agenda-repeating-timestamp-show-all nil
      org-agenda-custom-commands '(
-				  ("w" "Work agenda" tags-todo "@work"
+				  ("w" "Work agenda" tags-todo "-{meeting}:@work"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
-				  ("u" "Userstorys" tags-todo "@work:userstory"
+				  ("i" "Inbox" tags-todo "@work:inbox"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
 				  )
      org-agenda-clockreport-parameter-plist '(
 					      :maxlevel 2 :block today :scope agenda :formula "$5=$3+$4;t::$6=round(4*$5)/4;%.2f"
-							:fileskip0 t :stepskip0 t
+							:fileskip0 t :stepskip0 t :narrow 80!
 							)
      appt-message-warning-time 5
      appt-display-interval 5
@@ -480,6 +480,7 @@
     (evil-define-key 'normal org-agenda-mode-map
       (kbd "C-m") 'org-agenda-switch-to
       "." 'org-agenda-goto-today
+      "a" 'org-agenda-bulk-toggle-all
       "b" 'org-agenda-earlier
       "d" 'org-agenda-day-view
       "E" 'org-agenda-entry-text-mode
@@ -505,6 +506,7 @@
       "|" 'org-agenda-filter-remove-all
       "?" 'org-agenda-show-the-flagging-note
       "A" 'org-agenda-append-agenda
+      "M" 'org-agenda-bulk-toggle
       )
     (evil-leader/set-key
       "oa" 'org-agenda
@@ -528,7 +530,6 @@
     (add-hook 'org-mode-hook 'reftex-mode)
     )
   )
-
 ;; Adding git support via magit
 (use-package magit
   :commands (magit-status magit-diff-unstaged)
