@@ -27,7 +27,6 @@ NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'jcf/vim-latex'
 NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'klen/python-mode'
 NeoBundle 'michaeljsmith/vim-indent-object'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'scrooloose/syntastic'
@@ -63,7 +62,7 @@ syntax on
 set showcmd
 set wildmenu
 set viminfo='20,\"500   " Keep a .viminfo file.
-set guifont=PragmataPro\ for\ Powerline:h20
+set guifont=Fira\ Code:h20
 set expandtab
 set shiftwidth=4
 set tabstop=4
