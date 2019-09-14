@@ -24,7 +24,7 @@
 
 ;; Add custom lisp code to path and add melpa and org package dirs
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
-(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
 ;                         ("org" . "https://orgmode.org/elpa/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
@@ -828,6 +828,25 @@
 	    (setq buffers (cdr buffers)))
 	  (setq screens (cdr screens))))))
 
+;; org2blog configuration
+;; dependencies
+(setq load-path (cons "~/xml-rpc-el/" load-path))
+(setq load-path (cons "~/metaweblog/" load-path))
+(setq load-path (cons "~/.emacs.d/org2blog/" load-path))
+(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+(require 'org2blog-autoloads)
+
+(setq org2blog/wp-show-post-in-browser t)
+(setq org2blog/wp-use-wp-latex nil)
+(require 'auth-source)
+(let* ((credentials (auth-source-user-and-password "wp-blog"))
+       (username (nth 0 credentials))
+       (password (nth 1 credentials))
+       (config `(("wordpress"
+                 :url "https://paul-grillenberger.de/xmlrpc.php"
+                 :username ,username
+                 :password ,password))))
+  (setq org2blog/wp-blog-alist config))
 ;; clipboard
 (setq x-select-enable-clipboard t)
 (custom-set-variables
@@ -837,7 +856,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode poly-erb htmlize neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+    (org hydra web-mode poly-erb htmlize neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
