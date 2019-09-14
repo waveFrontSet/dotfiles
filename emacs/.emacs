@@ -25,7 +25,7 @@
 ;; Add custom lisp code to path and add melpa and org package dirs
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
-;                         ("org" . "https://orgmode.org/elpa/")
+                         ("org" . "https://orgmode.org/elpa/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
 ;; Install and activate use-package
@@ -398,38 +398,34 @@
 	)
       )
     (setq
-     org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d!)" "CANCELED(c@)")
-			 (sequence "APPT(a)" "|" "TELE(e)" "GESP(g)" "DONE(d!)" "CANCELED(c@)")
-			 (sequence "INPROGRESS(t)" "REVIEW(r!)" "COMMIT(o!)" "QAFB(f@)" "|" "DONE(d!)" "IMPEDIMENT(i@)" "CANCELED(c@)")
-			 (sequence "QA(a)" "WAITING(w@)" "|" "DONE(d!)" "CANCELED(c@)"))
-     org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)) ("CANCELED" . (:foreground "red" :weight bold))
-			      ("IMPEDIMENT" . (:foreground "yellow" :weight bold)) ("QAFB" . (:foreground "magenta" :weight bold))
-			      ("COMMIT" . (:foreground "green" :weight bold)))
+     org-todo-keywords '((sequence "TODO(t)" "WAIT(w@)" "|" "DONE(d!)" "CANCELED(c@)")
+			 (sequence "APPT(a)" "|" "TELE(e)" "GESP(g)" "DONE(d!)" "CANCELED(c@)"))
+     org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)) ("CANCELED" . (:foreground "red" :weight bold)))
      org-log-done 'time
      org-agenda-files (list (concat paul/path-org-agenda-files "work.org") 
                             (concat paul/path-org-agenda-files "home.org") 
+                            (concat paul/path-org-agenda-files "inbox.org") 
+                            (concat paul/path-org-agenda-files "tickler.org") 
                             (concat paul/path-org-agenda-files "thesis_diary.org") 
                             (concat paul/path-org-agenda-files "notes.org") 
                             (concat paul/path-org-agenda-files "userstorys.org"))
      org-capture-templates
-     '(("t" "Todo" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Inbox")
-	"* TODO %?")
+     '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
+	"* TODO %i%?")
+       ("T" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
+	"* %i%? \n %U")
        ("a" "Appointment" entry (file+headline (concat paul/path-org-agenda-files "work.org") "General Meetings")
 	"* APPT %?")
        ("p" "Phonecall" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Short distractions")
 	"* TELE Telefonanruf von %?" :clock-in t :clock-resume t)
        ("g" "Gespräch" entry (file+headline (concat paul/path-org-agenda-files "work.org") "Short distractions")
 	"* GESP Gespräch mit %?" :clock-in t :clock-resume t)
-       ("u" "Userstory" entry (file+headline (concat paul/path-org-agenda-files "userstorys.org") "Development")
-	"* INPROGRESS %?")
-       ("y" "Userstory QA" entry (file+headline (concat paul/path-org-agenda-files "userstorys.org") "Quality Assurance")
-	"* QA %?")
        ("n" "General note" entry (file+datetree (concat paul/path-org-agenda-files "notes.org")))
        )
      org-latex-to-pdf-process (list "latexmk %f")
      org-src-fontify-natively t
      org-highlight-latex-and-related '(latex script entities)
-     org-refile-targets '((org-agenda-files :maxlevel . 2))
+     org-refile-targets '((org-agenda-files :maxlevel . 3))
      org-confirm-babel-evaluate nil
      org-src-preserve-indentation t
      org-agenda-span 'day
@@ -437,11 +433,12 @@
      org-agenda-start-with-clockreport-mode t
      org-agenda-repeating-timestamp-show-all nil
      org-agenda-custom-commands '(
-				  ("w" "Work agenda" tags-todo "-{meeting}:@work"
+				  ("w" "Work agenda" tags-todo "@work"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
-				  ("i" "Inbox" tags-todo "@work:inbox"
-				   ((org-agenda-sorting-strategy '(todo-state-up)))
+				  ("i" "Inbox" todo ""
+				   ((org-agenda-files '("~/org/inbox.org"))
+				    (org-agenda-sorting-strategy '(todo-state-up)))
 				   )
 				  )
      org-agenda-clockreport-parameter-plist '(
@@ -856,7 +853,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org hydra web-mode poly-erb htmlize neotree flymake-ruby virtualenvwrapper use-package solarized-theme powerline-evil password-store org-bullets markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi helm-projectile evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+    (web-mode virtualenvwrapper use-package solarized-theme powerline-evil poly-erb password-store org-bullets org neotree markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi hydra htmlize helm-projectile flymake-ruby flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
