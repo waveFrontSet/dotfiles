@@ -2,4 +2,4 @@
 #
 # Install everything using stow.
 
-stow emacs fish git latexmk mutt tmux vim zsh
+stow emacs git latexmk mutt tmux vim zsh
