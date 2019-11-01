@@ -19,14 +19,14 @@
 
 ;; Enable package manager
 (require 'package)
-(package-initialize)
-(setq package-enable-at-startup nil)
 
 ;; Add custom lisp code to path and add melpa and org package dirs
 (add-to-list 'load-path (concat user-emacs-directory "lisp"))
-(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
+(setq package-enable-at-startup nil)
 
 ;; Install and activate use-package
 (unless (package-installed-p 'use-package)
@@ -57,8 +57,8 @@
 
 ;; Setting font face and font size according to OS.
 (if (eq system-type 'darwin)
-    (set-frame-font "Fira Mono for Powerline 18")
-  (set-frame-font "Fira Mono for Powerline 16")
+    (set-frame-font "Fira Code 18")
+  (set-frame-font "Fira Code 16")
   )
 
 ;; Borrowed from http://ionrock.org/emacs-email-and-mu.html
@@ -436,6 +436,9 @@
 				  ("w" "Work agenda" tags-todo "@work"
 				   ((org-agenda-sorting-strategy '(todo-state-up)))
 				   )
+				  ("h" "Home agenda" tags-todo "@home"
+				   ((org-agenda-sorting-strategy '(todo-state-up)))
+				   )
 				  ("i" "Inbox" todo ""
 				   ((org-agenda-files '("~/org/inbox.org"))
 				    (org-agenda-sorting-strategy '(todo-state-up)))
@@ -464,7 +467,6 @@
      'org-babel-load-languages
      '(
        (emacs-lisp . t)
-       (sh . t)
        (python . t)
        (java . t)
        )
@@ -827,23 +829,27 @@
 
 ;; org2blog configuration
 ;; dependencies
-(setq load-path (cons "~/xml-rpc-el/" load-path))
-(setq load-path (cons "~/metaweblog/" load-path))
-(setq load-path (cons "~/.emacs.d/org2blog/" load-path))
-(add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
-(require 'org2blog-autoloads)
-
-(setq org2blog/wp-show-post-in-browser t)
-(setq org2blog/wp-use-wp-latex nil)
-(require 'auth-source)
-(let* ((credentials (auth-source-user-and-password "wp-blog"))
-       (username (nth 0 credentials))
-       (password (nth 1 credentials))
-       (config `(("wordpress"
-                 :url "https://paul-grillenberger.de/xmlrpc.php"
-                 :username ,username
-                 :password ,password))))
-  (setq org2blog/wp-blog-alist config))
+(use-package org2blog
+  :ensure t
+  :config (progn
+	    (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
+	    (setq org2blog/wp-show-post-in-browser t)
+	    (setq org2blog/wp-use-wp-latex nil)
+	    (setq org2blog/wp-use-sourcecode-shortcode t)
+	    (require 'auth-source)
+	    (let* ((credentials (auth-source-user-and-password "wp-blog"))
+		   (username (nth 0 credentials))
+		   (password (nth 1 credentials))
+		   (config `(("wordpress"
+			      :url "https://paul-grillenberger.de/xmlrpc.php"
+			      :username ,username
+			      :password ,password))))
+	      (setq org2blog/wp-blog-alist config))
+	    (evil-leader/set-key
+	      "o2" 'org2blog-user-interface
+	      )
+	    )
+  )
 ;; clipboard
 (setq x-select-enable-clipboard t)
 (custom-set-variables
@@ -853,7 +859,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode virtualenvwrapper use-package solarized-theme powerline-evil poly-erb password-store org-bullets org neotree markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi hydra htmlize helm-projectile flymake-ruby flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+    (org2blog web-mode virtualenvwrapper use-package solarized-theme powerline-evil poly-erb password-store org-bullets org neotree markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi hydra htmlize helm-projectile flymake-ruby flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -17,3 +17,6 @@ Icon
 
 # Vim swap-files
 *.swp
+
+# VS-Code
+.vscode
