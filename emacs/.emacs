@@ -57,7 +57,10 @@
 
 ;; Setting font face and font size according to OS.
 (if (eq system-type 'darwin)
-    (set-frame-font "Fira Code 18")
+    (progn
+      (mac-auto-operator-composition-mode)
+      (set-frame-font "Fira Code 18")
+      )
   (set-frame-font "Fira Code 16")
   )
 
@@ -769,33 +772,6 @@
 
 (setq preview-gs-options '("-q" "-dNOSAFER" "-dNOPAUSE" "-DNOPLATFONTS" "-dPrinted" "-dTextAlphaBits=4" "-dGraphicsAlphaBits=4"))
 
-;; Virtualenvwrapper settings
-(use-package virtualenvwrapper
-  :ensure virtualenvwrapper
-  :init
-  (venv-initialize-interactive-shells)
-  :config
-  (setq venv-location "~/myhp/")
-  )
-
-;; Django stuff
-(use-package django-mode
-  :ensure django-mode
-  )
-(require 'django-html-mode)
-(require 'django-mode)
-;; (yas/load-directory "~/.emacs.d/elpa/django-snippets-20131229.811/snippets")
-(add-to-list 'auto-mode-alist '("\\.djhtml$" . django-html-mode))
-
-;; Python Jedi autocomplete setup
-(use-package jedi
-  :ensure jedi
-  )
-(require 'jedi)
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'django-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-
 (desktop-save-mode 1)
 ;; Save session including tabs
 ;; http://stackoverflow.com/questions/22445670/save-and-restore-elscreen-tabs-and-split-frames
@@ -850,6 +826,22 @@
 	      )
 	    )
   )
+
+(use-package elpy
+  :ensure t
+  :config (progn
+	    (elpy-enable)
+	    (setenv "WORKON_HOME" "~/anaconda/envs")
+	    (pyvenv-mode 1)
+	    (use-package blacken
+	      :ensure t
+	      )
+	    (add-hook 'elpy-mode-hook 'blacken-mode)
+	    (setq elpy-test-runner 'elpy-test-pytest-runner)
+	    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+	    (add-hook 'elpy-mode-hook 'flycheck-mode)
+	    )
+  )
 ;; clipboard
 (setq x-select-enable-clipboard t)
 (custom-set-variables
@@ -859,7 +851,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org2blog web-mode virtualenvwrapper use-package solarized-theme powerline-evil poly-erb password-store org-bullets org neotree markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi hydra htmlize helm-projectile flymake-ruby flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
+    (blacken elpy org2blog web-mode virtualenvwrapper use-package solarized-theme powerline-evil poly-erb password-store org-bullets org neotree markdown-mode+ magit linum-relative latex-preview-pane keychain-environment jedi hydra htmlize helm-projectile flymake-ruby flycheck evil-visualstar evil-tabs evil-surround evil-leader evil-indent-textobject eclim django-mode cdlatex bibretrieve auctex-latexmk))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
