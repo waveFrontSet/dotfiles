@@ -20,3 +20,6 @@ Icon
 
 # VS-Code
 .vscode
+
+# Projectile
+.dir-locals.el
