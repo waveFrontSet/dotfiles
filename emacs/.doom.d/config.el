@@ -146,6 +146,10 @@
   (org-clock-persistence-insinuate)
   (add-to-list 'org-modules 'org-habit)
   (require 'org-habit)
+  (map! :leader
+        :desc "Org Capture"
+        "C" 'org-capture
+        )
   (map! :localleader
         :mode 'org-mode
         "2" 'org2blog-user-interface
@@ -153,7 +157,8 @@
   (map! :localleader
         :mode 'org-agenda-mode
         "p" 'paul/org-push
-        "S" 'paul/org-save-all-org-buffers)
+        "S" 'paul/org-save-all-org-buffers
+        )
   )
 
 (after! flyspell
