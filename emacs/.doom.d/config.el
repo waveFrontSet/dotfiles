@@ -5,6 +5,7 @@
 
 ;; Modeline configuration
 (setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-enable-word-count t)
 
 ;; If I'm on my mac, the font size seems to be a little smaller
 (if (eq system-type 'darwin)
@@ -144,6 +145,8 @@
    org-clock-report-include-clocking-task t
    org-clock-auto-clock-resolution (quote when-no-clock-is-running)
    org-clock-mode-line-total 'today
+   org-html-doctype "html5"
+   org-html-html5-fancy t
    )
   (org-agenda-to-appt)
   (org-clock-persistence-insinuate)
