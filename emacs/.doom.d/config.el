@@ -3,6 +3,9 @@
 ;; Solarized Dark theme.
 (setq doom-theme 'doom-solarized-dark)
 
+;; Modeline configuration
+(setq doom-modeline-major-mode-icon t)
+
 ;; If I'm on my mac, the font size seems to be a little smaller
 (if (eq system-type 'darwin)
     (progn
