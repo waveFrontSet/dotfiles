@@ -8,10 +8,14 @@
 (setq doom-modeline-enable-word-count t)
 
 ;; If I'm on my mac, the font size seems to be a little smaller
-(if (eq system-type 'darwin)
+(if IS-MAC
     (progn
-      (mac-auto-operator-composition-mode)
-      (setq doom-font (font-spec :family "Fira Code" :size 18))
+      (setq
+       doom-font (font-spec :family "Fira Code" :size 18)
+       ns-use-thin-smoothing t
+       )
+      (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+      (add-to-list 'default-frame-alist '(ns-appearance . dark))
       )
   (setq doom-font (font-spec :family "Fira Code" :size 16))
   )
