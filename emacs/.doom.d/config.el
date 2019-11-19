@@ -172,7 +172,18 @@
   )
 
 (after! flyspell
-  (setq ispell-dictionary "english")
+  (setq ispell-dictionary "en_US")
+  (if IS-WINDOWS (progn
+                   (add-to-list 'exec-path "~/hunspell/bin")
+                   (setq ispell-program-name (locate-file "hunspell" exec-path exec-suffixes 'file-executable-p))
+                   )
+    )
   )
 
 (setenv "WORKON_HOME" "~/anaconda/envs")
+(if IS-WINDOWS
+    (progn
+      (add-to-list 'exec-path "C:/Program Files (x86)/GnuWin32/bin")
+      (setenv "WORKON_HOME" "C:/Tools/anaconda/envs")
+      )
+  )
