@@ -104,10 +104,13 @@
      ("a" "Appointment" entry (file+headline "~/org/work.org" "General Meetings")
       "* APPT %?")
      ("p" "Phonecall" entry (file+headline "~/org/work.org" "Short distractions")
-      "* TELE Telefonanruf von %?" :clock-in t :clock-resume t)
+      "* TELE Telefonanruf von %?" :clock-in t :clock-keep nil :clock-resume t)
      ("g" "Gespräch" entry (file+headline "~/org/work.org" "Short distractions")
-      "* GESP Gespräch mit %?" :clock-in t :clock-resume t)
+      "* GESP Gespräch mit %?" :clock-in t :clock-keep nil :clock-resume t)
      ("n" "General note" entry (file+olp+datetree "~/org/notes.org"))
+     ("d" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
+      (file "~/org/templates/daily_review.org")
+      :immediate-finish t)
      )
    org-latex-to-pdf-process (list "latexmk %f")
    org-src-fontify-natively t
@@ -126,7 +129,6 @@
                                   (tags-todo "@work")
                                   (agenda "" ((org-agenda-span 1)))
                                   )
-                                 ((org-agenda-sorting-strategy '(todo-state-up)))
                                  ((org-agenda-compact-blocks t))
                                  )
                                 ("h" "Home agenda" tags-todo "@home"
@@ -138,8 +140,13 @@
                                  )
                                 )
    org-agenda-clockreport-parameter-plist '(
-                                            :maxlevel 2 :block today :scope agenda :formula "$5=$3+$4;t::$6=round(4*$5)/4;%.2f"
-                                            :fileskip0 t :stepskip0 t :narrow 80!
+                                            :maxlevel 2
+                                            :block today
+                                            :scope agenda
+                                            :formula "$5=$3+$4;t::$6=round(4*$5)/4;%.2f"
+                                            :fileskip0 t
+                                            :stepskip0 t
+                                            :narrow 80!
                                             )
    appt-message-warning-time 5
    appt-display-interval 5
