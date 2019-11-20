@@ -116,6 +116,7 @@
    org-confirm-babel-evaluate nil
    org-src-preserve-indentation t
    org-agenda-span 'day
+   org-agenda-start-day "0d"
    org-agenda-start-with-log-mode t
    org-agenda-start-with-clockreport-mode t
    org-agenda-repeating-timestamp-show-all nil
