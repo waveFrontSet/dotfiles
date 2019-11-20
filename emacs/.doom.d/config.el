@@ -120,8 +120,13 @@
    org-agenda-start-with-clockreport-mode t
    org-agenda-repeating-timestamp-show-all nil
    org-agenda-custom-commands '(
-                                ("w" "Work agenda" tags-todo "@work"
+                                ("w" "Work agenda"
+                                 (
+                                  (tags-todo "@work")
+                                  (agenda "" ((org-agenda-span 1)))
+                                  )
                                  ((org-agenda-sorting-strategy '(todo-state-up)))
+                                 ((org-agenda-compact-blocks t))
                                  )
                                 ("h" "Home agenda" tags-todo "@home"
                                  ((org-agenda-sorting-strategy '(todo-state-up)))
