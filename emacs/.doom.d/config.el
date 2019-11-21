@@ -95,7 +95,8 @@
                           (concat paul/path-org-agenda-files "tickler.org")
                           (concat paul/path-org-agenda-files "thesis_diary.org")
                           (concat paul/path-org-agenda-files "notes.org")
-                          (concat paul/path-org-agenda-files "userstorys.org"))
+                          (concat paul/path-org-agenda-files "userstorys.org")
+                          (concat paul/path-org-agenda-files "daily.org"))
    org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
       "* TODO %i%?")
@@ -110,7 +111,7 @@
      ("n" "General note" entry (file+olp+datetree "~/org/notes.org"))
      ("d" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
       (file "~/org/templates/daily_review.org")
-      :immediate-finish t)
+      :time-prompt t :immediate-finish t)
      )
    org-latex-to-pdf-process (list "latexmk %f")
    org-src-fontify-natively t
@@ -198,5 +199,14 @@
     (progn
       (add-to-list 'exec-path "C:/Program Files (x86)/GnuWin32/bin")
       (setenv "WORKON_HOME" "C:/Tools/anaconda/envs")
+      (defun current-clock-time-to-file ()
+        (interactive)
+        (with-temp-file "~/.task"
+          (if (org-clocking-p)
+              (insert (org-clock-get-clock-string))
+            (insert ""))))
+      (run-with-timer 1 60 'current-clock-time-to-file)
+      (add-hook 'org-clock-in-hook 'current-clock-time-to-file)
+      (add-hook 'org-clock-out-hook 'current-clock-time-to-file)
       )
   )
