@@ -85,17 +85,38 @@
 
 (after! org
   (setq
-   org-todo-keywords '((sequence "TODO(t)" "WAIT(w@)" "|" "DONE(d!)" "CANCELED(c@)")
-                       (sequence "APPT(a)" "|" "TELE(e)" "GESP(g)" "DONE(d!)" "CANCELED(c@)"))
-   org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold)) ("CANCELED" . (:foreground "red" :weight bold)))
+   org-todo-keywords '((sequence
+                        "TODO(t)"
+                        "NEXT(n)"
+                        "WAIT(w@)"
+                        "|"
+                        "DONE(d!)"
+                        "CANCELED(c@)")
+                       (sequence
+                        "[ ](T)"
+                        "[-](S)"
+                        "[?](W)"
+                        "|"
+                        "[X](D)")
+                       (sequence
+                        "APPT(a)"
+                        "|"
+                        "TELE(e)"
+                        "GESP(g)"
+                        "DONE(d!)"
+                        "CANCELED(c@)"))
+   org-todo-keyword-faces '(("APPT"  . (:foreground "sienna" :weight bold))
+                            ("[-]"  . +org-todo-active)
+                            ("NEXT" . +org-todo-active)
+                            ("[?]"  . +org-todo-onhold)
+                            ("WAIT" . +org-todo-onhold)
+                            ("CANCELED" . (:foreground "red" :weight bold)))
    org-log-done 'time
    org-agenda-files (list (concat paul/path-org-agenda-files "work.org")
                           (concat paul/path-org-agenda-files "home.org")
                           (concat paul/path-org-agenda-files "inbox.org")
                           (concat paul/path-org-agenda-files "tickler.org")
-                          (concat paul/path-org-agenda-files "thesis_diary.org")
                           (concat paul/path-org-agenda-files "notes.org")
-                          (concat paul/path-org-agenda-files "userstorys.org")
                           (concat paul/path-org-agenda-files "daily.org"))
    org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
