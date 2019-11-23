@@ -19,16 +19,15 @@ brew install wget --enable-iri
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
-# This is needed for emacs-macport
-brew tap railwaycat/emacsmacport
+# This is needed for emacs-plus
+brew tap d12frosted/emacs-plus
 
 # Install other useful binaries
 brew install ack
 brew install aspell --with-lang-de --with-land-en
 brew install contacts
 brew install djvu2pdf
-brew install emacs
-brew install emacs-mac
+brew install emacs-plus
 brew install git
 brew install gnupg
 brew install gnupg2
