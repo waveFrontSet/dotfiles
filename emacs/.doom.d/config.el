@@ -143,7 +143,8 @@
    org-latex-to-pdf-process (list "latexmk %f")
    org-src-fontify-natively t
    org-highlight-latex-and-related '(latex script entities)
-   org-refile-targets '((org-agenda-files :maxlevel . 3))
+   org-refile-targets '((org-agenda-files :maxlevel . 3)
+                        ("~/org/someday.org" :level . 1))
    org-confirm-babel-evaluate nil
    org-src-preserve-indentation t
    org-agenda-span 'day
@@ -165,6 +166,10 @@
                                 ("i" "Inbox" todo ""
                                  ((org-agenda-files '("~/org/inbox.org"))
                                   (org-agenda-sorting-strategy '(todo-state-up)))
+                                 )
+                                ("o" "Someday" todo ""
+                                 ((org-agenda-files '("~/org/someday.org"))
+                                  (org-agenda-sorting-strategy '(todo-state-down)))
                                  )
                                 )
    org-agenda-clockreport-parameter-plist '(
