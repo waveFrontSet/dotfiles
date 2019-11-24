@@ -161,11 +161,11 @@
                                  ((org-agenda-compact-blocks t))
                                  )
                                 ("h" "Home agenda" tags-todo "@home"
-                                 ((org-agenda-sorting-strategy '(todo-state-up)))
+                                 ((org-agenda-sorting-strategy '(category-up todo-state-down)))
                                  )
                                 ("i" "Inbox" todo ""
                                  ((org-agenda-files '("~/org/inbox.org"))
-                                  (org-agenda-sorting-strategy '(todo-state-up)))
+                                  (org-agenda-sorting-strategy '(todo-state-down)))
                                  )
                                 ("o" "Someday" todo ""
                                  ((org-agenda-files '("~/org/someday.org"))
