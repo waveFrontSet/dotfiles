@@ -75,14 +75,6 @@
   (start-process "git-push" nil "git" "push")
   )
 
-(defun paul/find-table-location ()
-  "Find the right table location using the current year and month."
-  (let ((year (string-to-number (format-time-string "%Y")))
-        (month (string-to-number (format-time-string "%m"))))
-    (org-datetree-find-month-create year month)
-    )
-  )
-
 (after! org
   (setq
    org-todo-keywords '((sequence
