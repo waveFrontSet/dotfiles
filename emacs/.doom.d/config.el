@@ -147,18 +147,39 @@
    org-agenda-custom-commands '(
                                 ("w" "Work agenda"
                                  (
-                                  (tags-todo "@work")
                                   (agenda "" ((org-agenda-span 1)))
+                                  (tags-todo "@work/NEXT"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
+                                             )
+                                  (tags-todo "@work/TODO"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
+                                             )
+                                  (tags-todo "@work/WAIT"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
+                                             )
                                   )
-                                 ((org-agenda-compact-blocks t))
                                  )
                                 ("h" "Home agenda"
                                  (
-                                  (tags-todo "@home/NEXT")
-                                  (tags-todo "@home/-NEXT")
+                                  (tags-todo "@home/NEXT"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
+                                             )
+                                  (tags-todo "@home/TODO"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
+                                             )
+                                  (tags-todo "@home/WAIT"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
+                                             )
                                   )
-                                 ((org-agenda-sorting-strategy '((category-up todo-state-down)))
-                                  (org-agenda-compact-blocks t))
+                                 (
+                                  (org-agenda-sorting-strategy '((category-up todo-state-down)))
+                                  )
                                  )
                                 ("i" "Inbox" todo ""
                                  ((org-agenda-files '("~/org/inbox.org"))
@@ -180,6 +201,7 @@
                                             )
    appt-message-warning-time 5
    appt-display-interval 5
+   org-agenda-block-separator ?\u2015
    org-clock-persist t
    org-clock-history-length 23
    org-clock-in-resume t
@@ -195,6 +217,7 @@
    org-html-doctype "html5"
    org-html-html5-fancy t
    )
+  (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.50)
   (org-agenda-to-appt)
   (org-clock-persistence-insinuate)
   (add-to-list 'org-modules 'org-habit)
