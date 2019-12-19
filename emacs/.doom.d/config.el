@@ -54,9 +54,6 @@
             )
   )
 
-;; Invoke black automatically after saving a file opened in python-mode
-(add-hook 'python-mode-hook #'blacken-mode)
-
 ;; Org configuration
 (defvar paul/path-org-agenda-files "~/org/")
 
