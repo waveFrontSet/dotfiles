@@ -259,3 +259,12 @@
       (add-hook 'org-clock-out-hook 'current-clock-time-to-file)
       )
   )
+
+(after! python
+  (setq conda-anaconda-home "~/anaconda")
+  (setq conda-env-home-directory "~/anaconda")
+  (conda-env-autoactivate-mode)
+  (if IS-WINDOWS
+      (setq conda-anaconda-home "C:/Tools/anaconda")
+      )
+  )
