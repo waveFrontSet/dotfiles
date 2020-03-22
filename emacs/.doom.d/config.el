@@ -42,7 +42,6 @@
             (add-to-list 'auth-sources "~/.netrc")
             (setq org2blog/wp-show-post-in-browser t)
             (setq org2blog/wp-use-wp-latex nil)
-            (setq org2blog/wp-use-sourcecode-shortcode t)
             (let* ((credentials (auth-source-user-and-password "wp-blog"))
                    (username (nth 0 credentials))
                    (password (nth 1 credentials))
