@@ -247,15 +247,7 @@
     (progn
       (add-to-list 'exec-path "C:/Program Files (x86)/GnuWin32/bin")
       (setenv "WORKON_HOME" "C:/Tools/anaconda/envs")
-      (defun current-clock-time-to-file ()
-        (interactive)
-        (with-temp-file "~/.task"
-          (if (org-clocking-p)
-              (insert (org-clock-get-clock-string))
-            (insert ""))))
-      (run-with-timer 1 60 'current-clock-time-to-file)
-      (add-hook 'org-clock-in-hook 'current-clock-time-to-file)
-      (add-hook 'org-clock-out-hook 'current-clock-time-to-file)
+      (remove-hook 'git-commit-mode-hook #'flyspell-mode)
       )
   )
 
