@@ -55,20 +55,19 @@
 
 ;; Org configuration
 (setq org-directory "~/org/")
-(defvar paul/path-org-agenda-files "~/org/")
 
 (defun paul/org-save-all-org-buffers ()
   "Save all current org-buffers, switch into the org-directory and make a git commit with the current date and time as the commit msg."
   (interactive)
   (org-save-all-org-buffers)
-  (cd paul/path-org-agenda-files)
+  (cd org-directory)
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M"))
   )
 
 (defun paul/org-push ()
   "Retrieves the password for rep/bit using password-store and runs git-push."
   (interactive)
-  (cd paul/path-org-agenda-files)
+  (cd org-directory)
   (start-process "git-push" nil "git" "push")
   )
 
@@ -101,13 +100,13 @@
                             ("WAIT" . +org-todo-onhold)
                             ("CANCELED" . (:foreground "red" :weight bold)))
    org-log-done 'time
-   org-agenda-files (list (concat paul/path-org-agenda-files "work.org")
-                          (concat paul/path-org-agenda-files "home.org")
-                          (concat paul/path-org-agenda-files "inbox.org")
-                          (concat paul/path-org-agenda-files "tickler.org")
-                          (concat paul/path-org-agenda-files "notes.org")
-                          (concat paul/path-org-agenda-files "daily.org")
-                          (concat paul/path-org-agenda-files "weekly.org")
+   org-agenda-files (list (concat org-directory "work.org")
+                          (concat org-directory "home.org")
+                          (concat org-directory "inbox.org")
+                          (concat org-directory "tickler.org")
+                          (concat org-directory "notes.org")
+                          (concat org-directory "daily.org")
+                          (concat org-directory "weekly.org")
                           )
    org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
@@ -173,11 +172,18 @@
                                              ((org-agenda-overriding-header
                                               (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
                                              )
+                                  (tags "+LEVEL=1|TODO=\"TODO\""
+                                             ((org-agenda-overriding-header
+                                               (concat (all-the-icons-faicon "book" :v-adjust 0.01) " Notes"))
+                                              (org-agenda-files (file-expand-wildcards "~/org/notes/*.org")))
+                                             )
                                   )
                                  (
                                   (org-agenda-sorting-strategy '((category-up todo-state-down)))
                                   )
                                  )
+                                ("g" "Global search" search ""
+                                 ((org-agenda-files '("~/org" "~/org/notes"))))
                                 ("i" "Inbox" todo ""
                                  ((org-agenda-files '("~/org/inbox.org"))
                                   (org-agenda-sorting-strategy '(todo-state-down)))
