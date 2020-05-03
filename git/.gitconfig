@@ -23,8 +23,8 @@
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
 	d = difftool
 [user]
-	name = waveFrontSet
-	email = paul.bubenzer@gmail.com
+	name = Paul Grillenberger
+	email = grillenbergerpaul@gmail.com
 [credential]
 	helper = osxkeychain
 [push]

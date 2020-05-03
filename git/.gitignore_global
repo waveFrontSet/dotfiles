@@ -23,3 +23,7 @@ Icon
 
 # Projectile
 .dir-locals.el
+
+# direnv
+.envrc
+default.profraw

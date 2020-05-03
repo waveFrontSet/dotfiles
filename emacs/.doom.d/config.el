@@ -54,6 +54,7 @@
   )
 
 ;; Org configuration
+(setq org-directory "~/org/")
 (defvar paul/path-org-agenda-files "~/org/")
 
 (defun paul/org-save-all-org-buffers ()
@@ -254,7 +255,10 @@
 (after! python
   (setq conda-anaconda-home "~/anaconda")
   (setq conda-env-home-directory "~/anaconda")
-  (conda-env-autoactivate-mode)
+  (conda-env-initialize-interactive-shells)
+  (conda-env-initialize-eshell)
+  (conda-env-autoactivate-mode t)
+  (direnv-mode t)
   (if IS-WINDOWS
       (setq conda-anaconda-home "C:/Tools/anaconda")
       )

@@ -7,3 +7,4 @@
 ;; (package! builtin-package :disable t)
 (package! org2blog)
 (package! writegood-mode)
+(package! direnv)
