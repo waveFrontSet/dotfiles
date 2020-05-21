@@ -61,6 +61,7 @@
   (interactive)
   (org-save-all-org-buffers)
   (cd org-directory)
+  (start-process "git-add" nil "git" "add" "roam")
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M"))
   )
 
