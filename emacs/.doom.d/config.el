@@ -106,6 +106,7 @@
                           (concat org-directory "inbox.org")
                           (concat org-directory "tickler.org")
                           (concat org-directory "notes.org")
+                          (concat org-directory "diary.org")
                           (concat org-directory "daily.org")
                           (concat org-directory "weekly.org")
                           )
@@ -121,6 +122,7 @@
      ("g" "Gespräch" entry (file+headline "~/org/work.org" "Short distractions")
       "* GESP Gespräch mit %?" :clock-in t :clock-keep nil :clock-resume t)
      ("n" "General note" entry (file+olp+datetree "~/org/notes.org"))
+     ("j" "Journal" entry (file+olp+datetree "~/org/diary.org"))
      ("r" "Reviews")
      ("rd" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
       (file "~/org/templates/daily_review.org")
@@ -184,7 +186,7 @@
                                   )
                                  )
                                 ("g" "Global search" search ""
-                                 ((org-agenda-files '("~/org" "~/org/notes"))))
+                                 ((org-agenda-files '("~/org" "~/org/notes" "~/org/roam"))))
                                 ("i" "Inbox" todo ""
                                  ((org-agenda-files '("~/org/inbox.org"))
                                   (org-agenda-sorting-strategy '(todo-state-down)))
@@ -223,6 +225,7 @@
    )
   (set-face-attribute 'org-agenda-structure nil :inherit 'default :height 1.50)
   (org-agenda-to-appt)
+  (auto-fill-mode)
   (org-clock-persistence-insinuate)
   (add-to-list 'org-modules 'org-habit)
   (require 'org-habit)
