@@ -121,8 +121,6 @@
       "* TELE Telefonanruf von %?" :clock-in t :clock-keep nil :clock-resume t)
      ("g" "Gespräch" entry (file+headline "~/org/work.org" "Short distractions")
       "* GESP Gespräch mit %?" :clock-in t :clock-keep nil :clock-resume t)
-     ("n" "General note" entry (file+olp+datetree "~/org/notes.org"))
-     ("j" "Journal" entry (file+olp+datetree "~/org/diary.org"))
      ("r" "Reviews")
      ("rd" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
       (file "~/org/templates/daily_review.org")
@@ -243,6 +241,24 @@
         "S" 'paul/org-save-all-org-buffers
         )
   )
+
+(after! org
+  (use-package! doct
+    :config
+    (setq org-capture-templates
+          (append org-capture-templates
+                  (doct '(("General quick note"
+                           :keys "n"
+                           :file "~/org/notes.org"
+                           :datetree t
+                           :template ("* %^{Headline}\n%?")
+                           :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))
+                          ("Journal"
+                           :keys "j"
+                           :file "~/org/diary.org"
+                           :datetree t
+                           :template ("* %^{Headline}\n%?")
+                           :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))))))))
 
 (after! flyspell
   (setq ispell-dictionary "en_US")

@@ -8,3 +8,4 @@
 (package! org2blog)
 (package! writegood-mode)
 (package! direnv)
+(package! doct)
