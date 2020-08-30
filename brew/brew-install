@@ -28,6 +28,7 @@ brew install aspell --with-lang-de --with-land-en
 brew install contacts
 brew install djvu2pdf
 brew install emacs-plus
+brew install fd
 brew install git
 brew install gnupg
 brew install gnupg2
@@ -45,6 +46,7 @@ brew install pinentry-mac
 brew install psutils
 brew install python3
 brew install reattach-to-user-namespace
+brew install ripgrep
 brew install stow
 brew install the_silver_searcher
 brew install tmux
@@ -60,6 +62,16 @@ brew install zsh-syntax-highlighting
 # Install favorite font
 brew tap homebrew/cask-fonts
 brew cask install font-fira-code
+
+# Install development tools
+brew cask install anaconda
+brew cask install intellij-idea-ce
+brew cask install visual-studio-code
+
+# Install communication and network tools
+brew cask install mattermost
+brew cask install tunnelblick
+brew cask install zoom
 
 # Remove outdated versions from the cellar
 brew cleanup
