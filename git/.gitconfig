@@ -11,6 +11,8 @@
 	c = clone --recursive
 	# Commit all changes
 	ca = !git add -A && git commit -av
+    # Switch to a branch
+    co = checkout
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
 	# Show verbose output about tags, branches or remotes
@@ -24,7 +26,7 @@
 	d = difftool
 [user]
 	name = Paul Grillenberger
-	email = grillenbergerpaul@gmail.com
+	email = pgrillenberger@nexible.de
 [credential]
 	helper = osxkeychain
 [push]
