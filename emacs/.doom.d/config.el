@@ -82,6 +82,11 @@
                         "DONE(d!)"
                         "CANCELED(c@)")
                        (sequence
+                        "STORY(s)"
+                        "|"
+                        "DONE(d!)"
+                        "CANCELED(c@)")
+                       (sequence
                         "[ ](T)"
                         "[-](S)"
                         "[?](W)"
@@ -113,14 +118,19 @@
    org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
       "* TODO %i%?")
+     ("s" "Story" entry (file "~/org/work.org")
+      "* STORY %^{ticket id} %? [/]\n:PROPERTIES:\n:CATEGORY: %\\1\n:END:")
      ("T" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
       "* %i%? \n %^{Appointed Time}T")
      ("a" "Appointment" entry (file+headline "~/org/work.org" "General Meetings")
       "* APPT %? \n %^{Appointed Time}T")
-     ("p" "Phonecall" entry (file+headline "~/org/work.org" "Short distractions")
-      "* TELE Telefonanruf von %?" :clock-in t :clock-keep nil :clock-resume t)
-     ("g" "Gespräch" entry (file+headline "~/org/work.org" "Short distractions")
-      "* GESP Gespräch mit %?" :clock-in t :clock-keep nil :clock-resume t)
+     ("m" "Short Meeting" entry (file+headline "~/org/work.org" "Short distractions")
+      "* GESP %?" :clock-in t :clock-keep nil :clock-resume t)
+     ("p" "Protocol" entry (file+headline "~/org/inbox.org" "Inbox")
+      "* TODO %^{Title}\nSource: %u, %c\n
+      #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+     ("L" "Protocol Link" entry (file+headline "~/org/inbox.org" "Inbox")
+      "* TODO [[%:link][%:description]] \nCaptured On: %U" :immediate-finish t)
      ("r" "Reviews")
      ("rd" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
       (file "~/org/templates/daily_review.org")
@@ -152,6 +162,10 @@
                                   (tags-todo "@work/TODO"
                                              ((org-agenda-overriding-header
                                               (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
+                                             )
+                                  (tags-todo "@work/STORY"
+                                             ((org-agenda-overriding-header
+                                              (concat (all-the-icons-faicon "play-circle" :v-adjust 0.01) " Storys")))
                                              )
                                   (tags-todo "@work/WAIT"
                                              ((org-agenda-overriding-header
@@ -269,23 +283,3 @@
     )
   )
 
-(setenv "WORKON_HOME" "~/anaconda/envs")
-(if IS-WINDOWS
-    (progn
-      (add-to-list 'exec-path "C:/Program Files (x86)/GnuWin32/bin")
-      (setenv "WORKON_HOME" "C:/Tools/anaconda/envs")
-      (remove-hook 'git-commit-mode-hook #'flyspell-mode)
-      )
-  )
-
-(after! python
-  (setq conda-anaconda-home "~/anaconda")
-  (setq conda-env-home-directory "~/anaconda")
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell)
-  (conda-env-autoactivate-mode t)
-  (direnv-mode t)
-  (if IS-WINDOWS
-      (setq conda-anaconda-home "C:/Tools/anaconda")
-      )
-  )

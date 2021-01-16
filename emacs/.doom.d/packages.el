@@ -9,3 +9,7 @@
 (package! writegood-mode)
 (package! direnv)
 (package! doct)
+(package! lilypond :recipe
+  (:host github
+   :repo "lilypond/lilypond"
+   :files ("elisp/*.el")))

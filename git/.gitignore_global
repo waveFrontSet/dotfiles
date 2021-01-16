@@ -27,3 +27,6 @@ Icon
 # direnv
 .envrc
 default.profraw
+
+# ruby
+vendor/bundle
