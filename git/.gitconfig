@@ -23,7 +23,7 @@
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
-	d = difftool
+	d = difftool --no-symlinks --dir-diff
 [user]
 	name = Paul Grillenberger
 	email = pgrillenberger@nexible.de
@@ -33,10 +33,20 @@
 	default = simple
 [core]
 	excludesfile = /Users/paul/.gitignore_global
+#[diff]
+#	tool = vimdiff
+#[difftool]
+#	prompt = false
 [diff]
-	tool = vimdiff
+    tool = kitty
+    guitool = kitty.gui
 [difftool]
-	prompt = false
+    prompt = false
+    trustExitCode = true
+[difftool "kitty"]
+    cmd = kitty +kitten diff $LOCAL $REMOTE
+[difftool "kitty.gui"]
+    cmd = kitty kitty +kitten diff $LOCAL $REMOTE
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -46,3 +56,5 @@
 	rebase = true
 [fetch]
 	prune = true
+[init]
+	defaultBranch = master
