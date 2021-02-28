@@ -18,12 +18,9 @@ NeoBundle 'Shougo/vimproc', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-NeoBundle 'TaskList.vim'
-NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'ack.vim'
-NeoBundle 'christoomey/vim-tmux-navigator'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'jcf/vim-latex'
 NeoBundle 'kana/vim-fakeclip'

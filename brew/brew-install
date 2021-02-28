@@ -19,15 +19,16 @@ brew install wget --enable-iri
 brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
-# This is needed for emacs-plus
-brew tap d12frosted/emacs-plus
+# This is needed for emacs
+brew tap railwaycat/emacsmacport
 
 # Install other useful binaries
 brew install ack
 brew install aspell --with-lang-de --with-land-en
 brew install contacts
+brew install direnv
 brew install djvu2pdf
-brew install emacs-plus
+brew install emacs-mac --with-modules
 brew install fd
 brew install git
 brew install gnupg
@@ -41,6 +42,7 @@ brew install lynx
 brew install msmtp
 brew install mu --with-emacs
 brew install mysql
+brew install nodejs
 brew install pigz
 brew install pinentry-mac
 brew install psutils
@@ -59,19 +61,29 @@ brew install zsh
 brew install zsh-completions
 brew install zsh-syntax-highlighting
 
-# Install favorite font
+# Install favorite fonts
 brew tap homebrew/cask-fonts
-brew cask install font-fira-code
+brew install --cask font-fira-code
+brew install --cask font-meslo-lg
 
 # Install development tools
-brew cask install anaconda
-brew cask install intellij-idea-ce
-brew cask install visual-studio-code
+brew install --cask anaconda
+brew install --cask intellij-idea-ce
+brew install --cask visual-studio-code
 
+# General mac stuff
 # Install communication and network tools
-brew cask install mattermost
-brew cask install tunnelblick
-brew cask install zoom
+brew install --cask mattermost
+brew install --cask tunnelblick
+brew install --cask zoom
+# Window management
+brew install --cask rectangle
+# Password management
+brew install --cask lastpass
+# Nice monitoring in the menu bar
+brew install --cask menumeters
+# A browser would be nice, too.
+brew install --cask google-chrome
 
 # Remove outdated versions from the cellar
 brew cleanup
