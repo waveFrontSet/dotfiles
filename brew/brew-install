@@ -67,8 +67,8 @@ brew install --cask font-fira-code
 brew install --cask font-meslo-lg
 
 # Install development tools
-brew install --cask anaconda
 brew install --cask intellij-idea-ce
+brew install --cask miniconda
 brew install --cask visual-studio-code
 
 # General mac stuff
