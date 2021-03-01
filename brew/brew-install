@@ -37,6 +37,7 @@ brew install gnutls
 brew install html2text
 brew install icu4c
 brew install keychain
+brew install less
 brew install libidn
 brew install lynx
 brew install msmtp
@@ -55,7 +56,6 @@ brew install tmux
 brew install unixodbc
 brew install urlview
 brew install vim
-brew install vimpager
 brew install zlib
 brew install zsh
 brew install zsh-completions
