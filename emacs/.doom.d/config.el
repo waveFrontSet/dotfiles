@@ -7,6 +7,9 @@
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-enable-word-count t)
 
+;; Generally, don't format with lsp
+(setq +format-with-lsp nil)
+
 ;; If I'm on my mac, the font size seems to be a little smaller
 (if IS-MAC
     (progn
