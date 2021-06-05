@@ -41,9 +41,9 @@
   :commands 'org2blog-user-interface
   :config (progn
             (require 'auth-source)
-            (add-to-list 'gnutls-trustfiles "/usr/local/etc/openssl/cert.pem")
             (add-to-list 'auth-sources "~/.netrc")
             (setq org2blog/wp-show-post-in-browser t)
+            (setq org2blog/wp-image-upload t)
             (setq org2blog/wp-use-wp-latex nil)
             (let* ((credentials (auth-source-user-and-password "wp-blog"))
                    (username (nth 0 credentials))
@@ -286,3 +286,4 @@
     )
   )
 
+(setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
