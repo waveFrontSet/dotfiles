@@ -25,6 +25,7 @@ Icon
 .dir-locals.el
 
 # direnv
+.direnv/
 .envrc
 default.profraw
 
