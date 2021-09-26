@@ -3,45 +3,34 @@ scriptencoding utf-8
 set nocompatible        " Use Vim defaults (much better!)
 " Bundle configuration {{{1
 filetype off
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
 " Bundles {{{1
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'ack.vim'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'jcf/vim-latex'
-NeoBundle 'kana/vim-fakeclip'
-NeoBundle 'michaeljsmith/vim-indent-object'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'taku-o/vim-editexisting-ext'
-NeoBundle 'tommcdo/vim-exchange'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'vim-scripts/UltiSnips'
-NeoBundle 'waveFrontSet/vim-colors-solarized'
-call neobundle#end()
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular'
+Plug 'jcf/vim-latex'
+Plug 'kana/vim-fakeclip'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'scrooloose/syntastic'
+Plug 'sjl/gundo.vim'
+Plug 'taku-o/vim-editexisting-ext'
+Plug 'tommcdo/vim-exchange'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rails'
+Plug 'vim-scripts/UltiSnips'
+Plug 'waveFrontSet/vim-colors-solarized'
+call plug#end()
 " General configuration {{{1
 filetype plugin indent on
-NeoBundleCheck
 set shell=/bin/bash
 set laststatus=2
 set encoding=utf-8

@@ -6,7 +6,9 @@
 *~
 *.swp
 *.pyc
+vim/.vim/autoload
 vim/.vim/bundle
+vim/.vim/plugged
 mutt/.mutt/.ropeproject
 vim/.vim/.netrwhist
 vim.symlink/bundle/

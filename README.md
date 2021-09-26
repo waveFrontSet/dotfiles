@@ -21,10 +21,3 @@ stow vim zsh
 ```
 
 only creates symlinks for the config files of vim and zsh.
-
-Let NeoBundle install vim plugins
-    
-``` sh
-    git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-    vim -c NeoBundleInstall
-```
