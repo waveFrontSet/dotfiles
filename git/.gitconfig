@@ -5,8 +5,8 @@
 	s = status -s
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
-        # Push changes for the current repository and all altered submodules
-        pu = push --recurse-submodules=on-demand
+    # Push changes for the current repository and all altered submodules
+    pu = push --recurse-submodules=on-demand
 	# Clone a repository including all submodules
 	c = clone --recursive
 	# Commit all changes
@@ -35,10 +35,6 @@
 	default = simple
 [core]
 	excludesfile = /Users/paul/.gitignore_global
-#[diff]
-#	tool = vimdiff
-#[difftool]
-#	prompt = false
 [diff]
     tool = kitty
     guitool = kitty.gui
@@ -49,6 +45,12 @@
     cmd = kitty +kitten diff $LOCAL $REMOTE
 [difftool "kitty.gui"]
     cmd = kitty kitty +kitten diff $LOCAL $REMOTE
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool]
+    prompt = false
+    keepBackup = false
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
