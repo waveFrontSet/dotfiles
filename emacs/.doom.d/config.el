@@ -36,9 +36,12 @@
 ;;; Shortcut for muting search highlighting
 (map! :n "C-l" (progn 'redraw-frame 'evil-ex-nohighlight))
 
-;; Python config
+;; Python config: Only use pylint.
 (defun my-flycheck-setup ()
-  (flycheck-add-next-checker 'python-pylint))
+  (progn
+    (flycheck-select-checker 'python-pylint)
+    (flycheck-disable-checker 'lsp)
+    ))
 (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup 'append)
 
 ;; Org2Blog configuration for writing Wordpress posts in org mode.
