@@ -40,9 +40,11 @@
 (defun my-flycheck-setup ()
   (progn
     (flycheck-select-checker 'python-pylint)
-    (flycheck-disable-checker 'lsp)
+    (flycheck-add-next-checker 'python-pylint 'python-mypy)
     ))
-(add-hook 'python-mode-local-vars-hook #'my-flycheck-setup 'append)
+(after! flycheck
+  (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup 'append)
+  )
 
 ;; Org2Blog configuration for writing Wordpress posts in org mode.
 (use-package! org2blog
