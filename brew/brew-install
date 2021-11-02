@@ -24,11 +24,13 @@ brew tap railwaycat/emacsmacport
 
 # Install other useful binaries
 brew install aspell --with-lang-de --with-land-en
+brew install bat
 brew install contacts
 brew install direnv
 brew install djvu2pdf
 brew install emacs-mac --with-modules
 brew install fd
+brew install fzf
 brew install git
 brew install gnupg
 brew install gnupg2
@@ -50,7 +52,6 @@ brew install python3
 brew install reattach-to-user-namespace
 brew install ripgrep
 brew install stow
-brew install the_silver_searcher
 brew install unixodbc
 brew install urlview
 brew install vim
@@ -75,7 +76,7 @@ brew install --cask mattermost
 brew install --cask tunnelblick
 brew install --cask zoom
 # Window management
-brew install --cask rectangle
+brew install --cask amethyst
 # Nice monitoring in the menu bar
 brew install --cask menumeters
 # A browser would be nice, too.
