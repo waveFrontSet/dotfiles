@@ -77,7 +77,8 @@
        ;;vterm             ; another terminals in Emacs
        :checkers
        syntax
-       (spell +flyspell)
+       (spell +flyspell
+              +aspell)
        grammar
 
        :tools
@@ -148,7 +149,7 @@
         +jupyter         ; ipython/jupyter support for babel
         +noter
         +pandoc          ; export-with-pandoc support
-        ;;+pomodoro        ; be fruitful with the tomato technique
+        +pomodoro        ; be fruitful with the tomato technique
         +present        ; using org-mode for presentations
         +protocol
         +roam)

@@ -128,30 +128,6 @@
                           (concat org-directory "daily.org")
                           (concat org-directory "weekly.org")
                           )
-   org-capture-templates
-   '(("t" "Todo" entry (file+headline "~/org/inbox.org" "Inbox")
-      "* TODO %i%?")
-     ("s" "Story" entry (file "~/org/work.org")
-      "* STORY %^{ticket id} %? [/]\n:PROPERTIES:\n:CATEGORY: %\\1\n:END:")
-     ("T" "Tickler" entry (file+headline "~/org/tickler.org" "Tickler")
-      "* %i%? \n %^{Appointed Time}T")
-     ("a" "Appointment" entry (file+headline "~/org/work.org" "General Meetings")
-      "* APPT %? \n %^{Appointed Time}T")
-     ("m" "Short Meeting" entry (file+headline "~/org/work.org" "Short distractions")
-      "* GESP %?" :clock-in t :clock-keep nil :clock-resume t)
-     ("p" "Protocol" entry (file+headline "~/org/inbox.org" "Inbox")
-      "* TODO %^{Title}\nSource: %u, %c\n
-      #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-     ("L" "Protocol Link" entry (file+headline "~/org/inbox.org" "Inbox")
-      "* TODO [[%:link][%:description]] \nCaptured On: %U" :immediate-finish t)
-     ("r" "Reviews")
-     ("rd" "Daily Review" entry (file+olp+datetree "~/org/daily.org")
-      (file "~/org/templates/daily_review.org")
-      :time-prompt t :immediate-finish t)
-     ("rw" "Weekly Review" entry (file+olp+datetree "~/org/weekly.org")
-      (file "~/org/templates/weekly_review.org")
-      :time-prompt t :immediate-finish t)
-     )
    org-latex-to-pdf-process (list "latexmk %f")
    org-src-fontify-natively t
    org-highlight-latex-and-related '(latex script entities)
@@ -170,19 +146,19 @@
                                   (agenda "" ((org-agenda-span 1)))
                                   (tags-todo "@work/NEXT"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
+                                               (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
                                              )
                                   (tags-todo "@work/TODO"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
+                                               (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
                                              )
                                   (tags-todo "@work/STORY"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "play-circle" :v-adjust 0.01) " Storys")))
+                                               (concat (all-the-icons-faicon "play-circle" :v-adjust 0.01) " Storys")))
                                              )
                                   (tags-todo "@work/WAIT"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
+                                               (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
                                              )
                                   )
                                  )
@@ -190,21 +166,21 @@
                                  (
                                   (tags-todo "@home/NEXT"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
+                                               (concat (all-the-icons-faicon "bolt" :v-adjust 0.01) " Next Tasks")))
                                              )
                                   (tags-todo "@home/TODO"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
+                                               (concat (all-the-icons-faicon "tasks" :v-adjust 0.01) " Tasks")))
                                              )
                                   (tags-todo "@home/WAIT"
                                              ((org-agenda-overriding-header
-                                              (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
+                                               (concat (all-the-icons-faicon "hourglass" :v-adjust 0.01) " Waiting")))
                                              )
                                   (tags "+LEVEL=1|TODO=\"TODO\""
-                                             ((org-agenda-overriding-header
-                                               (concat (all-the-icons-faicon "book" :v-adjust 0.01) " Notes"))
-                                              (org-agenda-files (file-expand-wildcards "~/org/notes/*.org")))
-                                             )
+                                        ((org-agenda-overriding-header
+                                          (concat (all-the-icons-faicon "book" :v-adjust 0.01) " Notes"))
+                                         (org-agenda-files (file-expand-wildcards "~/org/notes/*.org")))
+                                        )
                                   )
                                  (
                                   (org-agenda-sorting-strategy '((category-up todo-state-down)))
@@ -213,7 +189,7 @@
                                 ("g" "Global search" search ""
                                  ((org-agenda-files '("~/org" "~/org/notes" "~/org/roam"))))
                                 ("i" "Inbox" todo ""
-                                 ((org-agenda-files '("~/org/inbox.org"))
+                                 ((org-agenda-files '("~/org/todo.org"))
                                   (org-agenda-sorting-strategy '(todo-state-down)))
                                  )
                                 ("o" "Someday" todo ""
@@ -267,25 +243,74 @@
         "p" 'paul/org-push
         "S" 'paul/org-save-all-org-buffers
         )
-  )
-
-(after! org
   (use-package! doct
     :config
     (setq org-capture-templates
-          (append org-capture-templates
-                  (doct '(("General quick note"
-                           :keys "n"
-                           :file "~/org/notes.org"
-                           :datetree t
-                           :template ("* %^{Headline}\n%?")
-                           :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))
-                          ("Journal"
-                           :keys "j"
-                           :file "~/org/diary.org"
-                           :datetree t
-                           :template ("* %^{Headline}\n%?")
-                           :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))))))))
+          (doct '(("Todo"
+                   :keys "t"
+                   :file +org-capture-todo-file
+                   :headline "Inbox"
+                   :template ("* TODO %i%?")
+                   :prepend t)
+                  ("Story"
+                   :keys "s"
+                   :file +org-capture-todo-file
+                   :template ("* STORY %^{ticket id} %? [/]\n:PROPERTIES:\n:CATEGORY: %\\1\n:END:"))
+                  ("Tickler"
+                   :keys "T"
+                   :file +org-capture-todo-file
+                   :headline "Tickler"
+                   :template ("* %i%? \n %^{Appointed Time}T"))
+                  ("Appointment"
+                   :keys "a"
+                   :file +org-capture-todo-file
+                   :headline "General Meetings"
+                   :template ("* APPT %? \n %^{Appointed Time}T"))
+                  ("Short Appointment"
+                   :keys "m"
+                   :file +org-capture-todo-file
+                   :headline "Short distractions"
+                   :template ("* GESP %?")
+                   :clock-in t
+                   :clock-keep nil
+                   :clock-resume t)
+                  ("Protocol"
+                   :keys "p"
+                   :file +org-capture-todo-file
+                   :headline "Inbox"
+                   :template ("* TODO %^{Title}\nSource: %u, %c\n#+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?"))
+                  ("Protocol Link"
+                   :keys "L"
+                   :file +org-capture-todo-file
+                   :headline "Inbox"
+                   :template ("* TODO [[%:link][%:description]] \nCaptured On: %U")
+                   :immediate-finish t)
+                  ("Reviews"
+                   :keys "r"
+                   :datetree t
+                   :time-prompt t
+                   :immediate-finish t
+                   :children (("Daily Review"
+                               :keys "d"
+                               :file "daily.org"
+                               :template-file "templates/daily_review.org")
+                              ("Weekly Review"
+                               :keys "w"
+                               :file "weekly.org"
+                               :template-file "templates/weekly_review.org")))
+                  ("General quick note"
+                   :keys "n"
+                   :file +org-capture-notes-file
+                   :datetree t
+                   :template ("* %^{Headline}\n%?")
+                   :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))
+                  ("Journal"
+                   :keys "j"
+                   :file +org-capture-journal-file
+                   :datetree t
+                   :template ("* %^{Headline}\n%?")
+                   :prepare-finalize (lambda() (unless org-note-abort (org-set-tags-command))))))))
+  )
 
 (after! flyspell
   (setq ispell-dictionary "en_US")
