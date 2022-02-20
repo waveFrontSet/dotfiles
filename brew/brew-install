@@ -6,59 +6,47 @@ brew upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
 # Install Bash 4
 brew install bash
 
 # Install wget with IRI support
-brew install wget --enable-iri
-
-# Install more recent versions of some OS X tools
-brew tap homebrew/dupes
-brew install homebrew/dupes/grep
-
-# This is needed for emacs
-brew tap railwaycat/emacsmacport
+brew install wget
 
 # Install other useful binaries
-brew install aspell --with-lang-de --with-land-en
-brew install bat
-brew install contacts
-brew install direnv
-brew install djvu2pdf
-brew install emacs-mac --with-modules
-brew install fd
-brew install fzf
-brew install git
-brew install gnupg
-brew install gnupg2
-brew install gnutls
-brew install html2text
-brew install icu4c
-brew install keychain
-brew install less
-brew install libidn
-brew install lynx
-brew install msmtp
-brew install mu --with-emacs
-brew install mysql
-brew install nodejs
-brew install pigz
-brew install pinentry-mac
-brew install psutils
-brew install python3
-brew install reattach-to-user-namespace
-brew install ripgrep
-brew install stow
-brew install unixodbc
-brew install urlview
-brew install vim
-brew install zlib
-brew install zsh
-brew install zsh-completions
-brew install zsh-syntax-highlighting
+brew install aspell \
+    bat \
+    direnv \
+    djvu2pdf \
+    fd \
+    fzf \
+    git \
+    gnupg \
+    gnupg2 \
+    gnutls \
+    html2text \
+    icu4c \
+    keychain \
+    less \
+    libidn \
+    lynx \
+    msmtp \
+    nodejs \
+    pigz \
+    pinentry-mac \
+    psutils \
+    python3 \
+    reattach-to-user-namespace \
+    ripgrep \
+    stow \
+    unixodbc \
+    urlview \
+    vim \
+    zlib \
+    zsh \
+    zsh-completions \
+    zsh-syntax-highlighting
 
 # Install favorite fonts
 brew tap homebrew/cask-fonts
@@ -66,15 +54,13 @@ brew install --cask font-fira-code
 brew install --cask font-meslo-lg
 
 # Install development tools
-brew install --cask intellij-idea-ce
-brew install --cask miniconda
-brew install --cask visual-studio-code
+brew install poetry
+brew install pyenv
+# This is needed for emacs
+brew tap railwaycat/emacsmacport
+brew install emacs-mac --with-modules
 
 # General mac stuff
-# Install communication and network tools
-brew install --cask mattermost
-brew install --cask tunnelblick
-brew install --cask zoom
 # Window management
 brew install --cask amethyst
 # Nice monitoring in the menu bar
@@ -84,3 +70,4 @@ brew install --cask brave-browser
 
 # Remove outdated versions from the cellar
 brew cleanup
+echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
