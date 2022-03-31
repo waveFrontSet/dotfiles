@@ -8,16 +8,9 @@ This repository contains the configuration files for my shell, my text editors a
 git clone git://github.com/waveFrontSet/dotfiles.git
 ```
 
-Symlink everything using the bootstrap script
+Symlink everything using the dotbot
 
 ``` sh
-./bootstrap
+./install
 ```
 
-OR use stow to pick which config files you need, for example
-
-``` sh
-stow vim zsh
-```
-
-only creates symlinks for the config files of vim and zsh.

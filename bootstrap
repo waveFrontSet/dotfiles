@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-#
-# Install everything using stow.
-
-stow emacs git latexmk mutt tmux vim zsh
