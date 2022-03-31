@@ -4,10 +4,7 @@
       create: true
 
 - shell:
-  - ["sudo mkdir bla", "Making bla"]
-- shell:
   - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
-- shell:
   - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
 - link:
     ~/.direnvrc: direnv/.direnvrc
