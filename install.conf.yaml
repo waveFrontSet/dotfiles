@@ -28,7 +28,5 @@
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc
 - shell:
-  - command: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-    description: "Installing homebrew..."
   - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
   - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
