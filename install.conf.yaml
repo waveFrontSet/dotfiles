@@ -2,10 +2,13 @@
     link:
       relink: true
       create: true
+    shell:
+      stdin: true
+      stdout: true
+      stderr: true
 
 - shell:
-  - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
-  - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
+  - ["git submodule update --init --recursive", "Updating submodules for zprezto"]
 - link:
     ~/.direnvrc: direnv/.direnvrc
     ~/.doom.d: emacs/.doom.d
@@ -24,3 +27,8 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc
+- shell:
+  - command: '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+    description: "Installing homebrew..."
+  - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
+  - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
