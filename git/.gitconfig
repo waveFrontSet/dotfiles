@@ -34,7 +34,7 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/paul/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [diff]
     tool = kitty
     guitool = kitty.gui
