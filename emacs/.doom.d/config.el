@@ -39,8 +39,8 @@
 ;; Python config: Only use pylint.
 (defun my-flycheck-setup ()
   (progn
-    (flycheck-select-checker 'python-pylint)
-    (flycheck-add-next-checker 'python-pylint 'python-mypy)
+    (flycheck-select-checker 'python-flake8)
+    (flycheck-add-next-checker 'python-flake8 'python-mypy)
     ))
 (after! flycheck
   (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup 'append)
