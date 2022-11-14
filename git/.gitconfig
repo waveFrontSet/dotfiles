@@ -33,6 +33,7 @@
 	helper = osxkeychain
 [push]
 	default = simple
+	autoSetupRemote = true
 [core]
 	excludesfile = ~/.gitignore_global
 [diff]
@@ -62,3 +63,4 @@
 	prune = true
 [init]
 	defaultBranch = main
+	templateDir = /Users/paulgrillenberger/.git-template
