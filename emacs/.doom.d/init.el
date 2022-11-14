@@ -104,6 +104,7 @@
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
        terraform         ; infrastructure as code
+       tree-sitter
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
        ;;wakatime
@@ -157,11 +158,14 @@
         +protocol
         +roam)
        ;;perl              ; write code no one else can comprehend
-       ;;php               ; perl's insecure younger brother
+       (php               ; perl's insecure younger brother
+        +lsp
+        +tree-sitter)
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python            ; beautiful is better than ugly
         +lsp
+        +tree-sitter
         +pyright)
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
