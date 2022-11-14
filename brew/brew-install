@@ -19,6 +19,7 @@ brew install aspell \
     bat \
     direnv \
     djvu2pdf \
+    fasd \
     fd \
     fzf \
     git \
