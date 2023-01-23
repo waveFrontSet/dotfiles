@@ -78,13 +78,6 @@
   (start-process "git" nil "git" "commit" "-am" (format-time-string "%Y-%m-%d %H:%M"))
   )
 
-(defun paul/org-push ()
-  "Retrieves the password for rep/bit using password-store and runs git-push."
-  (interactive)
-  (cd org-directory)
-  (start-process "git-push" nil "git" "push")
-  )
-
 (after! org
   (setq
    org-todo-keywords '((sequence
@@ -237,11 +230,6 @@
   (map! :localleader
         :mode 'org-mode
         "2" 'org2blog-user-interface
-        )
-  (map! :localleader
-        :mode 'org-agenda-mode
-        "p" 'paul/org-push
-        "S" 'paul/org-save-all-org-buffers
         )
   (use-package! doct
     :config
