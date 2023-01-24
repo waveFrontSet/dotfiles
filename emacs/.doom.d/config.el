@@ -231,6 +231,10 @@
         :mode 'org-mode
         "2" 'org2blog-user-interface
         )
+  (map! :localleader
+        :mode 'org-agenda-mode
+        "S" 'paul/org-save-all-org-buffers
+        )
   (use-package! doct
     :config
     (setq org-capture-templates
