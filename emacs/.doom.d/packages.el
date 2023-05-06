@@ -9,7 +9,3 @@
 (package! doct)
 (package! ob-mermaid)
 (package! graphql-mode)
-(package! lilypond :recipe
-  (:host github
-   :repo "lilypond/lilypond"
-   :files ("elisp/*.el")))
