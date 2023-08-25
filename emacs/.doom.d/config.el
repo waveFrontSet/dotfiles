@@ -45,6 +45,10 @@
 (after! flycheck
   (add-hook 'python-mode-local-vars-hook #'my-flycheck-setup 'append)
   )
+(setq flycheck-python-mypy-config '("mypy.ini" "setup.cfg" "pyproject.toml"))
+(require 'dap-python)
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
 
 ;; Org2Blog configuration for writing Wordpress posts in org mode.
 (use-package! org2blog

@@ -85,7 +85,8 @@
 
        :tools
        ;;ansible
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger          ; FIXME stepping through code, to help you add bugs
+        +lsp)
        direnv
        (docker
         +lsp)
@@ -166,14 +167,18 @@
        (python            ; beautiful is better than ugly
         +lsp
         +tree-sitter
-        +pyright)
+        +pyright
+        +pyenv
+        )
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
        (ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
         +rails
         +rbenv)
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+        +lsp
+        +tree-sitter)
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
        sh                ; she sells {ba,z,fi}sh shells on the C xor
