@@ -9,6 +9,8 @@
 
 ;; Generally, don't format with lsp
 (setq +format-with-lsp nil)
+;; Don't watch all files with lsp
+(setq lsp-enable-file-watchers nil)
 
 ;; If I'm on my mac, the font size seems to be a little smaller
 (if IS-MAC
@@ -49,26 +51,6 @@
 (require 'dap-python)
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
-
-;; Org2Blog configuration for writing Wordpress posts in org mode.
-(use-package! org2blog
-  :commands 'org2blog-user-interface
-  :config (progn
-            (require 'auth-source)
-            (add-to-list 'auth-sources "~/.netrc")
-            (setq org2blog/wp-show-post-in-browser t)
-            (setq org2blog/wp-image-upload t)
-            (setq org2blog/wp-use-wp-latex nil)
-            (let* ((credentials (auth-source-user-and-password "wp-blog"))
-                   (username (nth 0 credentials))
-                   (password (nth 1 credentials))
-                   (config `(("wordpress"
-                              :url "https://paul-grillenberger.de/xmlrpc.php"
-                              :username ,username
-                              :password ,password))))
-              (setq org2blog/wp-blog-alist config))
-            )
-  )
 
 ;; Org configuration
 (setq org-directory "~/org/")
@@ -318,3 +300,5 @@
   )
 
 (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
+
+(add-hook 'vue-mode-hook #'lsp!)
