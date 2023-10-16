@@ -16,6 +16,7 @@
     ~/.gitignore_global: git/.gitignore_global
     ~/.gnupg/gpg-agent.conf: gnupg/.gnupg/gpg-agent.conf
     ~/.config/kitty/kitty.conf: kitty/.config/kitty/kitty.conf
+    ~/.config/kitty/diff.conf: kitty/.config/kitty/diff.conf
     ~/.vim: vim/.vim
     ~/.gvimrc: vim/.gvimrc
     ~/.vimpagerrc: vim/.vimpagerrc
