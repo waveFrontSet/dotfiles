@@ -57,7 +57,7 @@ set shiftwidth=4
 set tabstop=4
 set smarttab
 set shiftround
-set textwidth=80
+set textwidth=0
 set hidden
 let g:netrw_liststyle=3
 set omnifunc=syntaxcomplete#Complete
