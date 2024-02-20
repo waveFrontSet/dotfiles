@@ -51,6 +51,7 @@
 (require 'dap-python)
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
+(set-formatter! 'ruff '("ruff" "format" "-") :modes '(python-mode))
 
 ;; Org configuration
 (setq org-directory "~/org/")
