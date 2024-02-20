@@ -130,7 +130,7 @@
        (go                ; the hipster dialect
         +lsp)
        (haskell            ; a language that's lazier than I am
-        +dante)
+        +lsp)
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
