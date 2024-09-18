@@ -130,6 +130,7 @@
        (go                ; the hipster dialect
         +lsp)
        (haskell            ; a language that's lazier than I am
+        +treesitter
         +lsp)
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
@@ -141,7 +142,8 @@
        ;;kotlin            ; a better, slicker Java(Script)
        (latex             ; writing papers in Emacs has never been so fun
         +latexmk
-        +cdlatex)
+        +cdlatex
+        +lsp)
        ;;lean
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices

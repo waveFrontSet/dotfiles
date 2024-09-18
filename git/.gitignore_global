@@ -31,7 +31,11 @@ Icon
 # direnv
 .direnv/
 .envrc
+.venv
 default.profraw
 
 # ruby
 vendor/bundle
+
+# Emacs auctex
+.auctex-auto/

@@ -19,6 +19,7 @@
     ~/.config/kitty/diff.conf: kitty/.config/kitty/diff.conf
     ~/.vim: vim/.vim
     ~/.gvimrc: vim/.gvimrc
+    ~/.latexmkrc: latexmk/.latexmkrc
     ~/.vimpagerrc: vim/.vimpagerrc
     ~/.vimrc: vim/.vimrc
     ~/.zprezto: zsh/.zprezto
