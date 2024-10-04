@@ -19,7 +19,6 @@ brew install aspell \
     bat \
     direnv \
     djvu2pdf \
-    fasd \
     fd \
     fzf \
     git \
@@ -50,7 +49,6 @@ brew install aspell \
     zsh-syntax-highlighting
 
 # Install favorite fonts
-brew tap homebrew/cask-fonts
 brew install --cask font-fira-code
 brew install --cask font-meslo-lg-nerd-font
 

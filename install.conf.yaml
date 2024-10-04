@@ -32,3 +32,5 @@
 - shell:
   - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
   - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
+  - ["curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", "Installing rustup..."]
+

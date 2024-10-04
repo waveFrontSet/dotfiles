@@ -27,6 +27,7 @@
 [user]
 	name = Paul Grillenberger
 	email = grillenbergerpaul@gmail.com
+	signingkey = D4D33DD72FAFF2A79D37394C1FA78F9E15D912C6
 [includeIf "gitdir:~/Work/"]
     path = ~/Work/.gitconfig
 [credential]
