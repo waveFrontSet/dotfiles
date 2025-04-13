@@ -13,7 +13,7 @@
 (setq lsp-enable-file-watchers nil)
 
 ;; If I'm on my mac, the font size seems to be a little smaller
-(if IS-MAC
+(if (featurep :system 'macos)
     (progn
       (setq
        doom-font (font-spec :family "Fira Code" :size 18)
@@ -328,13 +328,21 @@ See URL `https://beta.ruff.rs/docs/'."
 
 (after! flyspell
   (setq ispell-dictionary "en_US")
-  (if IS-WINDOWS (progn
-                   (add-to-list 'exec-path "~/hunspell/bin")
-                   (setq ispell-program-name (locate-file "hunspell" exec-path exec-suffixes 'file-executable-p))
-                   )
+  (if (featurep :system 'windows) (progn
+                                    (add-to-list 'exec-path "~/hunspell/bin")
+                                    (setq ispell-program-name (locate-file "hunspell" exec-path exec-suffixes 'file-executable-p))
+                                    )
     )
   )
 
 (setq ob-mermaid-cli-path "/opt/homebrew/bin/mmdc")
 
 (add-hook 'vue-mode-hook #'lsp!)
+(use-package! ellama
+  :config
+  (setq ellama-sessions-directory "~/.emacs.d/.local/cache/ellama-sessions")
+  (map! :leader
+        :desc "Ellama"
+        "e" 'ellama
+        )
+  )

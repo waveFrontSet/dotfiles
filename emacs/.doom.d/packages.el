@@ -9,3 +9,4 @@
 (package! ob-mermaid)
 (package! graphql-mode)
 (package! vue-mode)
+(package! ellama)
