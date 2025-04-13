@@ -78,13 +78,13 @@
        term              ; terminals in Emacs
        ;;vterm             ; another terminals in Emacs
        :checkers
-       syntax
+       (syntax +childframe)
        (spell +flyspell
               +aspell)
        grammar
 
        :tools
-       ;;ansible
+       ansible
        (debugger          ; FIXME stepping through code, to help you add bugs
         +lsp)
        direnv
