@@ -7,6 +7,8 @@
 ;; (package! builtin-package :disable t)
 (package! doct)
 (package! ob-mermaid)
+(package! mermaid-mode)
 (package! graphql-mode)
 (package! vue-mode)
 (package! ellama)
+(package! po-mode)

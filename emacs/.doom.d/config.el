@@ -339,8 +339,20 @@ See URL `https://beta.ruff.rs/docs/'."
 
 (add-hook 'vue-mode-hook #'lsp!)
 (use-package! ellama
+  :init
+  (require 'llm-ollama)
+  (setopt ellama-coding-provider
+          (make-llm-ollama
+           :chat-model "qwen2.5-coder:7b"
+           :embedding-model "nomic-embed-text"
+           :default-chat-non-standard-params '(("num_ctx" . 32768))))
+  (setopt ellama-auto-scroll t)
   :config
-  (setq ellama-sessions-directory "~/.emacs.d/.local/cache/ellama-sessions")
+  (setq ellama-sessions-directory "~/.config/ellama/.local/cache/ellama-sessions")
+  ;; show ellama context in header line in all buffers
+  (ellama-context-header-line-global-mode +1)
+  ;; show ellama session id in header line in all buffers
+  (ellama-session-header-line-global-mode +1)
   (map! :leader
         :desc "Ellama"
         "e" 'ellama
