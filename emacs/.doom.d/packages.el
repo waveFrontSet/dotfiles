@@ -12,3 +12,4 @@
 (package! vue-mode)
 (package! ellama)
 (package! po-mode)
+(package! d2-mode)
