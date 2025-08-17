@@ -8,7 +8,10 @@
       stderr: true
 
 - shell:
-  - ["git submodule update --init --recursive", "Updating submodules for zprezto"]
+    - [
+        "git submodule update --init --recursive",
+        "Updating submodules for zprezto",
+      ]
 - link:
     ~/.direnvrc: direnv/.direnvrc
     ~/.doom.d: emacs/.doom.d
@@ -17,6 +20,7 @@
     ~/.gnupg/gpg-agent.conf: gnupg/.gnupg/gpg-agent.conf
     ~/.config/kitty/kitty.conf: kitty/.config/kitty/kitty.conf
     ~/.config/kitty/diff.conf: kitty/.config/kitty/diff.conf
+    ~/.config/nvim/: nvim/
     ~/.vim: vim/.vim
     ~/.gvimrc: vim/.gvimrc
     ~/.latexmkrc: latexmk/.latexmkrc
@@ -30,7 +34,12 @@
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc
 - shell:
-  - ['/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"', "Installing homebrew..."]
-  - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
-  - ["curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh", "Installing rustup..."]
-
+    - [
+        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+        "Installing homebrew...",
+      ]
+    - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
+    - [
+        "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
+        "Installing rustup...",
+      ]
