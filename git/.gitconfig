@@ -69,4 +69,4 @@
     gpgsign = true
 [init]
 	defaultBranch = main
-	templateDir = /Users/paulgrillenberger/.git-template
+	templateDir = ~/.git-template
