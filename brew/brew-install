@@ -16,38 +16,41 @@ brew install wget
 
 # Install other useful binaries
 brew install aspell \
-    bat \
-    direnv \
-    djvu2pdf \
-    fd \
-    fzf \
-    git \
-    gnupg \
-    gnupg2 \
-    gnutls \
-    html2text \
-    icu4c \
-    jq \
-    keychain \
-    less \
-    libidn \
-    lynx \
-    msmtp \
-    nodejs \
-    pigz \
-    pinentry-mac \
-    psutils \
-    python3 \
-    reattach-to-user-namespace \
-    ripgrep \
-    stow \
-    unixodbc \
-    urlview \
-    vim \
-    zlib \
-    zsh \
-    zsh-completions \
-    zsh-syntax-highlighting
+  bat \
+  direnv \
+  djvu2pdf \
+  fd \
+  fzf \
+  git \
+  gnupg \
+  gnupg2 \
+  gnutls \
+  html2text \
+  icu4c \
+  jq \
+  keychain \
+  k9s \
+  lazygit \
+  less \
+  libidn \
+  lynx \
+  msmtp \
+  nodejs \
+  nvim \
+  pigz \
+  pinentry-mac \
+  psutils \
+  python3 \
+  reattach-to-user-namespace \
+  ripgrep \
+  stow \
+  unixodbc \
+  urlview \
+  vim \
+  zlib \
+  zsh \
+  zsh-completions \
+  zsh-syntax-highlighting
 
 # Install favorite fonts
 brew install --cask font-fira-code
