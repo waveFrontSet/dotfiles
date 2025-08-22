@@ -104,7 +104,8 @@
        pdf               ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
-       terraform         ; infrastructure as code
+       (terraform         ; infrastructure as code
+        +lsp)
        tree-sitter
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
@@ -173,7 +174,6 @@
         +lsp
         +tree-sitter
         +pyright
-        +pyenv
         )
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
