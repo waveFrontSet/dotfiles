@@ -39,6 +39,7 @@
         "Installing homebrew...",
       ]
     - ["sh brew/brew-install", "Starting to install libraries from homebrew..."]
+    - ["curl -LsSf https://astral.sh/uv/install.sh | sh", "Installing uv..."]
     - [
         "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
         "Installing rustup...",
