@@ -28,6 +28,7 @@ brew install aspell \
   html2text \
   icu4c \
   jq \
+  just \
   keychain \
   k9s \
   lazygit \
@@ -40,10 +41,8 @@ brew install aspell \
   pigz \
   pinentry-mac \
   psutils \
-  python3 \
   reattach-to-user-namespace \
   ripgrep \
-  stow \
   unixodbc \
   urlview \
   vim \
@@ -57,13 +56,8 @@ brew install --cask font-fira-code
 brew install --cask font-meslo-lg-nerd-font
 
 # Install development tools
-brew install poetry
-brew install pyenv
 brew install --cask docker
 brew install terraform
-# This is needed for emacs
-brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-modules --with-starter
 
 # General mac stuff
 # Window management
