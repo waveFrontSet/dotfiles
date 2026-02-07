@@ -38,3 +38,6 @@ vendor/bundle
 
 # Emacs auctex
 .auctex-auto/
+
+# Claude
+.claude/

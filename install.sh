@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./install --only links
+./install --only link
