@@ -13,7 +13,6 @@
         "Updating submodules for zprezto",
       ]
 - link:
-    ~/.devcontainer/devcontainer.json: devcontainer/devcontainer.json
     ~/.direnvrc: direnv/.direnvrc
     ~/.doom.d: emacs/.doom.d
     ~/.gitconfig: git/.gitconfig
