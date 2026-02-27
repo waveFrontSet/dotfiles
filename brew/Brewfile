@@ -1,0 +1,69 @@
+# Core utilities
+brew "coreutils"
+brew "findutils"
+brew "bash"
+brew "zsh"
+brew "less"
+brew "wget"
+
+# Modern CLI replacements
+brew "bat"          # cat replacement with syntax highlighting
+brew "eza"          # ls replacement with icons and git status
+brew "fd"           # find replacement
+brew "ripgrep"      # grep replacement
+brew "delta"        # diff/git pager with syntax highlighting
+brew "zoxide"       # cd replacement, learns your habits
+brew "atuin"        # shell history with fuzzy search and sync
+brew "fzf"          # fuzzy finder
+
+# Development tools
+brew "git"
+brew "nvim"
+brew "vim"
+brew "jq"
+brew "just"
+brew "direnv"
+brew "lazygit"
+brew "k9s"
+brew "terraform"
+
+# Security
+brew "gnupg"
+brew "gnupg2"
+brew "pinentry-mac"
+brew "keychain"
+
+# Languages & package managers (runtimes managed via mise/rustup/ghcup)
+brew "nodejs"
+
+# System libraries
+brew "gnutls"
+brew "icu4c"
+brew "libidn"
+brew "unixodbc"
+brew "zlib"
+brew "pigz"
+
+# Shell plugins
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+
+# Utilities
+brew "aspell"
+brew "djvu2pdf"
+brew "html2text"
+brew "lynx"
+brew "msmtp"
+brew "psutils"
+brew "reattach-to-user-namespace"
+brew "urlview"
+
+# Fonts
+cask "font-fira-code"
+cask "font-meslo-lg-nerd-font"
+
+# Applications
+cask "docker"
+cask "amethyst"
+cask "menumeters"
+cask "brave-browser"
