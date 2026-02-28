@@ -81,6 +81,7 @@ alias em="open /Applications/Emacs.app"
 alias j="z"
 
 # Modern ls replacement (eza)
+export EZA_COLORS="xx=36"  # Fix punctuation invisible on solarized dark
 alias ls="eza --icons"
 alias ll="eza -la --icons --git"
 alias la="ll -A"
