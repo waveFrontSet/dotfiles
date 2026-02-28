@@ -86,10 +86,6 @@ export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat 
 
 # ── Aliases ─────────────────────────────────────────────────────────────────
 
-# Pass
-alias pa=pass
-alias pc="pass -c"
-
 # Pull everything I need from my reps
 alias gp="cd ~/dotfiles; git p; pc rep/bit; cd ~/org; git p; cd ~/latex-docs; git p; cd ~"
 
@@ -118,27 +114,10 @@ alias ibrew="arch -x86_64 /usr/local/bin/brew"
 
 # ── Python / direnv ────────────────────────────────────────────────────────
 
-show_virtual_env() {
-  if [[ -n "$CONDA_DEFAULT_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename $CONDA_DEFAULT_ENV))"
-  fi
-}
-PS1='$(show_virtual_env)'$PS1
-
 # Standard setup for new python project
 ,envrc_and_allow() {
   echo "layout uv" > .envrc
   direnv allow
-}
-
-# Initialize pyproject.toml with dev dependencies
-,poetry-init() {
-  poetry init -n \
-      --dev-dependency pytest \
-      --dev-dependency pytest-cov \
-      --dev-dependency ruff \
-      --dev-dependency ruff-lsp \
-      "$@"
 }
 
 # ── Prompt ──────────────────────────────────────────────────────────────────
@@ -146,12 +125,6 @@ PS1='$(show_virtual_env)'$PS1
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ── Runtime environments ───────────────────────────────────────────────────
-
-# OCTAVIA CLI 0.40.17
-OCTAVIA_ENV_FILE=/Users/paulgrillenberger/.octavia
-export OCTAVIA_ENABLE_TELEMETRY=False
-alias octavia="docker run -i --rm -v \$(pwd):/home/octavia-project --network host --env-file \${OCTAVIA_ENV_FILE} --user \$(id -u):\$(id -g) airbyte/octavia-cli:0.40.17"
-
 . "$HOME/.cargo/env"
 
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
