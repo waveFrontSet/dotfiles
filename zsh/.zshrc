@@ -51,15 +51,6 @@ for func in ~/.zfunc/*(.N); do
   autoload -Uz "${func:t}"
 done
 
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*:descriptions' format '%F{green}-- %d --%f'
-zstyle ':completion:*' group-name ''
-
 # ── Antidote (plugin manager) ──────────────────────────────────────────────
 
 source ${BREW_PREFIX}/opt/antidote/share/antidote/antidote.zsh
