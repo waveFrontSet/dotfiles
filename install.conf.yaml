@@ -7,11 +7,6 @@
       stdout: true
       stderr: true
 
-- shell:
-    - [
-        "git submodule update --init --recursive",
-        "Updating submodules for zprezto",
-      ]
 - link:
     ~/.direnvrc: direnv/.direnvrc
     ~/.doom.d: emacs/.doom.d
@@ -26,10 +21,9 @@
     ~/.latexmkrc: latexmk/.latexmkrc
     ~/.vimpagerrc: vim/.vimpagerrc
     ~/.vimrc: vim/.vimrc
-    ~/.zprezto: zsh/.zprezto
+    ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
     ~/.zlogin: zsh/.zlogin
     ~/.zlogout: zsh/.zlogout
-    ~/.zpreztorc: zsh/.zpreztorc
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc

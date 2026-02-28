@@ -44,9 +44,8 @@ brew "unixodbc"
 brew "zlib"
 brew "pigz"
 
-# Shell plugins
-brew "zsh-completions"
-brew "zsh-syntax-highlighting"
+# Shell plugin manager (plugins themselves managed via ~/.zsh_plugins.txt)
+brew "antidote"
 
 # Utilities
 brew "aspell"

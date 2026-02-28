@@ -3,11 +3,12 @@ default:
     @just --list
 
 # Run full install (link dotfiles, install packages, setup toolchains)
-install: link brew
+install:
+  ./install
 
 # Link dotfiles via dotbot
 link:
-    ./install
+    ./install --only link
 
 # Install packages from Brewfile (idempotent)
 brew:
