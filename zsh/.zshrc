@@ -76,13 +76,14 @@ bindkey '^ ' autosuggest-accept
 
 # ── Tool initialization ────────────────────────────────────────────────────
 
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh)"
-eval "$(direnv hook zsh)"
-
 # fzf keybindings and completion
 source <(fzf --zsh)
 export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat --style numbers,changes --color=always {} || tree -C {}) 2> /dev/null | head -200'"
+
+eval "$(zoxide init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"
+eval "$(direnv hook zsh)"
+
 
 # ── Aliases ─────────────────────────────────────────────────────────────────
 
