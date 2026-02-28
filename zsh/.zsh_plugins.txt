@@ -1,4 +1,5 @@
-# Completions (load before compinit)
+# Completion system (must load before other plugins that use completion)
+mattmc3/ez-compinit
 zsh-users/zsh-completions kind:fpath
 
 # fzf-tab (must load after compinit but before other plugins that wrap widgets)
@@ -13,7 +14,7 @@ sorin-ionescu/prezto path:modules/docker/alias.zsh
 zsh-users/zsh-autosuggestions
 
 # Syntax highlighting (load near end)
-zsh-users/zsh-syntax-highlighting
+zdharma-continuum/fast-syntax-highlighting kind:defer
 
 # History substring search (load after syntax highlighting)
 zsh-users/zsh-history-substring-search
