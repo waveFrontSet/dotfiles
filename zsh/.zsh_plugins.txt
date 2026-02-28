@@ -5,6 +5,9 @@ zsh-users/zsh-completions kind:fpath
 # fzf-tab (must load after compinit but before other plugins that wrap widgets)
 Aloxaf/fzf-tab
 
+# Better vi mode for zsh
+jeffreytse/zsh-vi-mode
+
 # Prezto aliases — git (gco, gb, gws, etc.) and docker (dkcU, dkc, etc.)
 sorin-ionescu/prezto path:modules/git/functions kind:fpath
 sorin-ionescu/prezto path:modules/git/alias.zsh

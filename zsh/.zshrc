@@ -36,13 +36,6 @@ setopt COMBINING_CHARS       # handle combining characters correctly
 setopt NO_MAIL_WARNING
 setopt NO_BEEP
 
-# ── Vi mode (replaces zprezto: editor) ──────────────────────────────────────
-
-bindkey -v
-export KEYTIMEOUT=1
-autoload edit-command-line; zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
 # ── Completion system ───────────────────────────────────────────────────────
 
 # Add custom functions
