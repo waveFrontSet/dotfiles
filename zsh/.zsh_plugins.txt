@@ -19,8 +19,5 @@ zsh-users/zsh-autosuggestions
 # Syntax highlighting (load near end)
 zdharma-continuum/fast-syntax-highlighting kind:defer
 
-# History substring search (load after syntax highlighting)
-zsh-users/zsh-history-substring-search
-
 # Powerlevel10k prompt
 romkatv/powerlevel10k

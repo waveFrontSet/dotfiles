@@ -56,7 +56,13 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line cursor root)
 # ── Autosuggestion config ───────────────────────────────────────────────────
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
-bindkey '^ ' autosuggest-accept
+
+# Apply custom keybindings after zsh-vi-mode finishes its deferred init,
+# otherwise zvm overwrites them when the first prompt renders.
+zvm_after_init_commands+=(
+  "bindkey '^ ' autosuggest-accept"
+  "bindkey '^r' atuin-search"
+)
 
 # ── Tool initialization ────────────────────────────────────────────────────
 
