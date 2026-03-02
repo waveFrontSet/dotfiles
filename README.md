@@ -14,7 +14,6 @@ Personal configuration files managed with [Dotbot](https://github.com/anishathal
 | `tmux/`        | Tmux config                                              |
 | `brew/`        | Homebrew Brewfile (bat, eza, fd, ripgrep, fzf, zoxide, atuin, ...) |
 | `direnv/`      | direnv config                                            |
-| `gnupg/`       | GPG agent config (pinentry-mac)                          |
 | `emacs/`       | Doom Emacs config                                        |
 | `latex/`       | LaTeX packages                                           |
 | `latexmk/`     | latexmk config                                           |
