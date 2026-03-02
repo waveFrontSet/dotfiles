@@ -27,7 +27,7 @@
 [user]
 	name = Paul Grillenberger
 	email = grillenbergerpaul@gmail.com
-	signingkey = D4D33DD72FAFF2A79D37394C1FA78F9E15D912C6
+	signingkey = ~/.ssh/id_ed25519.pub
 [includeIf "gitdir:~/Work/"]
     path = ~/Work/.gitconfig
 [credential]
@@ -72,8 +72,14 @@
 	rebase = true
 [fetch]
 	prune = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = ~/.ssh/allowed_signers
 [commit]
     gpgsign = true
 [init]
 	defaultBranch = main
 	templateDir = ~/.git-template
+[include]
+	path = ~/.gitconfig.local
