@@ -26,16 +26,22 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc
+    ~/.config/opencode/opencode.json: opencode/.config/opencode/opencode.json
+    ~/.config/opencode/tui.json: opencode/.config/opencode/tui.json
+    ~/.config/opencode/commands/: opencode/.config/opencode/commands/
 - shell:
     - [
-        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
-        "Installing homebrew...",
+        'command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
+        "Installing homebrew (if not present)...",
       ]
     - ["brew bundle --file=brew/Brewfile", "Installing packages from Brewfile..."]
-    - ["curl -LsSf https://astral.sh/uv/install.sh | sh", "Installing uv..."]
     - [
-        "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh",
-        "Installing rustup...",
+        "command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh",
+        "Installing uv (if not present)...",
+      ]
+    - [
+        "command -v rustup >/dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y",
+        "Installing rustup (if not present)...",
       ]
     - [
         '/bin/bash -c "if [ -f ~/.ssh/id_ed25519.pub ]; then echo \"$(git config user.email) $(cat ~/.ssh/id_ed25519.pub)\" > ~/.ssh/allowed_signers && echo \"Created ~/.ssh/allowed_signers for SSH commit verification.\"; else echo \"WARNING: ~/.ssh/id_ed25519.pub not found. Generate an SSH key with: ssh-keygen -t ed25519\"; fi; echo \"REMINDER: Add your SSH key to GitHub as a signing key: gh ssh-key add ~/.ssh/id_ed25519.pub --type signing\""',

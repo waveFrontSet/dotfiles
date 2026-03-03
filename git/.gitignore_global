@@ -39,5 +39,6 @@ vendor/bundle
 # Emacs auctex
 .auctex-auto/
 
-# Claude
+# AI coding tools
 .claude/
+.opencode/
