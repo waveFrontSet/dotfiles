@@ -52,17 +52,24 @@ brew "aspell"
 brew "djvu2pdf"
 brew "html2text"
 brew "lynx"
+brew "markdownlint-cli2"
 brew "msmtp"
+brew "oha"
 brew "psutils"
 brew "reattach-to-user-namespace"
 brew "urlview"
+
+# AI Tools
+brew "gemini-cli"
+brew "opencode"
 
 # Fonts
 cask "font-fira-code"
 cask "font-meslo-lg-nerd-font"
 
 # Applications
-cask "docker"
 cask "amethyst"
-cask "menumeters"
 cask "brave-browser"
+cask "claude-code"
+cask "docker-desktop"
+cask "menumeters"
