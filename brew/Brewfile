@@ -1,3 +1,7 @@
+tap "fluxcd/tap"
+tap "hashicorp/tap"
+tap "siderolabs/tap"
+
 # Core utilities
 brew "coreutils"
 brew "findutils"
@@ -25,7 +29,10 @@ brew "just"
 brew "direnv"
 brew "lazygit"
 brew "k9s"
+brew "pre-commit"
 brew "terraform"
+brew "terraform-docs"
+brew "tflint"
 
 # Security
 brew "gnupg"
@@ -35,6 +42,7 @@ brew "keychain"
 
 # Languages & package managers (runtimes managed via mise/rustup/ghcup)
 brew "nodejs"
+brew "go@1.25"
 
 # System libraries
 brew "gnutls"
@@ -58,6 +66,17 @@ brew "oha"
 brew "psutils"
 brew "reattach-to-user-namespace"
 brew "urlview"
+brew "age"
+brew "fluxcd/tap/flux"
+brew "gh"
+brew "hugo"
+brew "kustomize"
+brew "pandoc"
+brew "shellcheck"
+brew "shfmt"
+brew "sops"
+brew "starship"
+brew "talosctl"
 
 # AI Tools
 brew "gemini-cli"
@@ -71,5 +90,10 @@ cask "font-meslo-lg-nerd-font"
 cask "amethyst"
 cask "brave-browser"
 cask "claude-code"
+cask "devpod"
 cask "docker-desktop"
+cask "drawio"
 cask "menumeters"
+cask "signal"
+cask "spotify"
+cask "vlc"

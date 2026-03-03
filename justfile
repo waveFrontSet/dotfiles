@@ -12,11 +12,11 @@ link:
 
 # Install packages from Brewfile (idempotent)
 brew:
-    brew bundle --file=brew/Brewfile
+    brew bundle --file=brew/Brewfile --cleanup
 
 # Update brew packages and neovim plugins
 update:
-    brew bundle --file=brew/Brewfile
+    brew bundle --file=brew/Brewfile --cleanup
     nvim --headless "+Lazy! sync" +qa
 
 # Apply macOS system defaults
