@@ -1,14 +1,12 @@
 #
 # Defines environment variables.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
 #
 # Browser
 #
@@ -40,30 +38,33 @@ export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 typeset -gU cdpath fpath mailpath path
 
-# Set the the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
-
 # Set the list of directories that Zsh searches for programs.
+# macOS-specific paths are guarded; Linux paths are always safe to include.
 path=(
-  /Library/TeX/texbin
-  /opt/homebrew/opt/coreutils/libexec/gnubin
-  /opt/homebrew/bin
-  /opt/homebrew/sbin
-  ~/.emacs.d/bin
-  /usr/local/opt/coreutils/libexec/gnubin
-  /usr/local/{bin,sbin}
-  /usr/local/opt/ruby/bin
   ~/.local/bin
   $path
 )
 
-# Brew prefix
-# Check for M1 Arch
-export BREW_PREFIX="/usr/local"
-if [[ $(uname -m) == "arm64" ]]; then
+if [[ "$OSTYPE" == darwin* ]]; then
+  path=(
+    /Library/TeX/texbin
+    /opt/homebrew/opt/coreutils/libexec/gnubin
+    /opt/homebrew/bin
+    /opt/homebrew/sbin
+    ~/.emacs.d/bin
+    /usr/local/opt/coreutils/libexec/gnubin
+    /usr/local/{bin,sbin}
+    /usr/local/opt/ruby/bin
+    $path
+  )
+fi
+
+# Brew prefix (macOS only — not available in Linux containers)
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BREW_PREFIX="/usr/local"
+  if [[ $(uname -m) == "arm64" ]]; then
     export BREW_PREFIX="/opt/homebrew"
+  fi
 fi
 
 #
@@ -89,5 +90,5 @@ if [[ ! -d "$TMPDIR" ]]; then
   mkdir -p -m 700 "$TMPDIR"
 fi
 
-if [ -e /Users/paul/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/paul/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-. "$HOME/.cargo/env"
+# Cargo (Rust) — conditional, may not be installed in all environments
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

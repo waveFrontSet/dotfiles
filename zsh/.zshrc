@@ -1,4 +1,4 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -46,7 +46,12 @@ done
 
 # ── Antidote (plugin manager) ──────────────────────────────────────────────
 
-source ${BREW_PREFIX}/opt/antidote/share/antidote/antidote.zsh
+# Antidote: Homebrew on macOS, git clone fallback on Linux (e.g., devcontainers)
+if [[ -f ${BREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote/antidote.zsh ]]; then
+  source ${BREW_PREFIX}/opt/antidote/share/antidote/antidote.zsh
+elif [[ -f ${HOME}/.antidote/antidote.zsh ]]; then
+  source ${HOME}/.antidote/antidote.zsh
+fi
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
 # ── Syntax highlighting config ──────────────────────────────────────────────
@@ -67,42 +72,52 @@ zvm_after_init_commands+=(
 # ── Tool initialization ────────────────────────────────────────────────────
 
 # fzf keybindings and completion
-source <(fzf --zsh)
-export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat --style numbers,changes --color=always {} || tree -C {}) 2> /dev/null | head -200'"
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+  export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat --style numbers,changes --color=always {} || tree -C {}) 2> /dev/null | head -200'"
+fi
 
-eval "$(zoxide init zsh)"
-eval "$(atuin init zsh --disable-up-arrow)"
-eval "$(direnv hook zsh)"
-
+(( $+commands[zoxide] ))  && eval "$(zoxide init zsh)"
+(( $+commands[atuin] ))   && eval "$(atuin init zsh --disable-up-arrow)"
+(( $+commands[direnv] ))  && eval "$(direnv hook zsh)"
 
 # ── Aliases ─────────────────────────────────────────────────────────────────
 
 # Pull everything I need from my reps
 alias gp="cd ~/dotfiles; git p; pc rep/bit; cd ~/org; git p; cd ~/latex-docs; git p; cd ~"
 
-# Emacs
-alias em="open /Applications/Emacs.app"
+# Emacs (macOS only)
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias em="open /Applications/Emacs.app"
+fi
 
 # Jump to folder (zoxide)
 alias j="z"
 
 # Modern ls replacement (eza)
-export EZA_COLORS="xx=36"  # Fix punctuation invisible on solarized dark
-alias ls="eza --icons"
-alias ll="eza -la --icons --git"
-alias la="ll -A"
-alias tree="eza --tree --icons"
+if (( $+commands[eza] )); then
+  export EZA_COLORS="xx=36"  # Fix punctuation invisible on solarized dark
+  alias ls="eza --icons"
+  alias ll="eza -la --icons --git"
+  alias la="ll -A"
+  alias tree="eza --tree --icons"
+fi
 
-# Kitty shortcuts
-alias icat="kitty +kitten icat"
-alias ssh="kitty +kitten ssh"
+# Kitty shortcuts (only when running in Kitty terminal)
+if (( $+commands[kitty] )); then
+  alias icat="kitty +kitten icat"
+  alias ssh="kitty +kitten ssh"
+fi
 
 # Use ripgrep instead of grep
-alias grep=rg
+(( $+commands[rg] )) && alias grep=rg
 
-# On M1 provide fallback alternative ibrew
-alias brew=${BREW_PREFIX}/bin/brew
-alias ibrew="arch -x86_64 /usr/local/bin/brew"
+# Homebrew aliases (macOS only)
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias brew=${BREW_PREFIX}/bin/brew
+  # On M1 provide fallback alternative ibrew for Intel-only packages
+  [[ $(uname -m) == "arm64" ]] && alias ibrew="arch -x86_64 /usr/local/bin/brew"
+fi
 
 # ── Python / direnv ────────────────────────────────────────────────────────
 
@@ -114,19 +129,21 @@ alias ibrew="arch -x86_64 /usr/local/bin/brew"
 
 # ── Prompt ──────────────────────────────────────────────────────────────────
 
+# Powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # ── Runtime environments ───────────────────────────────────────────────────
-. "$HOME/.cargo/env"
 
-[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
+
+[[ -f "$HOME/.ghcup/env" ]] && source "$HOME/.ghcup/env" # ghcup-env
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/paul/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/paul/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/paul/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/paul/google-cloud-sdk/completion.zsh.inc'; fi
+# Google Cloud SDK (macOS paths)
+if [[ "$OSTYPE" == darwin* ]]; then
+  if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+  if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+fi
