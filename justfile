@@ -19,7 +19,13 @@ update:
     brew bundle --file=brew/Brewfile --cleanup
     nvim --headless "+Lazy! sync" +qa
 
-# Apply macOS system defaults
+# Apply macOS system defaults (desktop)
 [macos]
 macos:
-    ./osx/defaults.sh
+    ./osx/osxDefaults-install
+
+# Apply macOS system defaults (MacBook)
+[macos]
+macos-laptop:
+    ./osx/osxMacbookDefaults-install
+

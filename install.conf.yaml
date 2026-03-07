@@ -26,6 +26,7 @@
     ~/.zprofile: zsh/.zprofile
     ~/.zshenv: zsh/.zshenv
     ~/.zshrc: zsh/.zshrc
+    ~/.config/starship.toml: starship/.config/starship.toml
     ~/.config/opencode/opencode.json: opencode/.config/opencode/opencode.json
     ~/.config/opencode/tui.json: opencode/.config/opencode/tui.json
     ~/.config/opencode/commands/: opencode/.config/opencode/commands/
@@ -34,7 +35,10 @@
         'command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
         "Installing homebrew (if not present)...",
       ]
-    - ["brew bundle --file=brew/Brewfile", "Installing packages from Brewfile..."]
+    - [
+        "brew bundle --file=brew/Brewfile",
+        "Installing packages from Brewfile...",
+      ]
     - [
         "command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh",
         "Installing uv (if not present)...",

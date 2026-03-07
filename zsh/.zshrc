@@ -1,8 +1,3 @@
-# Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # ── Zsh options (replaces zprezto: environment, directory, history) ──────────
 
 # Directory navigation
@@ -129,8 +124,8 @@ fi
 
 # ── Prompt ──────────────────────────────────────────────────────────────────
 
-# Powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Starship
+eval "$(starship init zsh)"
 
 # ── Runtime environments ───────────────────────────────────────────────────
 

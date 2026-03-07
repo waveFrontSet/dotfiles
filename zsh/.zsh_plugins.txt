@@ -18,6 +18,3 @@ zsh-users/zsh-autosuggestions
 
 # Syntax highlighting (load near end)
 zdharma-continuum/fast-syntax-highlighting kind:defer
-
-# Powerlevel10k prompt
-romkatv/powerlevel10k
