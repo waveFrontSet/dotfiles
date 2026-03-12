@@ -40,5 +40,12 @@
   },
   "instructions": [
     "AGENTS.md"
-  ]
+  ],
+  "mcp": {
+    "excalidraw": {
+      "type": "remote",
+      "url": "https://mcp.excalidraw.com",
+      "enabled": true
+    }
+  }
 }
