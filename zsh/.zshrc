@@ -78,14 +78,6 @@ fi
 
 # ── Aliases ─────────────────────────────────────────────────────────────────
 
-# Pull everything I need from my reps
-alias gp="cd ~/dotfiles; git p; pc rep/bit; cd ~/org; git p; cd ~/latex-docs; git p; cd ~"
-
-# Emacs (macOS only)
-if [[ "$OSTYPE" == darwin* ]]; then
-  alias em="open /Applications/Emacs.app"
-fi
-
 # Jump to folder (zoxide)
 alias j="z"
 
@@ -113,6 +105,8 @@ if [[ "$OSTYPE" == darwin* ]]; then
   # On M1 provide fallback alternative ibrew for Intel-only packages
   [[ $(uname -m) == "arm64" ]] && alias ibrew="arch -x86_64 /usr/local/bin/brew"
 fi
+
+alias gcal="gcalcli"
 
 # ── Python / direnv ────────────────────────────────────────────────────────
 

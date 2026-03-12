@@ -80,6 +80,7 @@ brew "shellcheck"
 brew "shfmt"
 brew "sops"
 brew "talosctl"
+brew "gcalcli"
 
 # ── AI tools ────────────────────────────────────────────────────────────────
 brew "opencode"
@@ -92,6 +93,7 @@ cask "font-meslo-lg-nerd-font"
 # ── Applications ────────────────────────────────────────────────────────────
 cask "amethyst"
 cask "brave-browser"
+cask "bruno"
 cask "claude-code"
 cask "devpod"
 cask "docker-desktop"
