@@ -1,8 +1,6 @@
 " vim: foldmethod=marker fenc=utf-8 tw=80 sw=2 sts=2 :
 scriptencoding utf-8
 set nocompatible        " Use Vim defaults (much better!)
-" solarized {{{1
-let g:solarized_termtrans=1
 " Bundle configuration {{{1
 filetype off
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -29,7 +27,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-rails'
 Plug 'vim-scripts/UltiSnips'
-Plug 'lifepillar/vim-solarized8'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'hashivim/vim-terraform'
 call plug#end()
 " General configuration {{{1
@@ -70,7 +68,7 @@ augroup texAngleConceal
 augroup END
 set conceallevel=2
 set background=dark
-colo solarized8
+colo catppuccin_frappe
 augroup colorschemeConceal
   autocmd!
   au Colorscheme * hi! link Conceal Normal
