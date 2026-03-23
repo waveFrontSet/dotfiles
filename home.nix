@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-talos, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -22,6 +22,7 @@
     # # "Hello, world!" when run.
     pkgs.hello
     pkgs.cowsay
+    pkgs-talos.talosctl
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -50,6 +51,11 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+    ".config/nix/nix.conf".text = ''
+    experimental-features = nix-command flakes
+    '';
+    ".config/home-manager/flake.nix".source = ./flake.nix;
+    ".config/home-manager/home.nix".source = ./home.nix;
   };
 
   # Home Manager can also manage your environment variables through
@@ -74,4 +80,5 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.neovim.enable = true;
 }
