@@ -22,6 +22,7 @@
     # # "Hello, world!" when run.
     pkgs.hello
     pkgs.cowsay
+    pkgs.cargo
     pkgs-talos.talosctl
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
