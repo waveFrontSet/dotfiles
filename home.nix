@@ -15,15 +15,44 @@
   # release notes.
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
+  nixpkgs.config.allowUnfree = true;
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.hello
-    pkgs.cowsay
-    pkgs.cargo
     pkgs-talos.talosctl
+    #pkgs.pre-commit
+    pkgs.antidote
+    pkgs.atuin
+    pkgs.bash
+    pkgs.bat
+    pkgs.cargo
+    pkgs.delta
+    pkgs.direnv
+    pkgs.eza
+    pkgs.fd
+    pkgs.fzf
+    pkgs.gh
+    pkgs.git
+    pkgs.go
+    pkgs.hugo
+    pkgs.jq
+    pkgs.just
+    pkgs.k9s
+    pkgs.lazygit
+    pkgs.less
+    pkgs.nerd-fonts.meslo-lg
+    pkgs.nodejs
+    pkgs.ripgrep
+    pkgs.starship
+    pkgs.terraform
+    pkgs.terraform-docs
+    pkgs.tflint
+    pkgs.vim
+    pkgs.wget
+    pkgs.zoxide
+    pkgs.zsh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
