@@ -17,4 +17,4 @@ vim.symlink/.netrwhist
 emacs/.emacs.d
 !emacs/.emacs.d/snippets/
 !emacs/.emacs.d/cdlatex.el
-
+result

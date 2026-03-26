@@ -1,45 +1,17 @@
+# ── Dotbot config (bootstrap only) ────────────────────────────────────────
+# Dotfile symlinks have moved to home-manager (home/common.nix).
+# This script handles initial bootstrapping before nix is set up.
+
 - defaults:
-    link:
-      relink: true
-      create: true
     shell:
       stdin: true
       stdout: true
       stderr: true
 
-- link:
-    ~/.direnvrc: direnv/.direnvrc
-    ~/.doom.d: emacs/.doom.d
-    ~/.gitconfig: git/.gitconfig
-    ~/.gitignore_global: git/.gitignore_global
-    ~/.config/kitty/kitty.conf: kitty/.config/kitty/kitty.conf
-    ~/.config/kitty/diff.conf: kitty/.config/kitty/diff.conf
-    ~/.config/kitty/current-theme.conf: kitty/.config/kitty/current-theme.conf
-    ~/.config/fsh/: fsh/
-    ~/.config/nvim/: nvim/
-    ~/.vim: vim/.vim
-    ~/.gvimrc: vim/.gvimrc
-    ~/.latexmkrc: latexmk/.latexmkrc
-    ~/.vimpagerrc: vim/.vimpagerrc
-    ~/.vimrc: vim/.vimrc
-    ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
-    ~/.zlogin: zsh/.zlogin
-    ~/.zlogout: zsh/.zlogout
-    ~/.zprofile: zsh/.zprofile
-    ~/.zshenv: zsh/.zshenv
-    ~/.zshrc: zsh/.zshrc
-    ~/.config/starship.toml: starship/.config/starship.toml
-    ~/.config/opencode/opencode.json: opencode/.config/opencode/opencode.json
-    ~/.config/opencode/tui.json: opencode/.config/opencode/tui.json
-    ~/.config/opencode/commands/: opencode/.config/opencode/commands/
 - shell:
     - [
-        'command -v brew >/dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"',
-        "Installing homebrew (if not present)...",
-      ]
-    - [
-        "brew bundle --file=brew/Brewfile",
-        "Installing packages from Brewfile...",
+        'command -v nix >/dev/null || curl --proto "=https" --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install',
+        "Installing Nix (if not present)...",
       ]
     - [
         "command -v uv >/dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh",
