@@ -34,17 +34,10 @@
       # Add taps for formulae that remain in brew
     ];
 
-    # Formulae that are macOS-only or not in nixpkgs
-    brews = [
-      "opencode"
-      "gemini-cli"
-    ];
-
     casks = [
       "amethyst"
       "brave-browser"
       "bruno"
-      "claude-code"
       "devpod"
       "docker-desktop"
       "drawio"

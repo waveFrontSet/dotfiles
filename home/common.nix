@@ -69,6 +69,11 @@
     # Fonts
     nerd-fonts.meslo-lg
     fira-code
+
+    # Coding assistants
+    opencode
+    gemini-cli
+    claude-code
   ];
 
   # ── Programs with modules ───────────────────────────────────────────────
