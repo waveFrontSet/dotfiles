@@ -50,6 +50,7 @@
     nodejs
     go
     cargo
+    uv
 
     # Utilities
     gh
