@@ -35,6 +35,7 @@
     k9s
     shellcheck
     shfmt
+    prek
 
     # Infrastructure / DevOps
     terraform
