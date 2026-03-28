@@ -39,26 +39,6 @@ for func in ~/.zfunc/*(.N); do
   autoload -Uz "${func:t}"
 done
 
-# ── Antidote (plugin manager) ──────────────────────────────────────────────
-
-# Antidote: Nix (home-manager), Homebrew, or git clone fallback
-_antidote_source=''
-# Resolve home-manager-path by following the per-user zsh symlink
-_hm_path="$(readlink /etc/profiles/per-user/${USER}/bin/zsh 2>/dev/null)"
-_hm_path="${_hm_path:h:h}"
-for _dir in \
-  ${_hm_path}/share/antidote \
-  ${BREW_PREFIX:-/opt/homebrew}/opt/antidote/share/antidote \
-  ${HOME}/.antidote; do
-  if [[ -f ${_dir}/antidote.zsh ]]; then
-    _antidote_source=${_dir}/antidote.zsh
-    break
-  fi
-done
-[[ -n $_antidote_source ]] && source "$_antidote_source"
-unset _antidote_source _dir _hm_path
-antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
-
 # ── Syntax highlighting config ──────────────────────────────────────────────
 
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern line cursor root)
