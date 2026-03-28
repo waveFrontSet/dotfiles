@@ -119,7 +119,8 @@
     };
     initContent = lib.mkMerge [
       (lib.mkOrder 1000 ''
-        bindkey '^ ' autosuggest-accept
+        # Must use zvm_after_init hook because zsh-vi-mode rebinds all keys on init
+        zvm_after_init_commands+=('bindkey "^ " autosuggest-accept')
       '')
     ];
     # dotDir = "/";
@@ -177,14 +178,6 @@
     ".config/nix/nix.conf".text = ''
       experimental-features = nix-command flakes
     '';
-
-    # Shell
-    ".zshrc".source = "${dotfiles}/zsh/.zshrc";
-    ".zshenv".source = "${dotfiles}/zsh/.zshenv";
-    ".zprofile".source = "${dotfiles}/zsh/.zprofile";
-    ".zlogin".source = "${dotfiles}/zsh/.zlogin";
-    ".zlogout".source = "${dotfiles}/zsh/.zlogout";
-    ".zsh_plugins.txt".source = "${dotfiles}/zsh/.zsh_plugins.txt";
 
     # Git
     ".gitconfig".source = "${dotfiles}/git/.gitconfig";
