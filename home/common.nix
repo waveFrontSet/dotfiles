@@ -23,7 +23,6 @@
     fd
     ripgrep
     delta
-    fzf
 
     # Development tools
     git
@@ -49,7 +48,6 @@
     # Languages
     nodejs
     go
-    cargo
     uv
 
     # Utilities
@@ -66,6 +64,12 @@
     markdownlint-cli2
     msmtp
     gcalcli
+    nix-search-tv
+    (pkgs.writeShellApplication {
+      name = "ns";
+      runtimeInputs = [ fzf nix-search-tv ];
+      text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+    })
 
     # Fonts
     nerd-fonts.meslo-lg
@@ -178,6 +182,10 @@
     enable = true;
     enableZshIntegration = true;
   };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────
   home.file = {
@@ -224,10 +232,16 @@
     ".config/opencode/commands".source = "${dotfiles}/opencode/.config/opencode/commands";
   };
 
+  home.sessionPath = [
+    "$HOME/.cargo/bin"  # rustup-managed Rust toolchain
+    "$HOME/.ghcup/bin"  # ghcup-managed Haskell toolchain
+  ];
+
   home.sessionVariables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
     LESS = "-F -g -i -M -R -S -w -X -z-4";
     DOCKER_DEFAULT_PLATFORM = "linux/amd64";
   };
+
 }
