@@ -23,6 +23,7 @@
     fd
     ripgrep
     delta
+    atuin
 
     # Development tools
     git
@@ -132,6 +133,7 @@
       (lib.mkOrder 1000 ''
         # Must use zvm_after_init hook because zsh-vi-mode rebinds all keys on init
         zvm_after_init_commands+=('bindkey "^ " autosuggest-accept')
+        zvm_after_init_commands+=('eval "$(atuin init zsh --disable-up-arrow)"')
       '')
     ];
     # dotDir = "/";
@@ -164,11 +166,6 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-  };
-  programs.atuin = {
-    enable = true;
-    enableZshIntegration = true;
-    flags = [ "--disable-up-arrow" ];
   };
   programs.eza = {
     enable = true;
@@ -233,8 +230,8 @@
   };
 
   home.sessionPath = [
-    "$HOME/.cargo/bin"  # rustup-managed Rust toolchain
-    "$HOME/.ghcup/bin"  # ghcup-managed Haskell toolchain
+    "$HOME/.cargo/bin" # rustup-managed Rust toolchain
+    "$HOME/.ghcup/bin" # ghcup-managed Haskell toolchain
   ];
 
   home.sessionVariables = {
