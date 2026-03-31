@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   # ── Nix settings ────────────────────────────────────────────────────────
@@ -36,6 +36,7 @@
 
     casks = [
       "amethyst"
+      "bitwarden"
       "brave-browser"
       "bruno"
       "devpod"
