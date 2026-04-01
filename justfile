@@ -4,15 +4,18 @@ default:
 
 # ── Nix / nix-darwin ──────────────────────────────────────────────────────
 
+hostname := `hostname -s`
+profile := if hostname == "Mini-von-Paul" { "mini" } else { "work-mbp" }
+
 # Bootstrap nix-darwin (nix + home-manager)
 [macos]
 bootstrap:
-    nix run nix-darwin -- switch --flake $HOME/dotfiles#work-mbp --accept-flake-config
+    nix run nix-darwin -- switch --flake $HOME/dotfiles#{{ profile }} --accept-flake-config
 
 # Build & switch macOS config (nix-darwin + home-manager)
 [macos]
 switch:
-    sudo darwin-rebuild switch --flake $HOME/dotfiles#work-mbp
+    sudo darwin-rebuild switch --flake $HOME/dotfiles#{{ profile }}
 
 # Build & switch NixOS config
 [linux]

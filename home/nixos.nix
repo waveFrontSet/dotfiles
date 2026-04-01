@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   # NixOS-specific home-manager settings
 
-  home.username = "paulgrillenberger";
-  home.homeDirectory = "/home/paulgrillenberger";
+  home.username = username;
+  home.homeDirectory = "/home/${username}";
 }

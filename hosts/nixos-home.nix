@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   # ── Host identity ───────────────────────────────────────────────────────
@@ -15,7 +15,7 @@
   i18n.defaultLocale = "de_DE.UTF-8";
 
   # ── Users ───────────────────────────────────────────────────────────────
-  users.users.paulgrillenberger = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh;

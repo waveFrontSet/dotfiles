@@ -1,10 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, username, ... }:
 
 {
   # macOS-specific home-manager settings
 
-  home.username = "paulgrillenberger";
-  home.homeDirectory = "/Users/paulgrillenberger";
+  home.username = username;
+  home.homeDirectory = "/Users/${username}";
 
   home.packages = with pkgs; [
     reattach-to-user-namespace

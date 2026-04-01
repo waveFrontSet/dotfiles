@@ -7,9 +7,9 @@
   nixpkgs.config.allowUnfree = true;
 
   # ── User ─────────────────────────────────────────────────────────────────
-  system.primaryUser = "paulgrillenberger";
-  users.users.paulgrillenberger = {
-    home = "/Users/paulgrillenberger";
+  system.primaryUser = username;
+  users.users.${username} = {
+    home = "/Users/${username}";
     shell = pkgs.zsh;
   };
 
@@ -17,7 +17,7 @@
   programs.zsh.enable = true;
   environment.shells = [
     pkgs.zsh
-    "/etc/profiles/per-user/paulgrillenberger/bin/zsh"
+    "/etc/profiles/per-user/${username}/bin/zsh"
   ];
 
   # ── Homebrew (casks & formulae without nix equivalents) ─────────────────
