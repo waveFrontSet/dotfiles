@@ -38,9 +38,7 @@
       ]
     }
   },
-  "instructions": [
-    "AGENTS.md"
-  ],
+  "instructions": [],
   "mcp": {
     "excalidraw": {
       "type": "remote",
