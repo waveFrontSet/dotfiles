@@ -54,6 +54,7 @@
     # Linters / formatters (used by AI coding tool hooks)
     nixfmt
     statix
+    nil
     go-tools # staticcheck
     hlint
 
@@ -205,11 +206,11 @@
     ".config/kitty/diff.conf".source = "${dotfiles}/kitty/.config/kitty/diff.conf";
     ".config/kitty/current-theme.conf".source = "${dotfiles}/kitty/.config/kitty/current-theme.conf";
 
-    # Neovim
-    ".config/nvim".source = "${dotfiles}/nvim";
+    # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
+    ".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 
-    # Vim
-    ".vim".source = "${dotfiles}/vim/.vim";
+    # Vim — out-of-store symlink so plugged/ / autoload/ stay writable
+    ".vim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/vim/.vim";
     ".vimrc".source = "${dotfiles}/vim/.vimrc";
     ".gvimrc".source = "${dotfiles}/vim/.gvimrc";
     ".vimpagerrc".source = "${dotfiles}/vim/.vimpagerrc";

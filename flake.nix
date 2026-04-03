@@ -17,7 +17,14 @@
     nixpkgs-talos.url = "github:NixOS/nixpkgs/6a43094a5d05d6f0e2232d340baa9bae555ef232";
   };
 
-  outputs = { nixpkgs, nixpkgs-talos, home-manager, nix-darwin, ... }:
+  outputs =
+    {
+      nixpkgs,
+      nixpkgs-talos,
+      home-manager,
+      nix-darwin,
+      ...
+    }:
     let
       # ── Helper to build pkgs-talos for any system ──────────────────────
       mkPkgsTalos = system: import nixpkgs-talos { inherit system; };
@@ -39,11 +46,16 @@
           ./modules/darwin.nix
           home-manager.darwinModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paulgrillenberger";
-            home-manager.users.paulgrillenberger = {
-              imports = [ ./home/common.nix ./home/darwin.nix ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paulgrillenberger";
+              users.paulgrillenberger = {
+                imports = [
+                  ./home/common.nix
+                  ./home/darwin.nix
+                ];
+              };
             };
           }
         ];
@@ -58,11 +70,16 @@
           ./modules/darwin.nix
           home-manager.darwinModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paul";
-            home-manager.users.paul = {
-              imports = [ ./home/common.nix ./home/darwin.nix ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paul";
+              users.paul = {
+                imports = [
+                  ./home/common.nix
+                  ./home/darwin.nix
+                ];
+              };
             };
           }
         ];
@@ -77,11 +94,16 @@
           ./modules/nixos.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = mkExtraArgs "x86_64-linux" "paulgrillenberger";
-            home-manager.users.paulgrillenberger = {
-              imports = [ ./home/common.nix ./home/nixos.nix ];
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = mkExtraArgs "x86_64-linux" "paulgrillenberger";
+              users.paulgrillenberger = {
+                imports = [
+                  ./home/common.nix
+                  ./home/nixos.nix
+                ];
+              };
             };
           }
         ];
