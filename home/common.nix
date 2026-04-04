@@ -3,7 +3,6 @@
   pkgs,
   lib,
   pkgs-talos,
-  pkgs-claude-code,
   dotfiles,
   ...
 }:
@@ -98,7 +97,6 @@
       # Coding assistants
       opencode
       gemini-cli
-      pkgs-claude-code.claude-code
     ];
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────

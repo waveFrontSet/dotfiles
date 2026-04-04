@@ -5,7 +5,7 @@ default:
 # ── Nix / nix-darwin ──────────────────────────────────────────────────────
 
 hostname := `hostname -s`
-profile := if hostname == "Mini-von-Paul" { "mini" } else { "work-mbp" }
+profile := if hostname == "Mini-von-Paul" { "mini" } else { "no-mans-land" }
 
 # Bootstrap nix-darwin (nix + home-manager)
 [macos]

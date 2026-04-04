@@ -1,8 +1,19 @@
-{ config, pkgs, lib, username, ... }:
+{
+  pkgs,
+  username,
+  pkgs-claude-code,
+  ...
+}:
 
 {
-  # NixOS-specific home-manager settings
+  home = {
+    # NixOS-specific home-manager settings
 
-  home.username = username;
-  home.homeDirectory = "/home/${username}";
+    inherit username;
+    homeDirectory = "/home/${username}";
+
+    packages = with pkgs; [
+      pkgs-claude-code.claude-code
+    ];
+  };
 }

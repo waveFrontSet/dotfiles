@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   # ── NixOS-wide shared configuration ─────────────────────────────────────

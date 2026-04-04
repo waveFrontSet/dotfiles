@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   username,
   ...
 }:
@@ -18,9 +16,5 @@
       pinentry_mac
     ];
   };
-  programs.zsh.profileExtra = ''
-    # Homebrew shell environment (macOS only)
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  '';
 
 }

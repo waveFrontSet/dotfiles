@@ -1,4 +1,4 @@
-{ config, pkgs, lib, username, ... }:
+{ pkgs, username, ... }:
 
 {
   # ── Host identity ───────────────────────────────────────────────────────
@@ -8,7 +8,10 @@
   # imports = [ ./hardware-configuration.nix ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  fileSystems."/" = { device = "/dev/disk/by-label/nixos"; fsType = "ext4"; };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
 
   # ── Locale ──────────────────────────────────────────────────────────────
   time.timeZone = "Europe/Berlin";
@@ -17,7 +20,11 @@
   # ── Users ───────────────────────────────────────────────────────────────
   users.users.${username} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -30,7 +37,10 @@
   programs.zsh.enable = true;
 
   # ── Nix settings ────────────────────────────────────────────────────────
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "25.05";

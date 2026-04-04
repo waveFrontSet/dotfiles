@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   username,
   ...
 }:
@@ -115,11 +113,16 @@
       # Add taps for formulae that remain in brew
     ];
 
+    brews = [
+      # Add brews for formulae that remain in brew
+    ];
+
     casks = [
       "amethyst"
       "bitwarden"
       "brave-browser"
       "bruno"
+      "claude-code"
       "devpod"
       "docker-desktop"
       "drawio"
@@ -129,6 +132,7 @@
       "spotify"
       "vlc"
     ];
+    enableZshIntegration = true;
   };
 
   # Auto-hide menu bar (Sequoia+)
