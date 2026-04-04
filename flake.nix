@@ -44,54 +44,39 @@
         dotfiles = ./.;
         inherit username;
       };
+      mkDarwinConfig =
+        username: hostpath:
+        let
+          system = "aarch64-darwin";
+        in
+        nix-darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = mkExtraArgs system username;
+          modules = [
+            hostpath
+            ./modules/darwin.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = mkExtraArgs system username;
+                users.paulgrillenberger = {
+                  imports = [
+                    ./home/common.nix
+                    ./home/darwin.nix
+                  ];
+                };
+              };
+            }
+          ];
+        };
     in
     {
-      # ── macOS (nix-darwin) — Work MacBook Pro ───────────────────────────
-      darwinConfigurations."work-mbp" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = mkExtraArgs "aarch64-darwin" "paulgrillenberger";
-        modules = [
-          ./hosts/darwin-work.nix
-          ./modules/darwin.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paulgrillenberger";
-              users.paulgrillenberger = {
-                imports = [
-                  ./home/common.nix
-                  ./home/darwin.nix
-                ];
-              };
-            };
-          }
-        ];
-      };
-
-      # ── macOS (nix-darwin) — Mac Mini ──────────────────────────────────
-      darwinConfigurations."mini" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        specialArgs = mkExtraArgs "aarch64-darwin" "paul";
-        modules = [
-          ./hosts/darwin-mini.nix
-          ./modules/darwin.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paul";
-              users.paul = {
-                imports = [
-                  ./home/common.nix
-                  ./home/darwin.nix
-                ];
-              };
-            };
-          }
-        ];
+      darwinConfigurations = {
+        "work-mbp" = mkDarwinConfig "paul" ./hosts/darwin-work.nix;
+        "mini" = mkDarwinConfig "paul" ./hosts/darwin-mini.nix;
+        "no-mans-land" = mkDarwinConfig "paulgrillenberger" ./hosts/darwin-home-laptop.nix;
       };
 
       # ── NixOS ──────────────────────────────────────────────────────────
