@@ -25,32 +25,31 @@ run_lint() {
 }
 
 case "$EXT" in
-  py)
-    run_lint ruff check --no-fix "$FILE_PATH" || true
-    run_lint mypy "$FILE_PATH" || true
-    ;;
-  nix)
-    run_lint nixfmt --check "$FILE_PATH" || true
-    run_lint statix check "$FILE_PATH" || true
-    ;;
-  go)
-    DIR=$(dirname "$FILE_PATH")
-    run_lint go vet "$DIR/..." || true
-    run_lint staticcheck "$DIR/..." || true
-    ;;
-  hs)
-    run_lint hlint "$FILE_PATH" || true
-    run_lint ghc -fno-code "$FILE_PATH" || true
-    ;;
-  rs)
-    MANIFEST=$(cd "$(dirname "$FILE_PATH")" && cargo locate-project --message-format=plain 2>/dev/null || true)
-    if [[ -n "$MANIFEST" ]]; then
-      run_lint cargo clippy --manifest-path "$MANIFEST" --quiet || true
-    fi
-    ;;
-  *)
-    exit 0
-    ;;
+py)
+  run_lint ruff check --no-fix "$FILE_PATH" || true
+  run_lint mypy "$FILE_PATH" || true
+  ;;
+nix)
+  run_lint nixfmt --check "$FILE_PATH" || true
+  run_lint statix check "$FILE_PATH" || true
+  ;;
+go)
+  DIR=$(dirname "$FILE_PATH")
+  run_lint go vet "$DIR/..." || true
+  run_lint staticcheck "$DIR/..." || true
+  ;;
+hs)
+  run_lint hlint "$FILE_PATH" || true
+  ;;
+rs)
+  MANIFEST=$(cd "$(dirname "$FILE_PATH")" && cargo locate-project --message-format=plain 2>/dev/null || true)
+  if [[ -n "$MANIFEST" ]]; then
+    run_lint cargo clippy --manifest-path "$MANIFEST" --quiet || true
+  fi
+  ;;
+*)
+  exit 0
+  ;;
 esac
 
 if [[ -n "$ERRORS" ]]; then

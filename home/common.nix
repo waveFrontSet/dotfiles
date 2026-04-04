@@ -3,6 +3,7 @@
   pkgs,
   lib,
   pkgs-talos,
+  pkgs-claude-code,
   dotfiles,
   ...
 }:
@@ -97,7 +98,7 @@
       # Coding assistants
       opencode
       gemini-cli
-      claude-code
+      pkgs-claude-code.claude-code
     ];
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────
@@ -162,6 +163,7 @@
     sessionPath = [
       "$HOME/.cargo/bin" # rustup-managed Rust toolchain
       "$HOME/.ghcup/bin" # ghcup-managed Haskell toolchain
+      "$HOME/.cabal/bin" # cabal-installed packages
     ];
 
     sessionVariables = {
