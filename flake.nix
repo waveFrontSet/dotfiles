@@ -58,10 +58,11 @@
             home-manager.darwinModules.home-manager
             {
               home-manager = {
+                backupFileExtension = "backup";
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = mkExtraArgs system username;
-                users.paulgrillenberger = {
+                users."${username}" = {
                   imports = [
                     ./home/common.nix
                     ./home/darwin.nix

@@ -10,7 +10,7 @@ profile := if hostname == "Mini-von-Paul" { "mini" } else { "no-mans-land" }
 # Bootstrap nix-darwin (nix + home-manager)
 [macos]
 bootstrap:
-    nix run nix-darwin -- switch --flake $HOME/dotfiles#{{ profile }} --accept-flake-config
+    sudo nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin#darwin-rebuild -- switch --flake $HOME/dotfiles#{{ profile }}
 
 # Build & switch macOS config (nix-darwin + home-manager)
 [macos]

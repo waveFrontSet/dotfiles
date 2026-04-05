@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "Installing Nix (if not present)..."
-command -v nix >/dev/null || curl --proto "=https" --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+command -v nix >/dev/null || sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
 echo "Installing rustup (if not present)..."
 command -v rustup >/dev/null || curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 echo "Installing ghcup (if not present)..."
