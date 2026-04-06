@@ -15,7 +15,7 @@ bootstrap:
 # Build & switch macOS config (nix-darwin + home-manager)
 [macos]
 switch:
-    sudo darwin-rebuild switch --flake $HOME/dotfiles#{{ profile }}
+    sudo darwin-rebuild switch --flake $HOME/dotfiles
 
 # Build & switch NixOS config
 [linux]
