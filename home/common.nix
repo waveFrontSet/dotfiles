@@ -8,6 +8,9 @@
 }:
 
 {
+  imports = [
+    ./kitty.nix
+  ];
   home = {
     stateVersion = "25.11";
 
@@ -110,10 +113,6 @@
       ".gitconfig".source = "${dotfiles}/git/.gitconfig";
       ".gitignore_global".source = "${dotfiles}/git/.gitignore_global";
 
-      # Kitty — extraConfig is used via programs.kitty; additional files go here
-      ".config/kitty/diff.conf".source = "${dotfiles}/kitty/.config/kitty/diff.conf";
-      ".config/kitty/current-theme.conf".source = "${dotfiles}/kitty/.config/kitty/current-theme.conf";
-
       # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
       ".config/nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
@@ -177,10 +176,6 @@
     home-manager.enable = true;
     neovim.enable = true;
 
-    kitty = {
-      enable = true;
-      extraConfig = builtins.readFile (dotfiles + "/kitty/.config/kitty/kitty.conf");
-    };
     zsh = {
       enable = true;
       autosuggestion.enable = true;
