@@ -103,16 +103,5 @@
           }
         ];
       };
-
-      # ── Standalone home-manager (fallback) ─────────────────────────────
-      homeConfigurations."paulgrillenberger" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        extraSpecialArgs = mkExtraArgs "aarch64-darwin" "paulgrillenberger";
-        modules = [
-          { nixpkgs.config.allowUnfree = true; }
-          ./home/common.nix
-          ./home/darwin.nix
-        ];
-      };
     };
 }
