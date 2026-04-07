@@ -9,6 +9,7 @@
 
 {
   imports = [
+    ./direnv.nix
     ./kitty.nix
   ];
   home = {
@@ -41,7 +42,6 @@
       vim
       jq
       just
-      direnv
       lazygit
       k9s
       shellcheck
@@ -126,9 +126,6 @@
 
       # Starship
       ".config/starship.toml".source = "${dotfiles}/starship/.config/starship.toml";
-
-      # Direnv
-      ".direnvrc".source = "${dotfiles}/direnv/.direnvrc";
 
       # Doom Emacs
       ".doom.d".source = "${dotfiles}/emacs/.doom.d";
@@ -258,10 +255,6 @@
       enableZshIntegration = true;
     };
     zoxide = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-    direnv = {
       enable = true;
       enableZshIntegration = true;
     };
