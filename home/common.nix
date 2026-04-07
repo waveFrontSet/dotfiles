@@ -127,9 +127,6 @@
       # Starship
       ".config/starship.toml".source = "${dotfiles}/starship/.config/starship.toml";
 
-      # Doom Emacs
-      ".doom.d".source = "${dotfiles}/emacs/.doom.d";
-
       # LaTeX
       ".latexmkrc".source = "${dotfiles}/latexmk/.latexmkrc";
 
