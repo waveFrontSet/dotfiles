@@ -10,6 +10,7 @@
 {
   imports = [
     ./direnv.nix
+    ./git.nix
     ./kitty.nix
   ];
   home = {
@@ -38,7 +39,6 @@
       atuin
 
       # Development tools
-      git
       vim
       jq
       just
@@ -108,10 +108,6 @@
       ".config/nix/nix.conf".text = ''
         experimental-features = nix-command flakes
       '';
-
-      # Git
-      ".gitconfig".source = "${dotfiles}/git/.gitconfig";
-      ".gitignore_global".source = "${dotfiles}/git/.gitignore_global";
 
       # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
       ".config/nvim".source =
