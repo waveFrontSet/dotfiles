@@ -21,6 +21,11 @@
       macos_thicken_font = 0.0;
       scrollback_lines = 5000;
       scrollback_pager = "less --chop-long-lines --RAW-CONTROL-CHARS +INPUT_LINE_NUMBER";
+      enabled_layouts = "Fat,Stack";
+    };
+    keybindings = {
+      "cmd+g" = "goto_session ~/.config/kitty-sessions/";
+      "f1" = "save_as_session --use-foreground-process --relocatable";
     };
   };
 }
