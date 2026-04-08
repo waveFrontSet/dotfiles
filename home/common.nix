@@ -164,7 +164,11 @@
 
     # ── Programs with modules ───────────────────────────────────────────────
     home-manager.enable = true;
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      withPython3 = false;
+      withRuby = false;
+    };
 
     zsh = {
       enable = true;
