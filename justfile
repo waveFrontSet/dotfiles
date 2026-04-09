@@ -22,10 +22,6 @@ switch:
 switch:
     sudo nixos-rebuild switch --flake $HOME/dotfiles#home-laptop
 
-# Build & switch standalone home-manager (fallback, no nix-darwin)
-hm-switch:
-    home-manager switch --flake $HOME/dotfiles#paulgrillenberger
-
 # Update flake inputs (nixpkgs, home-manager, nix-darwin)
 update:
     nix flake update --flake $HOME/dotfiles
