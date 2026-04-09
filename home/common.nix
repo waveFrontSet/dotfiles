@@ -8,6 +8,7 @@
 
 {
   imports = [
+    ./agents
     ./direnv.nix
     ./git.nix
     ./kitty.nix
@@ -119,23 +120,6 @@
       ".vimrc".source = "${dotfiles}/vim/.vimrc";
       ".gvimrc".source = "${dotfiles}/vim/.gvimrc";
       ".vimpagerrc".source = "${dotfiles}/vim/.vimpagerrc";
-
-      # OpenCode
-      ".config/opencode/opencode.json".source = "${dotfiles}/opencode/.config/opencode/opencode.json";
-      ".config/opencode/tui.json".source = "${dotfiles}/opencode/.config/opencode/tui.json";
-      ".config/opencode/commands".source = "${dotfiles}/opencode/.config/opencode/commands";
-      ".config/opencode/plugins".source = "${dotfiles}/agents/opencode/plugins";
-      ".config/opencode/AGENTS.md".source = "${dotfiles}/agents/AGENTS.md";
-
-      # Claude Code
-      ".claude/settings.json".source = "${dotfiles}/agents/claude/settings.json";
-      ".claude/hooks".source = "${dotfiles}/agents/claude/hooks";
-      ".claude/CLAUDE.md".source = "${dotfiles}/agents/AGENTS.md";
-
-      # Shared skills (Claude Code + OpenCode both read ~/.claude/skills/)
-      ".claude/skills/review/SKILL.md".source = "${dotfiles}/agents/skills/review/SKILL.md";
-      ".claude/skills/test/SKILL.md".source = "${dotfiles}/agents/skills/test/SKILL.md";
-      ".claude/skills/explain/SKILL.md".source = "${dotfiles}/agents/skills/explain/SKILL.md";
     };
 
     sessionPath = [
@@ -159,5 +143,4 @@
       withRuby = false;
     };
   };
-
 }
