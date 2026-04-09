@@ -2,30 +2,33 @@
 default:
     @just --list
 
-# Run full install (link dotfiles, install packages, setup toolchains)
-install:
-  ./install
+# ── Nix / nix-darwin ──────────────────────────────────────────────────────
 
-# Link dotfiles via dotbot
-link:
-    ./install --only link
+hostname := `hostname -s`
+profile := if hostname == "Mini-von-Paul" { "mini" } else { "no-mans-land" }
 
-# Install packages from Brewfile (idempotent)
-brew:
-    brew bundle --file=brew/Brewfile --cleanup
+# Bootstrap nix-darwin (nix + home-manager)
+[macos]
+bootstrap:
+    sudo nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin#darwin-rebuild -- switch --flake $HOME/dotfiles#{{ profile }}
 
-# Update brew packages and neovim plugins
+# Build & switch macOS config (nix-darwin + home-manager)
+[macos]
+switch:
+    sudo darwin-rebuild switch --flake $HOME/dotfiles
+
+# Build & switch NixOS config
+[linux]
+switch:
+    sudo nixos-rebuild switch --flake $HOME/dotfiles#home-laptop
+
+# Update flake inputs (nixpkgs, home-manager, nix-darwin)
 update:
-    brew bundle --file=brew/Brewfile --cleanup
+    nix flake update --flake $HOME/dotfiles
+    just switch
+
+# ── Utilities ─────────────────────────────────────────────────────────────
+
+# Update neovim plugins
+nvim-update:
     nvim --headless "+Lazy! sync" +qa
-
-# Apply macOS system defaults (desktop)
-[macos]
-macos:
-    ./osx/osxDefaults-install
-
-# Apply macOS system defaults (MacBook)
-[macos]
-macos-laptop:
-    ./osx/osxMacbookDefaults-install
-

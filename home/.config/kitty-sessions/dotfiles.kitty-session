@@ -1,0 +1,9 @@
+new_tab Dotfiles
+layout stack
+cd ~/dotfiles
+
+launch zsh -l -c 'nvim .'
+focus
+launch ns
+
+focus_tab 0
