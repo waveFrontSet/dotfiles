@@ -1,6 +1,10 @@
 # Home-manager configuration for kitty
 { ... }:
 {
+  home.file = {
+    ".config/kitty-sessions/dotfiles.kitty-session".source =
+      .config/kitty-sessions/dotfiles.kitty-session;
+  };
   programs.kitty = {
     enable = true;
     enableGitIntegration = true;
