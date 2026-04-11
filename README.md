@@ -1,5 +1,7 @@
 # Dotfiles
 
+[![AI-DECLARATION: pair](https://img.shields.io/badge/䷼%20AI--DECLARATION-pair-ffedd5?labelColor=ffedd5)](https://ai-declaration.md)
+
 Personal configuration files managed with [Nix](https://nixos.org/),
 [home-manager](https://github.com/nix-community/home-manager), and
 [nix-darwin](https://github.com/LnL7/nix-darwin).
