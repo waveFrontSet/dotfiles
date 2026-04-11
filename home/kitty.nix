@@ -29,6 +29,9 @@
     };
     keybindings = {
       "cmd+g" = "goto_session ~/.config/kitty-sessions/";
+      "cmd+l" = "next_layout";
+      "cmd+]" = "next_window";
+      "cmd+[" = "previous_window";
       "f1" = "save_as_session --use-foreground-process --relocatable";
     };
   };
