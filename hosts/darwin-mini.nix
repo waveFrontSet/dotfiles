@@ -3,7 +3,7 @@
 }:
 
 {
-  networking.hostName = "Mini-von-Paul";
+  networking.hostName = "no-mans-mini";
   homebrew.brews = [
     "handbrake"
   ];
