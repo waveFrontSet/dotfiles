@@ -4,13 +4,10 @@ default:
 
 # ── Nix / nix-darwin ──────────────────────────────────────────────────────
 
-hostname := `hostname -s`
-profile := if hostname == "Mini-von-Paul" { "mini" } else { "no-mans-land" }
-
 # Bootstrap nix-darwin (nix + home-manager)
 [macos]
 bootstrap:
-    sudo nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin#darwin-rebuild -- switch --flake $HOME/dotfiles#{{ profile }}
+    sudo nix run --experimental-features 'nix-command flakes' github:LnL7/nix-darwin#darwin-rebuild -- switch --flake $HOME/dotfiles
 
 # Build & switch macOS config (nix-darwin + home-manager)
 [macos]

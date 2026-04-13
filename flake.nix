@@ -75,7 +75,7 @@
     in
     {
       darwinConfigurations = {
-        "work-mbp" = mkDarwinConfig "paul" ./hosts/darwin-work.nix;
+        "no-mans-work" = mkDarwinConfig "paul" ./hosts/darwin-work.nix;
         "no-mans-mini" = mkDarwinConfig "paul" ./hosts/darwin-mini.nix;
         "no-mans-land" = mkDarwinConfig "paulgrillenberger" ./hosts/darwin-home-laptop.nix;
       };
