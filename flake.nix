@@ -13,34 +13,21 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    nixpkgs-talos.url = "github:NixOS/nixpkgs/6a43094a5d05d6f0e2232d340baa9bae555ef232";
-    nixpkgs-claude-code.url = "github:NixOS/nixpkgs/9fbc064e90a066853b73d4838564ac7ad49b6956";
   };
 
   outputs =
     {
       nixpkgs,
-      nixpkgs-talos,
-      nixpkgs-claude-code,
       home-manager,
       nix-darwin,
       ...
     }:
     let
-      # ── Helpers to build pinned package sets for any system ─────────────
-      mkPkgsTalos = system: import nixpkgs-talos { inherit system; };
-      mkPkgsClaudeCode =
-        system:
-        import nixpkgs-claude-code {
-          inherit system;
-          config.allowUnfree = true;
-        };
+      # ── Overlay to pin specific package versions ────────────────────────
+      overlay = import ./overlays;
 
       # ── Shared extra args passed to every module ────────────────────────
       mkExtraArgs = system: username: {
-        pkgs-talos = mkPkgsTalos system;
-        pkgs-claude-code = mkPkgsClaudeCode system;
         dotfiles = ./.;
         inherit username;
       };
@@ -53,6 +40,7 @@
           inherit system;
           specialArgs = mkExtraArgs system username;
           modules = [
+            { nixpkgs.overlays = [ overlay ]; }
             hostpath
             ./modules/darwin.nix
             home-manager.darwinModules.home-manager
@@ -85,6 +73,7 @@
         system = "x86_64-linux";
         specialArgs = mkExtraArgs "x86_64-linux" "paulgrillenberger";
         modules = [
+          { nixpkgs.overlays = [ overlay ]; }
           ./hosts/nixos-home.nix
           ./modules/nixos.nix
           home-manager.nixosModules.home-manager

@@ -1,7 +1,6 @@
 {
   pkgs,
   username,
-  pkgs-claude-code,
   ...
 }:
 
@@ -13,7 +12,7 @@
     homeDirectory = "/home/${username}";
 
     packages = with pkgs; [
-      pkgs-claude-code.claude-code
+      claude-code
     ];
   };
 }

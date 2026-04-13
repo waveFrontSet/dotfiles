@@ -56,45 +56,11 @@
         "type": "github"
       }
     },
-    "nixpkgs-claude-code": {
-      "locked": {
-        "lastModified": 1775234611,
-        "narHash": "sha256-UVwUw1I1dbPJNuj2wkMFluaKQY/7fPTT9NekuF28SXc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9fbc064e90a066853b73d4838564ac7ad49b6956",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "9fbc064e90a066853b73d4838564ac7ad49b6956",
-        "type": "github"
-      }
-    },
-    "nixpkgs-talos": {
-      "locked": {
-        "lastModified": 1765911020,
-        "narHash": "sha256-jenhEFLduNa5Gvqyf76Fh5kdnRPkJ3GuJvSFpFVX7Qk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6a43094a5d05d6f0e2232d340baa9bae555ef232",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "6a43094a5d05d6f0e2232d340baa9bae555ef232",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-claude-code": "nixpkgs-claude-code",
-        "nixpkgs-talos": "nixpkgs-talos"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

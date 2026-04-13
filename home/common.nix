@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-talos,
   dotfiles,
   ...
 }:
@@ -22,8 +21,7 @@
 
     # ── Packages (cross-platform) ───────────────────────────────────────────
     packages = with pkgs; [
-      # Pinned
-      pkgs-talos.talosctl
+      talosctl
 
       # Core utilities
       coreutils
