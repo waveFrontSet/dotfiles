@@ -10,8 +10,8 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 
 | Host | OS | Flake output |
 | ---- | -- | ------------ |
-| `work-mbp` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
-| `mini` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
+| `no-mans-work` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
+| `no-mans-mini` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
 | `no-mans-land` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
 | `home-laptop` | NixOS (x86_64-linux) | `nixosConfigurations` |
 
