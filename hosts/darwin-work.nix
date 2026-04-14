@@ -1,9 +1,16 @@
-{ ... }:
-
+{ pkgs, ... }:
 {
-  # ── Host identity ───────────────────────────────────────────────────────
   networking.hostName = "no-mans-work";
-
-  # ── Host-specific overrides go here ─────────────────────────────────────
-  # e.g. extra homebrew casks only needed on the work machine
+  environment = {
+    systemPackages = with pkgs; [
+      (google-cloud-sdk.withExtraComponents (
+        with pkgs.google-cloud-sdk.components;
+        [
+          alpha
+          beta
+          cloud-run-proxy
+        ]
+      ))
+    ];
+  };
 }
