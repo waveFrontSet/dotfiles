@@ -9,6 +9,7 @@
   imports = [
     ./agents
     ./direnv.nix
+    ./gh.nix
     ./git.nix
     ./kitty.nix
     ./zsh.nix
@@ -69,7 +70,6 @@
       hlint
 
       # Utilities
-      gh
       hugo
       pandoc
       aspell
