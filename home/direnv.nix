@@ -3,6 +3,9 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    config = {
+      load_dotenv = true;
+    };
     stdlib = ''
       layout_uv() {
           if [[ -d ".venv" ]]; then
