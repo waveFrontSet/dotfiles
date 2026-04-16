@@ -13,6 +13,12 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Third-party skills
+    allium = {
+      url = "github:juxt/allium";
+      flake = false;
+    };
   };
 
   outputs =
@@ -20,6 +26,7 @@
       nixpkgs,
       home-manager,
       nix-darwin,
+      allium,
       ...
     }:
     let
@@ -30,6 +37,7 @@
       mkExtraArgs = system: username: {
         dotfiles = ./.;
         inherit username;
+        skills = { inherit allium; };
       };
       mkDarwinConfig =
         username: hostpath:
