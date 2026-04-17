@@ -5,6 +5,9 @@
     enableZshIntegration = true;
     config = {
       load_dotenv = true;
+      whitelist.prefix = [
+        "~/Work/"
+      ];
     };
     stdlib = ''
       layout_uv() {
