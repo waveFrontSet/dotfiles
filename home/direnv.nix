@@ -7,6 +7,7 @@
       load_dotenv = true;
       whitelist.prefix = [
         "~/Work/"
+        "~/private/"
       ];
     };
     stdlib = ''
