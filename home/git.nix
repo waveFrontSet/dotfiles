@@ -37,6 +37,9 @@
       ".direnv/"
       ".envrc"
 
+      # env variables, possibly sensitive
+      ".env"
+
       # python
       ".venv"
       "default.profraw"
