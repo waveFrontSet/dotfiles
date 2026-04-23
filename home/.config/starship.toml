@@ -9,15 +9,18 @@ $directory\
 $git_branch\
 $git_status\
 [](fg:#394260 bg:#212736)\
+$fill\
+$jobs\
+[◖](fg:#1d2230)\
 $nodejs\
 $rust\
 $golang\
 $python\
 $haskell\
-[](fg:#212736 bg:#1d2230)\
+$terraform\
+[◖](fg:#212736 bg:#1d2230)\
 $time\
-[ ](fg:#1d2230)\
-\n$character"""
+$line_break$character"""
 
 [directory]
 style = "fg:#000000 bg:#769ff0"
@@ -32,6 +35,9 @@ truncate_to_repo = false
 "Music" = " "
 "Pictures" = " "
 
+[fill]
+symbol = ' '
+
 [git_branch]
 symbol = ""
 style = "bg:#394260"
@@ -43,31 +49,31 @@ format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#1d2230"
+format = '[[ $symbol ](fg:#769ff0 bg:#1d2230)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#1d2230"
+format = '[[ $symbol ](fg:#769ff0 bg:#1d2230)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#1d2230"
+format = '[[ $symbol ](fg:#769ff0 bg:#1d2230)]($style)'
 
 [python]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#1d2230"
+format = '[[ $symbol ](fg:#769ff0 bg:#1d2230)]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:#1d2230"
+format = '[[ $symbol ](fg:#769ff0 bg:#1d2230)]($style)'
 
 [time]
 disabled = false
 time_format = "%R"                                      # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+style = "bg:#212736"
+format = '[[  $time ](fg:#a0a9cb bg:#212736)]($style)'
