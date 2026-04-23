@@ -9,8 +9,22 @@
     "github-copilot"
   ],
   "permission": {
-    "edit": "ask",
-    "bash": "ask"
+    "edit": {
+      "*": "ask",
+      "*.py": "allow"
+    },
+    "bash": {
+      "*": "ask",
+      "git add *": "allow",
+      "git commit *": "allow",
+      "git diff *": "allow",
+      "git log *": "allow",
+      "git status *": "allow",
+      "grep *": "allow",
+      "head *": "allow",
+      "tail *": "allow",
+      "cat *": "allow"
+    }
   },
   "compaction": {
     "auto": true,
