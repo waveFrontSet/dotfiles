@@ -11,7 +11,8 @@
   "permission": {
     "edit": {
       "*": "ask",
-      "*.py": "allow"
+      "*.py": "allow",
+      "*.tf": "allow"
     },
     "bash": {
       "*": "ask",
@@ -23,7 +24,8 @@
       "grep *": "allow",
       "head *": "allow",
       "tail *": "allow",
-      "cat *": "allow"
+      "cat *": "allow",
+      "uv *": "allow",
     }
   },
   "compaction": {
