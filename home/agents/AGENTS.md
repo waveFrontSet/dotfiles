@@ -1,27 +1,76 @@
-# General Instructions
+# General Guidelines
 
-## Principles
+**Tradeoff:** These guidelines bias toward caution over speed. For trivial
+tasks, use judgment.
 
-- Be concise. Lead with the answer or action, not the reasoning.
-- Don't add features, refactor code, or make improvements beyond what was asked.
-- Prefer editing existing files over creating new ones.
-- Only add comments where the logic isn't self-evident.
-- Don't add error handling or validation for scenarios that can't happen.
+## 1. Think Before Coding
 
-## Code Style
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
 
-- Follow the conventions already established in the project.
-- Use the project's existing formatters and linters — don't introduce new ones.
-- Prefer simple, readable code over clever abstractions.
+Before implementing:
 
-## Git
+- State your assumptions explicitly. If uncertain, ask.
+- If multiple interpretations exist, present them - don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
+- If something is unclear, stop. Name what's confusing. Ask.
 
-- Write concise commit messages focused on the "why", not the "what".
-- Create feature branches from `main`.
-- Use conventional commit prefixes where appropriate (feat, fix, chore, docs, refactor).
+## 2. Simplicity First
 
-## Testing
+**Minimum code that solves the problem. Nothing speculative.**
 
-- Use the project's existing test framework and conventions.
-- Cover happy path, edge cases, and error conditions.
-- Look at existing tests for patterns before writing new ones.
+- No features beyond what was asked.
+- No abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't requested.
+- No error handling for impossible scenarios.
+- If you write 200 lines and it could be 50, rewrite it.
+
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+When editing existing code:
+
+- Don't "improve" adjacent code, comments, or formatting.
+- Don't refactor things that aren't broken.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated dead code, mention it - don't delete it.
+
+When your changes create orphans:
+
+- Remove imports/variables/functions that YOUR changes made unused.
+- Don't remove pre-existing dead code unless asked.
+
+The test: Every changed line should trace directly to the user's request.
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+
+- "Add validation" → "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" → "Write a test that reproduces it, then make it pass"
+- "Refactor X" → "Ensure tests pass before and after"
+
+For multi-step tasks, state a brief plan:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it
+work") require constant clarification.
+
+## 5. Refactoring Potentials
+
+**Present findings to improve readability and maintainability.**
+
+If you find modules with multiple responsibilities and LOC over 200, suggest a refactoring.
+
+- Define sensible boundaries that define separate responsibilities.
+- Hide implementation details behind interfaces or private functions.
+- Only expose public APIs that are needed by other modules.
