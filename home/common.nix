@@ -56,6 +56,7 @@
       kustomize
       age
       sops
+      awscli2
 
       # Languages
       nodejs
