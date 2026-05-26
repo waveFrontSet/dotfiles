@@ -88,6 +88,48 @@
         "stdio"
       ],
       "enabled": true
+    },
+    "langfuse-docs": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "LangfuseDocs:https://langfuse.com/llms.txt",
+        "--transport",
+        "stdio"
+      ],
+      "enabled": true
+    },
+    "docker-docs": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "DockerDocs:https://docs.docker.com/llms.txt",
+        "--transport",
+        "stdio"
+      ],
+      "enabled": true
+    },
+    "uv-docs": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "UVDocs:https://docs.astral.sh/uv/llms.txt",
+        "--transport",
+        "stdio"
+      ],
+      "enabled": true
     }
   }
 }
