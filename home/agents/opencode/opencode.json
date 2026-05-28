@@ -117,6 +117,20 @@
       ],
       "enabled": true
     },
+    "chainlit-docs": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "mcpdoc",
+        "mcpdoc",
+        "--urls",
+        "ChainlitDocs:https://docs.chainlit.io/llms.txt",
+        "--transport",
+        "stdio"
+      ],
+      "enabled": true
+    },
     "uv-docs": {
       "type": "local",
       "command": [

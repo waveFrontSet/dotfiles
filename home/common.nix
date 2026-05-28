@@ -100,6 +100,7 @@
       # Coding assistants
       opencode
       gemini-cli
+      pi-coding-agent
     ];
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────

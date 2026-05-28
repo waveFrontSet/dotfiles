@@ -4,8 +4,8 @@ import { extname } from "path"
 
 const LINTERS: Record<string, string[][]> = {
   ".py": [
-    ["ruff", "check", "--no-fix"],
-    ["mypy"],
+    ["uv", "run", "ruff", "check", "--no-fix"],
+    ["uv", "run", "mypy"],
   ],
   ".nix": [
     ["nixfmt", "--check"],
