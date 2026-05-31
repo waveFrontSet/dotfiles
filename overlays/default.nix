@@ -1,12 +1,12 @@
 final: prev: {
   talosctl = prev.talosctl.overrideAttrs (old: rec {
-    version = "1.12.8";
+    version = "1.13.3";
     src = final.fetchFromGitHub {
       owner = "siderolabs";
       repo = "talos";
       tag = "v${version}";
-      hash = "sha256-EqeohwiE5f1ka1l+gAtM5jZ5KjTQy0oV4JH4Alaie7A=";
+      hash = "sha256-6WjjJXgsgLzE30VEpnl163nw4wjs8stRd7EGKFlSOoY=";
     };
-    vendorHash = "sha256-9J1XcBJrJiiEMEvwHtHdbZkLSLJaRQcpICNE3hcCwz8=";
+    vendorHash = "sha256-TyBitraiVyjgfQnx2Yehd+81IDeJtjpHPx7MhJ/4uBE=";
   });
 }
