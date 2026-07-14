@@ -4,6 +4,9 @@
   "small_model": "anthropic/claude-haiku-4-5",
   "autoupdate": true,
   "share": "manual",
+  "plugin": [
+    "@dietrichgebert/ponytail"
+  ],
   "provider": {
     "pcg": {
       "npm": "@ai-sdk/openai-compatible",
