@@ -23,9 +23,3 @@ switch:
 update:
     nix flake update --flake $HOME/dotfiles
     just switch
-
-# ── Utilities ─────────────────────────────────────────────────────────────
-
-# Update neovim plugins
-nvim-update:
-    nvim --headless "+Lazy! sync" +qa

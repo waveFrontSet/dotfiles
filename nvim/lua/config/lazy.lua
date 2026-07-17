@@ -1,18 +1,27 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
+-- When set (by home-manager's neovim wrapper), all plugins come from the nix
+-- store and lazy.nvim only loads them; otherwise fall back to self-managed
+-- lazy.nvim (git bootstrap + runtime installs) for non-nix machines.
+local nix_plugins = vim.env.NVIM_NIX_LAZY_PATH
+
+if nix_plugins then
+  vim.opt.rtp:prepend(nix_plugins .. "/lazy.nvim")
+else
+  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+  if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+      vim.api.nvim_echo({
+        { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+        { out, "WarningMsg" },
+        { "\nPress any key to exit..." },
+      }, true, {})
+      vim.fn.getchar()
+      os.exit(1)
+    end
   end
+  vim.opt.rtp:prepend(lazypath)
 end
-vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   spec = {
@@ -30,13 +39,20 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- treat every plugin as a "dev" plugin resolved from the nix link farm;
+  -- fallback=false so a plugin missing from home/neovim.nix fails loudly
+  dev = nix_plugins and { path = nix_plugins, patterns = { "" }, fallback = false } or nil,
+  install = { missing = nix_plugins == nil, colorscheme = { "tokyonight", "habamax" } },
   checker = {
-    enabled = true, -- check for plugin updates periodically
+    enabled = nix_plugins == nil, -- update checks only when self-managed
     notify = false, -- notify on update
-  }, -- automatically check for plugin updates
+  },
+  -- lockfile is meaningless with nix-pinned plugins; keep it out of the repo
+  lockfile = vim.fn.stdpath("state") .. "/lazy-lock.json",
   performance = {
     rtp = {
+      -- extra dirs that survive lazy's rtp reset (nix treesitter parsers)
+      paths = vim.env.NVIM_NIX_TS_PARSERS and { vim.env.NVIM_NIX_TS_PARSERS } or {},
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",

@@ -12,6 +12,7 @@
     ./gh.nix
     ./git.nix
     ./kitty.nix
+    ./neovim.nix
     ./zsh.nix
   ];
   home = {
@@ -136,11 +137,5 @@
   };
   programs = {
     home-manager.enable = true;
-    neovim = {
-      enable = true;
-      sideloadInitLua = true;
-      withPython3 = false;
-      withRuby = false;
-    };
   };
 }
