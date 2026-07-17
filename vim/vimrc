@@ -1,35 +1,7 @@
 " vim: foldmethod=marker fenc=utf-8 tw=80 sw=2 sts=2 :
 scriptencoding utf-8
 set nocompatible        " Use Vim defaults (much better!)
-" Bundle configuration {{{1
-filetype off
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-" Bundles {{{1
-call plug#begin('~/.vim/plugged')
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/tabular'
-Plug 'jcf/vim-latex'
-Plug 'kana/vim-fakeclip'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'dense-analysis/ale'
-Plug 'sjl/gundo.vim'
-Plug 'taku-o/vim-editexisting-ext'
-Plug 'tommcdo/vim-exchange'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-rails'
-Plug 'vim-scripts/UltiSnips'
-Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'hashivim/vim-terraform'
-call plug#end()
+" Plugins are managed by nix (home/vim.nix), not vim-plug
 " General configuration {{{1
 filetype plugin indent on
 set shell=/bin/bash

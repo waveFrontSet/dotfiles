@@ -77,7 +77,58 @@
         "allium": "allium",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "vim-editexisting-ext": "vim-editexisting-ext",
+        "vim-fakeclip": "vim-fakeclip",
+        "vim-latex": "vim-latex"
+      }
+    },
+    "vim-editexisting-ext": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1309798200,
+        "narHash": "sha256-r7QYpH4Ba4dyFI8aM9i2ooX2nV3pvwb+0yHJX1wTU4k=",
+        "owner": "taku-o",
+        "repo": "vim-editexisting-ext",
+        "rev": "e2c2b0fd1d205a92f5c066e988b0bb28d3e81d30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "taku-o",
+        "repo": "vim-editexisting-ext",
+        "type": "github"
+      }
+    },
+    "vim-fakeclip": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1589922593,
+        "narHash": "sha256-CKQeuUb/MCCDWSKklmpImam8Aek/PvH29XDrw3aILss=",
+        "owner": "kana",
+        "repo": "vim-fakeclip",
+        "rev": "59858dabdb55787d7f047c4ab26b45f11ebb533b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kana",
+        "repo": "vim-fakeclip",
+        "type": "github"
+      }
+    },
+    "vim-latex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1643218060,
+        "narHash": "sha256-mEpTYOQPjLevDlnK5JmbUj/uykS3Y3jY3xZi5sUfKtk=",
+        "owner": "jcf",
+        "repo": "vim-latex",
+        "rev": "a939dbb881e53c595092d925a275ea63962b3890",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jcf",
+        "repo": "vim-latex",
+        "type": "github"
       }
     }
   },

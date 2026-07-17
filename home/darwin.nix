@@ -12,10 +12,11 @@
     homeDirectory = "/Users/${username}";
 
     packages = with pkgs; [
-      vim-darwin
       reattach-to-user-namespace
       pinentry_mac
     ];
   };
 
+  # darwin-specific vim base for the nix-managed plugin setup (see vim.nix)
+  programs.vim.packageConfigurable = pkgs.vim-darwin;
 }

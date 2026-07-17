@@ -13,6 +13,7 @@
     ./git.nix
     ./kitty.nix
     ./neovim.nix
+    ./vim.nix
     ./zsh.nix
   ];
   home = {
@@ -114,10 +115,10 @@
       ".config/nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
 
-      # Vim — out-of-store symlink so plugged/ / autoload/ stay writable
+      # Vim — plugins and vimrc are nix-managed (see vim.nix); ~/.vim keeps
+      # personal colors/, syntax/, ftdetect/ on the runtimepath
       ".vim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/vim/.vim";
-      ".vimrc".source = "${dotfiles}/vim/.vimrc";
       ".gvimrc".source = "${dotfiles}/vim/.gvimrc";
       ".vimpagerrc".source = "${dotfiles}/vim/.vimpagerrc";
     };

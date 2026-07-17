@@ -19,6 +19,20 @@
       url = "github:juxt/allium";
       flake = false;
     };
+
+    # Vim plugins missing from nixpkgs (built via vimUtils.buildVimPlugin)
+    vim-latex = {
+      url = "github:jcf/vim-latex";
+      flake = false;
+    };
+    vim-fakeclip = {
+      url = "github:kana/vim-fakeclip";
+      flake = false;
+    };
+    vim-editexisting-ext = {
+      url = "github:taku-o/vim-editexisting-ext";
+      flake = false;
+    };
   };
 
   outputs =
@@ -27,6 +41,9 @@
       home-manager,
       nix-darwin,
       allium,
+      vim-latex,
+      vim-fakeclip,
+      vim-editexisting-ext,
       ...
     }:
     let
@@ -38,6 +55,7 @@
         dotfiles = ./.;
         inherit username;
         skills = { inherit allium; };
+        vimPluginSrcs = { inherit vim-latex vim-fakeclip vim-editexisting-ext; };
       };
       mkDarwinConfig =
         username: hostpath:
