@@ -35,8 +35,8 @@ in
       vim-unimpaired
       vim-rails
       ultisnips
-      catppuccin-vim
       vim-terraform
+      (mkPlug "tokyonight-vim" vimPluginSrcs.tokyonight-vim)
       (mkPlug "vim-latex" vimPluginSrcs.vim-latex)
       (mkPlug "vim-fakeclip" vimPluginSrcs.vim-fakeclip)
       (mkPlug "vim-editexisting-ext" vimPluginSrcs.vim-editexisting-ext)

@@ -40,7 +40,9 @@ augroup texAngleConceal
 augroup END
 set conceallevel=2
 set background=dark
-colo catppuccin_frappe
+set termguicolors
+let g:tokyonight_style = 'storm'
+colo tokyonight
 augroup colorschemeConceal
   autocmd!
   au Colorscheme * hi! link Conceal Normal

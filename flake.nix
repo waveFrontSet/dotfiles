@@ -33,6 +33,10 @@
       url = "github:taku-o/vim-editexisting-ext";
       flake = false;
     };
+    tokyonight-vim = {
+      url = "github:ghifarit53/tokyonight-vim";
+      flake = false;
+    };
   };
 
   outputs =
@@ -44,6 +48,7 @@
       vim-latex,
       vim-fakeclip,
       vim-editexisting-ext,
+      tokyonight-vim,
       ...
     }:
     let
@@ -55,7 +60,14 @@
         dotfiles = ./.;
         inherit username;
         skills = { inherit allium; };
-        vimPluginSrcs = { inherit vim-latex vim-fakeclip vim-editexisting-ext; };
+        vimPluginSrcs = {
+          inherit
+            vim-latex
+            vim-fakeclip
+            vim-editexisting-ext
+            tokyonight-vim
+            ;
+        };
       };
       mkDarwinConfig =
         username: hostpath:

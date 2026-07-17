@@ -78,9 +78,26 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
+        "tokyonight-vim": "tokyonight-vim",
         "vim-editexisting-ext": "vim-editexisting-ext",
         "vim-fakeclip": "vim-fakeclip",
         "vim-latex": "vim-latex"
+      }
+    },
+    "tokyonight-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1619146512,
+        "narHash": "sha256-ui/6xv8PH6KuQ4hG1FNMf6EUdF2wfWPNgG/GMXYvn/8=",
+        "owner": "ghifarit53",
+        "repo": "tokyonight-vim",
+        "rev": "4e82e0f0452a6ce8f387828ec71013015515035a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ghifarit53",
+        "repo": "tokyonight-vim",
+        "type": "github"
       }
     },
     "vim-editexisting-ext": {

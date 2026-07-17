@@ -98,6 +98,7 @@ in
       gopls
       gofumpt
       gotools
+      golangci-lint
       yaml-language-server
       vscode-langservers-extracted
       dockerfile-language-server
