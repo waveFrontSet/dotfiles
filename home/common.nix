@@ -39,7 +39,6 @@
       atuin
 
       # Development tools
-      vim
       jq
       just
       lazygit

@@ -12,6 +12,7 @@
     homeDirectory = "/Users/${username}";
 
     packages = with pkgs; [
+      vim-darwin
       reattach-to-user-namespace
       pinentry_mac
     ];

@@ -12,6 +12,7 @@
     homeDirectory = "/home/${username}";
 
     packages = with pkgs; [
+      vim-full
       claude-code
     ];
   };

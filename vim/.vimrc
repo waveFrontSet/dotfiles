@@ -42,7 +42,7 @@ set history=50                       " keep 50 lines of command history
 set ruler                            " Show the cursor position all the time
 set relativenumber
 set number
-set clipboard=unnamed
+set clipboard=unnamedplus
 set showmatch
 set incsearch
 syntax on
