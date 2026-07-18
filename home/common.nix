@@ -13,7 +13,7 @@
     ./git.nix
     ./kitty.nix
     ./neovim.nix
-    ./vim.nix
+    ./vim
     ./zsh.nix
   ];
   home = {
@@ -114,13 +114,6 @@
       # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
       ".config/nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
-
-      # Vim — plugins and vimrc are nix-managed (see vim.nix); ~/.vim keeps
-      # personal colors/, syntax/, ftdetect/ on the runtimepath
-      ".vim".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/vim/.vim";
-      ".gvimrc".source = "${dotfiles}/vim/.gvimrc";
-      ".vimpagerrc".source = "${dotfiles}/vim/.vimpagerrc";
     };
 
     sessionPath = [

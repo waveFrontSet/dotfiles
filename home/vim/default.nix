@@ -41,6 +41,6 @@ in
       (mkPlug "vim-fakeclip" vimPluginSrcs.vim-fakeclip)
       (mkPlug "vim-editexisting-ext" vimPluginSrcs.vim-editexisting-ext)
     ];
-    extraConfig = builtins.readFile ../vim/vimrc;
+    extraConfig = builtins.readFile ./vimrc;
   };
 }
