@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  dotfiles,
   ...
 }:
 
@@ -12,7 +11,7 @@
     ./gh.nix
     ./git.nix
     ./kitty.nix
-    ./neovim.nix
+    ./nvim
     ./vim
     ./zsh.nix
   ];
@@ -113,7 +112,7 @@
 
       # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
       ".config/nvim".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home/nvim";
     };
 
     sessionPath = [

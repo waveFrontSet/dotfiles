@@ -5,8 +5,6 @@ components:
   home: pair
   hosts: pair
   modules: pair
-  nvim: none
-  vim: none
 ---
 
 ## Notes
