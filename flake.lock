@@ -3,11 +3,11 @@
     "allium": {
       "flake": false,
       "locked": {
-        "lastModified": 1783705780,
-        "narHash": "sha256-exqliKNWsQ4hKhJTdDk3FspEC5ISEzIs/BxEXqwqtlU=",
+        "lastModified": 1784714245,
+        "narHash": "sha256-UjikkCL9OiIqMCY07+8GreBOILYJwC+W8QNP/CLwLEM=",
         "owner": "juxt",
         "repo": "allium",
-        "rev": "baadeb851da8cdd38aefc15ae1103eb4ac21d38d",
+        "rev": "899cb05e1418e001bf0cdbc7b542877859d138b0",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784407317,
-        "narHash": "sha256-iZrxHToDJWnvt+5LGAtvuQMTy1NZYlNEKbKaVtBJNcc=",
+        "lastModified": 1784725727,
+        "narHash": "sha256-J5+C9wsO0lhDyUalQzfplDbRjyHDYeEH5+9sdyXtwa8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "39411a8e12a5526d992e65bc7e3dc9a4414d6713",
+        "rev": "041a999e8c1c5b731913855909e68d30ca69b8e0",
         "type": "github"
       },
       "original": {
@@ -43,11 +43,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784362797,
-        "narHash": "sha256-EP9b9b+OXDxHBPefFwMYCIaLq0fn3UkmrbfzbLUT7kQ=",
+        "lastModified": 1784500460,
+        "narHash": "sha256-UvORnAxTRHax7RG74W8Z2t4GvIkX6AjJ5kk0QlwZomo=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "b4cccbd4bc299c1f71ae185b79c3cf99aa82805c",
+        "rev": "57a3171f94705599a2499248ca5758d5eb47c0e0",
         "type": "github"
       },
       "original": {
@@ -58,11 +58,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784356753,
-        "narHash": "sha256-12KrbMiWLcf8m7pCvAtZh1ZrgF85ZXDXvfR/fWTKy84=",
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "61b7c44c4073f0b827768aff0049561b5110ea5a",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
         "type": "github"
       },
       "original": {
@@ -79,8 +79,6 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "tokyonight-vim": "tokyonight-vim",
-        "vim-editexisting-ext": "vim-editexisting-ext",
-        "vim-fakeclip": "vim-fakeclip",
         "vim-latex": "vim-latex"
       }
     },
@@ -97,38 +95,6 @@
       "original": {
         "owner": "ghifarit53",
         "repo": "tokyonight-vim",
-        "type": "github"
-      }
-    },
-    "vim-editexisting-ext": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1309798200,
-        "narHash": "sha256-r7QYpH4Ba4dyFI8aM9i2ooX2nV3pvwb+0yHJX1wTU4k=",
-        "owner": "taku-o",
-        "repo": "vim-editexisting-ext",
-        "rev": "e2c2b0fd1d205a92f5c066e988b0bb28d3e81d30",
-        "type": "github"
-      },
-      "original": {
-        "owner": "taku-o",
-        "repo": "vim-editexisting-ext",
-        "type": "github"
-      }
-    },
-    "vim-fakeclip": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1589922593,
-        "narHash": "sha256-CKQeuUb/MCCDWSKklmpImam8Aek/PvH29XDrw3aILss=",
-        "owner": "kana",
-        "repo": "vim-fakeclip",
-        "rev": "59858dabdb55787d7f047c4ab26b45f11ebb533b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kana",
-        "repo": "vim-fakeclip",
         "type": "github"
       }
     },
