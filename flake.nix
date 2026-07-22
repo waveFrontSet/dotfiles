@@ -25,14 +25,6 @@
       url = "github:jcf/vim-latex";
       flake = false;
     };
-    vim-fakeclip = {
-      url = "github:kana/vim-fakeclip";
-      flake = false;
-    };
-    vim-editexisting-ext = {
-      url = "github:taku-o/vim-editexisting-ext";
-      flake = false;
-    };
     tokyonight-vim = {
       url = "github:ghifarit53/tokyonight-vim";
       flake = false;
@@ -46,8 +38,6 @@
       nix-darwin,
       allium,
       vim-latex,
-      vim-fakeclip,
-      vim-editexisting-ext,
       tokyonight-vim,
       ...
     }:
@@ -63,8 +53,6 @@
         vimPluginSrcs = {
           inherit
             vim-latex
-            vim-fakeclip
-            vim-editexisting-ext
             tokyonight-vim
             ;
         };

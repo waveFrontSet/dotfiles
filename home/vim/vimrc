@@ -53,42 +53,10 @@ let g:html_indent_style1="inc"
 " General shortcuts {{{1
 nnoremap <leader>ev :sp $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :so $MYVIMRC<cr>
-nnoremap <silent> <leader>pp :!python3 %<cr>
-nnoremap <silent> <leader>p2 :!python %<cr>
-" swap arguments separated by commas in function calls (bla, blubb)
-nnoremap <silent> <leader>sw yiwWviwp#viwp
 " quickly switch between alternate buffers
 nnoremap <leader>; :e #<cr>
-" refactor a numberless environment to one with a label
-nnoremap <silent> <leader>ds :call DeleteStar()<cr>j:call AddLabel()<cr>i
-function! SearchStartOfEnv()
-  execute "normal! ?begin\<CR>"
-endfunction
-function! DeleteStar()
-  call SearchStartOfEnv()
-  execute "normal! f*xb*;xNN^"
-endfunction
-function! AddLabel()
-  call SearchStartOfEnv()
-  execute "normal! %%w*O\\label{}\<ESC>"
-endfunction
-" add pairs of brackets in latex
-nnoremap <silent> <leader>ap i\left<esc>%i\right<esc>
-nnoremap <silent> <leader>abp i\bigl<esc>%i\bigr<esc>
-" Correctly indent begin / end environments in LaTeX, cursor has to be at '\' of
-" '\begin'
-function! LatexIndent()
-    normal i%%*EaNBiNEaNVndk]pjVnkdN]pVnk>gvQnN/\\begin
-endfunction
-nnoremap <leader>ind :call LatexIndent()<CR>
-" Compiling with biblatex, --output_safechars supports special chars like 'ß'
-nnoremap <leader>lb :!biber --output_safechars %:r<CR>
-" Making glossaries
-nnoremap <leader>lg :!makeglossaries %:r<CR>
 " Easy folding toggle with Space
 nnoremap <Space> za
-" Quickly set filetype to htmldjango so that snippets and syntax hl is available
-nnoremap <leader>dj :set filetype=htmldjango<CR>
 set pastetoggle=<F2>
 noremap Q gq
 " allows incsearch highlighting for range commands
@@ -101,99 +69,14 @@ set viewoptions-=options
 " Plugin Shortcuts and Configuration {{{1
 " netrw {{{2
 nnoremap <silent> <Leader>nt :Explore<CR>
-" Latex-suite {{{2
-" let g:Tex_TreatMacViewerAsUNIX='1'
-" let g:Tex_ViewRuleComplete_pdf='/usr/bin/open -a Skim $*.pdf'
-let g:Tex_ViewRule_pdf='Skim'
-let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 --interaction=nonstopmode $*'
-" syntastic {{{2
-let g:syntastic_mode_map = { 'mode': 'active',
-                            \ 'active_filetypes': ['php', 'python'],
-                            \ 'passive_filetypes': ['tex'] }
-" }}}
-" Unite {{{2
-nnoremap <leader>ur :<C-u>Unite -start-insert file_rec/async:!<CR>
-nnoremap <leader>uf :<C-u>Unite -start-insert file<CR>
-nnoremap <leader>ub :<C-u>Unite buffer<CR>
-nnoremap <leader>/  :<C-u>Unite grep:.<CR>
-if executable('ag')
-  " Use ag in unite grep source.
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts =
-  \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
-  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('pt')
-  " Use pt in unite grep source.
-  " https://github.com/monochromegane/the_platinum_searcher
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack-grep')
-  " Use ack in unite grep source.
-  let g:unite_source_grep_command = 'ack-grep'
-  let g:unite_source_grep_default_opts =
-  \ '--no-heading --no-color -a -H'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-" }}}
 " UltiSnips {{{2
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
-" YouCompleteMe {{{2
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-" }}}
 " airline {{{2
-let g:airline_theme='powerlineish'
+let g:airline_theme='tokyonight'
 set noshowmode
-if ! has('gui_running')
-  set ttimeoutlen=10
-  augroup FastEscape
-    autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
-  augroup END
-endif
-" }}}
-" Python-mode {{{2
-let g:pymode_rope = 1
-" Map keys for autocompletion
-let g:pymode_rope_autocomplete_map = '<C-Space>'
-" Auto create and open ropeproject
-let g:pymode_rope_auto_project = 1
-" Enable autoimport
-let g:pymode_rope_enable_autoimport = 1
-" Auto generate global cache
-let g:pymode_rope_autoimport_generate = 1
-let g:pymode_rope_autoimport_underlineds = 0
-let g:pymode_rope_codeassist_maxfixes = 10
-let g:pymode_rope_sorted_completions = 1
-let g:pymode_rope_extended_complete = 1
-let g:pymode_rope_autoimport_modules = ["os","shutil","datetime"]
-let g:pymode_rope_confirm_saving = 1
-let g:pymode_rope_global_prefix = "<C-x>p"
-let g:pymode_rope_local_prefix = "<C-c>r"
-let g:pymode_rope_vim_completion = 1
-let g:pymode_rope_guess_project = 1
-let g:pymode_rope_goto_def_newwin = ""
-let g:pymode_rope_always_show_complete_menu = 0
-let g:pymode_doc = 1
-let g:pymode_doc_key = 'K'
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-" }}}
-" Fugitive {{{2
-nnoremap UU :if &diff<bar>diffupdate<bar>else<bar>diffthis<bar>endif<cr>
-nnoremap Ud :if &diff<bar>diffupdate<bar>else<bar>Gdiff<bar>endif<cr>
-nnoremap Us :Gstatus<cr>
-nnoremap Ul :Glog<cr>
-nnoremap Up :!git p
-" }}}
 " }}}
 " Tab ignore and number column width {{{
 " When doing tab completion, give the following files lower priority. You may
@@ -208,67 +91,3 @@ set wildignore=*.info,*.aux,*.log,*.dvi,*.bbl,*.out,*.o,*.lo,*.blg,*.pdf,*.pdfsy
 if v:version >= 700
   set numberwidth=3
 endif
-" }}}
-" {{{ Terminal fixes
-if &term ==? "xterm"
-  set t_Sb=^[4%dm
-  set t_Sf=^[3%dm
-  set ttymouse=xterm2
-endif
-
-if &term ==? "gnome" && has("eval")
-  " Set useful keys that vim doesn't discover via termcap but are in the
-  " builtin xterm termcap. See bug #122562. We use exec to avoid having to
-  " include raw escapes in the file.
-  exec "set <C-Left>=\eO5D"
-  exec "set <C-Right>=\eO5C"
-endif
-" }}}
-" {{{ Autocommands
-if has("autocmd")
-
-augroup gentoo
-  au!
-
-  " Gentoo-specific settings for ebuilds.  These are the federally-mandated
-  " required tab settings.  See the following for more information:
-  " http://www.gentoo.org/proj/en/devrel/handbook/handbook.xml
-  " Note that the rules below are very minimal and don't cover everything.
-  " Better to emerge app-vim/gentoo-syntax, which provides full syntax,
-  " filetype and indent settings for all things Gentoo.
-  au BufRead,BufNewFile *.e{build,class} let is_bash=1|setfiletype sh
-  au BufRead,BufNewFile *.e{build,class} set ts=4 sw=4 noexpandtab
-
-  " In text files, limit the width of text to 78 characters, but be careful
-  " that we don't override the user's setting.
-  autocmd BufNewFile,BufRead *.txt
-        \ if &tw == 0 && ! exists("g:leave_my_textwidth_alone") |
-        \     setlocal textwidth=78 |
-        \ endif
-
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-        \ if ! exists("g:leave_my_cursor_position_alone") |
-        \     if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \         exe "normal g'\"" |
-        \     endif |
-        \ endif
-
-  " When editing a crontab file, set backupcopy to yes rather than auto. See
-  " :help crontab and bug #53437.
-  autocmd FileType crontab set backupcopy=yes
-
-  " If we previously detected that the default encoding is not UTF-8
-  " (g:added_fenc_utf8), assume that a file with only ASCII characters (or no
-  " characters at all) isn't a Unicode file, but is in the default encoding.
-  " Except of course if a byte-order mark is in effect.
-  autocmd BufReadPost *
-        \ if exists("g:added_fenc_utf8") && &fileencoding == "utf-8" &&
-        \    ! &bomb && search('[\x80-\xFF]','nw') == 0 && &modifiable |
-        \       set fileencoding= |
-        \ endif
-
-augroup END
-
-endif " has("autocmd")
-" }}}
