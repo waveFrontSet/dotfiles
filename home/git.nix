@@ -3,6 +3,12 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+    includes = [
+      {
+        condition = "gitdir:~/Work/";
+        path = "~/Work/.gitconfig";
+      }
+    ];
     ignores = [
       # OS X Database files
       ".DS_Store"
@@ -59,9 +65,6 @@
         name = "Paul Grillenberger";
         email = "grillenbergerpaul@gmail.com";
         signingkey = "~/.ssh/id_ed25519.pub";
-      };
-      "includeIf \"gitdir:~/Work/\"" = {
-        path = "~/Work/.gitconfig";
       };
       credential = {
         helper = "osxkeychain";
