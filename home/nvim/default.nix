@@ -45,6 +45,7 @@ let
     "nvim-lint" = nvim-lint;
     "nvim-lspconfig" = nvim-lspconfig;
     "nvim-nio" = nvim-nio;
+    "nvim-surround" = nvim-surround;
     "nvim-treesitter" = nvim-treesitter;
     "nvim-treesitter-textobjects" = nvim-treesitter-textobjects;
     "nvim-ts-autotag" = nvim-ts-autotag;
@@ -104,6 +105,7 @@ in
       docker-compose-language-service
       hadolint
       helm-ls
+      nil
       marksman
       terraform-ls
       texlab
