@@ -9,6 +9,10 @@ return {
   { "mason-org/mason.nvim", enabled = false },
   { "mason-org/mason-lspconfig.nvim", enabled = false },
 
+  -- flash conflicts with my preferred surround keybindings
+  -- ...and I've never used seek mode with `s` anyway.
+  { "folke/flash.nvim", enabled = false },
+
   -- parsers/queries are prebuilt by nix and reach the rtp via
   -- performance.rtp.paths; never compile or network-install them
   {

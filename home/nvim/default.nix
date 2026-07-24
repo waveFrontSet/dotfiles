@@ -19,7 +19,6 @@ let
     "claudecode.nvim" = claudecode-nvim;
     "conform.nvim" = conform-nvim;
     "crates.nvim" = crates-nvim;
-    "flash.nvim" = flash-nvim;
     "friendly-snippets" = friendly-snippets;
     "gh.nvim" = gh-nvim;
     "gitsigns.nvim" = gitsigns-nvim;
