@@ -133,7 +133,6 @@
       "bitwarden"
       "brave-browser"
       "bruno"
-      "claude-code"
       "devpod"
       "docker-desktop"
       "drawio"

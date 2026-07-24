@@ -1,5 +1,4 @@
 {
-  pkgs,
   username,
   ...
 }:
@@ -10,9 +9,5 @@
 
     inherit username;
     homeDirectory = "/home/${username}";
-
-    packages = with pkgs; [
-      claude-code
-    ];
   };
 }

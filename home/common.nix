@@ -98,6 +98,7 @@
       fira-code
 
       # Coding assistants
+      claude-code
       opencode
       gemini-cli
       pi-coding-agent
