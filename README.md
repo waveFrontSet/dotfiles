@@ -8,22 +8,28 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 
 ## Supported hosts
 
-| Host | OS | Flake output |
-| ---- | -- | ------------ |
+| Host           | OS                     | Flake output                                       |
+| -------------- | ---------------------- | -------------------------------------------------- |
 | `no-mans-work` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
 | `no-mans-mini` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
 | `no-mans-land` | macOS (aarch64-darwin) | `darwinConfigurations` — nix-darwin + home-manager |
-| `home-laptop` | NixOS (x86_64-linux) | `nixosConfigurations` |
+| `home-laptop`  | NixOS (x86_64-linux)   | `nixosConfigurations`                              |
 
 ## What's managed
 
-**`home/`** — Home-manager modules for packages, shell (Zsh, Starship), git, kitty, direnv, and other user-level dotfiles. Shared config lives in `common.nix`; OS-specific overrides in `darwin.nix` and `nixos.nix`.
+**`home/`** — Home-manager modules for packages, shell (Zsh, Starship), git,
+kitty, direnv, and other user-level dotfiles. Shared config lives in
+`common.nix`; OS-specific overrides in `darwin.nix` and `nixos.nix`.
 
-**`modules/`** — OS-level system configurations. `darwin.nix` handles nix-darwin settings (Homebrew casks, macOS defaults like Dock, Finder, trackpad, Touch ID sudo). `nixos.nix` handles NixOS system config.
+**`modules/`** — OS-level system configurations. `darwin.nix` handles nix-darwin
+settings (Homebrew casks, macOS defaults like Dock, Finder, trackpad, Touch ID
+sudo). `nixos.nix` handles NixOS system config.
 
 **`hosts/`** — Per-host overrides layered on top of the shared modules.
 
-**`nvim/`, `vim/`** — Editor configurations (Neovim based on [LazyVim](https://www.lazyvim.org/), Vim). Currently top-level, may move into `home/` in the future.
+**`nvim/`, `vim/`** — Editor configurations (Neovim based on
+[LazyVim](https://www.lazyvim.org/), Vim). Currently top-level, may move into
+`home/` in the future.
 
 ## Repository layout
 
