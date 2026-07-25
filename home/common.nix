@@ -10,7 +10,7 @@
     ./direnv.nix
     ./gh.nix
     ./git.nix
-    ./kitty.nix
+    ./kitty
     ./nvim
     ./vim
     ./zsh.nix
