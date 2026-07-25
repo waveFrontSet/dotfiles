@@ -12,6 +12,8 @@ let
     "LazyVim" = LazyVim;
     "LuaSnip" = luasnip;
     "SchemaStore.nvim" = SchemaStore-nvim;
+    "avante.nvim" = avante-nvim;
+    "blink-cmp-avante" = blink-cmp-avante;
     "blink.cmp" = blink-cmp;
     "blink.compat" = blink-compat;
     "bufferline.nvim" = bufferline-nvim;
