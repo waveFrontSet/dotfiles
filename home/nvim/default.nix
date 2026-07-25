@@ -12,6 +12,7 @@ let
     "LazyVim" = LazyVim;
     "LuaSnip" = luasnip;
     "SchemaStore.nvim" = SchemaStore-nvim;
+    "async.nvim" = async-nvim;
     "blink.cmp" = blink-cmp;
     "blink.compat" = blink-compat;
     "bufferline.nvim" = bufferline-nvim;
@@ -51,6 +52,7 @@ let
     "persistence.nvim" = persistence-nvim;
     "plenary.nvim" = plenary-nvim;
     "render-markdown.nvim" = render-markdown-nvim;
+    "refactoring.nvim" = refactoring-nvim;
     "rustaceanvim" = rustaceanvim;
     "sidekick.nvim" = sidekick-nvim;
     "snacks.nvim" = snacks-nvim;
