@@ -1,6 +1,5 @@
 # Home-manager configuration for kitty
-{ ... }:
-{
+_: {
   home.file = {
     ".config/kitty-sessions/dotfiles.kitty-session".source = ./sessions/dotfiles.kitty-session;
     ".config/kitty/tab_bar.py".source = ./tab_bar.py;
@@ -8,6 +7,9 @@
   };
   programs.kitty = {
     enable = true;
+    # Binary comes from the homebrew cask (Developer ID signed, so macOS
+    # notifications work); home-manager only manages the config.
+    package = null;
     enableGitIntegration = true;
     font = {
       name = "family=\"Meslo LG S\"";

@@ -33,7 +33,7 @@
       };
       dock.persistent-apps = [
         "/Applications/Brave Browser.app"
-        "/Users/${username}/Applications/Home Manager Apps/kitty.app"
+        "/Applications/kitty.app"
         "/Applications/Signal.app"
         "/Applications/Bitwarden.app"
         "/Applications/Bruno.app"
@@ -137,6 +137,7 @@
       "docker-desktop"
       "drawio"
       "font-fira-code"
+      "kitty"
       "menumeters"
       "signal"
       "spotify"
