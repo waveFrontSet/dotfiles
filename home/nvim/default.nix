@@ -20,6 +20,7 @@ let
     "claudecode.nvim" = claudecode-nvim;
     "conform.nvim" = conform-nvim;
     "crates.nvim" = crates-nvim;
+    "dressing.nvim" = dressing-nvim;
     "friendly-snippets" = friendly-snippets;
     "gh.nvim" = gh-nvim;
     "gitsigns.nvim" = gitsigns-nvim;
@@ -57,6 +58,9 @@ let
     "sidekick.nvim" = sidekick-nvim;
     "snacks.nvim" = snacks-nvim;
     "supermaven-nvim" = supermaven-nvim;
+    "telescope-fzf-native.nvim" = telescope-fzf-native-nvim;
+    "telescope.nvim" = telescope-nvim;
+    "telescope_hoogle" = telescope_hoogle;
     "todo-comments.nvim" = todo-comments-nvim;
     "tokyonight.nvim" = tokyonight-nvim;
     "trouble.nvim" = trouble-nvim;
@@ -92,6 +96,7 @@ in
     # rust-analyzer from rustup (both on sessionPath).
     extraPackages = with pkgs; [
       lua-language-server
+      ast-grep
       stylua
       basedpyright
       ruff
@@ -110,6 +115,10 @@ in
       hlint
       nil
       marksman
+      markdown-toc
+      markdownlint-cli2
+      mermaid-cli
+      prettier
       terraform-ls
       texlab
       taplo

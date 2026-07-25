@@ -14,6 +14,29 @@ return {
     },
   },
   {
+    "nvim-telescope/telescope.nvim",
+    optional = true,
+    specs = {
+      {
+        "luc-tielen/telescope_hoogle",
+        ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
+        config = function()
+          LazyVim.on_load("telescope.nvim", function()
+            require("telescope").load_extension("hoogle")
+          end)
+        end,
+        keys = {
+          {
+            "<localleader>H",
+            "<cmd>Telescope hoogle<cr>",
+            ft = "haskell",
+            desc = "Hoogle",
+          },
+        },
+      },
+    },
+  },
+  {
     "stevearc/conform.nvim",
     optional = true,
     opts = {

@@ -47,6 +47,7 @@
       shellcheck
       shfmt
       prek
+      mermaid-cli
 
       # Infrastructure / DevOps
       terraform
