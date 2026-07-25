@@ -69,6 +69,7 @@
       nil
       go-tools # staticcheck
       hlint
+      fourmolu
 
       # Utilities
       hugo

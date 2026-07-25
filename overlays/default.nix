@@ -1,4 +1,6 @@
 final: prev: {
+  fourmolu = final.callPackage ./fourmolu.nix { };
+
   talosctl = prev.talosctl.overrideAttrs (old: rec {
     version = "1.13.3";
     src = final.fetchFromGitHub {

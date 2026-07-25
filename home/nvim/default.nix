@@ -104,13 +104,14 @@ in
       docker-compose-language-service
       hadolint
       helm-ls
+      fourmolu
+      hlint
       nil
       marksman
       terraform-ls
       texlab
       taplo
       sqlfluff
-      fourmolu
       haskellPackages.cabal-fmt
     ];
     extraWrapperArgs = [
