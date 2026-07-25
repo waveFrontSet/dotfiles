@@ -8,6 +8,9 @@
     ".config/opencode/plugins".source = ./opencode/plugins;
     ".config/opencode/AGENTS.md".source = ./AGENTS.md;
 
+    # Pi
+    ".pi/agent/extensions/bell.ts".source = ./pi/extensions/bell.ts;
+
     # Claude Code
     ".claude/settings.json".source = ./claude/settings.json;
     ".claude/hooks".source = ./claude/hooks;
