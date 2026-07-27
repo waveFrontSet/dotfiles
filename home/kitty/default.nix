@@ -1,4 +1,3 @@
-# Home-manager configuration for kitty
 _: {
   home.file = {
     ".config/kitty-sessions/dotfiles.kitty-session".source = ./sessions/dotfiles.kitty-session;
