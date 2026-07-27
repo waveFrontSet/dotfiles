@@ -33,7 +33,7 @@ sudo). `nixos.nix` handles NixOS system config.
 
 ## Repository layout
 
-```
+```text
 .
 ├── flake.nix                  # Nix flake — inputs and host outputs
 ├── home/                      # Home-manager modules (dotfiles & programs)
@@ -62,6 +62,7 @@ git clone git://github.com/waveFrontSet/dotfiles.git
 cd dotfiles
 ./bootstrap.sh   # install Nix, rustup, ghcup, configure SSH signing
 just switch       # apply the nix configuration
+just install-hooks  # install git pre-commit hooks (prek)
 ```
 
 ## Day-to-day usage

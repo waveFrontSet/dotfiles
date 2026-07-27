@@ -42,6 +42,7 @@ let
     "neotest-haskell" = neotest-haskell;
     "neotest-python" = neotest-python;
     "noice.nvim" = noice-nvim;
+    "none-ls.nvim" = none-ls-nvim;
     "nui.nvim" = nui-nvim;
     "nvim-lint" = nvim-lint;
     "nvim-lspconfig" = nvim-lspconfig;

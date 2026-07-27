@@ -23,3 +23,9 @@ switch:
 update:
     nix flake update --flake $HOME/dotfiles
     just switch
+
+# ── Git ───────────────────────────────────────────────────────────────────
+
+# Install git pre-commit hooks (prek)
+install-hooks:
+    prek install
