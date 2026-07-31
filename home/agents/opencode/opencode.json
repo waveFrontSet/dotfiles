@@ -28,8 +28,13 @@
   "permission": {
     "edit": {
       "*": "ask",
+      "*.json": "allow",
+      "*.md": "allow",
       "*.py": "allow",
-      "*.tf": "allow"
+      "*.tf": "allow",
+      "*.toml": "allow",
+      "*.yaml": "allow",
+      "*.yml": "allow"
     },
     "bash": {
       "*": "ask",
