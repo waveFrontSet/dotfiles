@@ -37,7 +37,10 @@
       fd
       ripgrep
       delta
-      atuin
+      btop
+      dust
+      tealdeer
+      yazi
 
       # Development tools
       jq
@@ -54,7 +57,10 @@
       terraform-docs
       tflint
       fluxcd
+      kubectl
+      kubectx
       kustomize
+      yq-go
       age
       sops
       awscli2
@@ -108,11 +114,6 @@
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────
     file = {
-      # Nix
-      ".config/nix/nix.conf".text = ''
-        experimental-features = nix-command flakes
-      '';
-
       # Neovim — out-of-store symlink so lazyvim.json / lazy-lock.json stay writable
       ".config/nvim".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/home/nvim";

@@ -97,5 +97,11 @@
       enable = true;
       enableZshIntegration = true;
     };
+    atuin = {
+      enable = true;
+      # zsh integration stays manual (zvm_after_init_commands above) because
+      # zsh-vi-mode rebinds all keys at first prompt, clobbering initContent
+      enableZshIntegration = false;
+    };
   };
 }

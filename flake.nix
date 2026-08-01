@@ -46,7 +46,7 @@
       overlay = import ./overlays;
 
       # ── Shared extra args passed to every module ────────────────────────
-      mkExtraArgs = system: username: {
+      mkExtraArgs = username: {
         dotfiles = ./.;
         inherit username;
         skills = { inherit allium; };
@@ -64,7 +64,7 @@
         in
         nix-darwin.lib.darwinSystem {
           inherit system;
-          specialArgs = mkExtraArgs system username;
+          specialArgs = mkExtraArgs username;
           modules = [
             { nixpkgs.overlays = [ overlay ]; }
             hostpath
@@ -75,7 +75,7 @@
                 backupFileExtension = "backup";
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                extraSpecialArgs = mkExtraArgs system username;
+                extraSpecialArgs = mkExtraArgs username;
                 users."${username}" = {
                   imports = [
                     ./home/common.nix
@@ -88,6 +88,12 @@
         };
     in
     {
+      # ── `nix fmt` ──────────────────────────────────────────────────────
+      formatter = {
+        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+      };
+
       darwinConfigurations = {
         "no-mans-work" = mkDarwinConfig "paul" ./hosts/darwin-work.nix;
         "no-mans-mini" = mkDarwinConfig "paul" ./hosts/darwin-mini.nix;
@@ -97,7 +103,7 @@
       # ── NixOS ──────────────────────────────────────────────────────────
       nixosConfigurations."home-laptop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = mkExtraArgs "x86_64-linux" "paulgrillenberger";
+        specialArgs = mkExtraArgs "paulgrillenberger";
         modules = [
           { nixpkgs.overlays = [ overlay ]; }
           ./hosts/nixos-home.nix
@@ -107,7 +113,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = mkExtraArgs "x86_64-linux" "paulgrillenberger";
+              extraSpecialArgs = mkExtraArgs "paulgrillenberger";
               users.paulgrillenberger = {
                 imports = [
                   ./home/common.nix

@@ -40,7 +40,7 @@ require("lazy").setup({
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   -- treat every plugin as a "dev" plugin resolved from the nix link farm;
-  -- fallback=false so a plugin missing from home/neovim.nix fails loudly
+  -- fallback=false so a plugin missing from home/nvim/default.nix fails loudly
   dev = nix_plugins and { path = nix_plugins, patterns = { "" }, fallback = false } or nil,
   install = { missing = nix_plugins == nil, colorscheme = { "tokyonight", "habamax" } },
   checker = {

@@ -4,7 +4,7 @@ if not vim.env.NVIM_NIX_LAZY_PATH then
 end
 
 return {
-  -- LSP/formatter/linter binaries come from nix (home/neovim.nix
+  -- LSP/formatter/linter binaries come from nix (home/nvim/default.nix
   -- extraPackages), not from mason downloads
   { "mason-org/mason.nvim", enabled = false },
   { "mason-org/mason-lspconfig.nvim", enabled = false },

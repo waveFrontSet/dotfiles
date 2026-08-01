@@ -1,20 +1,6 @@
-# git ls-files --others --exclude-from=.git/info/exclude
-# Lines that start with '#' are comments.
-# For a project mostly in C, the following would be a good set of
-# exclude patterns (uncomment them if you want to use them):
-# *.[oa]
 *~
 *.swp
 *.pyc
-vim/.vim/autoload
-vim/.vim/bundle
-vim/.vim/plugged
-mutt/.mutt/.ropeproject
-vim/.vim/.netrwhist
-vim.symlink/bundle/
-mutt.symlink/.ropeproject/
-vim.symlink/.netrwhist
-emacs/.emacs.d
-!emacs/.emacs.d/snippets/
-!emacs/.emacs.d/cdlatex.el
+.mypy_cache/
+.ruff_cache/
 result

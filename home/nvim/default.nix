@@ -79,7 +79,7 @@ let
   );
 
   # Prebuilt treesitter parsers + queries; kept on the rtp via
-  # performance.rtp.paths in nvim/lua/config/lazy.lua.
+  # performance.rtp.paths in lua/config/lazy.lua.
   treesitterParsers = pkgs.symlinkJoin {
     name = "nvim-treesitter-parsers";
     paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.passthru.dependencies;

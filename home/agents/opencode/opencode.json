@@ -49,7 +49,7 @@
       "cat *": "allow",
       "uv *": "allow",
       "ls *": "allow",
-      "find *": "allow",
+      "find *": "allow"
     }
   },
   "compaction": {

@@ -65,9 +65,6 @@ _: {
         email = "grillenbergerpaul@gmail.com";
         signingkey = "~/.ssh/id_ed25519.pub";
       };
-      credential = {
-        helper = "osxkeychain";
-      };
       push = {
         default = "current";
         autoSetupRemote = true;
