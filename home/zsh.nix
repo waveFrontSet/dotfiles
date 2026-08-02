@@ -41,10 +41,10 @@
         grep = "rg";
         j = "z";
         la = "ll -A";
-        ll = "eza -la --icons --git";
-        ls = "eza --icons";
+        ll = "eza -la --icons=always --git";
+        ls = "eza --icons=always";
         ssh = "kitty +kitten ssh";
-        tree = "eza --tree --icons";
+        tree = "eza --tree --icons=always";
       };
       initContent = lib.mkMerge [
         (lib.mkOrder 1000 ''
