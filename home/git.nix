@@ -83,13 +83,14 @@ _: {
       };
       merge = {
         tool = "nvim";
+        conflictstyle = "zdiff3";
       };
       mergetool = {
         prompt = false;
         keepBackup = false;
       };
       "mergetool \"nvim\"" = {
-        cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
+        cmd = "nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'";
       };
       "filter \"lfs\"" = {
         required = true;
