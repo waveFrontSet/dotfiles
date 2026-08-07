@@ -21,9 +21,8 @@
     }
   },
   "enabled_providers": [
-    "anthropic",
-    "github-copilot",
-    "pcg"
+    "pcg",
+    "openrouter"
   ],
   "permission": {
     "edit": {
