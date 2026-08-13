@@ -69,6 +69,8 @@
       nodejs
       go
       uv
+      prettier
+      ruff
 
       # Linters / formatters (used by AI coding tool hooks)
       nixfmt

@@ -75,7 +75,38 @@
         "yaml",
         "yml"
       ]
-    }
+    },
+    "prettier-markdown": {
+      "command": [
+        "prettier",
+        "--parser",
+        "markdown"
+      ],
+      "extensions": [
+        "md"
+      ]
+    },
+    "ruff-format": {
+      "command": [
+        "ruff",
+        "format"
+      ],
+      "extensions": [
+        "py",
+        "pyi"
+      ]
+    },
+    "ruff-check": {
+      "command": [
+        "ruff",
+        "check",
+        "--fix"
+      ],
+      "extensions": [
+        "py",
+        "pyi"
+      ]
+    },
   },
   "instructions": [],
   "mcp": {
