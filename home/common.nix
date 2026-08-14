@@ -111,7 +111,6 @@
       claude-code
       opencode
       gemini-cli
-      pi-coding-agent
     ];
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────

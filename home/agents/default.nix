@@ -1,5 +1,16 @@
-{ skills, ... }:
+{ lib, skills, ... }:
 {
+  programs.pi-coding-agent = {
+    enable = true;
+    settings = {
+      defaultModel = lib.mkDefault "openai/gpt-5.6-terra";
+      defaultProvider = lib.mkDefault "openrouter";
+      theme = "tokyo-night-storm";
+      themes = [ "themes" ];
+    };
+    context = ./AGENTS.md;
+  };
+
   home.file = {
     # OpenCode
     ".config/opencode/opencode.json".source = ./opencode/opencode.json;
@@ -9,6 +20,7 @@
     ".config/opencode/AGENTS.md".source = ./AGENTS.md;
 
     # Pi
+    ".pi/agent/themes".source = ./pi/themes;
     ".pi/agent/extensions/bell.ts".source = ./pi/extensions/bell.ts;
 
     # Claude Code
