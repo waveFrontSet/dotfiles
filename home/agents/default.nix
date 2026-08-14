@@ -7,6 +7,7 @@
       defaultProvider = lib.mkDefault "openrouter";
       theme = "tokyo-night-storm";
       themes = [ "themes" ];
+      packages = [ "npm:pi-lens@4.0.0" ];
     };
     context = ./AGENTS.md;
   };
