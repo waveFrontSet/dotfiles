@@ -1,24 +1,197 @@
 { lib, skills, ... }:
-{
-  programs.pi-coding-agent = {
-    enable = true;
-    settings = {
-      defaultModel = lib.mkDefault "openai/gpt-5.6-terra";
-      defaultProvider = lib.mkDefault "openrouter";
-      theme = "tokyo-night-storm";
-      themes = [ "themes" ];
-      packages = [ "npm:pi-lens@4.0.0" ];
+let
+  mcpDocs = {
+    adk-docs = {
+      name = "AgentDevelopmentKit";
+      url = "https://adk.dev/llms.txt";
     };
-    context = ./AGENTS.md;
+    pydantic-docs = {
+      name = "PydanticDocs";
+      url = "https://pydantic.dev/llms.txt";
+    };
+    langfuse-docs = {
+      name = "LangfuseDocs";
+      url = "https://langfuse.com/llms.txt";
+    };
+    docker-docs = {
+      name = "DockerDocs";
+      url = "https://docs.docker.com/llms.txt";
+    };
+    chainlit-docs = {
+      name = "ChainlitDocs";
+      url = "https://chainlit.io/llms.txt";
+    };
+    uv-docs = {
+      name = "UVDocs";
+      url = "https://docs.astral.sh/uv/llms.txt";
+    };
+  };
+in
+{
+  programs = {
+    pi-coding-agent = {
+      enable = true;
+      settings = {
+        defaultModel = lib.mkDefault "openai/gpt-5.6-terra";
+        defaultProvider = lib.mkDefault "openrouter";
+        theme = "tokyo-night-storm";
+        themes = [ "themes" ];
+        packages = [ "npm:pi-lens@4.0.0" ];
+      };
+      context = ./AGENTS.md;
+    };
+
+    opencode = {
+      enable = true;
+      tui = {
+        theme = "tokyonight";
+        keybinds = {
+          leader = "ctrl+x";
+        };
+        attention = {
+          enabled = true;
+          notifications = true;
+          sound = true;
+          volume = 0.4;
+          sound_pack = "opencode.default";
+        };
+      };
+      settings = {
+        model = "anthropic/claude-sonnet-4-6";
+        small_model = "anthropic/claude-haiku-4-5";
+        autoupdate = true;
+        share = "manual";
+        plugin = [
+          "@dietrichgebert/ponytail"
+          "opencode-models-discovery@latest"
+        ];
+        provider.pcg = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "PCG AI Gateway";
+          options = {
+            baseURL = "https://gateway.pcg.io";
+            modelsDiscovery.enabled = true;
+          };
+        };
+        enabled_providers = [
+          "pcg"
+          "openrouter"
+        ];
+        permission = {
+          edit = {
+            "*" = "ask";
+            "*.json" = "allow";
+            "*.md" = "allow";
+            "*.py" = "allow";
+            "*.tf" = "allow";
+            "*.toml" = "allow";
+            "*.yaml" = "allow";
+            "*.yml" = "allow";
+          };
+          bash = {
+            "*" = "ask";
+            "git add *" = "allow";
+            "git commit *" = "allow";
+            "git diff *" = "allow";
+            "git log *" = "allow";
+            "git status *" = "allow";
+            "grep *" = "allow";
+            "head *" = "allow";
+            "tail *" = "allow";
+            "cat *" = "allow";
+            "uv *" = "allow";
+            "ls *" = "allow";
+            "find *" = "allow";
+          };
+        };
+        compaction = {
+          auto = true;
+          prune = true;
+        };
+        formatter = {
+          jq = {
+            command = [
+              "jq"
+              "."
+            ];
+            extensions = [ "json" ];
+          };
+          prettier-yaml = {
+            command = [
+              "prettier"
+              "--parser"
+              "yaml"
+            ];
+            extensions = [
+              "yaml"
+              "yml"
+            ];
+          };
+          prettier-markdown = {
+            command = [
+              "prettier"
+              "--parser"
+              "markdown"
+            ];
+            extensions = [ "md" ];
+          };
+          ruff-format = {
+            command = [
+              "ruff"
+              "format"
+            ];
+            extensions = [
+              "py"
+              "pyi"
+            ];
+          };
+          ruff-check = {
+            command = [
+              "ruff"
+              "check"
+              "--fix"
+            ];
+            extensions = [
+              "py"
+              "pyi"
+            ];
+          };
+        };
+        instructions = [ ];
+        mcp = {
+          excalidraw = {
+            type = "remote";
+            url = "https://mcp.excalidraw.com";
+            enabled = true;
+          };
+        }
+        // lib.mapAttrs (_: doc: {
+          type = "local";
+          command = [
+            "uvx"
+            "--from"
+            "mcpdoc"
+            "--with"
+            "mcp[cli]<2"
+            "mcpdoc"
+            "--urls"
+            "${doc.name}:${doc.url}"
+            "--transport"
+            "stdio"
+          ];
+          enabled = true;
+        }) mcpDocs;
+      };
+      context = ./AGENTS.md;
+      commands = {
+        explain = ./opencode/commands/explain.md;
+        review = ./opencode/commands/review.md;
+        test = ./opencode/commands/test.md;
+      };
+    };
   };
 
   home.file = {
-    # OpenCode
-    ".config/opencode/opencode.json".source = ./opencode/opencode.json;
-    ".config/opencode/tui.json".source = ./opencode/tui.json;
-    ".config/opencode/commands".source = ./opencode/commands;
-    ".config/opencode/plugins".source = ./opencode/plugins;
-    ".config/opencode/AGENTS.md".source = ./AGENTS.md;
 
     # Pi
     ".pi/agent/themes".source = ./pi/themes;
