@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "allium": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1786489106,
-        "narHash": "sha256-KejnCaWIsOYx9D4a//yog6MbuRWBI4wj/cDbtEt29nE=",
-        "owner": "juxt",
-        "repo": "allium",
-        "rev": "61f7940d8a1c40e6095c54106b733d31533fe336",
-        "type": "github"
-      },
-      "original": {
-        "owner": "juxt",
-        "repo": "allium",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -74,7 +58,6 @@
     },
     "root": {
       "inputs": {
-        "allium": "allium",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",

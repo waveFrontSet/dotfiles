@@ -14,12 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Third-party skills
-    allium = {
-      url = "github:juxt/allium";
-      flake = false;
-    };
-
     # Vim plugins missing from nixpkgs (built via vimUtils.buildVimPlugin)
     vim-latex = {
       url = "github:jcf/vim-latex";
@@ -36,7 +30,6 @@
       nixpkgs,
       home-manager,
       nix-darwin,
-      allium,
       vim-latex,
       tokyonight-vim,
       ...
@@ -49,7 +42,6 @@
       mkExtraArgs = username: {
         dotfiles = ./.;
         inherit username;
-        skills = { inherit allium; };
         vimPluginSrcs = {
           inherit
             vim-latex

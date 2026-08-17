@@ -1,4 +1,4 @@
-{ lib, skills, ... }:
+{ lib, ... }:
 let
   mcpDocs = {
     adk-docs = {
@@ -206,8 +206,5 @@ in
     ".claude/skills/review/SKILL.md".source = ./skills/review/SKILL.md;
     ".claude/skills/test/SKILL.md".source = ./skills/test/SKILL.md;
     ".claude/skills/explain/SKILL.md".source = ./skills/explain/SKILL.md;
-
-    # Third-party skills (flake inputs)
-    ".claude/skills/allium".source = skills.allium;
   };
 }
