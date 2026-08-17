@@ -1,4 +1,9 @@
-{ lib, tokyonight-yazi, ... }:
+{
+  lib,
+  pkgs,
+  tokyonight-yazi,
+  ...
+}:
 {
   home.file = {
     # Starship
@@ -37,6 +42,7 @@
         "NO_BEEP"
       ];
       shellAliases = {
+        cat = "bat";
         gcal = "gcalcli";
         grep = "rg";
         j = "z";
@@ -102,6 +108,23 @@
       # zsh integration stays manual (zvm_after_init_commands above) because
       # zsh-vi-mode rebinds all keys at first prompt, clobbering initContent
       enableZshIntegration = false;
+    };
+    bat = {
+      enable = true;
+      config = {
+        theme = "tokyonight";
+      };
+      themes = {
+        tokyonight = {
+          src = pkgs.fetchFromGitHub {
+            owner = "folke";
+            repo = "tokyonight.nvim";
+            tag = "v4.14.1";
+            sha256 = "kQsV0x8/ycFp3+S6YKyiKFsAG5taOdQmx/dMuDqGyEQ=";
+          };
+          file = "extras/sublime/tokyonight_storm.tmTheme";
+        };
+      };
     };
     yazi = {
       enable = true;

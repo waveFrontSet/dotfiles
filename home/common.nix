@@ -33,14 +33,12 @@
       wget
 
       # Modern CLI replacements
-      bat
       fd
       ripgrep
       delta
       btop
       dust
       tealdeer
-      yazi
 
       # Development tools
       jq
