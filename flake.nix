@@ -23,6 +23,10 @@
       url = "github:ghifarit53/tokyonight-vim";
       flake = false;
     };
+    tokyonight-yazi = {
+      url = "github:BennyOe/tokyo-night.yazi";
+      flake = false;
+    };
   };
 
   outputs =
@@ -32,6 +36,7 @@
       nix-darwin,
       vim-latex,
       tokyonight-vim,
+      tokyonight-yazi,
       ...
     }:
     let
@@ -48,6 +53,7 @@
             tokyonight-vim
             ;
         };
+        inherit tokyonight-yazi;
       };
       mkDarwinConfig =
         username: hostpath:

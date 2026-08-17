@@ -62,6 +62,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "tokyonight-vim": "tokyonight-vim",
+        "tokyonight-yazi": "tokyonight-yazi",
         "vim-latex": "vim-latex"
       }
     },
@@ -78,6 +79,22 @@
       "original": {
         "owner": "ghifarit53",
         "repo": "tokyonight-vim",
+        "type": "github"
+      }
+    },
+    "tokyonight-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767290359,
+        "narHash": "sha256-LArhRteD7OQRBguV1n13gb5jkl90sOxShkDzgEf3PA0=",
+        "owner": "BennyOe",
+        "repo": "tokyo-night.yazi",
+        "rev": "8e6296f14daff24151c736ebd0b9b6cd89b02b03",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BennyOe",
+        "repo": "tokyo-night.yazi",
         "type": "github"
       }
     },

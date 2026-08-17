@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, tokyonight-yazi, ... }:
 {
   home.file = {
     # Starship
@@ -102,6 +102,15 @@
       # zsh integration stays manual (zvm_after_init_commands above) because
       # zsh-vi-mode rebinds all keys at first prompt, clobbering initContent
       enableZshIntegration = false;
+    };
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+      shellWrapperName = "y";
+      flavors = {
+        tokyo-night = tokyonight-yazi;
+      };
+      theme.flavor.dark = "tokyo-night";
     };
   };
 }
