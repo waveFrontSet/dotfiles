@@ -107,10 +107,6 @@
       nerd-fonts.meslo-lg
       fira-code
 
-      # Coding assistants
-      claude-code
-      opencode
-      gemini-cli
     ];
 
     # ── Dotfiles (replaces dotbot symlinks) ─────────────────────────────────

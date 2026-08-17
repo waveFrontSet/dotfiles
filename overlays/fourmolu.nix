@@ -12,6 +12,7 @@
 
 let
   version = "0.20.0.0";
+  isLinux = stdenv.hostPlatform.isLinux;
   plat =
     {
       "aarch64-darwin" = {
@@ -45,10 +46,10 @@ stdenvNoCC.mkDerivation {
 
   sourceRoot = "fourmolu-${version}-${plat.suffix}";
 
-  nativeBuildInputs = [ unzip ] ++ lib.optionals stdenv.isLinux [ autoPatchelfHook ];
+  nativeBuildInputs = [ unzip ] ++ lib.optionals isLinux [ autoPatchelfHook ];
   # Linux release binaries are dynamically linked against glibc; patch for NixOS.
   # The darwin binaries link only system dylibs and need no patching.
-  buildInputs = lib.optionals stdenv.isLinux [
+  buildInputs = lib.optionals isLinux [
     stdenv.cc.cc.lib
     gmp
     ncurses
