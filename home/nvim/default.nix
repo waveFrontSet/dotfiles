@@ -41,6 +41,7 @@ let
     "neotest-golang" = neotest-golang;
     "neotest-haskell" = neotest-haskell;
     "neotest-python" = neotest-python;
+    "neotest-vitest" = neotest-vitest;
     "noice.nvim" = noice-nvim;
     "none-ls.nvim" = none-ls-nvim;
     "nui.nvim" = nui-nvim;
@@ -120,6 +121,8 @@ in
       markdownlint-cli2
       mermaid-cli
       prettier
+      vtsls
+      vue-language-server
       terraform-ls
       texlab
       taplo
