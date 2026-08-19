@@ -65,16 +65,7 @@ in
           "@dietrichgebert/ponytail"
           "opencode-models-discovery@latest"
         ];
-        provider.pcg = {
-          npm = "@ai-sdk/openai-compatible";
-          name = "PCG AI Gateway";
-          options = {
-            baseURL = "https://gateway.pcg.io";
-            modelsDiscovery.enabled = true;
-          };
-        };
-        enabled_providers = [
-          "pcg"
+        enabled_providers = lib.mkDefault [
           "openrouter"
         ];
         permission = {
