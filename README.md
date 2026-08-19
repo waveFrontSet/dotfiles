@@ -48,8 +48,9 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 ## Prerequisites
 
 - Git
-- [Determinate Nix](https://determinate.systems/) (or any Nix with flakes) —
-  `bootstrap.sh` installs it if missing
+- macOS: [Determinate Nix](https://determinate.systems/), configured through
+  its nix-darwin module; `bootstrap.sh` installs it if missing
+- NixOS: the system Nix installation
 - `just` — available after the first Nix activation (bootstrap uses raw `nix run`)
 - macOS only: Homebrew casks are managed *through* nix-darwin; Homebrew itself
   must be installed once manually
@@ -81,6 +82,12 @@ On NixOS:
 ```sh
 sudo nixos-rebuild switch --flake ~/dotfiles#home-laptop
 ```
+
+The macOS configurations use Determinate Nix and declare custom Nix settings
+through its nix-darwin module. `bootstrap.sh` installs Determinate Nix only on
+machines without Nix; use the [Determinate macOS installer](https://install.determinate.systems/determinate-pkg/stable/Universal)
+to migrate an existing upstream installation. NixOS uses upstream Nix with
+`nix-command` and `flakes` enabled in `modules/nixos.nix`.
 
 > **Warning:** `modules/darwin.nix` sets `homebrew.onActivation.cleanup = "zap"`.
 > Any Homebrew cask or formula installed on the machine but *not* listed in the
