@@ -49,6 +49,7 @@
       shfmt
       prek
       mermaid-cli
+      basedpyright
 
       # Infrastructure / DevOps
       terraform
