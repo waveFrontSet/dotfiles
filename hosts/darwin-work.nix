@@ -1,4 +1,9 @@
-{ pkgs, username, ... }:
+{
+  lib,
+  pkgs,
+  username,
+  ...
+}:
 {
   networking.hostName = "no-mans-work";
   environment = {
@@ -13,8 +18,24 @@
       ))
     ];
   };
-  home-manager.users.${username}.programs = {
-    opencode.settings = {
+  home-manager.users.${username} = {
+    programs.pi-coding-agent.settings = {
+      packages = lib.mkAfter [
+        "npm:pi-models-discovery@1.0.1"
+      ];
+      defaultModel = "gpt-5.6-terra";
+      defaultProvider = "pcg";
+    };
+    home.file.".pi/agent/models.json".text = builtins.toJSON {
+      providers.pcg = {
+        name = "PCG AI Gateway";
+        baseUrl = "https://gateway.pcg.io/v1";
+        api = "openai-completions";
+        apiKey = "$PCG_API_KEY";
+        discoverModels = true;
+      };
+    };
+    programs.opencode.settings = {
       provider.pcg = {
         npm = "@ai-sdk/openai-compatible";
         name = "PCG AI Gateway";
