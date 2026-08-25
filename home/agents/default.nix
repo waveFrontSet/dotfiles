@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
   mcpDocs = {
     adk-docs = {
@@ -34,8 +34,7 @@ in
       settings = {
         defaultModel = lib.mkDefault "openai/gpt-5.6-terra";
         defaultProvider = lib.mkDefault "openrouter";
-        theme = "tokyo-night-storm";
-        themes = [ "themes" ];
+        theme = "Tokyo Night Storm";
         packages = [
           "npm:pi-lens@4.0.0"
           "npm:@dietrichgebert/ponytail@4.9.0"
@@ -188,7 +187,8 @@ in
   home.file = {
 
     # Pi
-    ".pi/agent/themes".source = ./pi/themes;
+    ".pi/agent/themes/tokyonight-storm.json".source =
+      "${pkgs.vimPlugins.tokyonight-nvim.src}/extras/pi/tokyonight_storm.json";
 
     # Claude Code
     ".claude/settings.json".source = ./claude/settings.json;

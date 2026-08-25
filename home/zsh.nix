@@ -116,12 +116,7 @@
       };
       themes = {
         tokyonight = {
-          src = pkgs.fetchFromGitHub {
-            owner = "folke";
-            repo = "tokyonight.nvim";
-            tag = "v4.14.1";
-            sha256 = "kQsV0x8/ycFp3+S6YKyiKFsAG5taOdQmx/dMuDqGyEQ=";
-          };
+          src = pkgs.vimPlugins.tokyonight-nvim.src;
           file = "extras/sublime/tokyonight_storm.tmTheme";
         };
       };
