@@ -36,7 +36,10 @@ in
         defaultProvider = lib.mkDefault "openrouter";
         theme = "tokyo-night-storm";
         themes = [ "themes" ];
-        packages = [ "npm:pi-lens@4.0.0" ];
+        packages = [
+          "npm:pi-lens@4.0.0"
+          "npm:@dietrichgebert/ponytail@4.9.0"
+        ];
       };
       context = ./AGENTS.md;
     };
@@ -186,7 +189,6 @@ in
 
     # Pi
     ".pi/agent/themes".source = ./pi/themes;
-    ".pi/agent/extensions/bell.ts".source = ./pi/extensions/bell.ts;
 
     # Claude Code
     ".claude/settings.json".source = ./claude/settings.json;
