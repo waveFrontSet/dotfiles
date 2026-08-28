@@ -1,5 +1,13 @@
 { lib, pkgs, ... }:
 let
+  pyright = pkgs.writeShellApplication {
+    name = "pyright";
+    runtimeInputs = [ pkgs.basedpyright ];
+    text = ''
+      exec basedpyright "$@"
+    '';
+  };
+
   mcpDocs = {
     adk-docs = {
       name = "AgentDevelopmentKit";
@@ -189,6 +197,32 @@ in
     # Pi
     ".pi/agent/themes/tokyonight-storm.json".source =
       "${pkgs.vimPlugins.tokyonight-nvim.src}/extras/pi/tokyonight_storm.json";
+    ".local/bin/pyright".source = "${pyright}/bin/pyright";
+    ".pi-lens/lsp.json".text = builtins.toJSON {
+      disabledServers = [
+        "python"
+        "python-jedi"
+      ];
+      servers.basedpyright = {
+        name = "basedpyright";
+        extensions = [
+          ".py"
+          ".pyi"
+        ];
+        command = "basedpyright-langserver";
+        args = [ "--stdio" ];
+        rootMarkers = [
+          "pyproject.toml"
+          "uv.lock"
+          "setup.py"
+          "setup.cfg"
+          "requirements.txt"
+          "Pipfile"
+          ".venv"
+          "venv"
+        ];
+      };
+    };
 
     # Claude Code
     ".claude/settings.json".source = ./claude/settings.json;
