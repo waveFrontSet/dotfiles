@@ -222,6 +222,19 @@ in
           "venv"
         ];
       };
+      serverOverrides.basedpyright.initializationOptions.basedpyright.analysis = {
+        typeCheckingMode = "standard";
+        diagnosticSeverityOverrides = {
+          reportUnknownMemberType = "none";
+          reportUnknownArgumentType = "none";
+          reportUnknownVariableType = "none";
+          reportUnknownParameterType = "none";
+          reportUnknownLambdaType = "none";
+          reportMissingTypeStubs = "none";
+          reportAny = "none";
+          reportExplicitAny = "none";
+        };
+      };
     };
 
     # Claude Code
