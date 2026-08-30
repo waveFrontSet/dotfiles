@@ -19,7 +19,15 @@
     # These replace the most important parts of the osx/ shell scripts.
     # For the full set, you can still run: just macos / just macos-laptop
     defaults = {
-      # Dock
+      controlcenter = {
+        AirDrop = false;
+        Bluetooth = false;
+        BatteryShowPercentage = true;
+        Display = false;
+        FocusModes = false;
+        NowPlaying = false;
+        Sound = false;
+      };
       dock = {
         autohide = true;
         autohide-delay = 0.0;
@@ -40,7 +48,6 @@
         "/Applications/Spotify.app"
       ];
 
-      # Finder
       finder = {
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
@@ -53,7 +60,6 @@
         _FXShowPosixPathInTitle = true;
       };
 
-      # Global
       NSGlobalDomain = {
         AppleKeyboardUIMode = 3;
         ApplePressAndHoldEnabled = false;
@@ -68,21 +74,17 @@
         PMPrintingExpandedStateForPrint = true;
       };
 
-      # Trackpad
       trackpad = {
         Clicking = true;
         TrackpadRightClick = true;
         TrackpadThreeFingerDrag = false;
       };
 
-      # Screen
       screencapture.location = "~/Desktop";
       screencapture.type = "png";
 
-      # Login window
       loginwindow.GuestEnabled = false;
 
-      # Avoid .DS_Store on network volumes
       CustomUserPreferences = {
         "com.apple.desktopservices" = {
           DSDontWriteNetworkStores = true;
@@ -93,7 +95,6 @@
       };
     };
 
-    # ── Used for backwards compatibility ────────────────────────────────────
     stateVersion = 6;
   };
   users.users.${username} = {
@@ -103,14 +104,12 @@
   };
   users.knownUsers = [ username ];
 
-  # ── System-level programs ───────────────────────────────────────────────
   programs.zsh.enable = true;
   environment.shells = [
     pkgs.zsh
     "/etc/profiles/per-user/${username}/bin/zsh"
   ];
 
-  # ── Homebrew (casks & formulae without nix equivalents) ─────────────────
   homebrew = {
     enable = true;
 
@@ -146,9 +145,5 @@
     enableZshIntegration = true;
   };
 
-  # Auto-hide menu bar (Sequoia+)
-  # system.defaults.NSGlobalDomain._HIHideMenuBar = false;
-
-  # ── Security ────────────────────────────────────────────────────────────
   security.pam.services.sudo_local.touchIdAuth = true;
 }
