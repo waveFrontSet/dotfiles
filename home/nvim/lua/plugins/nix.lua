@@ -1,3 +1,10 @@
+local flake = "builtins.getFlake (toString ./.)"
+local darwin = string.format(
+  'let flake = %s; in (flake.darwinConfigurations."%s" or { options = {}; }).options',
+  flake,
+  vim.fn.hostname()
+)
+
 return {
   {
     "stevearc/conform.nvim",
@@ -19,7 +26,18 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        nil_ls = {},
+        nixd = {
+          settings = {
+            nixd = {
+              nixpkgs = {
+                expr = "import " .. flake .. ".inputs.nixpkgs { }",
+              },
+              options = {
+                darwin = { expr = darwin },
+              },
+            },
+          },
+        },
       },
     },
   },

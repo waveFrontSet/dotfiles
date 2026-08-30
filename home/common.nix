@@ -74,7 +74,7 @@
       # Linters / formatters (used by AI coding tool hooks)
       nixfmt
       statix
-      nil
+      nixd
       go-tools # staticcheck
       hlint
       fourmolu

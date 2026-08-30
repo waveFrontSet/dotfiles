@@ -93,7 +93,7 @@ in
     withPython3 = false;
     withRuby = false;
     # LSP servers / formatters / linters that mason used to download.
-    # nil, nixfmt, statix, shellcheck, shfmt, hlint, tflint, terraform and
+    # nixd, nixfmt, statix, shellcheck, shfmt, hlint, tflint, terraform and
     # markdownlint-cli2 are already in home.packages; hls comes from ghcup,
     # rust-analyzer from rustup (both on sessionPath).
     extraPackages = with pkgs; [
@@ -115,7 +115,7 @@ in
       helm-ls
       fourmolu
       hlint
-      nil
+      nixd
       marksman
       markdown-toc
       markdownlint-cli2
