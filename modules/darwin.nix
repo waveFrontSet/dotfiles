@@ -124,7 +124,7 @@
     ];
 
     brews = [
-      # Add brews for formulae that remain in brew
+      "bitwarden-cli"
     ];
 
     casks = [
