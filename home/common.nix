@@ -50,6 +50,7 @@
       prek
       mermaid-cli
       basedpyright
+      jujutsu
 
       # Infrastructure / DevOps
       terraform

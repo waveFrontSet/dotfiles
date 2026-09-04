@@ -130,5 +130,9 @@
       };
       theme.flavor.dark = "tokyo-night";
     };
+    devenv = {
+      enable = true;
+      enableZshIntegration = true;
+    };
   };
 }
