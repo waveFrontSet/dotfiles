@@ -33,6 +33,17 @@ let
       name = "UVDocs";
       url = "https://docs.astral.sh/uv/llms.txt";
     };
+    devenv-docs = {
+      name = "DevenvDocs";
+      url = "https://devenv.sh/llms.txt";
+    };
+  };
+
+  # pi-mcp-adapter config: pull MCP servers from the opencode config
+  # (~/.config/opencode/opencode.json, generated above from `mcp` + mcpDocs).
+  piMcpConfig = {
+    imports = [ "opencode" ];
+    mcpServers = { };
   };
 in
 {
@@ -46,6 +57,10 @@ in
         packages = [
           "npm:pi-lens@4.0.0"
           "npm:@dietrichgebert/ponytail@4.9.0"
+          "npm:pi-mcp-adapter"
+          "npm:pi-web-access"
+          "npm:pi-simplify"
+          "npm:@plannotator/pi-extension"
         ];
       };
       context = ./AGENTS.md;
@@ -195,6 +210,7 @@ in
   home.file = {
 
     # Pi
+    ".pi/agent/mcp.json".text = builtins.toJSON piMcpConfig;
     ".pi/agent/themes/tokyonight-storm.json".source =
       "${pkgs.vimPlugins.tokyonight-nvim.src}/extras/pi/tokyonight_storm.json";
     ".local/bin/pyright".source = "${pyright}/bin/pyright";
