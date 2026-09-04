@@ -94,8 +94,8 @@ in
     withRuby = false;
     # LSP servers / formatters / linters that mason used to download.
     # nixd, nixfmt, statix, shellcheck, shfmt, hlint, tflint, terraform and
-    # markdownlint-cli2 are already in home.packages; hls comes from ghcup,
-    # rust-analyzer from rustup (both on sessionPath).
+    # markdownlint-cli2 are already in home.packages; HLS and rust-analyzer
+    # come from per-project devenv environments (templates/ in the dotfiles).
     extraPackages = with pkgs; [
       lua-language-server
       ast-grep

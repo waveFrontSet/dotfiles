@@ -41,7 +41,8 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 │   └── nixos.nix              #   NixOS system config
 ├── hosts/                     # Per-host overrides
 ├── overlays/                  # Package pins / custom derivations
-├── bootstrap.sh               # One-time setup (Nix, rustup, ghcup, SSH keys)
+├── templates/                 # devenv project templates (rust, haskell, python)
+├── bootstrap.sh               # One-time setup (Nix, SSH keys)
 └── justfile                   # Common tasks (just switch, just update, ...)
 ```
 
@@ -67,8 +68,8 @@ cd ~/dotfiles
 ./bootstrap.sh
 ```
 
-`bootstrap.sh` installs Nix, rustup, and ghcup if missing, creates
-`~/.ssh/allowed_signers`, and reminds you to add the SSH signing key to GitHub.
+`bootstrap.sh` installs Nix if missing, creates `~/.ssh/allowed_signers`, and
+reminds you to add the SSH signing key to GitHub.
 
 Then, on macOS:
 
@@ -102,6 +103,44 @@ just update    # update flake inputs and rebuild (commit flake.lock afterwards)
 just gc        # drop system generations older than 30d, GC + optimise the store
 nix fmt        # format all nix files (nixfmt)
 ```
+
+## devenv project templates
+
+Language toolchains are not installed globally — each project declares its
+own environment with [devenv](https://devenv.sh). Scaffold a new project with:
+
+```sh
+devi-rust            # Rust: stable toolchain, rustfmt + clippy commit hooks
+devi-hask            # Haskell: GHC, Cabal, HLS; global (overlay-pinned) fourmolu
+devi-py              # Python: uv sync, ruff + ruff-format commit hooks
+devi-rust my-proj    # same, into a (new) subdirectory
+```
+
+Each template ships a `devenv.nix` and `devenv.yaml`. The `devi-*` helpers
+fetch the `.gitignore` from the pinned [github/gitignore](https://github.com/github/gitignore)
+flake input at activation time and merge it with the devenv entries into a
+normal static project file when scaffolding. Run `devenv shell` inside the
+project to enter the environment (it also installs the git commit hooks);
+`devenv up` starts processes. `devr` is an alias for `devenv tasks run`.
+
+## Removing rustup and ghcup (one-time)
+
+If a machine still carries the old globally-installed toolchains:
+
+```sh
+rustup self uninstall   # removes ~/.rustup and ~/.cargo (toolchains + cargo-installed binaries)
+ghcup nuke              # removes ~/.ghcup incl. GHC, HLS and ghcup itself
+rm -rf ~/.cabal         # optional: cabal-installed global packages / build cache
+```
+
+Then confirm nothing is left:
+
+```sh
+command -v rustup ghcup ghc cabal cargo
+```
+
+(No output means clean.) The `~/.cargo/bin` and `~/.ghcup/bin` PATH entries
+have already been dropped from `home/common.nix`.
 
 ## Where to change things
 

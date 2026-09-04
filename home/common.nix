@@ -117,8 +117,6 @@
     };
 
     sessionPath = [
-      "$HOME/.cargo/bin" # rustup-managed Rust toolchain
-      "$HOME/.ghcup/bin" # ghcup-managed Haskell toolchain
       "$HOME/.cabal/bin" # cabal-installed packages
       "$HOME/.local/bin" # ad hoc installed packages
     ];

@@ -2,9 +2,30 @@
   lib,
   pkgs,
   tokyonight-yazi,
+  gitignore,
   ...
 }:
+let
+  # Scaffolds a devenv template into the target directory and merges the
+  # pinned GitHub language gitignore with the devenv entries. Called by the
+  # devi-* zsh wrappers below.
+  devi-init = pkgs.writeShellApplication {
+    name = "devi-init";
+    text = ''
+      if [ "$#" -gt 3 ] || [ "$#" -lt 2 ]; then
+        printf 'usage: devi-rust|devi-hask|devi-py [dir]\n' >&2
+        exit 1
+      fi
+      nix flake new "''${3:-.}" -t "$HOME/dotfiles#$1"
+      {
+        cat "$2"
+        printf '\n# devenv\n.devenv/\n.pre-commit-config.yaml\n'
+      } > "''${3:-.}/.gitignore"
+    '';
+  };
+in
 {
+  home.packages = [ devi-init ];
   home.file = {
     # Starship
     ".config/starship.toml".source = .config/starship.toml;
@@ -51,8 +72,15 @@
         ls = "eza --icons=always";
         ssh = "kitty +kitten ssh";
         tree = "eza --tree --icons=always";
+        devr = "devenv tasks run";
       };
       initContent = lib.mkMerge [
+        (lib.mkOrder 900 ''
+          # devenv project scaffolding (templates/ in ~/dotfiles)
+          devi-rust() { devi-init rust "${gitignore}/Rust.gitignore" "$@"; }
+          devi-hask() { devi-init haskell "${gitignore}/Haskell.gitignore" "$@"; }
+          devi-py() { devi-init python "${gitignore}/Python.gitignore" "$@"; }
+        '')
         (lib.mkOrder 1000 ''
           # Must use zvm_after_init hook because zsh-vi-mode rebinds all keys on init
           zvm_after_init_commands+=('bindkey "^ " autosuggest-accept')

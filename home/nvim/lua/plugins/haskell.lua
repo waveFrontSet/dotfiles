@@ -1,3 +1,13 @@
+-- nixpkgs HLS (devenv) ships only haskell-language-server-<ghcver> and
+-- haskell-language-server-wrapper; ghcup used to provide the unversioned
+-- binary that haskell-tools' auto-attach check looks for. Point it at the
+-- wrapper (auto_attach evaluates this cmd, so this fixes both).
+vim.g.haskell_tools = {
+  hls = {
+    cmd = { "haskell-language-server-wrapper", "--lsp" },
+  },
+}
+
 return {
   {
     "neovim/nvim-lspconfig",

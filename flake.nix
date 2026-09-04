@@ -27,6 +27,12 @@
       url = "github:BennyOe/tokyo-night.yazi";
       flake = false;
     };
+
+    # Language .gitignore templates for the devi-* scaffolding helpers
+    gitignore = {
+      url = "github:github/gitignore";
+      flake = false;
+    };
   };
 
   outputs =
@@ -37,6 +43,7 @@
       vim-latex,
       tokyonight-vim,
       tokyonight-yazi,
+      gitignore,
       ...
     }:
     let
@@ -54,6 +61,7 @@
             ;
         };
         inherit tokyonight-yazi;
+        inherit gitignore;
       };
       mkDarwinConfig =
         username: hostpath:
@@ -90,6 +98,22 @@
       formatter = {
         aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt-tree;
         x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+      };
+
+      # ── devenv project templates (see home/zsh.nix devi-* helpers) ─────
+      templates = {
+        rust = {
+          path = ./templates/rust;
+          description = "Rust devenv environment (stable toolchain, rustfmt + clippy commit hooks)";
+        };
+        haskell = {
+          path = ./templates/haskell;
+          description = "Haskell devenv environment (GHC, Cabal, HLS; global fourmolu)";
+        };
+        python = {
+          path = ./templates/python;
+          description = "Python devenv environment (uv + ruff commit hooks)";
+        };
       };
 
       darwinConfigurations = {
