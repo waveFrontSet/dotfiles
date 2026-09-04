@@ -35,7 +35,7 @@ let
     };
     devenv-docs = {
       name = "DevenvDocs";
-      url = "https://devenv.sh/llms.txt";
+      url = "https://devenv.sh/llms-small.txt";
     };
   };
 
