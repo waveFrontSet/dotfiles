@@ -14,7 +14,28 @@ Before implementing:
 - If a simpler approach exists, say so. Push back when warranted.
 - If something is unclear, stop. Name what's confusing. Ask.
 
-## 2. Simplicity First
+## 2. Verify Before Asserting
+
+**Important claims get verified, not cited from memory.**
+
+An *important* claim is one that directly influences actions or strategies for
+the current task - e.g. "this library ships X", "option Y behaves like Z", "this
+file contains W". Before stating one:
+
+- Check it with the tools you have: read the file, grep, fetch the docs, run
+  the command. Most important claims are cheap to verify.
+- If you must state something from memory first, label it ("unverified") and
+  verify before anyone acts on it.
+- If caught wrong, retract explicitly and correct the record - don't quietly
+  move on.
+
+Low-stakes claims (background, trivia, anything that wouldn't change what you
+do next) can come from memory. Don't verify for theater.
+
+Ask yourself: "If this claim is false, does my plan change?" If yes, verify
+before asserting.
+
+## 3. Simplicity First
 
 **Minimum code that solves the problem. Nothing speculative.**
 
@@ -26,7 +47,7 @@ Before implementing:
 
 Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
 
-## 3. Surgical Changes
+## 4. Surgical Changes
 
 **Touch only what you must. Clean up only your own mess.**
 
@@ -44,7 +65,7 @@ When your changes create orphans:
 
 The test: Every changed line should trace directly to the user's request.
 
-## 4. Goal-Driven Execution
+## 5. Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
 
@@ -65,7 +86,7 @@ For multi-step tasks, state a brief plan:
 Strong success criteria let you loop independently. Weak criteria ("make it
 work") require constant clarification.
 
-## 5. Refactoring Potentials
+## 6. Refactoring Potentials
 
 **Present findings to improve readability and maintainability.**
 
