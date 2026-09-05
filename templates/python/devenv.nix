@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   languages.python = {
     enable = true;
     uv = {

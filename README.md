@@ -6,9 +6,9 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 [home-manager](https://github.com/nix-community/home-manager), and
 [nix-darwin](https://github.com/LnL7/nix-darwin).
 
-> **Note:** This repo is heavily personalized — usernames, hostnames, Dock
-> apps, Homebrew casks, and SSH key names are all mine. It is not a drop-in
-> config for other users without editing those values.
+> **Note:** This repo is heavily personalized — usernames, hostnames, Dock apps,
+> Homebrew casks, and SSH key names are all mine. It is not a drop-in config for
+> other users without editing those values.
 
 ## Supported hosts
 
@@ -49,11 +49,12 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 ## Prerequisites
 
 - Git
-- macOS: [Determinate Nix](https://determinate.systems/), configured through
-  its nix-darwin module; `bootstrap.sh` installs it if missing
+- macOS: [Determinate Nix](https://determinate.systems/), configured through its
+  nix-darwin module; `bootstrap.sh` installs it if missing
 - NixOS: the system Nix installation
-- `just` — available after the first Nix activation (bootstrap uses raw `nix run`)
-- macOS only: Homebrew casks are managed *through* nix-darwin; Homebrew itself
+- `just` — available after the first Nix activation (bootstrap uses raw
+  `nix run`)
+- macOS only: Homebrew casks are managed _through_ nix-darwin; Homebrew itself
   must be installed once manually
 - An SSH key at `~/.ssh/id_ed25519` (`.pub` used for commit signing)
 
@@ -86,14 +87,16 @@ sudo nixos-rebuild switch --flake ~/dotfiles#home-laptop
 
 The macOS configurations use Determinate Nix and declare custom Nix settings
 through its nix-darwin module. `bootstrap.sh` installs Determinate Nix only on
-machines without Nix; use the [Determinate macOS installer](https://install.determinate.systems/determinate-pkg/stable/Universal)
+machines without Nix; use the
+[Determinate macOS installer](https://install.determinate.systems/determinate-pkg/stable/Universal)
 to migrate an existing upstream installation. NixOS uses upstream Nix with
 `nix-command` and `flakes` enabled in `modules/nixos.nix`.
 
-> **Warning:** `modules/darwin.nix` sets `homebrew.onActivation.cleanup = "zap"`.
-> Any Homebrew cask or formula installed on the machine but *not* listed in the
-> config is **uninstalled (zapped, including app data) on activation**. Add
-> existing casks to the list before the first switch.
+> **Warning:** `modules/darwin.nix` sets
+> `homebrew.onActivation.cleanup = "zap"`. Any Homebrew cask or formula
+> installed on the machine but _not_ listed in the config is **uninstalled
+> (zapped, including app data) on activation**. Add existing casks to the list
+> before the first switch.
 
 ## Day-to-day usage
 
@@ -106,8 +109,8 @@ nix fmt        # format all nix files (nixfmt)
 
 ## devenv project templates
 
-Language toolchains are not installed globally — each project declares its
-own environment with [devenv](https://devenv.sh). Scaffold a new project with:
+Language toolchains are not installed globally — each project declares its own
+environment with [devenv](https://devenv.sh). Scaffold a new project with:
 
 ```sh
 devi-rust            # Rust: stable toolchain, rustfmt + clippy commit hooks
@@ -116,12 +119,13 @@ devi-py              # Python: uv sync, ruff + ruff-format commit hooks
 devi-rust my-proj    # same, into a (new) subdirectory
 ```
 
-Each template ships a `devenv.nix` and `devenv.yaml`. The `devi-*` helpers
-fetch the `.gitignore` from the pinned [github/gitignore](https://github.com/github/gitignore)
-flake input at activation time and merge it with the devenv entries into a
-normal static project file when scaffolding. Run `devenv shell` inside the
-project to enter the environment (it also installs the git commit hooks);
-`devenv up` starts processes. `devr` is an alias for `devenv tasks run`.
+Each template ships a `devenv.nix` and `devenv.yaml`. The `devi-*` helpers fetch
+the `.gitignore` from the pinned
+[github/gitignore](https://github.com/github/gitignore) flake input at
+activation time and merge it with the devenv entries into a normal static
+project file when scaffolding. Run `devenv shell` inside the project to enter
+the environment (it also installs the git commit hooks); `devenv up` starts
+processes. `devr` is an alias for `devenv tasks run`.
 
 ## Removing rustup and ghcup (one-time)
 
@@ -139,8 +143,8 @@ Then confirm nothing is left:
 command -v rustup ghcup ghc cabal cargo
 ```
 
-(No output means clean.) The `~/.cargo/bin` and `~/.ghcup/bin` PATH entries
-have already been dropped from `home/common.nix`.
+(No output means clean.) The `~/.cargo/bin` and `~/.ghcup/bin` PATH entries have
+already been dropped from `home/common.nix`.
 
 ## Where to change things
 
@@ -168,4 +172,6 @@ have already been dropped from `home/common.nix`.
 - Neovim config is writable on purpose: `~/.config/nvim` is an out-of-store
   symlink to `~/dotfiles/home/nvim` so `lazyvim.json` stays editable.
 - Commit signing errors — check `~/.ssh/allowed_signers` exists and the public
-  key is registered as a *signing* key on GitHub.
+  key is registered as a _signing_ key on GitHub.
+- `bw` asks for the master password — the Desktop app is unreachable: check it
+  is running and `BWBIO_VERBOSE=true bwbio unlock` shows a Touch ID prompt.

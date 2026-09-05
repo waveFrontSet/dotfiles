@@ -120,11 +120,15 @@
     };
 
     taps = [
-      # Add taps for formulae that remain in brew
+      {
+        name = "jeanregisser/tap";
+        trusted = true;
+      }
     ];
 
     brews = [
       "bitwarden-cli"
+      "bitwarden-cli-bio"
     ];
 
     casks = [
