@@ -4,3 +4,8 @@
 .mypy_cache/
 .ruff_cache/
 result
+
+# devenv (devenv.nix/devenv.yaml generate these locally)
+.devenv/
+.devenv-state/
+.pre-commit-config.yaml

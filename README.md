@@ -42,8 +42,10 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 ├── hosts/                     # Per-host overrides
 ├── overlays/                  # Package pins / custom derivations
 ├── templates/                 # devenv project templates (rust, haskell, python)
+├── devenv.nix                 # devenv tasks (devr switch, devr update, devr gc, ...)
+├── devenv.yaml                # devenv input pins
 ├── bootstrap.sh               # One-time setup (Nix, SSH keys)
-└── justfile                   # Common tasks (just switch, just update, ...)
+└── README.md
 ```
 
 ## Prerequisites
@@ -52,8 +54,8 @@ Personal configuration files managed with [Nix](https://nixos.org/),
 - macOS: [Determinate Nix](https://determinate.systems/), configured through its
   nix-darwin module; `bootstrap.sh` installs it if missing
 - NixOS: the system Nix installation
-- `just` — available after the first Nix activation (bootstrap uses raw
-  `nix run`)
+- devenv — installed via `programs.devenv` (with zsh auto-activation); bootstrap
+  runs before the first activation, so it invokes devenv through `nix shell`
 - macOS only: Homebrew casks are managed _through_ nix-darwin; Homebrew itself
   must be installed once manually
 - An SSH key at `~/.ssh/id_ed25519` (`.pub` used for commit signing)
@@ -75,8 +77,8 @@ reminds you to add the SSH signing key to GitHub.
 Then, on macOS:
 
 ```sh
-just bootstrap      # first nix-darwin activation (darwin-rebuild not yet installed)
-just install-hooks  # install git pre-commit hooks (prek)
+nix shell nixpkgs#devenv -c devenv tasks run bootstrap  # first nix-darwin activation
+                                                        # (darwin-rebuild not yet installed)
 ```
 
 On NixOS:
@@ -84,6 +86,11 @@ On NixOS:
 ```sh
 sudo nixos-rebuild switch --flake ~/dotfiles#home-laptop
 ```
+
+After the first activation, devenv is available globally: trust the repo once
+with `devenv allow` (from inside `~/dotfiles`), and the environment — including
+the tasks — auto-activates when you `cd` into it. Git hooks (nixfmt, statix,
+markdownlint) are installed by devenv on shell entry.
 
 The macOS configurations use Determinate Nix and declare custom Nix settings
 through its nix-darwin module. `bootstrap.sh` installs Determinate Nix only on
@@ -101,11 +108,17 @@ to migrate an existing upstream installation. NixOS uses upstream Nix with
 ## Day-to-day usage
 
 ```sh
-just switch    # rebuild and activate the current configuration
-just update    # update flake inputs and rebuild (commit flake.lock afterwards)
-just gc        # drop system generations older than 30d, GC + optimise the store
+devr switch    # rebuild and activate the current configuration
+devr update    # update flake inputs and rebuild (commit flake.lock afterwards)
+devr gc        # drop system generations older than 30d, GC + optimise the store
 nix fmt        # format all nix files (nixfmt)
 ```
+
+`devr` is an alias for `devenv tasks run`; the tasks are defined in
+`devenv.nix` and operate on the repo root regardless of the current directory
+inside `~/dotfiles`. devenv requires namespaced task names, so each task lives
+in its own single-task namespace (`bootstrap:main`, `switch:main`, …) — running
+the bare namespace (`devr switch`) therefore runs exactly that task.
 
 ## devenv project templates
 
@@ -164,11 +177,12 @@ already been dropped from `home/common.nix`.
 1. Create `hosts/<platform>-<name>.nix` with the host-specific overrides.
 2. Register it in `flake.nix` (`darwinConfigurations` or `nixosConfigurations`),
    picking username and architecture.
-3. Run `just switch` (or the explicit `darwin-rebuild`/`nixos-rebuild` command).
+3. Run `devr switch` (or the explicit `darwin-rebuild`/`nixos-rebuild` command).
 
 ## Troubleshooting
 
-- `darwin-rebuild: command not found` — first activation; run `just bootstrap`.
+- `darwin-rebuild: command not found` — first activation; run `nix shell
+  nixpkgs#devenv -c devenv tasks run bootstrap` from `~/dotfiles`.
 - Neovim config is writable on purpose: `~/.config/nvim` is an out-of-store
   symlink to `~/dotfiles/home/nvim` so `lazyvim.json` stays editable.
 - Commit signing errors — check `~/.ssh/allowed_signers` exists and the public
