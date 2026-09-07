@@ -35,6 +35,13 @@
         discoverModels = true;
       };
     };
+
+    home.file.".pi/agent/plannotator.json".text = builtins.toJSON {
+      phases.executing.model = {
+        provider = "pcg";
+        id = "GLM-5.3-Flash";
+      };
+    };
     programs.opencode.settings = {
       provider.pcg = {
         npm = "@ai-sdk/openai-compatible";

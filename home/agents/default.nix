@@ -211,6 +211,14 @@ in
 
     # Pi
     ".pi/agent/mcp.json".text = builtins.toJSON piMcpConfig;
+    ".pi/agent/plannotator.json".text = lib.mkDefault (
+      builtins.toJSON {
+        phases.executing.model = {
+          provider = "openrouter";
+          id = "glm-5.3-flash";
+        };
+      }
+    );
     ".pi/agent/themes/tokyonight-storm.json".source =
       "${pkgs.vimPlugins.tokyonight-nvim.src}/extras/pi/tokyonight_storm.json";
     ".local/bin/pyright".source = "${pyright}/bin/pyright";
