@@ -6,10 +6,23 @@
 }:
 
 let
-  # Lid closed ⇒ no Touch ID and no terminal prompt, so on macOS route sudo
-  # through the GUI askpass helper from modules/darwin.nix.
+  # On macOS only fall back to the GUI askpass helper from modules/darwin.nix
+  # when the lid is closed (no Touch ID, no visible terminal); otherwise use
+  # plain sudo so Touch ID works. A script, not a shell function: the task
+  # execs embed it as a command prefix ("${sudo} <cmd>").
   sudo =
-    if pkgs.stdenv.hostPlatform.isDarwin then "SUDO_ASKPASS=/etc/sudo-askpass sudo -A" else "sudo";
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      toString (
+        pkgs.writeShellScript "sudo-lid-aware" ''
+          if /usr/sbin/ioreg -r -k AppleClamshellState -d 1 | /usr/bin/grep -q '"AppleClamshellState" = Yes'; then
+            SUDO_ASKPASS=/etc/sudo-askpass exec /usr/bin/sudo -A "$@"
+          else
+            exec /usr/bin/sudo "$@"
+          fi
+        ''
+      )
+    else
+      "sudo";
 in
 {
   # Minimal — the rebuilders (darwin-rebuild / nixos-rebuild) come from the
