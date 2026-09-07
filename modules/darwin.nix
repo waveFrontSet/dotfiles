@@ -150,4 +150,10 @@
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
+
+  # GUI password prompt for `sudo -A` (see devenv.nix tasks): Touch ID is
+  # unavailable with the lid closed, so sudo needs a graphical askpass.
+  environment.etc."sudo-askpass".source = pkgs.writeShellScript "sudo-askpass" ''
+    exec /usr/bin/osascript -e 'text returned of (display dialog "Password for the devenv system task:" with title "sudo" with icon caution with hidden answer default answer "")'
+  '';
 }
