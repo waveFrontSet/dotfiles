@@ -150,6 +150,10 @@
   };
 
   security.pam.services.sudo_local.touchIdAuth = true;
+  # Retain this for Homebrew's nested sudo calls during system activation.
+  security.sudo.extraConfig = ''
+    Defaults env_keep += "SUDO_ASKPASS"
+  '';
 
   # GUI password prompt for `sudo -A` (see devenv.nix tasks): Touch ID is
   # unavailable with the lid closed, so sudo needs a graphical askpass.
