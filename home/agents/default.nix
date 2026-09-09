@@ -61,6 +61,8 @@ in
           "npm:pi-web-access"
           "npm:pi-simplify"
           "npm:@plannotator/pi-extension"
+          "npm:@juicesharp/rpiv-ask-user-question"
+          "npm:@juicesharp/rpiv-todo"
         ];
       };
       context = ./AGENTS.md;
