@@ -255,6 +255,7 @@ in
           reportUnknownParameterType = "none";
           reportUnknownLambdaType = "none";
           reportMissingTypeStubs = "none";
+          reportMissingImports = "hint";
           reportAny = "none";
           reportExplicitAny = "none";
         };
