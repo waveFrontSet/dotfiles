@@ -16,6 +16,8 @@
           cloud-run-proxy
         ]
       ))
+      antigravity-cli
+      _1password-cli
     ];
   };
   home-manager.users.${username} = {
