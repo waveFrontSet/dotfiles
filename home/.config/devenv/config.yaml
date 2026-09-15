@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://devenv.sh/devenv.user.schema.json
+version: 1
+
+shell:
+  prompt_prefix: false
+
+tui:
+  statusline:
+    position: bottom
+    separator: "│"
+    layouts:
+      main:
+        left: [brand, project]
+        center: []
+        right: [shell, profiles]
+    components:
+      brand:
+        type: text
+        text: devenv
+        format: "{text}"
+        priority: 100
+        required: true
+      project:
+        format: "project {name}"
+        compact_format: "{name}"
+        priority: 80
+        max_width: 32
+        overflow: hide
+      shell:
+        format: "shell {shell}"
+        compact_format: "{shell}"
+        priority: 40
+        max_width: 16
+        overflow: hide
+      profiles:
+        format: "profile {profiles}"
+        compact_format: "{profiles}"
+        priority: 30
+        max_width: 24
+        overflow: hide
+  theme:
+    preset: none
+    palette:
+      storm_bg: "#1f2335"
+      storm_fg: "#a9b1d6"
+      storm_blue: "#7aa2f7"
+      storm_purple: "#bb9af7"
+      storm_muted: "#565f89"
+      storm_separator: "#3b4261"
+    styles:
+      statusline:
+        foreground: storm_fg
+        background: storm_bg
+      statusline.separator:
+        foreground: storm_separator
+      statusline.brand:
+        foreground: storm_purple
+        modifiers: [bold]
+      statusline.project:
+        foreground: storm_blue
+      statusline.shell:
+        foreground: storm_fg
+      statusline.profiles:
+        foreground: storm_muted
