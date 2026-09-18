@@ -29,6 +29,8 @@ in
   home.file = {
     # Starship
     ".config/starship.toml".source = .config/starship.toml;
+    # devenv TUI and shell prompt styling
+    ".config/devenv/config.yaml".source = .config/devenv/config.yaml;
     # fast syntax highlighting theme
     ".config/fsh".source = .config/fsh;
   };
