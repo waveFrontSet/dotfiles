@@ -76,6 +76,7 @@ _: {
       interactive = {
         diffFilter = "delta --color-only";
       };
+      diff.algorithm = "histogram";
       delta = {
         navigate = true;
         side-by-side = true;
