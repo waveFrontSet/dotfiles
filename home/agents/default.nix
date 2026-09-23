@@ -51,12 +51,12 @@ in
     pi-coding-agent = {
       enable = true;
       settings = {
-        defaultModel = lib.mkDefault "openai/gpt-5.6-terra";
+        defaultModel = lib.mkDefault "openai/gpt-6-luna";
         defaultProvider = lib.mkDefault "openrouter";
         theme = "Tokyo Night Storm";
         packages = [
-          "npm:pi-lens@4.0.0"
-          "npm:@dietrichgebert/ponytail@4.9.0"
+          "npm:pi-lens"
+          "npm:@dietrichgebert/ponytail"
           "npm:pi-mcp-adapter"
           "npm:pi-web-access"
           "npm:pi-simplify"
@@ -224,42 +224,44 @@ in
     ".pi/agent/themes/tokyonight-storm.json".source =
       "${pkgs.vimPlugins.tokyonight-nvim.src}/extras/pi/tokyonight_storm.json";
     ".local/bin/pyright".source = "${pyright}/bin/pyright";
-    ".pi-lens/lsp.json".text = builtins.toJSON {
-      disabledServers = [
-        "python"
-        "python-jedi"
-      ];
-      servers.basedpyright = {
-        name = "basedpyright";
-        extensions = [
-          ".py"
-          ".pyi"
+    ".pi-lens/config.json".text = builtins.toJSON {
+      lsp = {
+        disabledServers = [
+          "python"
+          "python-jedi"
         ];
-        command = "basedpyright-langserver";
-        args = [ "--stdio" ];
-        rootMarkers = [
-          "pyproject.toml"
-          "uv.lock"
-          "setup.py"
-          "setup.cfg"
-          "requirements.txt"
-          "Pipfile"
-          ".venv"
-          "venv"
-        ];
-      };
-      serverOverrides.basedpyright.initializationOptions.basedpyright.analysis = {
-        typeCheckingMode = "standard";
-        diagnosticSeverityOverrides = {
-          reportUnknownMemberType = "none";
-          reportUnknownArgumentType = "none";
-          reportUnknownVariableType = "none";
-          reportUnknownParameterType = "none";
-          reportUnknownLambdaType = "none";
-          reportMissingTypeStubs = "none";
-          reportMissingImports = "hint";
-          reportAny = "none";
-          reportExplicitAny = "none";
+        servers.basedpyright = {
+          name = "basedpyright";
+          extensions = [
+            ".py"
+            ".pyi"
+          ];
+          command = "basedpyright-langserver";
+          args = [ "--stdio" ];
+          rootMarkers = [
+            "pyproject.toml"
+            "uv.lock"
+            "setup.py"
+            "setup.cfg"
+            "requirements.txt"
+            "Pipfile"
+            ".venv"
+            "venv"
+          ];
+        };
+        serverOverrides.basedpyright.initializationOptions.basedpyright.analysis = {
+          typeCheckingMode = "standard";
+          diagnosticSeverityOverrides = {
+            reportUnknownMemberType = "none";
+            reportUnknownArgumentType = "none";
+            reportUnknownVariableType = "none";
+            reportUnknownParameterType = "none";
+            reportUnknownLambdaType = "none";
+            reportMissingTypeStubs = "none";
+            reportMissingImports = "hint";
+            reportAny = "none";
+            reportExplicitAny = "none";
+          };
         };
       };
     };
