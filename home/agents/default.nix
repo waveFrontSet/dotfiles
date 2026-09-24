@@ -226,6 +226,7 @@ in
     ".local/bin/pyright".source = "${pyright}/bin/pyright";
     ".pi-lens/config.json".text = builtins.toJSON {
       lsp = {
+        format.mode = "immediate";
         disabledServers = [
           "python"
           "python-jedi"

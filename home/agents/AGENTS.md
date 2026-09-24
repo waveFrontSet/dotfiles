@@ -18,19 +18,19 @@ Before implementing:
 
 **Important claims get verified, not cited from memory.**
 
-An *important* claim is one that directly influences actions or strategies for
+An _important_ claim is one that directly influences actions or strategies for
 the current task - e.g. "this library ships X", "option Y behaves like Z", "this
 file contains W". Before stating one:
 
-- Check it with the tools you have: read the file, grep, fetch the docs, run
-  the command. Most important claims are cheap to verify.
+- Check it with the tools you have: read the file, grep, fetch the docs, run the
+  command. Most important claims are cheap to verify.
 - If you must state something from memory first, label it ("unverified") and
   verify before anyone acts on it.
 - If caught wrong, retract explicitly and correct the record - don't quietly
   move on.
 
-Low-stakes claims (background, trivia, anything that wouldn't change what you
-do next) can come from memory. Don't verify for theater.
+Low-stakes claims (background, trivia, anything that wouldn't change what you do
+next) can come from memory. Don't verify for theater.
 
 Ask yourself: "If this claim is false, does my plan change?" If yes, verify
 before asserting.
@@ -45,7 +45,8 @@ before asserting.
 - No error handling for impossible scenarios.
 - If you write 200 lines and it could be 50, rewrite it.
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes,
+simplify.
 
 ## 4. Surgical Changes
 
@@ -90,8 +91,16 @@ work") require constant clarification.
 
 **Present findings to improve readability and maintainability.**
 
-If you find modules with multiple responsibilities and LOC over 200, suggest a refactoring.
+If you find modules with multiple responsibilities and LOC over 200, suggest a
+refactoring.
 
 - Define sensible boundaries that define separate responsibilities.
 - Hide implementation details behind interfaces or private functions.
 - Only expose public APIs that are needed by other modules.
+
+## 7. Language-specific Guidelines
+
+### Python
+
+NEVER, NEVER EVER use `from __future__ import annotations` unless you have a
+good reason. And if you think you have a good reason, ASK FIRST.

@@ -25,7 +25,7 @@
       packages = lib.mkAfter [
         "npm:pi-models-discovery@1.0.1"
       ];
-      defaultModel = "gpt-5.6-terra";
+      defaultModel = "gpt-6-luna";
       defaultProvider = "pcg";
     };
     home.file.".pi/agent/models.json".text = builtins.toJSON {
@@ -41,7 +41,7 @@
     home.file.".pi/agent/plannotator.json".text = builtins.toJSON {
       phases.executing.model = {
         provider = "pcg";
-        id = "GLM-5.3-Flash";
+        id = "gpt-6-luna";
       };
     };
     programs.opencode.settings = {
