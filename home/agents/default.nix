@@ -212,7 +212,7 @@ in
   home.file = {
 
     # Pi
-    ".pi/agent/mcp.json".text = builtins.toJSON piMcpConfig;
+    ".pi/agent/mcp-adapter.json".text = builtins.toJSON piMcpConfig;
     ".pi/agent/plannotator.json".text = lib.mkDefault (
       builtins.toJSON {
         phases.executing.model = {
