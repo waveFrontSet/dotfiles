@@ -90,7 +90,7 @@ in
         share = "manual";
         plugin = [
           "@dietrichgebert/ponytail"
-          "opencode-models-discovery@latest"
+          "opencode-models-discovery"
         ];
         enabled_providers = lib.mkDefault [
           "openrouter"

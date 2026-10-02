@@ -23,7 +23,7 @@
   home-manager.users.${username} = {
     programs.pi-coding-agent.settings = {
       packages = lib.mkAfter [
-        "npm:pi-models-discovery@1.0.1"
+        "npm:pi-models-discovery"
       ];
       defaultModel = "gpt-6-luna";
       defaultProvider = "pcg";
