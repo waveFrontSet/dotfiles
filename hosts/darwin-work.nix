@@ -56,4 +56,7 @@
       enabled_providers = [ "pcg" ];
     };
   };
+  homebrew.brews = [
+    "weasyprint"
+  ];
 }
