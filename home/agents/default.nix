@@ -38,13 +38,58 @@ let
       url = "https://devenv.sh/llms-small.txt";
     };
   };
-
-  # pi-mcp-adapter config: pull MCP servers from the opencode config
-  # (~/.config/opencode/opencode.json, generated above from `mcp` + mcpDocs).
-  piMcpConfig = {
-    imports = [ "opencode" ];
-    mcpServers = { };
-  };
+  opencodeMcp = {
+    excalidraw = {
+      type = "remote";
+      url = "https://mcp.excalidraw.com";
+      enabled = true;
+    };
+  }
+  // lib.mapAttrs (_: doc: {
+    type = "local";
+    command = [
+      "uvx"
+      "--from"
+      "mcpdoc"
+      "--with"
+      "mcp[cli]<2"
+      "mcpdoc"
+      "--urls"
+      "${doc.name}:${doc.url}"
+      "--transport"
+      "stdio"
+    ];
+    enabled = true;
+  }) mcpDocs;
+  piMcp = {
+    excalidraw = {
+      url = "https://mcp.excalidraw.com";
+      enabled = true;
+    };
+    odoo-mcp = {
+      url = "https://external-mcp.gateway.pcg.io/mcp/odoo-mcp";
+      enabled = true;
+    };
+    jira-mcp = {
+      url = "https://external-mcp.gateway.pcg.io/mcp/atlassian";
+      enabled = true;
+    };
+  }
+  // lib.mapAttrs (_: doc: {
+    command = "uvx";
+    args = [
+      "--from"
+      "mcpdoc"
+      "--with"
+      "mcp[cli]<2"
+      "mcpdoc"
+      "--urls"
+      "${doc.name}:${doc.url}"
+      "--transport"
+      "stdio"
+    ];
+    enabled = true;
+  }) mcpDocs;
 in
 {
   programs = {
@@ -57,7 +102,6 @@ in
         packages = [
           "npm:pi-lens"
           "npm:@dietrichgebert/ponytail"
-          "npm:pi-mcp-adapter"
           "npm:pi-web-access"
           "npm:pi-simplify"
           "npm:@plannotator/pi-extension"
@@ -176,29 +220,7 @@ in
           };
         };
         instructions = [ ];
-        mcp = {
-          excalidraw = {
-            type = "remote";
-            url = "https://mcp.excalidraw.com";
-            enabled = true;
-          };
-        }
-        // lib.mapAttrs (_: doc: {
-          type = "local";
-          command = [
-            "uvx"
-            "--from"
-            "mcpdoc"
-            "--with"
-            "mcp[cli]<2"
-            "mcpdoc"
-            "--urls"
-            "${doc.name}:${doc.url}"
-            "--transport"
-            "stdio"
-          ];
-          enabled = true;
-        }) mcpDocs;
+        mcp = opencodeMcp;
       };
       context = ./AGENTS.md;
       commands = {
@@ -212,7 +234,7 @@ in
   home.file = {
 
     # Pi
-    ".pi/agent/mcp-adapter.json".text = builtins.toJSON piMcpConfig;
+    ".pi/agent/mcp.json".text = builtins.toJSON { mcpServers = piMcp; };
     ".pi/agent/plannotator.json".text = lib.mkDefault (
       builtins.toJSON {
         phases.executing.model = {
