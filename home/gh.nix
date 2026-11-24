@@ -1,7 +1,8 @@
-_: {
+{ pkgs, ... }: {
   programs.gh = {
     enable = true;
     settings.git_protocol = "ssh";
+    extensions = [ pkgs.gh-stack ];
   };
   programs.gh-dash = {
     enable = true;
