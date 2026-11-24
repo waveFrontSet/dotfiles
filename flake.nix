@@ -33,6 +33,12 @@
       url = "github:github/gitignore";
       flake = false;
     };
+
+    # Matt Pocock's agent skills (grill-with-docs, wayfinder, etc.)
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
   };
 
   outputs =
@@ -44,6 +50,7 @@
       tokyonight-vim,
       tokyonight-yazi,
       gitignore,
+      mattpocock-skills,
       ...
     }:
     let
@@ -62,6 +69,7 @@
         };
         inherit tokyonight-yazi;
         inherit gitignore;
+        inherit mattpocock-skills;
       };
       mkDarwinConfig =
         username: hostpath:

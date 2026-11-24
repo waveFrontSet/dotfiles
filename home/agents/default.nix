@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  mattpocock-skills,
+  ...
+}:
 let
   pyright = pkgs.writeShellApplication {
     name = "pyright";
@@ -93,6 +98,83 @@ let
 in
 {
   programs = {
+    antigravity-cli = {
+      enable = true;
+      mutableSettings = true;
+      settings = {
+        colorScheme = "tokyo night";
+      };
+      permissions = {
+        allow = [
+          # Filesystem inspection
+          "command(ls)"
+          "command(ll)"
+          "command(tree)"
+          "command(pwd)"
+          "command(stat)"
+          "command(file)"
+          "command(wc)"
+          "command(du)"
+          "command(df)"
+          "command(realpath)"
+          "command(readlink)"
+          "command(which)"
+
+          # Reading & searching
+          "command(cat)"
+          "command(head)"
+          "command(tail)"
+          "command(grep)"
+          "command(rg)"
+          "command(fd)"
+          "command(find)"
+          "command(jq)"
+          "command(yq)"
+          "command(diff)"
+          "command(sort)"
+          "command(uniq)"
+          "command(cut)"
+          "command(tr)"
+          "command(echo)"
+
+          # Git (read-only)
+          "command(git status)"
+          "command(git log)"
+          "command(git show)"
+          "command(git diff)"
+          "command(git ls-files)"
+          "command(git rev-parse)"
+          "command(git blame)"
+          "command(git describe)"
+          "command(git remote -v)"
+        ];
+        deny = [
+          # Forbid reading/writing .env files (while still allowing .envrc)
+          "read_file(.env)"
+          "read_file(.env.*)"
+          "read_file(**/.env)"
+          "read_file(**/.env.*)"
+          "command(regex:(^|[\\s/\"'=])\\.env(\\.[a-zA-Z0-9_-]+)?($|[\\s\"';|&]))"
+        ];
+      };
+      mcpServers = piMcp;
+      context.GEMINI = ./AGENTS.md;
+      skills = {
+        review = ./skills/review;
+        test = ./skills/test;
+        explain = ./skills/explain;
+
+        # Matt Pocock's skills (grill-with-docs + wayfinder and their skill dependencies)
+        grill-with-docs = "${mattpocock-skills}/skills/engineering/grill-with-docs";
+        wayfinder = "${mattpocock-skills}/skills/engineering/wayfinder";
+        grilling = "${mattpocock-skills}/skills/productivity/grilling";
+        domain-modeling = "${mattpocock-skills}/skills/engineering/domain-modeling";
+        research = "${mattpocock-skills}/skills/engineering/research";
+        prototype = "${mattpocock-skills}/skills/engineering/prototype";
+        setup-matt-pocock-skills = "${mattpocock-skills}/skills/engineering/setup-matt-pocock-skills";
+      };
+    };
+
     pi-coding-agent = {
       enable = true;
       settings = {

@@ -16,17 +16,33 @@
           cloud-run-proxy
         ]
       ))
-      antigravity-cli
       _1password-cli
     ];
   };
   home-manager.users.${username} = {
-    programs.pi-coding-agent.settings = {
-      packages = lib.mkAfter [
-        "npm:pi-models-discovery"
-      ];
-      defaultModel = "gpt-6-luna";
-      defaultProvider = "pcg";
+    programs = {
+      antigravity-cli.settings.gcp = {
+        project = "pcg-gemini";
+        location = "eu";
+      };
+      pi-coding-agent.settings = {
+        packages = lib.mkAfter [
+          "npm:pi-models-discovery"
+        ];
+        defaultModel = "gpt-6-luna";
+        defaultProvider = "pcg";
+      };
+      opencode.settings = {
+        provider.pcg = {
+          npm = "@ai-sdk/openai-compatible";
+          name = "PCG AI Gateway";
+          options = {
+            baseURL = "https://gateway.pcg.io";
+            modelsDiscovery.enabled = true;
+          };
+        };
+        enabled_providers = [ "pcg" ];
+      };
     };
     home.file.".pi/agent/models.json".text = builtins.toJSON {
       providers.pcg = {
@@ -43,17 +59,6 @@
         provider = "pcg";
         id = "gpt-6-luna";
       };
-    };
-    programs.opencode.settings = {
-      provider.pcg = {
-        npm = "@ai-sdk/openai-compatible";
-        name = "PCG AI Gateway";
-        options = {
-          baseURL = "https://gateway.pcg.io";
-          modelsDiscovery.enabled = true;
-        };
-      };
-      enabled_providers = [ "pcg" ];
     };
   };
   homebrew.brews = [
